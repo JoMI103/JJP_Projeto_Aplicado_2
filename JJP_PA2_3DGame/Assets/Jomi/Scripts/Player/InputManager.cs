@@ -44,6 +44,4 @@ public class InputManager : MonoBehaviour
     {
         onFoot.Disable();
     }
-
- 
 }
