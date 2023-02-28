@@ -6,6 +6,7 @@ public class SheepBehaviour : MonoBehaviour
 {
     [SerializeField] private float mSpeed = 20f;
     [SerializeField] private float rSpeed = 100f;
+    [SerializeField] private int startHP = 100;
     private bool isFinding = false;
     private bool rotatingLeft = false;
     private bool rotatingRight = false;
@@ -20,23 +21,15 @@ public class SheepBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (isFinding == false)
-        {
-            StartCoroutine(FindPath());
-        }
-        if(rotatingRight == true)
-        {
-            transform.Rotate(transform.up * Time.deltaTime * rSpeed);
-        }
-        if(rotatingLeft == true)
-        {
-            transform.Rotate(transform.up * Time.deltaTime * -rSpeed); 
-        }
-        if(isWalking == true)
-        {
-            rb.AddForce(-transform.forward * mSpeed);
-        }
-            
+        if (startHP <= 0) Destroy(gameObject);
+
+        if (isFinding == false) StartCoroutine(FindPath());
+
+        if(rotatingRight == true) transform.Rotate(transform.up * Time.deltaTime * rSpeed);
+
+        if(rotatingLeft == true) transform.Rotate(transform.up * Time.deltaTime * -rSpeed);
+
+        if (isWalking == true) rb.AddForce(-transform.forward * mSpeed);
     }
 
     IEnumerator FindPath()
@@ -75,4 +68,8 @@ public class SheepBehaviour : MonoBehaviour
         isFinding = false;
     }
 
+    void TakeDamage(int hp)
+    {
+        startHP -= hp;
+    }
 }
