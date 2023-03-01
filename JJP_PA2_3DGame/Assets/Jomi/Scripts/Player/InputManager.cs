@@ -21,7 +21,7 @@ public class InputManager : MonoBehaviour
         onFoot.Jump.performed += ctx => motor.Jump();
         onFoot.Crouch.performed += ctx => motor.Crouch();
         onFoot.Sprint.performed += ctx => motor.Sprint();
-
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate()

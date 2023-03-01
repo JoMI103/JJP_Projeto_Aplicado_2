@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 8020492676777367016}
   - component: {fileID: 8020492676777367017}
   - component: {fileID: 797950334019577421}
+  - component: {fileID: 1892776761733734974}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -510,7 +511,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 88aa99980c5ea984d9f98a7afb8817fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -578,8 +579,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 5030510905935597756}
-  xSensitivity: 30
-  ySensitivity: 30
+  xSensitivity: 0.1
+  ySensitivity: 0.1
+  IgnoreMouseColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 119
 --- !u!114 &8020492676777367017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,3 +613,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: {fileID: 278750496719026485}
+--- !u!114 &1892776761733734974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7118192873375233105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45f2cb426bd9844ab32ce348a5493c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingTypeSOList:
+  - {fileID: 11400000, guid: 7d71d063f08812842be0fa0b7e08a625, type: 2}
+  - {fileID: 11400000, guid: f38434bee49e39b468bbfb2e9376629d, type: 2}
+  buildingTypeSO: {fileID: 11400000, guid: f38434bee49e39b468bbfb2e9376629d, type: 2}
