@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class playerMovement : MonoBehaviour
@@ -73,6 +74,18 @@ public class playerMovement : MonoBehaviour
             laserLineRenderer.startColor = Color.green;
             laserLineRenderer.endColor = Color.green;
             print(raycastHit.collider.gameObject.name);
+
+
+            Interactable interactableAux = raycastHit.collider.GetComponent<Interactable>();
+            if (interactableAux != null)
+            {
+                
+                if (Input.GetKey(KeyCode.C))
+                {
+                    interactableAux.BaseInteract();
+                }
+
+            }
         }
         else
         {
