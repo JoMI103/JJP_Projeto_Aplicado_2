@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3176965114145247417}
   m_Layer: 0
   m_Name: pCube6
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2167815172739304771}
   m_Layer: 0
   m_Name: pCube7
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,9 +177,10 @@ GameObject:
   - component: {fileID: 4284224646261560575}
   - component: {fileID: 7094867260442133445}
   - component: {fileID: 2567048566655153642}
+  - component: {fileID: 365135402}
   m_Layer: 0
   m_Name: Enemy Sheep
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,6 +243,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.009330394, y: 0.011397679, z: 0.016649095}
   m_Center: {x: 0.000067536785, y: 0.0000614096, z: -0.00051292125}
+--- !u!114 &365135402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506217872568517177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee01e523dcd7f54eb6cde4935776640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 256
+  projectile: {fileID: 2772782059478272844, guid: c4cc44463223bc042808cb4d324917da, type: 3}
+  timeBetweenAttacks: 3
+  sightRange: 15.81
+  attackRange: 12.21
+  playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!1 &2635348396376331901
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +278,7 @@ GameObject:
   - component: {fileID: 4195096546492836319}
   m_Layer: 0
   m_Name: pSphere2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,7 +361,7 @@ GameObject:
   - component: {fileID: 4891676303712198513}
   m_Layer: 0
   m_Name: pCylinder8
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,7 +444,7 @@ GameObject:
   - component: {fileID: 4879616525366827777}
   m_Layer: 0
   m_Name: pSphere4
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -504,7 +527,7 @@ GameObject:
   - component: {fileID: 6780300188736457937}
   m_Layer: 0
   m_Name: pCube8
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -587,7 +610,7 @@ GameObject:
   - component: {fileID: 2895320070832024105}
   m_Layer: 0
   m_Name: pCube2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -670,7 +693,7 @@ GameObject:
   - component: {fileID: 6903829015094119603}
   m_Layer: 0
   m_Name: pCylinder9
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -753,7 +776,7 @@ GameObject:
   - component: {fileID: 4397760534506385905}
   m_Layer: 0
   m_Name: pCylinder4
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -836,7 +859,7 @@ GameObject:
   - component: {fileID: 5239900963279930895}
   m_Layer: 0
   m_Name: pCylinder1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -919,7 +942,7 @@ GameObject:
   - component: {fileID: 404496545563961722}
   m_Layer: 0
   m_Name: pSphere1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1002,7 +1025,7 @@ GameObject:
   - component: {fileID: 2526103555495749071}
   m_Layer: 0
   m_Name: pCylinder7
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1085,7 +1108,7 @@ GameObject:
   - component: {fileID: 7604783089262036379}
   m_Layer: 0
   m_Name: pCube3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1168,7 +1191,7 @@ GameObject:
   - component: {fileID: 1530537057170295165}
   m_Layer: 0
   m_Name: pSphere3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
