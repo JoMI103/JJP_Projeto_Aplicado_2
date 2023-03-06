@@ -13,7 +13,7 @@ public class PlacedBuilding : MonoBehaviour {
 
         PlacedBuilding placedBuilding = placedBuildingTransform.GetComponent<PlacedBuilding>();
 
-        placedBuilding.buildingType = buildingTypeSO;
+        placedBuilding.buildingTypeSO = buildingTypeSO;
         placedBuilding.origin= origin;
         placedBuilding.dir = dir;
 
@@ -22,14 +22,14 @@ public class PlacedBuilding : MonoBehaviour {
 
 
 
-    private BuildingTypeSO buildingType;
+    private BuildingTypeSO buildingTypeSO;
     private Vector2Int origin;
     private BuildingTypeSO.Dir dir;
 
 
     public List<Vector2Int> GetGridPositionList()
     {
-        return buildingType.GetGridPosition(origin,dir);
+        return buildingTypeSO.GetGridPosition(origin,dir);
     }
 
     public void DestroySelf()

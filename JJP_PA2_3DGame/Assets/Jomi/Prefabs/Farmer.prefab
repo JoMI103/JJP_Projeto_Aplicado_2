@@ -626,6 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingTypeSOList:
-  - {fileID: 11400000, guid: 7d71d063f08812842be0fa0b7e08a625, type: 2}
+  - {fileID: 11400000, guid: c6d06fceafcfe764cb3f95fcd5a97559, type: 2}
   - {fileID: 11400000, guid: f38434bee49e39b468bbfb2e9376629d, type: 2}
   buildingTypeSO: {fileID: 11400000, guid: f38434bee49e39b468bbfb2e9376629d, type: 2}
+  constructionDistance: 7

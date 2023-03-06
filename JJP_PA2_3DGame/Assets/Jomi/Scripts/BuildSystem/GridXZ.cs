@@ -24,7 +24,7 @@ public class GridXZ<TGridObject>
     private TGridObject[,] gridArray;
 
     //func -->   () => new TGridObject()
-    public GridXZ(int width, int height, float cellSize, Vector3 originPosition, Func<GridXZ<TGridObject> , int, int, TGridObject> createGridFunction)
+    public GridXZ(int width, int height, float cellSize, Vector3 originPosition, Func<GridXZ<TGridObject>, int, int, TGridObject> createGridFunction)
     {
         this.width = width;
         this.height = height;
@@ -41,7 +41,19 @@ public class GridXZ<TGridObject>
             }
 
 
-        if (true) //Debug
+        for(int x = 0; x < gridArray.GetLength(0); x++)
+            for (int z = 0; z < gridArray.GetLength(1); z++)
+            {
+                Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x, z + 1), Color.blue, 100f);
+                Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x + 1, z), Color.blue, 100f);
+
+            }
+        Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.blue, 100f);
+        Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.blue, 100f);
+
+
+
+        if (false) //Debug
         {
             TextMesh[,] debugTextArray = new TextMesh[width, height];
 
@@ -59,11 +71,7 @@ public class GridXZ<TGridObject>
                         0,
                         new Vector3(90,0,0));
 
-                    Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x, z + 1), Color.blue, 100f);
-                    Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x + 1, z), Color.blue, 100f);
                 }
-            Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.blue, 100f);
-            Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.blue, 100f);
 
             OnGridValueChanged += (object sender, OnGridValueChangedEventArgs eventArgs) =>
             {

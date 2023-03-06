@@ -1,3 +1,5 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -23,14 +25,14 @@ public class BuildingGhost : MonoBehaviour
 
     private void LateUpdate()
     {
-
-        Vector3 targetPosition = GridBuildingSystem.Instance.GetMouseWorldSnappedPosition();
+        if( GridBuildingSystem.Instance.GetMouseWorldSnappedPosition(out Vector3 targetPosition))
+            visual?.gameObject.SetActive(true); else visual?.gameObject.SetActive(false);
+        
         targetPosition.y = 0.1f;
+
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 15f);
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, GridBuildingSystem.Instance.GetPlacedObjectRotation(), Time.deltaTime * 15f);
-
-
+        transform.rotation = Quaternion.Lerp(transform.rotation, 
+            GridBuildingSystem.Instance.GetPlacedObjectRotation(), Time.deltaTime * 15f);
     }
 
 

@@ -23,11 +23,27 @@ public class PlayerLook : MonoBehaviour
 
     [SerializeField] private LayerMask IgnoreMouseColliderLayerMask;
 
-    public Vector3 GetMouseWorldPosition_Instance(float distance)
+    public bool GetMouseWorldPosition(float distance, out Vector3 position)
+    {
+        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, distance, IgnoreMouseColliderLayerMask))
+        {
+            position = raycastHit.point;
+            return true;
+        }
+        else
+        {
+            position = Vector3.zero;
+            return false;
+        }
+
+    }
+
+    public Vector3 GetMouseWorldPosition(float distance)
     {
 
-        Ray ray = playerCamera.ScreenPointToRay( Input.mousePosition );
-        if(Physics.Raycast(ray,out RaycastHit raycastHit, distance, IgnoreMouseColliderLayerMask))
+        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, distance, IgnoreMouseColliderLayerMask))
         {
             return raycastHit.point;
         }
@@ -37,4 +53,5 @@ public class PlayerLook : MonoBehaviour
         }
 
     }
+
 }

@@ -17,6 +17,8 @@ public class GridBuildingSystem : MonoBehaviour
     private GridXZ<GridObject> grid;
     private BuildingTypeSO.Dir dir = BuildingTypeSO.Dir.Down;
 
+
+    [SerializeField] private float constructionDistance;
      
     private void Awake()
     {
@@ -76,16 +78,13 @@ public class GridBuildingSystem : MonoBehaviour
     }
 
 
-    private Vector3 getMousePosition()
-    {
-        return playerLook.GetMouseWorldPosition_Instance(5f);
-    }
+    
 
     private void Update()
     {
         if(Input.GetMouseButtonDown(0) && buildingTypeSO != null){
             
-            grid.GetXZ(getMousePosition(), out int x, out int z);
+            grid.GetXZ(playerLook.GetMouseWorldPosition(constructionDistance), out int x, out int z);
 
             Vector2Int placedObjectOrigin = new Vector2Int(x, z);
             placedObjectOrigin = grid.ValidateGridPosition(placedObjectOrigin);
@@ -94,7 +93,7 @@ public class GridBuildingSystem : MonoBehaviour
             List<Vector2Int> gridPositionList = buildingTypeSO.GetGridPosition(new Vector2Int(x, z), dir);
             bool canBuild = true;
             foreach (Vector2Int position in gridPositionList) {
-                if (!grid.GetGridObject(position.x, position.y).canBuild()){
+                if (!grid.GetGridObject(position.x, position.y).canBuild()){ //erro
                     canBuild = false;
                     break;
                 }
@@ -126,7 +125,7 @@ public class GridBuildingSystem : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            Vector3 mousePosition = getMousePosition();
+            Vector3 mousePosition = playerLook.GetMouseWorldPosition(constructionDistance);
             if (grid.GetGridObject(mousePosition) != null)
             {
 
@@ -174,21 +173,21 @@ public class GridBuildingSystem : MonoBehaviour
         return new Vector2Int(x, z);
     }
 
-    public Vector3 GetMouseWorldSnappedPosition()
+    public bool GetMouseWorldSnappedPosition(out Vector3 pos)
     {
-        Vector3 mousePosition = getMousePosition();
+        bool show = playerLook.GetMouseWorldPosition(constructionDistance,out Vector3 mousePosition);
         grid.GetXZ(mousePosition, out int x, out int z);
+        Debug.Log(x + " " + z);
 
         if (buildingTypeSO != null)
         {
             Vector2Int rotationOffset = buildingTypeSO.GetRotationOffSet(dir);
             Vector3 buildObjectWorldPosition = grid.GetWorldPosition(x, z) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * grid.GetCellSize();
-            return buildObjectWorldPosition;
+            pos = buildObjectWorldPosition;
         }
-        else
-        {
-            return mousePosition;
-        }
+        else pos = mousePosition;
+
+        return show;
     }
 
     public Quaternion GetPlacedObjectRotation()

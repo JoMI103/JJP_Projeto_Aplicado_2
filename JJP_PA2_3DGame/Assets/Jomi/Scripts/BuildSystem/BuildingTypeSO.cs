@@ -37,9 +37,9 @@ public class BuildingTypeSO : ScriptableObject
     public Vector2Int GetRotationOffSet(Dir dir) {
         switch (dir) {
             case Dir.Down: return new Vector2Int(0, 0);
-            case Dir.Left: return new Vector2Int(0, width);
-            case Dir.Up: return new Vector2Int(width, height);
-            case Dir.Right: return new Vector2Int(height, 0);
+            case Dir.Left: return new Vector2Int(0, 1);
+            case Dir.Up: return new Vector2Int(1, 1);
+            case Dir.Right: return new Vector2Int(1, 0);
             default: return new Vector2Int(0, 0);
         }
     }
@@ -51,12 +51,20 @@ public class BuildingTypeSO : ScriptableObject
 
         switch (dir) {
             case Dir.Down:
-            case Dir.Up:
                 for (int x = 0; x < width; x++)
                     for (int y = 0; y < height; y++)
                         gridPositionList.Add(offSet + new Vector2Int(x, y));
                 break;
+            case Dir.Up:
+                for (int x = 0; x < width; x++)
+                    for (int y = 0; y < height; y++)
+                        gridPositionList.Add(offSet - new Vector2Int(x, y));
+                break;
             case Dir.Left:
+                for (int x = 0; x < height; x++)
+                    for (int y = 0; y < width; y++)
+                        gridPositionList.Add(offSet - new Vector2Int(x, y));
+                break;
             case Dir.Right:
                 for (int x = 0; x < height; x++)
                     for (int y = 0; y < width; y++)
