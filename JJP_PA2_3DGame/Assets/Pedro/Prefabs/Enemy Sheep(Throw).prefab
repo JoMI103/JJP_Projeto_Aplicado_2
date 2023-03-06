@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8042c8414af6d8a4690a2f9fa6a7e1fe, type: 2}
+  - {fileID: 2100000, guid: a9308317226e29547b60d4d802a1c06a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -177,8 +177,9 @@ GameObject:
   - component: {fileID: 4284224646261560575}
   - component: {fileID: 7094867260442133445}
   - component: {fileID: 2567048566655153642}
+  - component: {fileID: 365135402}
   m_Layer: 0
-  m_Name: Enemy Sheep
+  m_Name: Enemy Sheep(Throw)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2506217872568517177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.39, y: 1.38, z: 0.24}
+  m_LocalPosition: {x: 6.14, y: 1.01, z: 18.717415}
   m_LocalScale: {x: 178.25409, y: 178.25409, z: 178.25409}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -242,6 +243,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.009330394, y: 0.011397679, z: 0.016649095}
   m_Center: {x: 0.000067536785, y: 0.0000614096, z: -0.00051292125}
+--- !u!114 &365135402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506217872568517177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee01e523dcd7f54eb6cde4935776640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 256
+  projectile: {fileID: 2772782059478272844, guid: c4cc44463223bc042808cb4d324917da, type: 3}
+  timeBetweenAttacks: 3
+  sightRange: 15.81
+  attackRange: 12.21
+  playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!1 &2635348396376331901
 GameObject:
   m_ObjectHideFlags: 0

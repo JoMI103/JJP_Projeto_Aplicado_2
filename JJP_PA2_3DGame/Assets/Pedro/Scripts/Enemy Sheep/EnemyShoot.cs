@@ -29,6 +29,22 @@ public class EnemyShoot : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        else Attack();
+
+
+    }
+
+    private void Attack()
+    {
+        if (!alreadyAttacked)
+        {
+            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(-transform.forward * 10f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 3f, ForceMode.Impulse);
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
     }
 
     private void AttackPlayer()
