@@ -68,7 +68,7 @@ public class SheepBehaviour : MonoBehaviour
         isFinding = false;
     }
 
-    void TakeDamage(int hp)
+    public void TakeDamage(int hp)
     {
         startHP -= hp;
     }
