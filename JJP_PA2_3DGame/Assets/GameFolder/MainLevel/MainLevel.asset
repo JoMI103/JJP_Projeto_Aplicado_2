@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: MainLevel
   waves:
-  - cooldown: 1
+  - cooldown: 10
     dificultyMod: 1
     waveSO: {fileID: 11400000, guid: df13c4f8e0173bf4ba03903c64f67c54, type: 2}
   - cooldown: 30

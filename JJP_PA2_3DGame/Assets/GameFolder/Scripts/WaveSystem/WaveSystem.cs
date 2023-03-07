@@ -32,11 +32,13 @@ public class WaveSystem : MonoBehaviour
         yield return new WaitForSeconds(LevelWaves.waves[currentWave].cooldown);
 
         currentWaveEnemies = new List<Transform>();
-        while(currentWaveData.getWaveQuantity() > 0 && currentWaveEnemies.Count == 0)
+        do
         {
             SpawnPartWave();
-            yield return 2f;
-        }
+
+            yield return new WaitForSeconds(2f);
+        } while (currentWaveData.getWaveQuantity() > 0 && checkSheepAlive());
+
 
         if (nextWave())
         SpawnNextWave();
@@ -45,8 +47,6 @@ public class WaveSystem : MonoBehaviour
 
     private void SpawnPartWave()
     {
-        
-
         foreach(Transform sp in spawnPoints)
         {
             if (currentWaveData.getWaveQuantity() == 0) break;
@@ -63,6 +63,7 @@ public class WaveSystem : MonoBehaviour
             if (_waveEnemy.Quantity == 0) { currentWaveData.typeEnemies.RemoveAt(n); } else
             { currentWaveData.typeEnemies[n] = _waveEnemy; }
         }
+   
     }
 
     private bool nextWave()
@@ -81,6 +82,16 @@ public class WaveSystem : MonoBehaviour
         }
         return false;
     }
+
+    private bool checkSheepAlive()
+    {
+        foreach(Transform sp in spawnPoints)
+        {
+            if(sp.childCount > 0) { return true; }
+        }
+        return false;
+    }
+
 }
 
 public class enemyWaveData
@@ -91,6 +102,7 @@ public class enemyWaveData
     {
         int quant = 0;
         foreach (WaveEnemy enemy in typeEnemies) { quant += enemy.Quantity; }
+        Debug.Log(quant);
         return quant;
     }
 

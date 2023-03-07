@@ -15,11 +15,5 @@ MonoBehaviour:
   waveNumber: 1
   typeEnemies:
   - enemySheep: {fileID: 11400000, guid: 8785385e3f2495545a3b69433e7207e0, type: 2}
-    Quantity: 100
-    dificultyMod: 1
-  - enemySheep: {fileID: 11400000, guid: 8785385e3f2495545a3b69433e7207e0, type: 2}
-    Quantity: 100
-    dificultyMod: 1
-  - enemySheep: {fileID: 11400000, guid: 8785385e3f2495545a3b69433e7207e0, type: 2}
-    Quantity: 100
+    Quantity: 20
     dificultyMod: 1
