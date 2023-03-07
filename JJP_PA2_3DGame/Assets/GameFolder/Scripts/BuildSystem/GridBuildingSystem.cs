@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class GridBuildingSystem : MonoBehaviour
 {
+
+
+    [Header("GridDimensions")]
+    [SerializeField] private int GWidth = 10, GHeight = 10;
+
+
     public static GridBuildingSystem Instance { get; private set; }
 
     public event EventHandler OnSelectedChanged;
@@ -25,8 +31,8 @@ public class GridBuildingSystem : MonoBehaviour
         Instance = this;
         playerLook = GetComponent<PlayerLook>();
 
-        int gridWidth = 10;
-        int gridHeight = 10;
+        int gridWidth = GWidth;
+        int gridHeight = GHeight;
         float cellSize = 2f;
 
     
@@ -177,7 +183,7 @@ public class GridBuildingSystem : MonoBehaviour
     {
         bool show = playerLook.GetMouseWorldPosition(constructionDistance,out Vector3 mousePosition);
         grid.GetXZ(mousePosition, out int x, out int z);
-        Debug.Log(x + " " + z);
+       
 
         if (buildingTypeSO != null)
         {

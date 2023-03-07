@@ -3,8 +3,8 @@ using System.Collections;
 
 public class WaveSpawner : MonoBehaviour
 {
-
-    public GameObject enemyPrefab;
+    [SerializeField] private Transform target;
+    public Transform enemyPrefab;
     public float spawnInterval = 2f;
     public int numberOfEnemies = 10;
 
@@ -19,7 +19,8 @@ public class WaveSpawner : MonoBehaviour
     {
         while (enemiesSpawned < numberOfEnemies)
         {
-            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            Transform sheep = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            sheep.GetComponent<SetTargetSheep>().setTarget(target);
             enemiesSpawned++;
             yield return new WaitForSeconds(spawnInterval);
         }
