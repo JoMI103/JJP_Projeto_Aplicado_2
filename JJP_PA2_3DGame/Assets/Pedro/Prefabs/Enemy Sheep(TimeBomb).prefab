@@ -179,6 +179,8 @@ GameObject:
   - component: {fileID: 2826137431305909200}
   - component: {fileID: 2567048566655153642}
   - component: {fileID: 7782062390627820340}
+  - component: {fileID: 5837316339408395413}
+  - component: {fileID: 7420108527315478584}
   m_Layer: 0
   m_Name: Enemy Sheep(TimeBomb)
   m_TagString: Enemy
@@ -281,6 +283,41 @@ MonoBehaviour:
   - {fileID: 6500132737879612700, guid: f34073564b611d648b1cde2220ccb9f6, type: 3}
   - {fileID: 6991238616533080321, guid: aa01f692fc28589429d0580f69d948a8, type: 3}
   - {fileID: 1240844457262095701, guid: 217323c06fa9b7e4f9f0d2ccad6c5fb0, type: 3}
+--- !u!195 &5837316339408395413
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506217872568517177}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &7420108527315478584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506217872568517177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd37d69980493e4f9cd0746b6d0337a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &2635348396376331901
 GameObject:
   m_ObjectHideFlags: 0
