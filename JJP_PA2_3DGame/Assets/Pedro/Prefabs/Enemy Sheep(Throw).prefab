@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 7094867260442133445}
   - component: {fileID: 2567048566655153642}
   - component: {fileID: 365135402}
+  - component: {fileID: 4574122453831372084}
   m_Layer: 0
   m_Name: Enemy Sheep(Throw)
   m_TagString: Enemy
@@ -265,6 +266,22 @@ MonoBehaviour:
   attackRange: 12.21
   playerInSightRange: 0
   playerInAttackRange: 0
+--- !u!114 &4574122453831372084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506217872568517177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb42b9ba1f290044b8b822b9f95e0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 1
+  drops:
+  - {fileID: 6991238616533080321, guid: aa01f692fc28589429d0580f69d948a8, type: 3}
+  - {fileID: 6991238616533080321, guid: aa01f692fc28589429d0580f69d948a8, type: 3}
 --- !u!1 &2635348396376331901
 GameObject:
   m_ObjectHideFlags: 0
