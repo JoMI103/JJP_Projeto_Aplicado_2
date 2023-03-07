@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveNumber: 1
   typeEnemies:
-  - enemySheep: {fileID: 11400000, guid: 8785385e3f2495545a3b69433e7207e0, type: 2}
-    Quantity: 20
+  - enemySheep: {fileID: 11400000, guid: a24e9eec4df122946a1090a208417b10, type: 2}
+    Quantity: 10
+    dificultyMod: 1
+  - enemySheep: {fileID: 11400000, guid: 065bb5c51d84e2a4f87bbe27b01bd191, type: 2}
+    Quantity: 10
     dificultyMod: 1

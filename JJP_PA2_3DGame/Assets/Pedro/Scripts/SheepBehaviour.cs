@@ -29,7 +29,7 @@ public class SheepBehaviour : MonoBehaviour
 
         if(rotatingLeft == true) transform.Rotate(transform.up * Time.deltaTime * -rSpeed);
 
-        if (isWalking == true) rb.AddForce(-transform.forward * mSpeed);
+        if (isWalking == true) rb.AddForce(transform.forward * mSpeed);
     }
 
     IEnumerator FindPath()
