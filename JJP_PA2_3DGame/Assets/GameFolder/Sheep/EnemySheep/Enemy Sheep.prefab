@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 2567048566655153642}
   - component: {fileID: -6136189567014455613}
   - component: {fileID: 879537564366685061}
+  - component: {fileID: -8158887762489375875}
   m_Layer: 0
   m_Name: Enemy Sheep
   m_TagString: Enemy
@@ -227,10 +228,10 @@ BoxCollider:
   m_GameObject: {fileID: 2506217872568517177}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.009330394, y: 0.011397679, z: 0.016649095}
-  m_Center: {x: 0.000067536785, y: 0.0000614096, z: -0.00051292125}
+  m_Size: {x: 1.1832817, y: 1.4221482, z: 1.9440864}
+  m_Center: {x: 0.11834872, y: 1.1464324, z: -0.11594623}
 --- !u!195 &-6136189567014455613
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -266,6 +267,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 3809709140866987744, guid: f8ab573f0b7d03d4a97f8542a70ec153, type: 3}
+--- !u!114 &-8158887762489375875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2506217872568517177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb42b9ba1f290044b8b822b9f95e0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 0
+  drops:
+  - {fileID: 1240844457262095701, guid: 217323c06fa9b7e4f9f0d2ccad6c5fb0, type: 3}
 --- !u!1 &2635348396376331901
 GameObject:
   m_ObjectHideFlags: 0
