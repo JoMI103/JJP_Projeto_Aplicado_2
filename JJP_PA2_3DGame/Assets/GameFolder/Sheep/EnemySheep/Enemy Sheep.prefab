@@ -178,7 +178,6 @@ GameObject:
   - component: {fileID: 7094867260442133445}
   - component: {fileID: 2567048566655153642}
   - component: {fileID: -6136189567014455613}
-  - component: {fileID: 1921318170916827276}
   - component: {fileID: 879537564366685061}
   m_Layer: 0
   m_Name: Enemy Sheep
@@ -254,19 +253,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1921318170916827276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2506217872568517177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd37d69980493e4f9cd0746b6d0337a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &879537564366685061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,7 +457,7 @@ Transform:
   m_GameObject: {fileID: 3184268394223419792}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0007036725, y: 1.51, z: -0.00013727337}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: -1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5877059012632955618}
