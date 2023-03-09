@@ -8,6 +8,18 @@ public class PlayerLook : MonoBehaviour
     private float xRotation;
     [SerializeField] private float xSensitivity = 30.0f, ySensitivity = 30.0f;
 
+    private InputManager inputManager;
+
+    private void Awake()
+    {
+        inputManager = GetComponent<InputManager>();
+    }
+
+    private void LateUpdate()
+    {
+        ProcessLook(inputManager.onFoot.Look.ReadValue<Vector2>());
+    }
+
     public void ProcessLook(Vector2 input)
     {
         float mouseX = input.x;

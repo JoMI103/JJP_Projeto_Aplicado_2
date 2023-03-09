@@ -2559,7 +2559,7 @@ MonoBehaviour:
   ySensitivity: 0.1
   IgnoreMouseColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 887
 --- !u!114 &8020492676777367017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2588,7 +2588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 047ca980a69e13d4cad535e23ae06b26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptText: {fileID: 278750496719026485}
+  interactableMessage: {fileID: 278750496719026485}
 --- !u!114 &1892776761733734974
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -88,14 +88,19 @@ public class GridBuildingSystem : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0) && buildingTypeSO != null){
-            
-            grid.GetXZ(playerLook.GetMouseWorldPosition(constructionDistance), out int x, out int z);
+        //Places the building 
+        if(Input.GetMouseButtonDown(0) && buildingTypeSO != null){ // checks if has something to place
 
+            //gets the coordinates in the grid of the mouse position
+            grid.GetXZ(playerLook.GetMouseWorldPosition(constructionDistance), out int x, out int z);
             Vector2Int placedObjectOrigin = new Vector2Int(x, z);
+
+            //checks if origin can be placed in the grid
             placedObjectOrigin = grid.ValidateGridPosition(placedObjectOrigin);
 
 
+            //Gets the grid position list o the current building (like 1 by 2 = list[2])
+            //and checks if the postions are free
             List<Vector2Int> gridPositionList = buildingTypeSO.GetGridPosition(new Vector2Int(x, z), dir);
             bool canBuild = true;
             foreach (Vector2Int position in gridPositionList) {
@@ -107,57 +112,67 @@ public class GridBuildingSystem : MonoBehaviour
 
             if (canBuild) {
 
+                //Gets the rotation and worldPosition of the building
                 Vector2Int rotationOffset = buildingTypeSO.GetRotationOffSet(dir);
                 Vector3 buildingWorldPosition = grid.GetWorldPosition(placedObjectOrigin.x, placedObjectOrigin.y) +
                     new Vector3(rotationOffset.x, 0, rotationOffset.y) * grid.GetCellSize();
 
+                //Instatiantes a prefab with placedBuilding script
                 PlacedBuilding placedBuilding = PlacedBuilding.Create(buildingWorldPosition, placedObjectOrigin, dir, buildingTypeSO);
 
+                //Sets the placedBuilding on the other grid positions
                 foreach(Vector2Int gridPosition in gridPositionList) {
                     grid.GetGridObject(gridPosition.x, gridPosition.y).SetPlacedBuilding(placedBuilding);
                 }
 
+                //some events s
                 OnObjectPlaced?.Invoke(this, EventArgs.Empty);
-                DeselectObjectType();
+
+               
+                //DeselectObjectType();
             }
             else {
                 Debug.LogWarning("Can't build in " + x + ", " + z);
             }
-
-
-
         }
 
-
+        //Deletes the building
         if (Input.GetMouseButtonDown(1))
         {
+            //Gets mousePosition from PlayerLook function
             Vector3 mousePosition = playerLook.GetMouseWorldPosition(constructionDistance);
-            if (grid.GetGridObject(mousePosition) != null)
-            {
 
-                PlacedBuilding placedBuilding = grid.GetGridObject(mousePosition).GetPlacedBuilding();
+
+            //Gets the object of the grid (TGridObject, in this case an GridObject(class created in this file))
+            //with the mouse position
+            GridObject gridObject = grid.GetGridObject(mousePosition);
+            if (gridObject != null) {
+
+                
+                PlacedBuilding placedBuilding = gridObject.GetPlacedBuilding();
 
                 if (placedBuilding != null)
                 {
+                    //Destroy the buiding gameObject
                     placedBuilding.DestroySelf();
 
+                    //gets the gridObjects positions of the building
                     List<Vector2Int> gridPositionList = placedBuilding.GetGridPositionList();
-                    foreach (Vector2Int position in gridPositionList)
-                    {
+
+                    //Clear the placebuilding data from the gridObjects
+                    foreach (Vector2Int position in gridPositionList) {
                         grid.GetGridObject(position.x, position.y).ClearPlacedBuilding();
                     }
                 }
             }
         }
 
-      
-
-
+        //Rotates the building
         if (Input.GetKeyDown(KeyCode.R)){
             dir = BuildingTypeSO.GetNextDir(dir);
         }
 
-
+        //Selects other buildings (Temp)
         if (Input.GetKeyDown(KeyCode.Alpha1)) { buildingTypeSO = buildingTypeSOList[0]; RefreshSelectedObjectType(); }
         if (Input.GetKeyDown(KeyCode.Alpha2)) { buildingTypeSO = buildingTypeSOList[1]; RefreshSelectedObjectType(); }
         if (Input.GetKeyDown(KeyCode.Alpha0)) { DeselectObjectType(); }
@@ -168,6 +183,7 @@ public class GridBuildingSystem : MonoBehaviour
         buildingTypeSO = null; RefreshSelectedObjectType();
     }
 
+    //REfresh the ghost object
     private void RefreshSelectedObjectType()
     {
         OnSelectedChanged?.Invoke(this, EventArgs.Empty);
@@ -199,20 +215,13 @@ public class GridBuildingSystem : MonoBehaviour
     public Quaternion GetPlacedObjectRotation()
     {
         if (buildingTypeSO != null)
-        {
             return Quaternion.Euler(0, buildingTypeSO.GetRotationAngle(dir), 0);
-        }
         else
-        {
             return Quaternion.identity;
-        }
     }
 
     public BuildingTypeSO GetPlacedObjectTypeSO()
     {
         return buildingTypeSO;
     }
-
-
 }
-

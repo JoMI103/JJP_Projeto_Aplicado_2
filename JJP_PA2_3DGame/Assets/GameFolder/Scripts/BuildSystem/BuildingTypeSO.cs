@@ -44,7 +44,6 @@ public class BuildingTypeSO : ScriptableObject
         }
     }
 
-
     public List<Vector2Int> GetGridPosition(Vector2Int offSet, Dir dir)
     {
         List<Vector2Int> gridPositionList = new List<Vector2Int>();

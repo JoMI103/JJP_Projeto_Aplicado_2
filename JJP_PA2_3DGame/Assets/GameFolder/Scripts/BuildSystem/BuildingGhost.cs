@@ -25,7 +25,7 @@ public class BuildingGhost : MonoBehaviour
 
     private void LateUpdate()
     {
-        if( GridBuildingSystem.Instance.GetMouseWorldSnappedPosition(out Vector3 targetPosition))
+        if(GridBuildingSystem.Instance.GetMouseWorldSnappedPosition(out Vector3 targetPosition))
             visual?.gameObject.SetActive(true); else visual?.gameObject.SetActive(false);
         
         targetPosition.y = 0.1f;

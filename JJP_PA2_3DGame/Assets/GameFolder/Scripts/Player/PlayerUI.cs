@@ -3,11 +3,11 @@ using TMPro;
 
 public class PlayerUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI promptText;
+    [SerializeField] private TextMeshProUGUI interactableMessage;
 
 
-    public void updateText(string promptMessage)
+    public void updateInteractableText(string promptMessage)
     {
-        promptText.text = promptMessage;
+        interactableMessage.text = promptMessage;
     }
 }
