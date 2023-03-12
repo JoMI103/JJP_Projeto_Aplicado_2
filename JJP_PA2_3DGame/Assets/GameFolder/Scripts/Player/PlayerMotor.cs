@@ -16,17 +16,13 @@ public class PlayerMotor : MonoBehaviour
     private InputManager inputManager;
     private bool sprinting;
 
-    private void Awake()
-    {
+    void Start() {
         inputManager = GetComponent<InputManager>();
 
         //sets de actions 
         inputManager.onFoot.Jump.performed += ctx => Jump();
         inputManager.onFoot.Sprint.performed += ctx => Sprint();
         //inputManager.onFoot.Crouch.performed += ctx => motor.Crouch(); removed
-    }
-
-    void Start() {
         controller = GetComponent<CharacterController>();    
     }
 
