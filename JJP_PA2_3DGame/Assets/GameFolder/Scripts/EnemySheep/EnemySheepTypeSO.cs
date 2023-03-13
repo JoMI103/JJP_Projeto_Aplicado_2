@@ -9,5 +9,6 @@ public class EnemySheepTypeSO : ScriptableObject
     public string description;
     public int baseHealth;
     public int baseDmg;
+    public float baseSpeed;
     public Transform prefab;
 }

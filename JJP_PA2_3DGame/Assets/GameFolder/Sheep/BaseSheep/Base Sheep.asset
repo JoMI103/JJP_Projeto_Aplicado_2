@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd35dac8d14a0449a467cdf80f17ce6, type: 3}
-  m_Name: TestFast
+  m_Script: {fileID: 11500000, guid: 0e1016b4fe6d5a742acf09c08de4a406, type: 3}
+  m_Name: Base Sheep
   m_EditorClassIdentifier: 
-  waveNumber: 0
-  typeEnemies:
-  - enemySheep: {fileID: 11400000, guid: a24e9eec4df122946a1090a208417b10, type: 2}
-    Quantity: 1
-    dificultyMod: 1
+  nameString: Base Sheep
+  description: Run
+  baseHealth: 100
+  baseDmg: 5
+  baseSpeed: 2
+  prefab: {fileID: 6920888894953836684, guid: a0aba678447eba74ba37d087d27599cf, type: 3}

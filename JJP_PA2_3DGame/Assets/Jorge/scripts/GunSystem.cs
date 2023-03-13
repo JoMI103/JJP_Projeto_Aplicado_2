@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEditor.PackageManager;
 
 public class GunSystem : MonoBehaviour
 {
@@ -58,13 +59,18 @@ public class GunSystem : MonoBehaviour
         {
             Debug.Log(rayHit.collider.name);
 
-            if (rayHit.collider.CompareTag("Enemy"))
-                rayHit.collider.GetComponent<SheepBehaviour>().TakeDamage(damage);
-        }
+            //Gets the gameobject with an Damage Script with raycast hitinfo
+            Hittable damageAux = rayHit.collider.GetComponent<Hittable>();
+            if (damageAux != null)
+                damageAux.BaseHit(damage);
+            
 
-        
-        Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
-        Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+            Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
+            Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+
+           
+
+        }
 
         bulletsLeft--;
         bulletsShot--;
@@ -73,6 +79,7 @@ public class GunSystem : MonoBehaviour
 
         if (bulletsShot > 0 && bulletsLeft > 0)
             Invoke("Shoot", timeBetweenShots);
+
     }
     private void ResetShot()
     {

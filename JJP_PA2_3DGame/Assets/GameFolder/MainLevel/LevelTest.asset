@@ -13,4 +13,13 @@ MonoBehaviour:
   m_Name: LevelTest
   m_EditorClassIdentifier: 
   nameString: 
-  waves: []
+  waves:
+  - cooldown: 5
+    dificultyMod: 0
+    waveSO: {fileID: 11400000, guid: a04c3b8cae28ab741b3064ac4a248625, type: 2}
+  - cooldown: 5
+    dificultyMod: 0
+    waveSO: {fileID: 11400000, guid: a04c3b8cae28ab741b3064ac4a248625, type: 2}
+  - cooldown: 5
+    dificultyMod: 0
+    waveSO: {fileID: 11400000, guid: df13c4f8e0173bf4ba03903c64f67c54, type: 2}
