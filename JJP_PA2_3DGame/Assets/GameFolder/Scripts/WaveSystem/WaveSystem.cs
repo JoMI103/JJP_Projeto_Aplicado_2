@@ -34,14 +34,14 @@ public class WaveSystem : MonoBehaviour
         currentWaveEnemies = new List<Transform>();
         do
         {
+            Debug.Log("Spawning");
             SpawnPartWave();
-
             yield return new WaitForSeconds(2f);
-        } while (currentWaveData.getWaveQuantity() > 0 && checkSheepAlive());
+        } while (currentWaveData.getWaveQuantity() > 0 || checkSheepAlive());
 
 
         if (nextWave())
-        SpawnNextWave();
+            StartCoroutine(SpawnNextWave());
     }
 
 
@@ -87,8 +87,9 @@ public class WaveSystem : MonoBehaviour
     {
         foreach(Transform sp in spawnPoints)
         {
-            if(sp.childCount > 0) { return true; }
+            if(sp.childCount > 0) { Debug.Log("All live"); return true; }
         }
+        Debug.Log("All dead");
         return false;
     }
 
