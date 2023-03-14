@@ -57,7 +57,9 @@ public class GunSystem : MonoBehaviour
 
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
-            Debug.Log(rayHit.collider.name);
+            //Debug.Log(rayHit.collider.name);
+
+
 
             //Gets the gameobject with an Damage Script with raycast hitinfo
             Hittable damageAux = rayHit.collider.GetComponent<Hittable>();

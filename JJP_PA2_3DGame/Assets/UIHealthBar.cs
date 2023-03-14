@@ -22,7 +22,7 @@ public class UIHealthBar : MonoBehaviour
 
     public void SetHealthBarPercentage(float percentage)
     {
-        Debug.Log(percentage);
+       
         float parentWidth = GetComponent<RectTransform>().rect.width;
         float width = parentWidth* percentage;
         foreGroundImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
