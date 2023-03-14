@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SelectionWheel",
+                    "type": "Button",
+                    "id": "8359581c-165a-44bb-8fc8-dc06cbf9351b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -236,6 +245,17 @@
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "871d049d-dd5e-42b2-8ffb-4e0f84140247",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardMouse",
+                    "action": "SelectionWheel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -329,6 +349,15 @@
                     "type": "PassThrough",
                     "id": "08854fb0-8e61-4f7b-8599-746cb16b9e98",
                     "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BackToGame",
+                    "type": "Button",
+                    "id": "d6f848e6-b155-42fd-919a-d4e38b9e69fb",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -750,6 +779,17 @@
                     "processors": "",
                     "groups": "KeyBoardMouse",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4208243c-7e77-4d5f-bac2-aa788e7214e3",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardMouse",
+                    "action": "BackToGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
