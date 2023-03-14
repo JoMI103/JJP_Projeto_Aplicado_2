@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e1016b4fe6d5a742acf09c08de4a406, type: 3}
-  m_Name: ContaminatedSheep
+  m_Name: Standard
   m_EditorClassIdentifier: 
-  nameString: Contaminated
-  description: Throws contaminated grass
+  nameString: 
+  description: 
   baseHealth: 10
   baseDmg: 0
   baseSpeed: 0
-  prefab: {fileID: 4284224646261560575, guid: 77cd6b6c042f01f4db0c2787897ad154, type: 3}
+  prefab: {fileID: 8798847859068409613, guid: 4fea5acd3c8102d45ad7aa97e0b16135, type: 3}
