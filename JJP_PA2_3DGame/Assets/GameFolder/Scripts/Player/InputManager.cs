@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
     {
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnEnable()

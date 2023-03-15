@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18370298, g: 0.22809331, b: 0.2988176, a: 1}
+  m_IndirectSpecularColor: {r: 0.18370268, g: 0.22809303, b: 0.2988168, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -241,7 +241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &130861303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,6 +824,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmer
       objectReference: {fileID: 0}
+    - target: {fileID: 1395875041961772301, guid: d98d2a31980fc484f88bceead1736317, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2776163227395040029, guid: d98d2a31980fc484f88bceead1736317, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -866,6 +870,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2776163227395040029, guid: d98d2a31980fc484f88bceead1736317, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879568437661001020, guid: d98d2a31980fc484f88bceead1736317, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617713335959948045, guid: d98d2a31980fc484f88bceead1736317, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

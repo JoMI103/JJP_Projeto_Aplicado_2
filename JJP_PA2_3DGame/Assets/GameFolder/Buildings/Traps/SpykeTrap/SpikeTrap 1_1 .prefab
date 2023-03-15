@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 5454607546114052353}
   - component: {fileID: 7403337306828378864}
   - component: {fileID: 1527623561399925201}
+  - component: {fileID: 2034617187387621091}
   m_Layer: 0
   m_Name: 'SpikeTrap 1_1 '
   m_TagString: Untagged
@@ -280,6 +281,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &2034617187387621091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299294702069254715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5bbd51786a0ef4184a891d5e8798a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: SpikeTrap
+    clip: {fileID: 8300000, guid: b06c23326c0163844a71d6fbb4062a5f, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
 --- !u!1 &7312619900209896862
 GameObject:
   m_ObjectHideFlags: 0

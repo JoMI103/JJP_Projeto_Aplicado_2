@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8605475824243672605}
   - component: {fileID: 8605475824243672610}
   - component: {fileID: 8605475824243672611}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'Visual Wall 1-1 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 8605475824530464962}
   - component: {fileID: 8605475824530464963}
   - component: {fileID: 8605475824530464960}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8605475825026934810}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BuildingVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 8605475825344735014}
   - component: {fileID: 8605475825344735015}
   - component: {fileID: 8605475825344735012}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

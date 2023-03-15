@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpikeTrap : MonoBehaviour
 {
+    private AudioManager au;
     [SerializeField] private int currentDmg;
 
     [SerializeField] private BoxCollider boxCollider;
@@ -13,7 +14,7 @@ public class SpikeTrap : MonoBehaviour
 
     private void Awake()
     {
-      
+        au = GetComponent<AudioManager>();
         animator = GetComponent<Animator>();
     }
 
@@ -21,7 +22,7 @@ public class SpikeTrap : MonoBehaviour
 
     public void attack()
     {
-
+        au.Play("SpikeTrap");
         RaycastHit[] raycastHit = Physics.BoxCastAll(boxCollider.center+ transform.position, boxCollider.size, Vector3.up, Quaternion.identity, 1, giveDmg);
         foreach (RaycastHit hit in raycastHit)
         {

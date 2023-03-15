@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d1064816064f8418802aae0268318e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EnemySheepTypeSO: {fileID: 11400000, guid: 4c532c6d5e9ee6c4c824fedc80f9395f, type: 2}
+  m_EnemySheepTypeSO: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
   healthBar: {fileID: 7106234209484834835}
 --- !u!114 &6920888894953836685
 MonoBehaviour:
