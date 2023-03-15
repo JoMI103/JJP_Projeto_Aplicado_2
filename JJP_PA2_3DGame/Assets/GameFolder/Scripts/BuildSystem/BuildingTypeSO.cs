@@ -23,6 +23,8 @@ public class BuildingTypeSO : ScriptableObject
     public Transform prefab;
     public Transform visual;
     public int width, height;
+    public int woodCost, rockCost, metalCost, eletronicsCost;
+
 
     public int GetRotationAngle(Dir dir) {
         switch (dir) {
