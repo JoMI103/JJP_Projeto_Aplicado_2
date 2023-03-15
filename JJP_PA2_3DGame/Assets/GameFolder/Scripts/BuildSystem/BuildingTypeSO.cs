@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu()]
+[CreateAssetMenu(menuName = "SO/Building")]
 public class BuildingTypeSO : ScriptableObject
 {
     

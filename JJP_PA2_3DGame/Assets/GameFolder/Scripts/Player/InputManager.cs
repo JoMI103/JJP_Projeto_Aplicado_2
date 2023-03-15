@@ -5,24 +5,36 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    private PlayerInput playerInput;
-    public PlayerInput.OnFootActions onFoot; 
-    private PlayerLook look;
+    public PlayerInput playerInput;
+    public PlayerInput.OnFootActions onFoot;
+    public PlayerInput.SelectionWheelActions selectionWheel;
+    public PlayerInput.ChangeActionMapsActions changeActionMaps;
 
     private void Awake()
     {
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
-        Cursor.lockState = CursorLockMode.Locked;
+        selectionWheel = playerInput.SelectionWheel;
+        changeActionMaps = playerInput.ChangeActionMaps;
+        DefaultActionMaps();
     }
 
-    private void OnEnable()
+    private void DefaultActionMaps()
     {
+        disableActionMaps();
         onFoot.Enable();
+        changeActionMaps.Enable();
     }
 
     private void OnDisable()
     {
+        disableActionMaps();
+        changeActionMaps.Disable();
+    }
+   
+    public void disableActionMaps()
+    {
         onFoot.Disable();
+        selectionWheel.Disable();
     }
 }

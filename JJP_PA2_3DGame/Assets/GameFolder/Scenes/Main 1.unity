@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18370268, g: 0.22809303, b: 0.2988168, a: 1}
+  m_IndirectSpecularColor: {r: 0.18370298, g: 0.22809331, b: 0.2988176, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -793,7 +793,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1639223348}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &669781049
 MonoBehaviour:
@@ -824,13 +824,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmer
       objectReference: {fileID: 0}
-    - target: {fileID: 1395875041961772301, guid: d98d2a31980fc484f88bceead1736317, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2776163227395040029, guid: d98d2a31980fc484f88bceead1736317, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2776163227395040029, guid: d98d2a31980fc484f88bceead1736317, type: 3}
       propertyPath: m_LocalPosition.x
@@ -870,14 +866,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2776163227395040029, guid: d98d2a31980fc484f88bceead1736317, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5879568437661001020, guid: d98d2a31980fc484f88bceead1736317, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6617713335959948045, guid: d98d2a31980fc484f88bceead1736317, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2083,8 +2071,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1236955953}
-  - {fileID: 1601671879}
   - {fileID: 669781048}
+  - {fileID: 1601671879}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

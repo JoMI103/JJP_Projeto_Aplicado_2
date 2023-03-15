@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu()]
+[CreateAssetMenu(menuName = "SO/Level")]
 public class LevelWavesSO : ScriptableObject
 {
     public string nameString;

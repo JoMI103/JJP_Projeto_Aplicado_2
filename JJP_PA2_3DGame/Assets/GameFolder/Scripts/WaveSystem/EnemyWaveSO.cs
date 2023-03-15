@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu()]
+[CreateAssetMenu(menuName = "SO/Wave")]
 public class EnemyWaveSO : ScriptableObject
 {
     public int waveNumber;
