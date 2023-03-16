@@ -1437,7 +1437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3046914977792476833
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2928,6 +2928,7 @@ GameObject:
   - component: {fileID: 8020492676777367017}
   - component: {fileID: 797950334019577421}
   - component: {fileID: 1892776761733734974}
+  - component: {fileID: 5302875946761015652}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3108,11 +3109,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GWidth: 50
   GHeight: 50
-  buildingTypeSOList:
-  - {fileID: 11400000, guid: c6d06fceafcfe764cb3f95fcd5a97559, type: 2}
-  - {fileID: 11400000, guid: 3286e76007bcbd64b83e4faee4b80851, type: 2}
   buildingTypeSO: {fileID: 11400000, guid: f38434bee49e39b468bbfb2e9376629d, type: 2}
   constructionDistance: 7
+--- !u!114 &5302875946761015652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7118192873375233105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0854855d3e9b6ee47ad223959e1ffa0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolSelector: {fileID: 7728048233702603859}
+  gridBuildingSystem: {fileID: 1892776761733734974}
+  changeItem: {fileID: 11400000, guid: 827090a6992a648b48faf95705b6c8ec, type: 2}
 --- !u!1 &7221741432015040374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3219,6 +3232,8 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 827090a6992a648b48faf95705b6c8ec, type: 2}
   inputManager: {fileID: 8020492676777367023}
+  hand: {fileID: 5302875946761015652}
+  toolImage: {fileID: 454055949290691109}
   isOver: 0
 --- !u!1 &7322671085906808245
 GameObject:
@@ -3480,6 +3495,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29057e45b2bd09f4685537a88117f78e, type: 2}
   - {fileID: 11400000, guid: ba4032762fef31e4bbf8a5f6972d788f, type: 2}
   inputManager: {fileID: 8020492676777367023}
+  hand: {fileID: 5302875946761015652}
+  toolImage: {fileID: 4100370765727193514}
   isOver: 0
 --- !u!1 &7603681200296315968
 GameObject:
@@ -3835,7 +3852,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: d471fd9698f478d4db93b4d259d7eac6, type: 2}
+  - {fileID: 11400000, guid: 14da4f5981ad29a4badb2e3157a91c1b, type: 2}
   inputManager: {fileID: 8020492676777367023}
+  hand: {fileID: 5302875946761015652}
+  toolImage: {fileID: 7276596899391499820}
   isOver: 0
 --- !u!1 &8466493966377280791
 GameObject:
@@ -3943,6 +3963,8 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 827090a6992a648b48faf95705b6c8ec, type: 2}
   inputManager: {fileID: 8020492676777367023}
+  hand: {fileID: 5302875946761015652}
+  toolImage: {fileID: 1414132706969029888}
   isOver: 0
 --- !u!1 &8492700732050199020
 GameObject:

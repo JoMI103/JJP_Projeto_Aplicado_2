@@ -16,7 +16,7 @@ public class GridBuildingSystem : MonoBehaviour
     public event EventHandler OnSelectedChanged;
     public event EventHandler OnObjectPlaced;
 
-    [SerializeField] private List<BuildingTypeSO> buildingTypeSOList = null;
+    //[SerializeField] private List<BuildingTypeSO> buildingTypeSOList = null;
     public BuildingTypeSO buildingTypeSO;
 
     private PlayerLook playerLook;
@@ -173,12 +173,18 @@ public class GridBuildingSystem : MonoBehaviour
         }
 
         //Selects other buildings (Temp)
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { buildingTypeSO = buildingTypeSOList[0]; RefreshSelectedObjectType(); }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) { buildingTypeSO = buildingTypeSOList[1]; RefreshSelectedObjectType(); }
-        if (Input.GetKeyDown(KeyCode.Alpha0)) { DeselectObjectType(); }
+       // if (Input.GetKeyDown(KeyCode.Alpha1)) { buildingTypeSO = buildingTypeSOList[0]; RefreshSelectedObjectType(); }
+       // if (Input.GetKeyDown(KeyCode.Alpha2)) { buildingTypeSO = buildingTypeSOList[1]; RefreshSelectedObjectType(); }
+       // if (Input.GetKeyDown(KeyCode.Alpha0)) { DeselectObjectType(); }
     }
 
-    private void DeselectObjectType()
+
+    public void setBuildingTypeSO(BuildingTypeSO so)
+    {
+        buildingTypeSO = so; RefreshSelectedObjectType();
+    }
+
+    public void DeselectObjectType()
     {
         buildingTypeSO = null; RefreshSelectedObjectType();
     }

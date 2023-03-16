@@ -24,6 +24,7 @@ public class PlayerUI : MonoBehaviour
 
     public void activeSelectionWheel() {
         selectionWheel.SetActive(true);
+        Debug.Log("bom dia2");
         Cursor.lockState = CursorLockMode.None;
         inputManager.disableActionMaps();
         inputManager.selectionWheel.Enable();
@@ -33,6 +34,7 @@ public class PlayerUI : MonoBehaviour
     public void activeOnFoot()
     {
         selectionWheel.SetActive(false);
+        Debug.Log("bom dia3");
         Cursor.lockState = CursorLockMode.Locked;
         inputManager.disableActionMaps();
         inputManager.onFoot.Enable();
