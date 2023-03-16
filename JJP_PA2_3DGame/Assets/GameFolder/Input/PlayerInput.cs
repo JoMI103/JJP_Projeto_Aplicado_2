@@ -354,6 +354,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollDown"",
+                    ""type"": ""Value"",
+                    ""id"": ""822f5681-899b-41c8-b8dd-83661be9dc1b"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -774,6 +783,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c86b6b0c-7e4d-4acd-92ea-3af6a5be5682"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""ScrollDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -839,6 +859,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_SelectionWheel_RightClick = m_SelectionWheel.FindAction("RightClick", throwIfNotFound: true);
         m_SelectionWheel_TrackedDevicePosition = m_SelectionWheel.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_SelectionWheel_TrackedDeviceOrientation = m_SelectionWheel.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        m_SelectionWheel_ScrollDown = m_SelectionWheel.FindAction("ScrollDown", throwIfNotFound: true);
         // ChangeActionMaps
         m_ChangeActionMaps = asset.FindActionMap("ChangeActionMaps", throwIfNotFound: true);
         m_ChangeActionMaps_SelectionWheel = m_ChangeActionMaps.FindAction("SelectionWheel", throwIfNotFound: true);
@@ -984,6 +1005,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_SelectionWheel_RightClick;
     private readonly InputAction m_SelectionWheel_TrackedDevicePosition;
     private readonly InputAction m_SelectionWheel_TrackedDeviceOrientation;
+    private readonly InputAction m_SelectionWheel_ScrollDown;
     public struct SelectionWheelActions
     {
         private @PlayerInput m_Wrapper;
@@ -998,6 +1020,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_SelectionWheel_RightClick;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_SelectionWheel_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_SelectionWheel_TrackedDeviceOrientation;
+        public InputAction @ScrollDown => m_Wrapper.m_SelectionWheel_ScrollDown;
         public InputActionMap Get() { return m_Wrapper.m_SelectionWheel; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1037,6 +1060,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @TrackedDeviceOrientation.started -= m_Wrapper.m_SelectionWheelActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed -= m_Wrapper.m_SelectionWheelActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled -= m_Wrapper.m_SelectionWheelActionsCallbackInterface.OnTrackedDeviceOrientation;
+                @ScrollDown.started -= m_Wrapper.m_SelectionWheelActionsCallbackInterface.OnScrollDown;
+                @ScrollDown.performed -= m_Wrapper.m_SelectionWheelActionsCallbackInterface.OnScrollDown;
+                @ScrollDown.canceled -= m_Wrapper.m_SelectionWheelActionsCallbackInterface.OnScrollDown;
             }
             m_Wrapper.m_SelectionWheelActionsCallbackInterface = instance;
             if (instance != null)
@@ -1071,6 +1097,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+                @ScrollDown.started += instance.OnScrollDown;
+                @ScrollDown.performed += instance.OnScrollDown;
+                @ScrollDown.canceled += instance.OnScrollDown;
             }
         }
     }
@@ -1147,6 +1176,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        void OnScrollDown(InputAction.CallbackContext context);
     }
     public interface IChangeActionMapsActions
     {

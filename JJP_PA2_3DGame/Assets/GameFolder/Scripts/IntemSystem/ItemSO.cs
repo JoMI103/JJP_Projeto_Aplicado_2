@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemSO : ScriptableObject
 {
     public string itemNameString;
-    public Texture2D image;
+    public Sprite image;
 
     public int handId;
     public bool bluePrint;
