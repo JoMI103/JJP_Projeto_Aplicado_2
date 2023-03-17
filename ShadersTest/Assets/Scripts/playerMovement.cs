@@ -52,6 +52,8 @@ public class playerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
             ShootLaserFromTargetPosition(transform.position, Vector3.forward, laserMaxLength);
+
+
             laserLineRenderer.enabled = true;
         }
         else
@@ -73,6 +75,7 @@ public class playerMovement : MonoBehaviour
             laserLineRenderer.startColor = Color.green;
             laserLineRenderer.endColor = Color.green;
             print(raycastHit.collider.gameObject.name);
+            raycastHit.collider.GetComponent<DrawSquareWhereHitSensor>().TakeHit(endPosition);
         }
         else
         {
