@@ -22,14 +22,24 @@ public class GridXZ<TGridObject>
     private float cellSize;
     private Vector3 originPosition;
     private TGridObject[,] gridArray;
+    private Vector3 fwr,right,up;
+
+    
 
     //func -->   () => new TGridObject()
-    public GridXZ(int width, int height, float cellSize, Vector3 originPosition, Func<GridXZ<TGridObject>, int, int, TGridObject> createGridFunction)
+    public GridXZ(int width, int height, float cellSize, Vector3 originPosition,Vector3 fwr,Vector3 right,Vector3 up, Func<GridXZ<TGridObject>, int, int, TGridObject> createGridFunction)
     {
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
         this.originPosition = originPosition;
+
+        this.fwr = fwr;
+        this.right = right;
+        this.up = up;
+
+
+        
 
         gridArray = new TGridObject[width, height];
 
@@ -37,7 +47,7 @@ public class GridXZ<TGridObject>
         for (int x = 0; x < gridArray.GetLength(0); x++)
             for (int z = 0; z < gridArray.GetLength(1); z++)
             {
-                gridArray[x, z] = createGridFunction(this, x, z);
+                gridArray[x, z] = createGridFunction(this, x, z); //creates de TGridObject
             }
 
 
@@ -50,8 +60,6 @@ public class GridXZ<TGridObject>
             }
         Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.blue, 100f);
         Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.blue, 100f);
-
-
 
         if (false) //Debug
         {
@@ -78,8 +86,6 @@ public class GridXZ<TGridObject>
                 debugTextArray[eventArgs.x, eventArgs.z].text = gridArray[eventArgs.x, eventArgs.z]?.ToString();
             };
         }
-
-
     }
 
     public float GetCellSize() { return cellSize; }
@@ -89,16 +95,28 @@ public class GridXZ<TGridObject>
         return new Vector3(x, 0, z) * cellSize + originPosition;
     }
 
+    public Vector3 GetLocalPosition(int x, int z)
+    {
+        return new Vector3(x, 0, z) * cellSize ;
+    }
+
     public void GetXZ(Vector3 WorldPosition, out int x, out int z)
     {
-        x = Mathf.FloorToInt((WorldPosition - originPosition).x / cellSize);
-       z = Mathf.FloorToInt((WorldPosition - originPosition).z / cellSize);
+        x = Mathf.FloorToInt((WorldPosition ).x / cellSize);
+        z = Mathf.FloorToInt((WorldPosition ).z / cellSize);
+
     }
+
+    private Vector3 multiply(Vector3 v1, Vector3 v2)
+    {
+        return new Vector3(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z); 
+    }
+
 
     public Vector3 SnapWorldPositionToGrid(Vector3 pos)
     {
         GetXZ(pos, out int x, out int z);
-        return GetWorldPosition(x, z);   
+        return GetLocalPosition(x, z);   
     }
 
 

@@ -9,30 +9,50 @@ public class BuildingGhost : MonoBehaviour
 
     private Transform visual;
     private BuildingTypeSO buildingTypeSO;
+    [SerializeField] private PlayerBuild playerBuild;
 
 
     private void Start()
     {
         RefreshVisual();
-        GridBuildingSystem.Instance.OnSelectedChanged += Instance_OnSelectedChanged;
+        playerBuild.OnSelectedChanged += Instance_OnSelectedChanged;
     }
 
     private void Instance_OnSelectedChanged(object sender, System.EventArgs e) 
     {
+        Debug.Log("dia");
+        RefreshParent();
         RefreshVisual();
     }
 
 
     private void LateUpdate()
     {
-        if(GridBuildingSystem.Instance.GetMouseWorldSnappedPosition(out Vector3 targetPosition))
-            visual?.gameObject.SetActive(true); else visual?.gameObject.SetActive(false);
-        
-        targetPosition.y = 0.1f;
+        if (!playerBuild.hitting)
+        {
+            transform.position = playerBuild.mouseWorldPos;
+            visual?.gameObject.SetActive(false);
+            return;
+        }
+        playerBuild.GetMouseWorldSnappedPosition(out Vector3 targetPosition);
+        visual?.gameObject.SetActive(true);
 
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 15f);
-        transform.rotation = Quaternion.Lerp(transform.rotation, 
-            GridBuildingSystem.Instance.GetPlacedObjectRotation(), Time.deltaTime * 15f);
+      
+        transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * 15f);
+        transform.localRotation = Quaternion.Lerp(transform.localRotation,
+            playerBuild.GetPlacedObjectRotation(), Time.deltaTime * 15f);
+        transform.localScale = new Vector3(1, 1, 1);
+
+    }
+
+    private void RefreshParent()
+    {
+        if (playerBuild.currentGrid == null) return;
+        if (playerBuild.currentGrid.transform != transform.parent)
+        {
+            transform.parent = playerBuild.currentGrid.transform;
+            Debug.Log(transform.parent);
+        }
     }
 
 
@@ -44,7 +64,7 @@ public class BuildingGhost : MonoBehaviour
             visual = null;
         }
 
-        BuildingTypeSO buildingTypeSO = GridBuildingSystem.Instance.GetPlacedObjectTypeSO();
+        BuildingTypeSO buildingTypeSO = playerBuild.GetPlacedObjectTypeSO();
 
         if (buildingTypeSO != null)
         {
@@ -52,7 +72,8 @@ public class BuildingGhost : MonoBehaviour
             visual.parent = transform;
             visual.localPosition = Vector3.zero;
             visual.localEulerAngles = Vector3.zero;
-            SetLayerRecursive(visual.gameObject, 11);
+            visual.localScale = Vector3.one;
+            //SetLayerRecursive(visual.gameObject, 11);
         }
     }
 

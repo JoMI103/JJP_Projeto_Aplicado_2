@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8c28490ce60814478e19daf178f4502, type: 3}
-  m_Name: SpikeTrap
+  m_Name: Wall 2
   m_EditorClassIdentifier: 
-  nameString: SpykeTrap
-  prefab: {fileID: 3299294702069254708, guid: e9ba0645fde67fe4aa0b7f5244a80ba2, type: 3}
-  visual: {fileID: 8805728768256619048, guid: 08e32a49c1b0fc34f9174ddb77ef0bd1, type: 3}
-  width: 1
-  height: 1
-  woodCost: 50
+  nameString: Wall
+  prefab: {fileID: 8442033837618270750, guid: 8a2798a58581b0e4289670d7bb920fbb, type: 3}
+  visual: {fileID: 8605475824243672605, guid: 95eb8de402206dd4b92e39673b559831, type: 3}
+  width: 2
+  height: 2
+  woodCost: 0
   rockCost: 0
-  metalCost: 300
-  eletronicsCost: 5
+  metalCost: 0
+  eletronicsCost: 0

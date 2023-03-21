@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlacedBuilding : MonoBehaviour {
 
-    public static PlacedBuilding Create(Vector3 worldPosition, Vector2Int origin, BuildingTypeSO.Dir dir, BuildingTypeSO buildingTypeSO) {
+    public static PlacedBuilding Create(Transform grid,Vector3 worldPosition, Vector2Int origin, BuildingTypeSO.Dir dir, BuildingTypeSO buildingTypeSO) {
         Transform placedBuildingTransform = 
             Instantiate(buildingTypeSO.prefab,
             worldPosition,
-            Quaternion.Euler(0,buildingTypeSO.GetRotationAngle(dir),0)
-            );
-
+            Quaternion.identity,
+            grid);
+        placedBuildingTransform.localRotation = Quaternion.Euler(0, buildingTypeSO.GetRotationAngle(dir), 0);
+        placedBuildingTransform.localPosition= worldPosition;
         PlacedBuilding placedBuilding = placedBuildingTransform.GetComponent<PlacedBuilding>();
 
         placedBuilding.buildingTypeSO = buildingTypeSO;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHand : MonoBehaviour
 {
     [SerializeField] ToolSelector toolSelector;
-    [SerializeField] GridBuildingSystem gridBuildingSystem;
+    [SerializeField] PlayerBuild playerBuild;
 
     private ItemSO activeItem;
     public ItemSO changeItem;
@@ -23,12 +23,12 @@ public class PlayerHand : MonoBehaviour
         if (activeItem.bluePrint)
         {
             //Set bluePrint FUture
-            gridBuildingSystem.setBuildingTypeSO(activeItem.building);
+            playerBuild.setBuildingTypeSO(activeItem.building);
 
         }
         else
         {
-            gridBuildingSystem.DeselectObjectType();
+            playerBuild.DeselectObjectType();
         }
         
 

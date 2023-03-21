@@ -80,6 +80,33 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Place"",
+                    ""type"": ""Button"",
+                    ""id"": ""0360bc6f-6bb0-4179-b223-cc4992a2662b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe41f886-b6d5-4e41-ab22-4052067a60cf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Destroy"",
+                    ""type"": ""Button"",
+                    ""id"": ""d3d3c93c-325c-421a-9e17-be56a2270e3a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -256,6 +283,39 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""GamePad"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af34a5da-1c97-4d5e-99a9-1f22d848cdd2"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e97919b-f31a-443d-9ade-05091b8d265d"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da756feb-1516-45d7-8b98-e9af7ea4d7e0"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoardMouse"",
+                    ""action"": ""Destroy"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -847,6 +907,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_OnFoot_Crouch = m_OnFoot.FindAction("Crouch", throwIfNotFound: true);
         m_OnFoot_Sprint = m_OnFoot.FindAction("Sprint", throwIfNotFound: true);
         m_OnFoot_Interact = m_OnFoot.FindAction("Interact", throwIfNotFound: true);
+        m_OnFoot_Place = m_OnFoot.FindAction("Place", throwIfNotFound: true);
+        m_OnFoot_Rotate = m_OnFoot.FindAction("Rotate", throwIfNotFound: true);
+        m_OnFoot_Destroy = m_OnFoot.FindAction("Destroy", throwIfNotFound: true);
         // SelectionWheel
         m_SelectionWheel = asset.FindActionMap("SelectionWheel", throwIfNotFound: true);
         m_SelectionWheel_Navigate = m_SelectionWheel.FindAction("Navigate", throwIfNotFound: true);
@@ -928,6 +991,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Crouch;
     private readonly InputAction m_OnFoot_Sprint;
     private readonly InputAction m_OnFoot_Interact;
+    private readonly InputAction m_OnFoot_Place;
+    private readonly InputAction m_OnFoot_Rotate;
+    private readonly InputAction m_OnFoot_Destroy;
     public struct OnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -938,6 +1004,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_OnFoot_Crouch;
         public InputAction @Sprint => m_Wrapper.m_OnFoot_Sprint;
         public InputAction @Interact => m_Wrapper.m_OnFoot_Interact;
+        public InputAction @Place => m_Wrapper.m_OnFoot_Place;
+        public InputAction @Rotate => m_Wrapper.m_OnFoot_Rotate;
+        public InputAction @Destroy => m_Wrapper.m_OnFoot_Destroy;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -965,6 +1034,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnInteract;
+                @Place.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnPlace;
+                @Place.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnPlace;
+                @Place.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnPlace;
+                @Rotate.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnRotate;
+                @Destroy.started -= m_Wrapper.m_OnFootActionsCallbackInterface.OnDestroy;
+                @Destroy.performed -= m_Wrapper.m_OnFootActionsCallbackInterface.OnDestroy;
+                @Destroy.canceled -= m_Wrapper.m_OnFootActionsCallbackInterface.OnDestroy;
             }
             m_Wrapper.m_OnFootActionsCallbackInterface = instance;
             if (instance != null)
@@ -987,6 +1065,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Place.started += instance.OnPlace;
+                @Place.performed += instance.OnPlace;
+                @Place.canceled += instance.OnPlace;
+                @Rotate.started += instance.OnRotate;
+                @Rotate.performed += instance.OnRotate;
+                @Rotate.canceled += instance.OnRotate;
+                @Destroy.started += instance.OnDestroy;
+                @Destroy.performed += instance.OnDestroy;
+                @Destroy.canceled += instance.OnDestroy;
             }
         }
     }
@@ -1163,6 +1250,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnPlace(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
+        void OnDestroy(InputAction.CallbackContext context);
     }
     public interface ISelectionWheelActions
     {

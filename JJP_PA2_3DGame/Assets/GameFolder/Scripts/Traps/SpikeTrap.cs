@@ -38,9 +38,9 @@ public class SpikeTrap : MonoBehaviour
     {
         
         // Draw a yellow sphere at the transform's position
-        Gizmos.color = new Color(1,0.2f,0.2f,0.3f);
+        //Gizmos.color = new Color(1,0.2f,0.2f,0.3f);
 
-        Gizmos.DrawCube(boxCollider.center + transform.position, boxCollider.size);
+        //Gizmos.DrawCube(boxCollider.center + transform.position, boxCollider.size);
     }
 
 }
