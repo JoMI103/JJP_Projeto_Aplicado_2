@@ -52,24 +52,28 @@ public class BuildingTypeSO : ScriptableObject
 
         switch (dir) {
             case Dir.Down:
+                Debug.Log("down");
                 for (int x = 0; x < width; x++)
                     for (int y = 0; y < height; y++)
                         gridPositionList.Add(offSet + new Vector2Int(x, y));
                 break;
             case Dir.Up:
+                Debug.Log("up");
                 for (int x = 0; x < width; x++)
                     for (int y = 0; y < height; y++)
                         gridPositionList.Add(offSet - new Vector2Int(x, y));
                 break;
             case Dir.Left:
-                for (int x = 0; x < height; x++)
-                    for (int y = 0; y < width; y++)
-                        gridPositionList.Add(offSet - new Vector2Int(x, y));
+                Debug.Log("left");
+                for (int x = 0; x < width; x++)
+                    for (int y = 0; y < height; y++)
+                        gridPositionList.Add(offSet - new Vector2Int(- y, x));
                 break;
             case Dir.Right:
-                for (int x = 0; x < height; x++)
-                    for (int y = 0; y < width; y++)
-                        gridPositionList.Add(offSet + new Vector2Int(x, y));
+                Debug.Log("right");
+                for (int x = 0; x < width; x++)
+                    for (int y = 0; y < height; y++)
+                        gridPositionList.Add(offSet + new Vector2Int(-y, x));
                 break;
         }
         return gridPositionList;

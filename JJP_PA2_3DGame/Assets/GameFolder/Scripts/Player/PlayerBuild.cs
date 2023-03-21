@@ -78,7 +78,10 @@ public class PlayerBuild : MonoBehaviour
 
 
     private void PlaceBuilding() {
+
         if (buildingTypeSO == null || currentGrid == null) return;
+        
+        
         currentGrid.grid.GetXZ(mouseCurrentGridPos, out int x, out int z);
         Vector2Int placedObjectOrigin = new Vector2Int(x, z);
         placedObjectOrigin = currentGrid.grid.ValidateGridPosition(placedObjectOrigin);
@@ -86,16 +89,20 @@ public class PlayerBuild : MonoBehaviour
 
         List<Vector2Int> gridPositionList = buildingTypeSO.GetGridPosition(new Vector2Int(x, z), dir);
         bool canBuild = true;
-
+        Debug.Log("____________");
         foreach (Vector2Int position in gridPositionList)
+        {
+            Debug.Log("---");
+            Debug.Log(position);
+
             if (!currentGrid.grid.GetGridObject(position.x, position.y).canBuild())
             { //erro
                 canBuild = false;
-                break;
+                Debug.Log("False");
             }
-      
-        Debug.Log("Hyrtykht");
 
+        }
+  
         if (!canBuild) { Debug.LogWarning("Can't build in " + x + ", " + z); return; }
 
         Vector2Int rotationOffset = buildingTypeSO.GetRotationOffSet(dir);

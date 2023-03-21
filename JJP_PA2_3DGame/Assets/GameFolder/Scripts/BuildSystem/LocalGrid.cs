@@ -15,34 +15,16 @@ public class LocalGrid : MonoBehaviour
         float cellSize = 2f;
 
 
-        if(Invert) 
         grid = new GridXZ<GridObject>(
             gridWidth,
             gridHeight,
             cellSize,
             transform.position,
-            gridPanel.forward,
-            gridPanel.right,
-            gridPanel.up,
             (GridXZ<GridObject> g, int x, int z) => new GridObject(g, x, z));
 
-       else
-        grid = new GridXZ<GridObject>(
-           gridWidth,
-           gridHeight,
-           cellSize,
-           transform.position,
-           gridPanel.forward,
-           gridPanel.right,
-           gridPanel.up,
-           (GridXZ<GridObject> g, int x, int z) => new GridObject(g, x, z));
+  
     }
 
-    public Vector2Int GetGridPosition(Vector3 worldPosition)
-    {
-        grid.GetXZ(worldPosition, out int x, out int z);
-        return new Vector2Int(x, z);
-    }
 
     private void setUpGridPanel()
     {
@@ -67,11 +49,6 @@ public class LocalGrid : MonoBehaviour
             Debug.Log(-gridPanel.up);
         } else { this.transform.localScale = new Vector3(1, 1, 1); Debug.Log(gridPanel.up); }
     }
-
-    
-
-    
-   
 }
 
 

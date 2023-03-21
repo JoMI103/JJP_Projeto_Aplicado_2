@@ -8,8 +8,8 @@ using System;
 
 public class GridXZ<TGridObject>
 {
-
     public event EventHandler<OnGridValueChangedEventArgs> OnGridValueChanged;
+   
     public class OnGridValueChangedEventArgs : EventArgs
     {
         public int x;
@@ -22,21 +22,18 @@ public class GridXZ<TGridObject>
     private float cellSize;
     private Vector3 originPosition;
     private TGridObject[,] gridArray;
-    private Vector3 fwr,right,up;
+
 
     
 
     //func -->   () => new TGridObject()
-    public GridXZ(int width, int height, float cellSize, Vector3 originPosition,Vector3 fwr,Vector3 right,Vector3 up, Func<GridXZ<TGridObject>, int, int, TGridObject> createGridFunction)
+    public GridXZ(int width, int height, float cellSize, Vector3 originPosition, Func<GridXZ<TGridObject>, int, int, TGridObject> createGridFunction)
     {
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
         this.originPosition = originPosition;
 
-        this.fwr = fwr;
-        this.right = right;
-        this.up = up;
 
 
         
@@ -100,25 +97,13 @@ public class GridXZ<TGridObject>
         return new Vector3(x, 0, z) * cellSize ;
     }
 
-    public void GetXZ(Vector3 WorldPosition, out int x, out int z)
+    public void GetXZ(Vector3 LocalPosition, out int x, out int z)
     {
-        x = Mathf.FloorToInt((WorldPosition ).x / cellSize);
-        z = Mathf.FloorToInt((WorldPosition ).z / cellSize);
-
+        x = Mathf.FloorToInt((LocalPosition ).x / cellSize);
+        z = Mathf.FloorToInt((LocalPosition ).z / cellSize);
     }
 
-    private Vector3 multiply(Vector3 v1, Vector3 v2)
-    {
-        return new Vector3(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z); 
-    }
-
-
-    public Vector3 SnapWorldPositionToGrid(Vector3 pos)
-    {
-        GetXZ(pos, out int x, out int z);
-        return GetLocalPosition(x, z);   
-    }
-
+ 
 
     public void SetGridObject(int x, int z, TGridObject value)
     {
@@ -132,12 +117,12 @@ public class GridXZ<TGridObject>
         if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs { x = x, z = z });
     }
 
-    public void SetGridObject(Vector3 WorldPosition, TGridObject value)
-    {
-        int x, z;
-        GetXZ(WorldPosition, out x, out z);
-        SetGridObject(x, z, value);
-    }
+    //public void SetGridObject(Vector3 WorldPosition, TGridObject value)
+    //{
+    //    int x, z;
+    //    GetXZ(WorldPosition, out x, out z);
+    //    SetGridObject(x, z, value);
+    //}
 
     public TGridObject GetGridObject(int x, int z)
     {
