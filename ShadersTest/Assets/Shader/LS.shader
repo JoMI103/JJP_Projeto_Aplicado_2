@@ -1,4 +1,4 @@
-Shader "Custom/HOLOGRAM"
+Shader "Custom/LS"
 {
     Properties
     {
@@ -27,9 +27,20 @@ Shader "Custom/HOLOGRAM"
         //Calculo do dot product
 
         float dotp=saturate(pow(1-dot(normalize(IN.viewDir),o.Normal),_Exponencial)) ;
-        o.Emission=_RimColor;
+        
+       
+
         o.Albedo=tex2D(_Albedo,IN.uv_Albedo);
         o.Alpha = (dotp);
+        if(dotp > 0.4){
+        o.Emission=_RimColor;
+        }
+        else{
+        o.Emission = float3(1,1,1);
+        }
+        //if(o.Normal.y<0.9f){
+        //    o.Emission = float3(1,1,1);
+        //    }
 
         }
 
