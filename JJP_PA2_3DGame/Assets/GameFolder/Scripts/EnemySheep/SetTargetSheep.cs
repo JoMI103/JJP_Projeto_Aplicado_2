@@ -23,5 +23,6 @@ public class SetTargetSheep : MonoBehaviour
     public void setTarget(Transform target)
     {
         this.target = target;
+        
     }
 }

@@ -61,7 +61,6 @@ public class SelectionSide : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void updateUISlot()
     {
-        Debug.Log(items[currentItemId]);
         toolImage.sprite = items[currentItemId].image;
     }
 
@@ -73,8 +72,7 @@ public class SelectionSide : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         LeanTween.scale(this.gameObject, startScale * 1.2f, 0.2f);
-        Debug.Log("Mouse enter");
-        Debug.Log(transform.name);
+
         isOver = true;
     }
 

@@ -20,7 +20,6 @@ public class BuildingGhost : MonoBehaviour
 
     private void Instance_OnSelectedChanged(object sender, System.EventArgs e) 
     {
-        Debug.Log("dia");
         RefreshParent();
         RefreshVisual();
     }
@@ -51,7 +50,7 @@ public class BuildingGhost : MonoBehaviour
         if (playerBuild.currentGrid.transform != transform.parent)
         {
             transform.parent = playerBuild.currentGrid.transform;
-            Debug.Log(transform.parent);
+       
         }
     }
 

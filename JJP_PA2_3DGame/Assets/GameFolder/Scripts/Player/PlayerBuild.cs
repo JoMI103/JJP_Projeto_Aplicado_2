@@ -11,6 +11,8 @@ public class PlayerBuild : MonoBehaviour
 {
     public event EventHandler OnSelectedChanged;
     public event EventHandler OnObjectPlaced;
+    public event EventHandler OnObjectRemoved;
+    public event EventHandler OnObjectPlacedRemoved;
 
 
     private PlayerLook playerLook;
@@ -42,6 +44,19 @@ public class PlayerBuild : MonoBehaviour
         inputManager.onFoot.Rotate.performed += ctx => RotateBuilding();
 
         currentGrid = null;
+
+        OnObjectPlacedRemoved += bakeNavMesh;
+    }
+
+    private void bakeNavMesh(object sender, System.EventArgs e)
+    {
+        //NavMeshMain.Instance.build();
+        Invoke("buildNavMesh", 0.1f);
+    }
+
+    private void buildNavMesh()
+    {
+        NavMeshMain.Instance.build();
     }
 
 
@@ -65,7 +80,7 @@ public class PlayerBuild : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycastHit, constructionDistance, GridLayer))
         {
             LocalGrid lg = raycastHit.collider.transform.parent.GetComponent<LocalGrid>();
-            if (lg != null && lg != currentGrid) { currentGrid = lg; RefreshSelectedObjectType(); Debug.Log("Bom"); }
+            if (lg != null && lg != currentGrid) { currentGrid = lg; RefreshSelectedObjectType();  }
             return true;
         }
         else
@@ -89,16 +104,15 @@ public class PlayerBuild : MonoBehaviour
 
         List<Vector2Int> gridPositionList = buildingTypeSO.GetGridPosition(new Vector2Int(x, z), dir);
         bool canBuild = true;
-        Debug.Log("____________");
+
         foreach (Vector2Int position in gridPositionList)
         {
-            Debug.Log("---");
-            Debug.Log(position);
+
 
             if (!currentGrid.grid.GetGridObject(position.x, position.y).canBuild())
             { //erro
                 canBuild = false;
-                Debug.Log("False");
+      
             }
 
         }
@@ -120,6 +134,7 @@ public class PlayerBuild : MonoBehaviour
         }
 
         OnObjectPlaced?.Invoke(this, EventArgs.Empty);
+        OnObjectPlacedRemoved?.Invoke(this, EventArgs.Empty);
         //DeselectObjectType();
     }
 
@@ -132,26 +147,28 @@ public class PlayerBuild : MonoBehaviour
             //Gets the object of the grid (TGridObject, in this case an GridObject(class created in this file))
             //with the mouse position
             GridObject gridObject = currentGrid.grid.GetGridObject(mouseCurrentGridPos);
-            if (gridObject != null)
+        if (gridObject != null)
+        {
+
+
+            PlacedBuilding placedBuilding = gridObject.GetPlacedBuilding();
+
+            if (placedBuilding != null)
             {
+                placedBuilding.DestroySelf();
+                List<Vector2Int> gridPositionList = placedBuilding.GetGridPositionList();
 
-
-                PlacedBuilding placedBuilding = gridObject.GetPlacedBuilding();
-
-                if (placedBuilding != null)
+                //Clear the placebuilding data from the gridObjects
+                foreach (Vector2Int position in gridPositionList)
                 {
-                    placedBuilding.DestroySelf();
-                    List<Vector2Int> gridPositionList = placedBuilding.GetGridPositionList();
-
-                    //Clear the placebuilding data from the gridObjects
-                    foreach (Vector2Int position in gridPositionList)
-                    {
-                        currentGrid.grid.GetGridObject(position.x, position.y).ClearPlacedBuilding();
-                    }
+                    currentGrid.grid.GetGridObject(position.x, position.y).ClearPlacedBuilding();
                 }
+                OnObjectPlacedRemoved?.Invoke(this, EventArgs.Empty);
+
             }
+        }
+
        
-        
     }
 
 
