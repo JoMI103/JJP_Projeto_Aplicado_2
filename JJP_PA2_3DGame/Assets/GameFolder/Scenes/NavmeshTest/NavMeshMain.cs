@@ -26,8 +26,8 @@ public class NavMeshMain : MonoBehaviour
     {
         Debug.LogError("BUILDINNG");
 
-        surface.BuildNavMesh();
-        //surface.UpdateNavMesh(surface.navMeshData);
+        //surface.BuildNavMesh();
+        surface.UpdateNavMesh(surface.navMeshData);
       
         
     }

@@ -11,22 +11,22 @@ NavMeshProjectSettings:
     cost: 1
   - name: Jump
     cost: 2
-  - name: Trap
+  - name: SpikeTrap
+    cost: 2
+  - name: Wall
     cost: 10
-  - name: 
+  - name: MudTrap
+    cost: 3
+  - name: GiantBoxingGloveTrap
+    cost: 4
+  - name: PumpkinTrebuchet
     cost: 1
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
+  - name: SentryGun
+    cost: 3
+  - name: FlameTower
+    cost: 5
+  - name: IceCannon
+    cost: 5
   - name: 
     cost: 1
   - name: 
