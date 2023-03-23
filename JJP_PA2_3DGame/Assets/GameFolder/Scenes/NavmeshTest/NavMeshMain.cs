@@ -24,13 +24,7 @@ public class NavMeshMain : MonoBehaviour
     [ContextMenu("Build")]
     public void build()
     {
-        Debug.LogError("BUILDINNG");
-
         //surface.BuildNavMesh();
         surface.UpdateNavMesh(surface.navMeshData);
-      
-        
     }
-    
-
 }
