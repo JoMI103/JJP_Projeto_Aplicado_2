@@ -16,6 +16,8 @@ public class EnemySheep : MonoBehaviour
 
     int healthPoints;
 
+    protected SetTargetSheep setTargetSheep;
+
     private void setStats()
     {
         baseHealth = m_EnemySheepTypeSO.baseHealth;
@@ -35,6 +37,7 @@ public class EnemySheep : MonoBehaviour
     {
         setStats();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        setTargetSheep = GetComponent<SetTargetSheep>();
     }
 
     public void Start()

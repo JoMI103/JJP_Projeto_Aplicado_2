@@ -18,11 +18,11 @@ public class SetTargetSheep : MonoBehaviour
     private void Update()
     {
         navMeshAgent.destination = target.position;
+        navMeshAgent.Raycast(target.position, out NavMeshHit navMeshHit);
+        Debug.Log(navMeshHit.distance);
+
     }
 
-    public void setTarget(Transform target)
-    {
-        this.target = target;
-        
-    }
+    public void setTarget(Transform target) { this.target = target; }
+    public Transform getTarget() { return target; }
 }

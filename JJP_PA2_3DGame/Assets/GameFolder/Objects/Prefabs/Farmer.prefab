@@ -3549,7 +3549,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1f6ffe60f7528514e8ad43609ade80e4, type: 2}
   - {fileID: 11400000, guid: 29057e45b2bd09f4685537a88117f78e, type: 2}
   - {fileID: 11400000, guid: ba4032762fef31e4bbf8a5f6972d788f, type: 2}
-  - {fileID: 11400000, guid: 9f7875e62fbcce14891d019067adc805, type: 2}
   inputManager: {fileID: 8020492676777367023}
   hand: {fileID: 5302875946761015652}
   toolImage: {fileID: 4100370765727193514}
@@ -3909,8 +3908,6 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: d471fd9698f478d4db93b4d259d7eac6, type: 2}
   - {fileID: 11400000, guid: 14da4f5981ad29a4badb2e3157a91c1b, type: 2}
-  - {fileID: 11400000, guid: 96ffce58c4f74604bb910d545889599f, type: 2}
-  - {fileID: 11400000, guid: 9852894f362bab345b8d9680038665d0, type: 2}
   inputManager: {fileID: 8020492676777367023}
   hand: {fileID: 5302875946761015652}
   toolImage: {fileID: 7276596899391499820}

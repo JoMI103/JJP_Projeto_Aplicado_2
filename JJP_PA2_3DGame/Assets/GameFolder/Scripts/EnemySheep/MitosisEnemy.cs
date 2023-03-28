@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class MitosisEnemy : EnemySheep
 {
-    [SerializeField] private GameObject standardEnemySheep;
+    [SerializeField] private EnemySheepTypeSO standardEnemySheepSO;
     protected override void OnDeath()
     {
-
-        Debug.Log("hi");
-        Instantiate(standardEnemySheep, new Vector3(this.transform.position.x+0.2f, this.transform.position.y, this.transform.position.z), Quaternion.identity);
-        Instantiate(standardEnemySheep, new Vector3(this.transform.position.x-0.2f, this.transform.position.y, this.transform.position.z), Quaternion.identity);
-
+        Transform t;
+        t = Instantiate(standardEnemySheepSO.prefab,transform.position +transform.right * 0.2f , Quaternion.identity);
+        t.parent = transform.parent;
+        t.GetComponent<SetTargetSheep>().setTarget(setTargetSheep.getTarget());
+        t =Instantiate(standardEnemySheepSO.prefab, transform.position - transform.right * 0.2f, Quaternion.identity);
+        t.parent = transform.parent;
+        t.GetComponent<SetTargetSheep>().setTarget(setTargetSheep.getTarget());
         base.OnDeath();
     }
 }

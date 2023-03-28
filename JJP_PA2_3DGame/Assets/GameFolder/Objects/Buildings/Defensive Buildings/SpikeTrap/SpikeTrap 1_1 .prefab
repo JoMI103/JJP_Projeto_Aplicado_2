@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 59061545355497184}
   - component: {fileID: 6980867351702539076}
   - component: {fileID: 4176920488937811200}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4076826689579980571}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BuildingVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

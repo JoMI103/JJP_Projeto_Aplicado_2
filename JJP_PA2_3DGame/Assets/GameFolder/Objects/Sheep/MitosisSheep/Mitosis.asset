@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1016b4fe6d5a742acf09c08de4a406, type: 3}
   m_Name: Mitosis
   m_EditorClassIdentifier: 
-  nameString: 
-  description: 
-  baseHealth: 10
-  baseDmg: 0
-  baseSpeed: 0
-  prefab: {fileID: 7371308957432411715, guid: dc5709de8044e054e840db2608a62371, type: 3}
+  nameString: MitosisSheep
+  description: Divides into to standard Sheeps
+  baseHealth: 200
+  baseDmg: 10
+  baseSpeed: 2
+  prefab: {fileID: 7857089262087053490, guid: 62dd80a67632ab842a5f71bb623ffcd0, type: 3}
