@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Size: {x: 2, y: 20, z: 2}
+  m_Size: {x: 1, y: 20, z: 1}
   m_Center: {x: 0, y: 2, z: 0}
   m_Area: 4
   m_AffectedAgents: ffffffff
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 3266844670581289780}
   - component: {fileID: 4729340832806709898}
   - component: {fileID: 21569812553869658}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

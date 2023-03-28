@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static EnemySheep;
 
 public class EnemySheep : MonoBehaviour
 {
@@ -33,6 +35,24 @@ public class EnemySheep : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     [SerializeField] private UIHealthBar healthBar;
 
+
+    public enum state { Idle, Chase, Atack, ChaseAtack }
+ 
+
+    public void changeCurrentState(state state)
+    {
+        switch (state)
+        {
+            case state.Idle: StopAllCoroutines(); StartCoroutine(Idle()); break;
+            case state.Chase: StopAllCoroutines(); StartCoroutine(Idle()); break;
+            case state.Atack: StopAllCoroutines(); StartCoroutine(Idle()); break;
+            case state.ChaseAtack: StopAllCoroutines(); StartCoroutine(Idle()); break;
+            default: StopAllCoroutines(); StartCoroutine(Idle()); break;
+        }
+    }
+
+
+
     public void Awake()
     {
         setStats();
@@ -44,22 +64,37 @@ public class EnemySheep : MonoBehaviour
     {
         //addDificultyLevel();
         navMeshAgent.speed = speed;
+
     }
 
 
-    public void Update()
-    {
+    public void Update() {
         if (healthPoints <= 0) OnDeath();
     }
 
+   
 
- 
+
+    protected virtual IEnumerator Idle() {
+        yield return null;
+    }
+    protected virtual IEnumerator Chase() {
+        yield return null;
+    }
+
+    protected virtual IEnumerator Atack() {
+        yield return null;
+    }
+
+    protected virtual IEnumerator ChaseAtack() {
+        yield return null;
+    }
+
     public void receiveDmg(int dmg)
-    {
+    { 
         healthPoints -= (int)(dmg * weaknessMult);
         healthBar.SetHealthBarPercentage((float)healthPoints/ baseHealth);
     }
-
 
     protected virtual void OnDeath()
     {

@@ -230,7 +230,7 @@ MonoBehaviour:
   sounds:
   - name: SpikeTrap
     clip: {fileID: 8300000, guid: b06c23326c0163844a71d6fbb4062a5f, type: 3}
-    volume: 1
+    volume: 0.016
     pitch: 1
     source: {fileID: 0}
 --- !u!1 &7312619900209896862

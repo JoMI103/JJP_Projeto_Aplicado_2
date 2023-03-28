@@ -20,6 +20,7 @@ public class LocalGrid : MonoBehaviour
             gridHeight,
             cellSize,
             transform.position,
+            this.transform.localRotation,
             (GridXZ<GridObject> g, int x, int z) => new GridObject(g, x, z));
 
   
@@ -44,7 +45,7 @@ public class LocalGrid : MonoBehaviour
     private void setUp()
     {
         setUpGridPanel();
-        this.transform.localRotation = Quaternion.Euler(new Vector3(xRot, yRot, 0));
+       // this.transform.localRotation = Quaternion.Euler(new Vector3(xRot, yRot, 0));
         if(Invert) { this.transform.localScale = new Vector3(1, -1, 1);
             Debug.Log(-gridPanel.up);
         } else { this.transform.localScale = new Vector3(1, 1, 1); Debug.Log(gridPanel.up); }
