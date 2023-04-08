@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class BaseSheep : EnemySheep
 {
+
+
     void Update()
     {
        base.Update();
+    }
+
+
+    protected override void Attack()
+    {
+        animator.Play("AttackBaseSheep");
+        placedBuilding.takeDamge(attackDmg);
     }
 }

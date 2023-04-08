@@ -15,7 +15,8 @@ MonoBehaviour:
   nameString: MitosisSheep
   description: Divides into to standard Sheeps
   baseHealth: 200
-  baseDmg: 10
+  baseDmg: 100
   baseSpeed: 2
-  AtackRange: 1.3
+  AttackRange: 1.5
+  AttackSpeed: 1
   prefab: {fileID: 7857089262087053490, guid: 62dd80a67632ab842a5f71bb623ffcd0, type: 3}

@@ -22,3 +22,6 @@ MonoBehaviour:
   rockCost: 0
   metalCost: 0
   eletronicsCost: 0
+  Ground: 1
+  Wall: 0
+  Roof: 0

@@ -95,7 +95,15 @@ public class PlayerBuild : MonoBehaviour
     private void PlaceBuilding() {
 
         if (buildingTypeSO == null || currentGrid == null) return;
-        
+
+        switch (currentGrid.directionBuild)
+        {
+            case LocalGrid.normal.Ground: if (!buildingTypeSO.Ground) return; break;
+            case LocalGrid.normal.Wall: if (!buildingTypeSO.Wall) return; break;
+            case LocalGrid.normal.Roof: if (!buildingTypeSO.Roof) return; break;  
+
+        }
+
         
         currentGrid.grid.GetXZ(mouseCurrentGridPos, out int x, out int z);
         Vector2Int placedObjectOrigin = new Vector2Int(x, z);
@@ -107,14 +115,10 @@ public class PlayerBuild : MonoBehaviour
 
         foreach (Vector2Int position in gridPositionList)
         {
-
-
             if (!currentGrid.grid.GetGridObject(position.x, position.y).canBuild())
-            { //erro
-                canBuild = false;
-      
+            { 
+                canBuild = false;  
             }
-
         }
   
         if (!canBuild) { Debug.LogWarning("Can't build in " + x + ", " + z); return; }

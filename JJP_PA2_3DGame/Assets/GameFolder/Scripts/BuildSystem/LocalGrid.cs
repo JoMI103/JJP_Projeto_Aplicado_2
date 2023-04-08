@@ -4,6 +4,11 @@ using static UnityEngine.GraphicsBuffer;
 
 public class LocalGrid : MonoBehaviour
 {
+    [SerializeField]
+    public enum normal {Ground,Wall,Roof }
+
+
+    [SerializeField] public normal directionBuild;
     [SerializeField] private int GWidth = 10, GHeight = 10;
     [SerializeField] public Transform gridPanel;
     public GridXZ<GridObject> grid;

@@ -1842,7 +1842,6 @@ MonoBehaviour:
   foreGroundImage: {fileID: 2830336144818032165}
   backGroundImage: {fileID: 5831686995971148485}
   offset: {x: 0, y: 1, z: 0}
-  Scalesize: 1
 --- !u!1 &5283428887471101307
 GameObject:
   m_ObjectHideFlags: 0
@@ -2395,6 +2394,7 @@ GameObject:
   - component: {fileID: 316885905914322694}
   - component: {fileID: 3068991872899557045}
   - component: {fileID: 613212245058248368}
+  - component: {fileID: 8171113941189867497}
   m_Layer: 9
   m_Name: MitosisPref
   m_TagString: Untagged
@@ -2432,7 +2432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45acc7aac0703eb40bd31ad2af5aa06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  currentTarget: {fileID: 0}
 --- !u!195 &4413556008467999198
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2442,7 +2442,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7538287882119457101}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -2511,10 +2511,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemySheepTypeSO: {fileID: 11400000, guid: 267a06a236c9aa44e9fb3201280f01b3, type: 2}
   healthBar: {fileID: 592447509590619547}
+  model: {fileID: 8761645366394680092}
+  fixRotation: 1
+  l:
+    serializedVersion: 2
+    m_Bits: 2048
   destructibleLayer:
     serializedVersion: 2
     m_Bits: 8192
   standardEnemySheepSO: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
+--- !u!95 &8171113941189867497
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7538287882119457101}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d4fc8741c7fd853408f0bf2c05098ca8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &7912498578825428482
 GameObject:
   m_ObjectHideFlags: 0

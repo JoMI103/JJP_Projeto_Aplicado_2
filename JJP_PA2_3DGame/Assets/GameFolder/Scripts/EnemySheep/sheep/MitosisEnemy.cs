@@ -7,13 +7,16 @@ public class MitosisEnemy : EnemySheep
     [SerializeField] private EnemySheepTypeSO standardEnemySheepSO;
     protected override void OnDeath()
     {
-        Transform t;
-        t = Instantiate(standardEnemySheepSO.prefab,transform.position +transform.right * 0.2f , transform.rotation );
-        t.parent = transform.parent;
-        t.GetComponent<SetTargetSheep>().setTarget(setTargetSheep.getTarget());
-        t =Instantiate(standardEnemySheepSO.prefab, transform.position - transform.right * 0.2f, transform.rotation);
-        t.parent = transform.parent;
-        t.GetComponent<SetTargetSheep>().setTarget(setTargetSheep.getTarget());
+        Transform SheepTransform;
+        EnemySheep SheepCode;
+        SheepTransform = Instantiate(standardEnemySheepSO.prefab, transform.position + transform.right * 0.2f, transform.rotation);
+        SheepTransform.parent = transform.parent;
+        SheepTransform.GetComponent<EnemySheep>().setPlayerAndObjective(playerPosition, ObjectivePosition);
+
+        SheepTransform = Instantiate(standardEnemySheepSO.prefab, transform.position - transform.right * 0.2f, transform.rotation);
+        SheepTransform.parent = transform.parent;
+        SheepTransform.GetComponent<EnemySheep>().setPlayerAndObjective(playerPosition, ObjectivePosition);
+
         base.OnDeath();
 
     }

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class SetTargetSheep : MonoBehaviour
 {
-    [SerializeField] private Transform target;
+    [SerializeField] private Transform currentTarget;
 
     private NavMeshAgent navMeshAgent;
 
@@ -15,15 +15,9 @@ public class SetTargetSheep : MonoBehaviour
         navMeshAgent= GetComponent<NavMeshAgent>();
     }
 
-    private void Update()
-    {
-        if(!navMeshAgent.isActiveAndEnabled) { return; }
-        navMeshAgent.destination = target.position;
-        
-      
 
-    }
+    public void setTarget(Transform target) { currentTarget = target; navMeshAgent.destination = target.position; }
+    public Transform getTarget() { return currentTarget; }
 
-    public void setTarget(Transform target) { this.target = target; }
-    public Transform getTarget() { return target; }
+  
 }

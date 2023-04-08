@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 6920888894953836686}
   - component: {fileID: 6920888894953836685}
   - component: {fileID: 7513763004107263465}
+  - component: {fileID: 2955036862748119589}
   m_Layer: 9
   m_Name: Base Sheep
   m_TagString: Untagged
@@ -314,7 +315,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6920888894953836693}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -339,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45acc7aac0703eb40bd31ad2af5aa06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  currentTarget: {fileID: 0}
 --- !u!114 &6920888894953836686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +355,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemySheepTypeSO: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
   healthBar: {fileID: 7106234209484834835}
+  model: {fileID: 6920888895596410132}
+  fixRotation: 1
+  l:
+    serializedVersion: 2
+    m_Bits: 2048
   destructibleLayer:
     serializedVersion: 2
     m_Bits: 8192
@@ -382,6 +388,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0177f1a4e97c384d86c75cb1f1efbc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2955036862748119589
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6920888894953836693}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4e9479eb56a401e458d692e950701b9b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &6920888894985100763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,4 +1731,3 @@ MonoBehaviour:
   foreGroundImage: {fileID: 7935754664959325535}
   backGroundImage: {fileID: 7755304467041848432}
   offset: {x: 0, y: 1, z: 0}
-  Scalesize: 1

@@ -1,6 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.UI.GridLayoutGroup;
 
 
 public class EnemySheep : MonoBehaviour
@@ -25,17 +29,18 @@ public class EnemySheep : MonoBehaviour
         healthPoints = baseHealth;
         attackDmg = m_EnemySheepTypeSO.baseDmg;
         speed = m_EnemySheepTypeSO.baseSpeed;
-        AtackRange = m_EnemySheepTypeSO.AtackRange;
+        AttackRange = m_EnemySheepTypeSO.AttackRange;
+        AttackSpeed = m_EnemySheepTypeSO.AttackSpeed;
         slow = 0; weaknessMult = 1f;
     }
 
     //SheepBaseStats
-    int baseHealth; int attackDmg; float speed, AtackRange;
+    protected int baseHealth; protected int attackDmg; protected float speed, AttackRange, AttackSpeed;
 
     //Bufs Defufs
-    float slow; float weaknessMult;
+    protected float slow; protected float weaknessMult;
 
-    int healthPoints;
+    protected int healthPoints;
 
     [SerializeField] EnemySheepTypeSO m_EnemySheepTypeSO;
 
@@ -45,10 +50,12 @@ public class EnemySheep : MonoBehaviour
     protected SetTargetSheep setTargetSheep;
     protected NavMeshAgent navMeshAgent;
     protected Rigidbody rigidbody;
+    protected Animator animator;
 
     protected Transform playerPosition, ObjectivePosition;
     public void setPlayerAndObjective(Transform player, Transform finalObjective) {
-        playerPosition = player; setTargetSheep.setTarget(finalObjective);
+        playerPosition = player; 
+        setTargetSheep.setTarget(finalObjective);
         ObjectivePosition = finalObjective;
     }
 
@@ -56,6 +63,7 @@ public class EnemySheep : MonoBehaviour
     public void Awake()
     {
         setStats();
+        animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         setTargetSheep = GetComponent<SetTargetSheep>();
         rigidbody = GetComponent<Rigidbody>();
@@ -76,35 +84,65 @@ public class EnemySheep : MonoBehaviour
         if (healthPoints <= 0) OnDeath();
     }
 
+    [SerializeField] protected Transform model;
+    [SerializeField] protected bool fixRotation;
+    [SerializeField] protected LayerMask l;
+
+    //atualiza a normal do modelo com a normal do grid 
+    private void LateUpdate()
+    {
+        if(!fixRotation) { return; }
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + new Vector3(0,0.1f,0), Vector3.down, out hit, l))
+            model.rotation = Quaternion.Lerp(model.rotation, Quaternion.FromToRotation(model.up, hit.normal) * model.rotation, Time.deltaTime * 5);
+    }
+
+    //nao faz nada
     protected virtual IEnumerator Idle() {
         navMeshAgent.enabled= false;
 
         while (true)
         {
-
             yield return new WaitForSeconds(1f);
         }   
     }
+    
+    
+    //a ovelha segue o caminho até o objetivo
     protected virtual IEnumerator FollowPath() {
-        navMeshAgent.enabled = true;
+
+        if(!navMeshAgent.enabled) navMeshAgent.enabled = true;
+        setTargetSheep.setTarget(ObjectivePosition); 
+        yield return null;
+
         while (true)
         {
+            navMeshAgent.SamplePathPosition(-1, AttackRange, out NavMeshHit navHit);
+            if (navHit.mask == 16) 
             checkPathObstacles();
 
             yield return new WaitForSeconds(0.2f);
         }
+
     }
+    
+    
     protected virtual IEnumerator AtackConstruction() {
 
-        navMeshAgent.enabled = false;
-        WaitForSeconds wait = new WaitForSeconds(1f);
+        WaitForSeconds wait = new WaitForSeconds(AttackSpeed);
 
         while (placedBuilding != null)
         {
-            placedBuilding.takeDamge(attackDmg);
+            Attack(); 
             yield return wait;
         }
     }
+
+    protected virtual void Attack()
+    {
+        placedBuilding.takeDamge(attackDmg);
+    }
+
     protected virtual IEnumerator AtackPlayer() {
         yield return null;
     }
@@ -121,6 +159,7 @@ public class EnemySheep : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    #region checkObstacles
 
     protected PlacedBuilding placedBuilding;
     public LayerMask destructibleLayer;
@@ -131,17 +170,25 @@ public class EnemySheep : MonoBehaviour
      
         int length = navMeshAgent.path.GetCornersNonAlloc(corners);
 
+        if (navMeshAgent.hasPath) Debug.Log("simtem");
+
         if (length > 1)
         {  
             if (Physics.Raycast(corners[0], (corners[1] - corners[0]).normalized, out RaycastHit hit,
-                AtackRange, destructibleLayer))
+                AttackRange, destructibleLayer))
             {       
                 if (hit.collider.TryGetComponent<PlacedBuilding>(out PlacedBuilding destructible))
                 {
+                   
+
+                    if(placedBuilding == destructible)
+                    {
+                        placedBuilding.onDestroyEvent += whenTargetDestroy;
+                        //LastPath = navMeshAgent.path;
+                        setTargetSheep.setTarget(placedBuilding.transform);
+                        changeCurrentState(state.AtackConstruction);
+                    }
                     placedBuilding = destructible;
-                    placedBuilding.onDestroyEvent += whenTargetDestroy;
-                    //LastPath = navMeshAgent.path;
-                    changeCurrentState(state.AtackConstruction);
                 }
             }
 
@@ -153,4 +200,5 @@ public class EnemySheep : MonoBehaviour
         changeCurrentState(state.FollowPath);
     }
 
+    #endregion
 }

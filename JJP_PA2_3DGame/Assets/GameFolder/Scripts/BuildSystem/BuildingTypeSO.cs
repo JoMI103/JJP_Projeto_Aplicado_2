@@ -17,6 +17,7 @@ public class BuildingTypeSO : ScriptableObject
         }
     }
 
+  
     public enum Dir { Down, Left, Up ,Right}
     
     public string nameString;
@@ -25,6 +26,7 @@ public class BuildingTypeSO : ScriptableObject
     public int width, height;
     public int health;
     public int woodCost, rockCost, metalCost, eletronicsCost;
+    public bool Ground, Wall, Roof;
 
 
     public int GetRotationAngle(Dir dir) {

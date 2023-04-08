@@ -368,7 +368,6 @@ MonoBehaviour:
   foreGroundImage: {fileID: 3453074873589044528}
   backGroundImage: {fileID: 6956600478649930562}
   offset: {x: 0, y: 1, z: 0}
-  Scalesize: 2
 --- !u!1 &3381237094063733199
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +600,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7537114495560231171}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 0.3, z: 2}
