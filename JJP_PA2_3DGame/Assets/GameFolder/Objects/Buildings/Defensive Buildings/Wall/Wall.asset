@@ -17,3 +17,8 @@ MonoBehaviour:
   visual: {fileID: 8605475824243672605, guid: 1e042ccf783aaaa47a96553e7eae79f8, type: 3}
   width: 1
   height: 1
+  health: 500
+  woodCost: 0
+  rockCost: 0
+  metalCost: 0
+  eletronicsCost: 0

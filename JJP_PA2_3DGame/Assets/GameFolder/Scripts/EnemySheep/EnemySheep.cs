@@ -1,24 +1,23 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using static EnemySheep;
+
 
 public class EnemySheep : MonoBehaviour
 {
-    //SheepBaseStats
-    int baseHealth;
-    int attackDmg;
-    float speed;
+    public enum state { Idle, FollowPath, AtackConstruction, AtackPlayer }
 
-    //Bufs Defufs
-    float slow;
-    float weaknessMult;
-
-    int healthPoints;
-
-    protected SetTargetSheep setTargetSheep;
+    public void changeCurrentState(state state)
+    {
+        switch (state)
+        {
+            case state.Idle: StopAllCoroutines(); StartCoroutine(Idle()); break;
+            case state.FollowPath: StopAllCoroutines(); StartCoroutine(FollowPath()); break;
+            case state.AtackConstruction: StopAllCoroutines(); StartCoroutine(AtackConstruction()); break;
+            case state.AtackPlayer: StopAllCoroutines(); StartCoroutine(AtackPlayer()); break;
+            default: StopAllCoroutines(); StartCoroutine(Idle()); break;
+        }
+    }
 
     private void setStats()
     {
@@ -26,31 +25,32 @@ public class EnemySheep : MonoBehaviour
         healthPoints = baseHealth;
         attackDmg = m_EnemySheepTypeSO.baseDmg;
         speed = m_EnemySheepTypeSO.baseSpeed;
-
+        AtackRange = m_EnemySheepTypeSO.AtackRange;
         slow = 0; weaknessMult = 1f;
     }
 
+    //SheepBaseStats
+    int baseHealth; int attackDmg; float speed, AtackRange;
+
+    //Bufs Defufs
+    float slow; float weaknessMult;
+
+    int healthPoints;
+
     [SerializeField] EnemySheepTypeSO m_EnemySheepTypeSO;
 
-    private NavMeshAgent navMeshAgent;
+
     [SerializeField] private UIHealthBar healthBar;
 
+    protected SetTargetSheep setTargetSheep;
+    protected NavMeshAgent navMeshAgent;
+    protected Rigidbody rigidbody;
 
-    public enum state { Idle, Chase, Atack, ChaseAtack }
- 
-
-    public void changeCurrentState(state state)
-    {
-        switch (state)
-        {
-            case state.Idle: StopAllCoroutines(); StartCoroutine(Idle()); break;
-            case state.Chase: StopAllCoroutines(); StartCoroutine(Idle()); break;
-            case state.Atack: StopAllCoroutines(); StartCoroutine(Idle()); break;
-            case state.ChaseAtack: StopAllCoroutines(); StartCoroutine(Idle()); break;
-            default: StopAllCoroutines(); StartCoroutine(Idle()); break;
-        }
+    protected Transform playerPosition, ObjectivePosition;
+    public void setPlayerAndObjective(Transform player, Transform finalObjective) {
+        playerPosition = player; setTargetSheep.setTarget(finalObjective);
+        ObjectivePosition = finalObjective;
     }
-
 
 
     public void Awake()
@@ -58,35 +58,54 @@ public class EnemySheep : MonoBehaviour
         setStats();
         navMeshAgent = GetComponent<NavMeshAgent>();
         setTargetSheep = GetComponent<SetTargetSheep>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     public void Start()
     {
         //addDificultyLevel();
         navMeshAgent.speed = speed;
-
+        changeCurrentState(state.FollowPath);
     }
 
 
     public void Update() {
+        if (Input.GetKeyDown(KeyCode.I)) changeCurrentState(state.Idle);
+        if (Input.GetKeyDown(KeyCode.O)) changeCurrentState(state.FollowPath);
+
         if (healthPoints <= 0) OnDeath();
     }
 
-   
-
-
     protected virtual IEnumerator Idle() {
-        yield return null;
-    }
-    protected virtual IEnumerator Chase() {
-        yield return null;
-    }
+        navMeshAgent.enabled= false;
 
-    protected virtual IEnumerator Atack() {
-        yield return null;
-    }
+        while (true)
+        {
 
-    protected virtual IEnumerator ChaseAtack() {
+            yield return new WaitForSeconds(1f);
+        }   
+    }
+    protected virtual IEnumerator FollowPath() {
+        navMeshAgent.enabled = true;
+        while (true)
+        {
+            checkPathObstacles();
+
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+    protected virtual IEnumerator AtackConstruction() {
+
+        navMeshAgent.enabled = false;
+        WaitForSeconds wait = new WaitForSeconds(1f);
+
+        while (placedBuilding != null)
+        {
+            placedBuilding.takeDamge(attackDmg);
+            yield return wait;
+        }
+    }
+    protected virtual IEnumerator AtackPlayer() {
         yield return null;
     }
 
@@ -98,7 +117,40 @@ public class EnemySheep : MonoBehaviour
 
     protected virtual void OnDeath()
     {
+        if(placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
         Destroy(this.gameObject);
     }
-  
+
+
+    protected PlacedBuilding placedBuilding;
+    public LayerMask destructibleLayer;
+
+    protected virtual void checkPathObstacles()
+    {
+        Vector3[] corners = new Vector3[2];
+     
+        int length = navMeshAgent.path.GetCornersNonAlloc(corners);
+
+        if (length > 1)
+        {  
+            if (Physics.Raycast(corners[0], (corners[1] - corners[0]).normalized, out RaycastHit hit,
+                AtackRange, destructibleLayer))
+            {       
+                if (hit.collider.TryGetComponent<PlacedBuilding>(out PlacedBuilding destructible))
+                {
+                    placedBuilding = destructible;
+                    placedBuilding.onDestroyEvent += whenTargetDestroy;
+                    //LastPath = navMeshAgent.path;
+                    changeCurrentState(state.AtackConstruction);
+                }
+            }
+
+        }
+    }
+
+    private void whenTargetDestroy()
+    {
+        changeCurrentState(state.FollowPath);
+    }
+
 }

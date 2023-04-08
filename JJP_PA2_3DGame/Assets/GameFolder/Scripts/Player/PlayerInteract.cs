@@ -18,9 +18,13 @@ public class PlayerInteract : MonoBehaviour
         inputManager = GetComponent<InputManager>();
     }
 
-    
+    Interactable lastInteractable;
+
+
     void Update()
     {
+        if(lastInteractable != null)
+        lastInteractable.stopLooking();
         //Resets Interactable message
         playerUI.updateInteractableText(string.Empty);
 
@@ -29,16 +33,29 @@ public class PlayerInteract : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * distance);
 
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, distance, interactableMask)) {
+        if (Physics.Raycast(ray, out hitInfo, distance, interactableMask))
+        {
 
             //Gets the gameobject with an Interactable Script with raycast hitinfo
             Interactable interactableAux = hitInfo.collider.GetComponent<Interactable>();
-            if (interactableAux != null) {
+            if (interactableAux != null)
+            {
                 //updates Interactable promptMessage
                 playerUI.updateInteractableText(interactableAux.promptMessage);
-
                 //If interact buttom is pressed calls BaseInteract 
                 if (inputManager.onFoot.Interact.triggered) interactableAux.BaseInteract();
+            }
+        }
+
+        if (Physics.Raycast(ray, out hitInfo, distance * 10, interactableMask))
+        {
+
+            //Gets the gameobject with an Interactable Script with raycast hitinfo
+            Interactable interactableAux = hitInfo.collider.GetComponent<Interactable>();
+            if (interactableAux != null)
+            {
+                lastInteractable = interactableAux;
+                interactableAux.startLooking();
             }
         }
     }

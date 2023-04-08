@@ -18,13 +18,22 @@ public class PlacedBuilding : MonoBehaviour{
         placedBuilding.origin= origin;
         placedBuilding.dir = dir;
 
+        placedBuilding.SetStats();
+
         return placedBuilding;
+    }
+
+    private void SetStats()
+    {
+        health = buildingTypeSO.health;
+        baseHealth = health;
     }
 
     private BuildingTypeSO buildingTypeSO;
     private Vector2Int origin;
     private BuildingTypeSO.Dir dir;
 
+    private int baseHealth;
     public int health;
 
     //You can add some methot from another script to be called by this delegates with onDestroyEvent += methotd;
@@ -33,25 +42,25 @@ public class PlacedBuilding : MonoBehaviour{
     public delegate void TakeDamageEvent(int damage, int health);
     public TakeDamageEvent onTakeDamageEvent;
 
+    [SerializeField] private UIHealthBar healthBar;
+
     public void takeDamge(int damage)
     {
         health -= damage;
 
         if(health <= 0)
         {
-            health = 0;
-            onTakeDamageEvent?.Invoke(damage, health);
-            onDestroyEvent?.Invoke();
-            gameObject.SetActive(false);
-            NavMeshMain.Instance.build();
+            healthBar.SetHealthBarPercentage(0);
             DestroySelf();
         }
         else
         {
+            healthBar.SetHealthBarPercentage((float)health / baseHealth);
             onTakeDamageEvent?.Invoke(damage, health);
         }
-
     }
+
+
     public List<Vector2Int> GetGridPositionList()
     {
         return buildingTypeSO.GetGridPosition(origin,dir);
@@ -59,6 +68,11 @@ public class PlacedBuilding : MonoBehaviour{
 
     public void DestroySelf()
     {
+        health = 0;
+        onTakeDamageEvent?.Invoke(0, health);
+        onDestroyEvent?.Invoke();
+        gameObject.SetActive(false);
+        NavMeshMain.Instance.build();
         Destroy(gameObject);
     }
 

@@ -6,7 +6,7 @@ using static EnemyWaveSO;
 
 public class WaveSystem : MonoBehaviour
 {
-    [SerializeField] private Transform waveTarget;
+    [SerializeField] private Transform waveTarget,playerTarget;
     [SerializeField] private List<Transform> spawnPoints;
     private enemyWaveData currentWaveData;
     private int currentWave;
@@ -56,7 +56,7 @@ public class WaveSystem : MonoBehaviour
             WaveEnemy _waveEnemy = currentWaveData.typeEnemies[n];
 
             Transform sheep = Instantiate(_waveEnemy.enemySheep.prefab, sp);
-            sheep.GetComponent<SetTargetSheep>().setTarget(waveTarget);
+            sheep.GetComponent<EnemySheep>().setPlayerAndObjective(playerTarget,waveTarget);
 
             currentWaveEnemies.Add(sheep);
             _waveEnemy.Quantity--;

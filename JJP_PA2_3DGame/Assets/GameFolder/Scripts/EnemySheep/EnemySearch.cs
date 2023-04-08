@@ -9,4 +9,14 @@ public class EnemySearch : MonoBehaviour
 
 
     //radarSearch
+
+
+
+    //checkPlayer
+
+   // public void check
+
+    
+
+
 }

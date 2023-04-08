@@ -17,4 +17,5 @@ MonoBehaviour:
   baseHealth: 200
   baseDmg: 10
   baseSpeed: 2
+  AtackRange: 1.3
   prefab: {fileID: 7857089262087053490, guid: 62dd80a67632ab842a5f71bb623ffcd0, type: 3}

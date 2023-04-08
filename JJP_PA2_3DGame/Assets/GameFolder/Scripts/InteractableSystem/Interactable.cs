@@ -22,4 +22,13 @@ public abstract class  Interactable : MonoBehaviour
         
     }
 
+    public virtual void startLooking()
+    {
+
+    }
+    public virtual void stopLooking()
+    {
+
+    }
+
 }

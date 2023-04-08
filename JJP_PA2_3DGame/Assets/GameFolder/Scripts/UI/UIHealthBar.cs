@@ -8,8 +8,8 @@ public class UIHealthBar : MonoBehaviour
     public Transform target;
     [SerializeField] private Image foreGroundImage,backGroundImage;
     public Vector3 offset;
-    
 
+ 
     // Update is called once per frame
     void LateUpdate()
     {

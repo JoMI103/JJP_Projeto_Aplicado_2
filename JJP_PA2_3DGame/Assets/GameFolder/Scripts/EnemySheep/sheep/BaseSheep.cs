@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BaseSheep : EnemySheep
 {
- 
     void Update()
     {
        base.Update();

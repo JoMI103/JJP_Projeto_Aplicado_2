@@ -17,9 +17,10 @@ public class SetTargetSheep : MonoBehaviour
 
     private void Update()
     {
+        if(!navMeshAgent.isActiveAndEnabled) { return; }
         navMeshAgent.destination = target.position;
-        navMeshAgent.Raycast(target.position, out NavMeshHit navMeshHit);
-        Debug.Log(navMeshHit.distance);
+        
+      
 
     }
 
