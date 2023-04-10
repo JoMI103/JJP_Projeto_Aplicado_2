@@ -29,12 +29,12 @@ public class PlacedBuilding : MonoBehaviour{
         baseHealth = health;
     }
 
-    private BuildingTypeSO buildingTypeSO;
+    public BuildingTypeSO buildingTypeSO;
     private Vector2Int origin;
     private BuildingTypeSO.Dir dir;
 
     private int baseHealth;
-    public int health;
+    private int health;
 
     //You can add some methot from another script to be called by this delegates with onDestroyEvent += methotd;
     public delegate void DestroyEvent();
@@ -75,6 +75,4 @@ public class PlacedBuilding : MonoBehaviour{
         NavMeshMain.Instance.build();
         Destroy(gameObject);
     }
-
-
 }

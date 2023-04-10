@@ -59,7 +59,6 @@ public class EnemySheep : MonoBehaviour
         ObjectivePosition = finalObjective;
     }
 
-
     public void Awake()
     {
         setStats();
@@ -75,7 +74,6 @@ public class EnemySheep : MonoBehaviour
         navMeshAgent.speed = speed;
         changeCurrentState(state.FollowPath);
     }
-
 
     public void Update() {
         if (Input.GetKeyDown(KeyCode.I)) changeCurrentState(state.Idle);
@@ -97,6 +95,8 @@ public class EnemySheep : MonoBehaviour
             model.rotation = Quaternion.Lerp(model.rotation, Quaternion.FromToRotation(model.up, hit.normal) * model.rotation, Time.deltaTime * 5);
     }
 
+    #region sheepStates
+
     //nao faz nada
     protected virtual IEnumerator Idle() {
         navMeshAgent.enabled= false;
@@ -106,8 +106,7 @@ public class EnemySheep : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }   
     }
-    
-    
+
     //a ovelha segue o caminho até o objetivo
     protected virtual IEnumerator FollowPath() {
 
@@ -125,8 +124,7 @@ public class EnemySheep : MonoBehaviour
         }
 
     }
-    
-    
+
     protected virtual IEnumerator AtackConstruction() {
 
         WaitForSeconds wait = new WaitForSeconds(AttackSpeed);
@@ -147,6 +145,8 @@ public class EnemySheep : MonoBehaviour
         yield return null;
     }
 
+    #endregion
+
     public void receiveDmg(int dmg)
     { 
         healthPoints -= (int)(dmg * weaknessMult);
@@ -158,6 +158,8 @@ public class EnemySheep : MonoBehaviour
         if(placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
         Destroy(this.gameObject);
     }
+
+
 
     #region checkObstacles
 
@@ -201,4 +203,27 @@ public class EnemySheep : MonoBehaviour
     }
 
     #endregion
+
+
+    public Vector3 getFuturePoint(int precision ,float time)
+    {
+        if (navMeshAgent.path.corners.Length < precision) precision = navMeshAgent.path.corners.Length;
+        Vector3[] corners = new Vector3[precision];
+        navMeshAgent.path.GetCornersNonAlloc(corners);
+        float walkDistance = time * speed;
+
+        for(int i = 1; i< precision; i++)
+        {
+            float distance = Vector3.Distance(corners[i-1],corners[i]);
+            if(distance < walkDistance) walkDistance -= distance; else
+            {
+                return corners[i - 1] + (corners[i] - corners[i - 1]).normalized * walkDistance;
+            }
+        }
+
+        return corners[corners.Length - 1]; 
+
+    }
+
+
 }

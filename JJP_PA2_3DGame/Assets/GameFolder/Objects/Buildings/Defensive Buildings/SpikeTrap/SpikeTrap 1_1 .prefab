@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 7403337306828378864}
   - component: {fileID: 1527623561399925201}
   - component: {fileID: 2034617187387621091}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: 'SpikeTrap 1_1 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8bcd55737a39c4fb0cd5d5abf3ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  buildingTypeSO: {fileID: 0}
   healthBar: {fileID: 3464430519089730929}
 --- !u!65 &5454607546114052353
 BoxCollider:
@@ -269,12 +269,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d380ed3f67dd69c4fb9d7665c4d65330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentDmg: 20
   boxCollider: {fileID: 5454607546114052353}
-  canattack: 0
+  placedBuilding: {fileID: 0}
   giveDmg:
     serializedVersion: 2
     m_Bits: 1536
+  canattack: 0
 --- !u!95 &1527623561399925201
 Animator:
   serializedVersion: 5

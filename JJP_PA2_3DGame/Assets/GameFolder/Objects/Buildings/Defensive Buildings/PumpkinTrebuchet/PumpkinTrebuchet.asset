@@ -18,6 +18,7 @@ MonoBehaviour:
   width: 3
   height: 3
   health: 500
+  damage: 20
   woodCost: 0
   rockCost: 0
   metalCost: 0

@@ -24,7 +24,7 @@ public class BuildingTypeSO : ScriptableObject
     public Transform prefab;
     public Transform visual;
     public int width, height;
-    public int health;
+    public int health, damage;
     public int woodCost, rockCost, metalCost, eletronicsCost;
     public bool Ground, Wall, Roof;
 
