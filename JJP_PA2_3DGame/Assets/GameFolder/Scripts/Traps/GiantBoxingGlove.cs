@@ -13,13 +13,24 @@ public class GiantBoxingGlove : Trap
     protected override void Start()
     {
         base.Start();
-        animator.speed = 1 / aps;
+        StartCoroutine(Wait());
     }
+
+    private IEnumerator Wait()
+    {
+        while (true)
+        {
+            animator.Play("OnePunchMan");
+            yield return new WaitForSeconds(2);
+        }
+    }
+
+
 
     public void attack()
     {
         //au.Play("SpikeTrap");
         GetSurroundSheeps();
-        foreach (EnemySheep es in sheeps) { es?.receiveDmg(damage); ; }
+        foreach (EnemySheep es in sheeps) { es?.startknockBackEffect(centerPoint.up, 100); }
     }
 }

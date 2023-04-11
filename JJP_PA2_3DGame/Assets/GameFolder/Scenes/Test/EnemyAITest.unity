@@ -1419,7 +1419,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093643680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 12}
+  m_LocalPosition: {x: 14.9, y: 0, z: 12}
   m_LocalScale: {x: 0.6, y: 1, z: 2.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2626,7 +2626,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095672225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.28, y: 0.11, z: 24.58}
+  m_LocalPosition: {x: 3.3, y: 0.072, z: 5.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2648,8 +2648,8 @@ MonoBehaviour:
   waveTarget: {fileID: 1364479991}
   playerTarget: {fileID: 13377417}
   enemySheepTypeSO: {fileID: 11400000, guid: 267a06a236c9aa44e9fb3201280f01b3, type: 2}
-  numberSheep: 1
-  coolDown: 0.05
+  numberSheep: 100
+  coolDown: 0.1
 --- !u!1 &2133933438
 GameObject:
   m_ObjectHideFlags: 0

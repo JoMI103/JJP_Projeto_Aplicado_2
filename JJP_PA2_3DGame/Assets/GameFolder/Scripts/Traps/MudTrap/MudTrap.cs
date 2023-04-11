@@ -29,7 +29,7 @@ public class MudTrap : Trap
                     if(es.currentSlowEffect != null)
                     StopCoroutine(es.currentSlowEffect); 
                     es.currentSlowEffect = es.slowEffect(effectTime,slowEffect);  
-                    StartCoroutine(es.currentSlowEffect); 
+                    es.startCurrentSlowEffect();
                 }
             }
             yield return null;

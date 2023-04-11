@@ -224,6 +224,8 @@ public class EnemySheep : MonoBehaviour
     public bool slowEffectIsRunning = false;
     public IEnumerator currentSlowEffect;
 
+    public void startCurrentSlowEffect() { StartCoroutine(currentSlowEffect); }
+
     public virtual IEnumerator slowEffect(float effectTime, float slowPower)
     {
         slowEffectIsRunning = true; 
@@ -235,9 +237,33 @@ public class EnemySheep : MonoBehaviour
         slowEffectIsRunning = false;
     }
 
+    public void startknockBackEffect(Vector3 s, float d) { StartCoroutine(knockBackEffect(s, d)); }
+
+    [SerializeField] private LayerMask floorLayerMask;
+
+    public virtual IEnumerator knockBackEffect(Vector3 direction, float force)
+    {
+        StopCoroutine(currentState);
+        navMeshAgent.enabled = false;
+        rigidbody.isKinematic= false;
+        rigidbody.AddForce(( direction + new Vector3(0,0.2f,0))  * force , ForceMode.Impulse);
+        yield return new WaitForSeconds(5);     
+
+        deathWithNoEffect();
+       
+    }
+
     #endregion
 
+    public bool rig;
+    [SerializeField] private LayerMask floor;
 
 
+
+    private void deathWithNoEffect()
+    {
+        if (placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
+        Destroy(this.gameObject);
+    }
 
 }
