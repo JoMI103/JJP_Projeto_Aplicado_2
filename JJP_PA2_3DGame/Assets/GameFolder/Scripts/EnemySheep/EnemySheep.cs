@@ -44,7 +44,7 @@ public class EnemySheep : MonoBehaviour
     protected SetTargetSheep setTargetSheep;
     protected NavMeshAgent navMeshAgent;
     protected Rigidbody rigidbody;
-    protected Animator animator;
+    [SerializeField] protected Animator animator;
 
     protected Transform playerPosition, ObjectivePosition;
     public void setPlayerAndObjective(Transform player, Transform finalObjective) {
@@ -56,7 +56,7 @@ public class EnemySheep : MonoBehaviour
     public void Awake()
     {
         setStats();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         setTargetSheep = GetComponent<SetTargetSheep>();
         rigidbody = GetComponent<Rigidbody>();
@@ -110,6 +110,8 @@ public class EnemySheep : MonoBehaviour
 
         while (true)
         {
+            MoveAnim();
+
             if(navMeshAgent.enabled)
             {
                 navMeshAgent.SamplePathPosition(-1, AttackRange, out NavMeshHit navHit);
@@ -133,6 +135,10 @@ public class EnemySheep : MonoBehaviour
         }
     }
 
+    protected virtual void MoveAnim()
+    {
+
+    }
     protected virtual void Attack()
     {
         placedBuilding.takeDamge(attackDmg);

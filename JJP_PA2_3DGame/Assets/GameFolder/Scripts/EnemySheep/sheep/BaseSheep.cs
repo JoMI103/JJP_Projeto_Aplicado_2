@@ -11,10 +11,14 @@ public class BaseSheep : EnemySheep
        base.Update();
     }
 
+    protected override void MoveAnim()
+    {
+        animator.Play("Walk");
+    }
 
     protected override void Attack()
     {
-        animator.Play("AttackBaseSheep");
+        //animator.Play("AttackBaseSheep");
         placedBuilding.takeDamge(attackDmg);
     }
 }
