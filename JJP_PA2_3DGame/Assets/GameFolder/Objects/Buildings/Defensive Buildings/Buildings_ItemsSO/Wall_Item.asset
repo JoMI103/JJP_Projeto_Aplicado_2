@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a0f92f4621b2d445a709b80e1b5b8d1, type: 3}
-  m_Name: Wall
+  m_Name: Wall_Item
   m_EditorClassIdentifier: 
   itemNameString: wall
   image: {fileID: 21300000, guid: c519e7846d39e2247967fac3a53dbbc8, type: 3}

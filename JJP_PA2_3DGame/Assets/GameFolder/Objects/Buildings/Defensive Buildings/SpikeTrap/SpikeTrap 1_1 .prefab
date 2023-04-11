@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Size: {x: 2, y: 1.5, z: 2}
+  m_Size: {x: 2.6, y: 1.5, z: 2.6}
   m_Center: {x: 0, y: 0.5, z: 0}
   m_Area: 3
   m_AffectedAgents: ffffffff
@@ -200,7 +200,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3299294702069254708}
   - component: {fileID: 9083735403252137059}
-  - component: {fileID: 5454607546114052353}
   - component: {fileID: 7403337306828378864}
   - component: {fileID: 1527623561399925201}
   - component: {fileID: 2034617187387621091}
@@ -227,6 +226,7 @@ Transform:
   - {fileID: 4694248463758242229}
   - {fileID: 1066550208666146323}
   - {fileID: 5250631275032215639}
+  - {fileID: 6113105867645214259}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -244,19 +244,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingTypeSO: {fileID: 0}
   healthBar: {fileID: 3464430519089730929}
---- !u!65 &5454607546114052353
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3299294702069254715}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 1, z: 1.5}
-  m_Center: {x: 1, y: 0.5, z: 1}
 --- !u!114 &7403337306828378864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,12 +256,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d380ed3f67dd69c4fb9d7665c4d65330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCollider: {fileID: 5454607546114052353}
-  placedBuilding: {fileID: 0}
-  giveDmg:
+  centerPoint: {fileID: 0}
+  innerScanRadius: 0
+  outScanRadius: 0
+  sheepLayer:
     serializedVersion: 2
     m_Bits: 1536
-  canattack: 0
+  sheeps: []
+  centerTrapCollider: {fileID: 6113105867645214259}
+  boxCollSize: {x: 1.2, y: 1.3, z: 1.2}
+  debugGizmos: 1
+  ok: 0
 --- !u!95 &1527623561399925201
 Animator:
   serializedVersion: 5
@@ -620,6 +612,37 @@ MonoBehaviour:
   useEvents: 0
   promptMessage: 
   UIHealth: {fileID: 3371788139616738492}
+--- !u!1 &7860407659161199934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6113105867645214259}
+  m_Layer: 0
+  m_Name: CenterPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6113105867645214259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860407659161199934}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0.65, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3299294702069254708}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8505586881402579808
 PrefabInstance:
   m_ObjectHideFlags: 0

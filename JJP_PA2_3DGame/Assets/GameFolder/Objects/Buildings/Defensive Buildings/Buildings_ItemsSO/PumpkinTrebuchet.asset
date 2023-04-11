@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8c28490ce60814478e19daf178f4502, type: 3}
-  m_Name: SpikeTrap
+  m_Name: PumpkinTrebuchet
   m_EditorClassIdentifier: 
-  nameString: SpykeTrap
-  prefab: {fileID: 3299294702069254708, guid: e9ba0645fde67fe4aa0b7f5244a80ba2, type: 3}
-  visual: {fileID: 8805728768256619048, guid: 08e32a49c1b0fc34f9174ddb77ef0bd1, type: 3}
-  width: 1
-  height: 1
-  health: 200
-  damage: 30
-  woodCost: 50
+  nameString: 'PumpkinTrebuchet '
+  prefab: {fileID: 6179131034935684324, guid: 2ac586f1ecd3cc14e97989f26cb9f983, type: 3}
+  visual: {fileID: 6382462025151599003, guid: d37fbcdea33c44d449bbf650fbef1ca5, type: 3}
+  width: 3
+  height: 3
+  health: 500
+  damage: 50
+  aps: 0.5
+  woodCost: 0
   rockCost: 0
-  metalCost: 300
-  eletronicsCost: 5
+  metalCost: 0
+  eletronicsCost: 0
   Ground: 1
-  Wall: 1
+  Wall: 0
   Roof: 0

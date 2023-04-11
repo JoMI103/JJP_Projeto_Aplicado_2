@@ -129,8 +129,7 @@ public class PlayerBuild : MonoBehaviour
         Vector3 buildingWorldPosition = currentGrid.grid.GetLocalPosition(placedObjectOrigin.x + rotationOffset.x, 
             placedObjectOrigin.y + rotationOffset.y);
 
-        PlacedBuilding placedBuilding = 
-            PlacedBuilding.Create(currentGrid.transform,buildingWorldPosition, placedObjectOrigin, dir, buildingTypeSO);
+        PlacedBuilding placedBuilding =  PlacedBuilding.Create(currentGrid.transform,buildingWorldPosition, placedObjectOrigin, dir, buildingTypeSO);
 
         foreach (Vector2Int gridPosition in gridPositionList)
         {

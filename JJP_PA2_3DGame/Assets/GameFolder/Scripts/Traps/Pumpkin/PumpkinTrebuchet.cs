@@ -2,127 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
-public class PumpkinTrebuchet : MonoBehaviour
+public class PumpkinTrebuchet : Tower
 {
-    [SerializeField] private Transform pumpkimPrefab, shotPoint, pivotPoint;
-    private Vector3 targetPos;
-    private EnemySheep targetSheep;
+    [Space(10)] [Header("PumpkinTrebuchetAtributes")] [Space(10)]
+    [SerializeField] private Transform pumpkimPrefab;
+    [SerializeField] private Transform shotPoint, pivotPoint;
     [SerializeField] private float gravity, h;
-    [SerializeField] float blastPower;
     public bool debugPath;
 
-    [SerializeField] private List<EnemySheep> sheeps;
-    [SerializeField] private float aps, explosionRadius;
-
-    PlacedBuilding placedBuilding;
-
-    public enum attackMode { closest, First, Last, Strongest }
-    [SerializeField] private attackMode currentAttackMode;
-
-
-    [SerializeField] private float innerScanRadius, outScanRadius;
-
-
-    private void Awake()
-    {
-        placedBuilding = GetComponent<PlacedBuilding>();
-        sheeps = new List<EnemySheep>();
-    }
-    private void Start() { StartCoroutine(Scan()); }
-
-
-    protected virtual IEnumerator Scan()
-    {
-        WaitForSeconds waitForNextScan = new WaitForSeconds(0.5f), nextAttack = new WaitForSeconds(1 / aps);
-
-        while (true)
-        {
-            GetSurroundSheeps();
-            if (sheeps.Count == 0) { yield return waitForNextScan; }
-            else {
-                switch (currentAttackMode) {
-                    case attackMode.closest: attackClosest(); break;  case attackMode.First: attackFirst(); break;
-                    case attackMode.Last: attackLast(); break; case attackMode.Strongest: attackStrongest(); break; }
-
-                shoot();
-
-                yield return nextAttack;
-            }
-            
-        }
-    }
-
-    [SerializeField] private LayerMask sheepLayer;
-
-    public void GetSurroundSheeps()
-    {
-        List<EnemySheep> removeSheeps = new List<EnemySheep>();
-        sheeps.Clear();
-
-        var outSurroundingObjects = Physics.OverlapSphere(pivotPoint.position, outScanRadius, sheepLayer);
-        foreach (var surroundingObject in outSurroundingObjects)
-        {
-            EnemySheep enemySheep = surroundingObject.GetComponent<EnemySheep>();
-            if (enemySheep != null) { sheeps.Add(enemySheep); }
-        }
-
-        if(sheeps.Count == 0) { return; }
-
-        Debug.Log("BOm dia");
-
-        var innerSurroundingObjects = Physics.OverlapSphere(pivotPoint.position, innerScanRadius, sheepLayer);
-        foreach (var surroundingObject in innerSurroundingObjects)
-        {
-            EnemySheep enemySheep = surroundingObject.GetComponent<EnemySheep>();
-            if (enemySheep != null) { removeSheeps.Add(enemySheep); }
-        }
-
-        foreach(EnemySheep es in removeSheeps) sheeps.Remove(es);
-
-    }
-    public void attackClosest(){
-
-    }
-    public void attackFirst(){
-        while (sheeps.Count > 0)
-        {
-            if (sheeps[0] != null) { targetPos = sheeps[0].transform.position; targetSheep = sheeps[0]; break; }
-            else sheeps.RemoveAt(0);
-        }
-    }
-    public void attackLast()
-    {
-        while (sheeps.Count > 0)
-        {
-            if (sheeps[sheeps.Count - 1] != null) { targetPos = sheeps[sheeps.Count - 1].transform.position; break; }
-            else sheeps.RemoveAt(sheeps.Count - 1);
-        }
-    }
-    public void attackStrongest()
-    {
-
-    }
-
-
+    
+    [SerializeField] private float explosionRadius;
 
     public void Update()
     {
-
         if (targetPos == null) return;
         pivotPoint.transform.LookAt(new Vector3(targetPos.x,pivotPoint.position.y, targetPos.z));
         if (debugPath) { DrawPath(); }
     }
 
-
-    //EnemySheep es = other.GetComponent<EnemySheep>();
-    // if (es != null) { sheeps.Add(es); }
-
- 
-    private void shoot()
+    protected override void shoot()
     {
-        targetPos = targetSheep.getFuturePoint(5,3);
+        targetPos = targetSheep.getFuturePoint(5, 3);
 
         LaunchData launchData = calculateLaunchData();
         if (!checkPath(launchData)) return;
@@ -130,6 +31,7 @@ public class PumpkinTrebuchet : MonoBehaviour
         pumpkimProjectile.GetComponent<Rigidbody>().velocity = launchData.initialVelocity;
         pumpkimProjectile.GetComponent<PumpkinImpact>().SetExplosionStats(placedBuilding.buildingTypeSO.damage);
     }
+ 
 
     #region launchPathData
 
@@ -205,7 +107,6 @@ public class PumpkinTrebuchet : MonoBehaviour
 
     #endregion
 
-
     #region gizmos
 
     public bool debugScanArea;
@@ -218,7 +119,6 @@ public class PumpkinTrebuchet : MonoBehaviour
         Gizmos.DrawWireSphere(pivotPoint.position, innerScanRadius);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(pivotPoint.position, outScanRadius);
-
     }
 
     #endregion

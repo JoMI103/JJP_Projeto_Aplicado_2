@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class PumpkinImpact : MonoBehaviour
@@ -21,9 +18,7 @@ public class PumpkinImpact : MonoBehaviour
         foreach(var surroundingObject in surroundingObjects)
         {
             EnemySheep enemySheep = surroundingObject.GetComponent<EnemySheep>();
-            if (enemySheep != null) { enemySheep.receiveDmg(explosionDmg); }
-            Debug.Log("ecewfwefew");
-            
+            if (enemySheep != null) { enemySheep.receiveDmg(explosionDmg); }        
         }
         Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);

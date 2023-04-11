@@ -1,25 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.UI.GridLayoutGroup;
-
 
 public class EnemySheep : MonoBehaviour
 {
     public enum state { Idle, FollowPath, AtackConstruction, AtackPlayer }
 
+    private IEnumerator currentState;
+  
     public void changeCurrentState(state state)
     {
         switch (state)
         {
-            case state.Idle: StopAllCoroutines(); StartCoroutine(Idle()); break;
-            case state.FollowPath: StopAllCoroutines(); StartCoroutine(FollowPath()); break;
-            case state.AtackConstruction: StopAllCoroutines(); StartCoroutine(AtackConstruction()); break;
-            case state.AtackPlayer: StopAllCoroutines(); StartCoroutine(AtackPlayer()); break;
-            default: StopAllCoroutines(); StartCoroutine(Idle()); break;
+            case state.Idle: if(currentState != null) StopCoroutine(currentState); currentState = Idle(); StartCoroutine(currentState); break;
+            case state.FollowPath: if (currentState != null) StopCoroutine(currentState); currentState = FollowPath(); StartCoroutine(currentState); break;
+            case state.AtackConstruction: if (currentState != null) StopCoroutine(currentState); currentState = AtackConstruction(); StartCoroutine(currentState); break;
+            case state.AtackPlayer: if (currentState != null) StopCoroutine(currentState); currentState = AtackPlayer(); StartCoroutine(currentState); break;
+            default: if (currentState != null) StopCoroutine(currentState); currentState = Idle(); StartCoroutine(currentState); break;
         }
     }
 
@@ -34,11 +31,8 @@ public class EnemySheep : MonoBehaviour
         slow = 0; weaknessMult = 1f;
     }
 
-    //SheepBaseStats
-    protected int baseHealth; protected int attackDmg; protected float speed, AttackRange, AttackSpeed;
-
-    //Bufs Defufs
-    protected float slow; protected float weaknessMult;
+    protected int baseHealth; protected int attackDmg; protected float speed, AttackRange, AttackSpeed;    //SheepBaseStats
+    public float slow; protected float weaknessMult; //Bufs Defufs
 
     protected int healthPoints;
 
@@ -116,9 +110,12 @@ public class EnemySheep : MonoBehaviour
 
         while (true)
         {
-            navMeshAgent.SamplePathPosition(-1, AttackRange, out NavMeshHit navHit);
-            if (navHit.mask == 16) 
-            checkPathObstacles();
+            if(navMeshAgent.enabled)
+            {
+                navMeshAgent.SamplePathPosition(-1, AttackRange, out NavMeshHit navHit);
+                if (navHit.mask == 16) 
+                checkPathObstacles();
+            }
 
             yield return new WaitForSeconds(0.2f);
         }
@@ -146,20 +143,6 @@ public class EnemySheep : MonoBehaviour
     }
 
     #endregion
-
-    public void receiveDmg(int dmg)
-    { 
-        healthPoints -= (int)(dmg * weaknessMult);
-        healthBar.SetHealthBarPercentage((float)healthPoints/ baseHealth);
-    }
-
-    protected virtual void OnDeath()
-    {
-        if(placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
-        Destroy(this.gameObject);
-    }
-
-
 
     #region checkObstacles
 
@@ -204,13 +187,24 @@ public class EnemySheep : MonoBehaviour
 
     #endregion
 
+    public void receiveDmg(int dmg)
+    {
+        healthPoints -= (int)(dmg * weaknessMult);
+        healthBar.SetHealthBarPercentage((float)healthPoints / baseHealth);
+    }
+
+    protected virtual void OnDeath()
+    {
+        if (placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
+        Destroy(this.gameObject);
+    }
 
     public Vector3 getFuturePoint(int precision ,float time)
     {
         if (navMeshAgent.path.corners.Length < precision) precision = navMeshAgent.path.corners.Length;
         Vector3[] corners = new Vector3[precision];
         navMeshAgent.path.GetCornersNonAlloc(corners);
-        float walkDistance = time * speed;
+        float walkDistance = time * (speed * slow);
 
         for(int i = 1; i< precision; i++)
         {
@@ -224,6 +218,26 @@ public class EnemySheep : MonoBehaviour
         return corners[corners.Length - 1]; 
 
     }
+
+    #region Effects
+
+    public bool slowEffectIsRunning = false;
+    public IEnumerator currentSlowEffect;
+
+    public virtual IEnumerator slowEffect(float effectTime, float slowPower)
+    {
+        slowEffectIsRunning = true; 
+        slow = slowPower;
+        navMeshAgent.speed = speed * slowPower;
+        yield return new WaitForSeconds(effectTime);
+        navMeshAgent.speed = speed;
+        slow = 1;
+        slowEffectIsRunning = false;
+    }
+
+    #endregion
+
+
 
 
 }

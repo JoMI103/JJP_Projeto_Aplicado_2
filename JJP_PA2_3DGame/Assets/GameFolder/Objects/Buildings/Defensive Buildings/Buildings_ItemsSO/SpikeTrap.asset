@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c28490ce60814478e19daf178f4502, type: 3}
+  m_Name: SpikeTrap
+  m_EditorClassIdentifier: 
+  nameString: SpykeTrap
+  prefab: {fileID: 3299294702069254708, guid: e9ba0645fde67fe4aa0b7f5244a80ba2, type: 3}
+  visual: {fileID: 8805728768256619048, guid: 08e32a49c1b0fc34f9174ddb77ef0bd1, type: 3}
+  width: 1
+  height: 1
+  health: 200
+  damage: 30
+  aps: 0.1
+  woodCost: 50
+  rockCost: 0
+  metalCost: 300
+  eletronicsCost: 5
+  Ground: 1
+  Wall: 1
+  Roof: 0

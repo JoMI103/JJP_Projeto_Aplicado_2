@@ -538,22 +538,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0271f804c7e346047885c69d22a30900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  centerPoint: {fileID: 829967080690675229}
+  innerScanRadius: 6
+  outScanRadius: 25
+  sheeps: []
+  currentAttackMode: 1
+  aps: 0.5
+  sheepLayer:
+    serializedVersion: 2
+    m_Bits: 1536
   pumpkimPrefab: {fileID: 3799121306775159738, guid: e88630561044adf41aaef32310b26c82, type: 3}
   shotPoint: {fileID: 2880433219833490724}
   pivotPoint: {fileID: 829967080690675229}
   gravity: -9.81
   h: 12.5
-  blastPower: 10
   debugPath: 1
-  sheeps: []
-  aps: 0.5
   explosionRadius: 4
-  currentAttackMode: 1
-  innerScanRadius: 6
-  outScanRadius: 25
-  sheepLayer:
-    serializedVersion: 2
-    m_Bits: 1536
   projectileIgnore:
     serializedVersion: 2
     m_Bits: 2073
