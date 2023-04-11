@@ -1650,7 +1650,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4518617212930964677}
   - component: {fileID: -3446769517548009349}
-  - component: {fileID: 2660361074494694263}
   m_Layer: 0
   m_Name: Sheep_Prefab
   m_TagString: Untagged
@@ -1704,22 +1703,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!54 &2660361074494694263
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4822464885944477261}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &4873390991229491659
 GameObject:
   m_ObjectHideFlags: 0
