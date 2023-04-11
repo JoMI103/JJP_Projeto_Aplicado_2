@@ -19,7 +19,7 @@ MonoBehaviour:
   height: 1
   health: 200
   damage: 30
-  aps: 0.1
+  aps: 1
   woodCost: 50
   rockCost: 0
   metalCost: 300

@@ -126,7 +126,10 @@ public class EnemySheep : MonoBehaviour
 
     protected virtual IEnumerator AtackConstruction() {
 
+        
         WaitForSeconds wait = new WaitForSeconds(AttackSpeed);
+
+        yield return wait;
 
         while (placedBuilding != null)
         {
@@ -266,7 +269,7 @@ public class EnemySheep : MonoBehaviour
 
 
 
-    private void deathWithNoEffect()
+    protected void deathWithNoEffect()
     {
         if (placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
         Destroy(this.gameObject);

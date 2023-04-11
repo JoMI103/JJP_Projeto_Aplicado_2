@@ -30,6 +30,6 @@ public class PumpkinImpact : MonoBehaviour
     private void OnDrawGizmos()
     {
         if(debugRadius)
-        Gizmos.DrawSphere(transform.position, explosionRadius); 
+        Gizmos.DrawWireSphere(transform.position, explosionRadius); 
     }
 }

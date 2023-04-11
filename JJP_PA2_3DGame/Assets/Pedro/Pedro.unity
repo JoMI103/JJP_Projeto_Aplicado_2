@@ -3469,6 +3469,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1524728441431078563, guid: a0aba678447eba74ba37d087d27599cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524728441431078563, guid: a0aba678447eba74ba37d087d27599cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6920888894953836684, guid: a0aba678447eba74ba37d087d27599cf, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -3536,6 +3544,63 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6920888894953836686, guid: a0aba678447eba74ba37d087d27599cf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a0aba678447eba74ba37d087d27599cf, type: 3}
+--- !u!1001 &1198593028
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4623754564947617504, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
+      propertyPath: m_Name
+      value: BossPref (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178377808751826101, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178377808751826101, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178377808751826101, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178377808751826101, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178377808751826101, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178377808751826101, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178377808751826101, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178377808751826101, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178377808751826101, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178377808751826101, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178377808751826101, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cadf9437539d0d746a9dee88abfdd027, type: 3}
 --- !u!1001 &1403874986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4779,14 +4844,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5264b9128257c4dae955de017473be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slow: 0
   m_EnemySheepTypeSO: {fileID: 11400000, guid: 267a06a236c9aa44e9fb3201280f01b3, type: 2}
   healthBar: {fileID: 2107853594}
+  animator: {fileID: 0}
   model: {fileID: 0}
   fixRotation: 0
   l:
     serializedVersion: 2
     m_Bits: 0
   destructibleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  slowEffectIsRunning: 0
+  floorLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  rig: 0
+  floor:
     serializedVersion: 2
     m_Bits: 0
   standardEnemySheepSO: {fileID: 0}
@@ -4894,6 +4969,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3446769517548009349, guid: 9bc0fe6336e441e45ac88843659f5b57, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 21334f1fa665aae4bb8d54924e6b51c1, type: 2}
     - target: {fileID: 4518617212930964677, guid: 9bc0fe6336e441e45ac88843659f5b57, type: 3}
       propertyPath: m_RootOrder
       value: 1

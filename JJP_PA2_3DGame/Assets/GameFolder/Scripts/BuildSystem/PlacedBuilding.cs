@@ -50,7 +50,7 @@ public class PlacedBuilding : MonoBehaviour{
 
         if(health <= 0)
         {
-            healthBar.SetHealthBarPercentage(0);
+           // healthBar.SetHealthBarPercentage(0);
             DestroySelf();
         }
         else
