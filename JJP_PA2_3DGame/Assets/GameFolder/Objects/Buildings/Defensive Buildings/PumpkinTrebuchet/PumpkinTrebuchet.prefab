@@ -182,7 +182,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996756373998367229}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 7490831754351698155}
   - component: {fileID: 8379930034413764843}
   m_Layer: 0
-  m_Name: Cylinder.002
+  m_Name: support1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,7 +281,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4233526608466524934}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.37460646, y: 0, z: 0, w: 0.9271839}
   m_LocalPosition: {x: 0, y: -0.05864048, z: -0.9720549}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -289,7 +289,7 @@ Transform:
   - {fileID: 6263638725321545684}
   m_Father: {fileID: 2560918664433463649}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -44, y: 0, z: 0}
 --- !u!33 &7490831754351698155
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -535,14 +535,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5187702166609342635}
-  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 6.1, z: 1.2}
+  m_LocalRotation: {x: 0, y: 0.9244596, z: 0.38128015, w: 0}
+  m_LocalPosition: {x: 0, y: 6.1, z: -1.2}
   m_LocalScale: {x: 0.1, y: 0.52, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 829967080690675229}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -44.826, y: 180, z: 0}
 --- !u!33 &2882065786497964204
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 6179131034935684324}
   - component: {fileID: 434092437950945971}
   - component: {fileID: 7290796505505383193}
+  - component: {fileID: 2253668646822314953}
   m_Layer: 14
   m_Name: PumpkinTrebuchet
   m_TagString: Untagged
@@ -657,8 +658,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerPoint: {fileID: 829967080690675229}
-  innerScanRadius: 6
-  outScanRadius: 25
+  innerScanRadius: 10
+  outScanRadius: 35
   sheepLayer:
     serializedVersion: 2
     m_Bits: 1536
@@ -668,14 +669,34 @@ MonoBehaviour:
   shotPoint: {fileID: 2880433219833490724}
   pivotPoint: {fileID: 829967080690675229}
   gravity: -9.81
-  h: 12.5
+  maxHeight: 0
+  addHeightCurve: 6
   debugPath: 1
   explosionRadius: 4
-  playerfordebug: {fileID: 0}
   projectileIgnore:
     serializedVersion: 2
     m_Bits: 2073
   debugScanArea: 1
+--- !u!95 &2253668646822314953
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6179131034935684331}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eaaf11d24d3ecfd458ea9bcc1e729ed5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &6218407469262956251
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,7 +783,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6310847472116846684}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -770,7 +791,7 @@ Transform:
   - {fileID: 2560918664433463649}
   m_Father: {fileID: 829967080690675229}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &103855451830605343
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -833,7 +854,7 @@ GameObject:
   - component: {fileID: 6523938510432856205}
   - component: {fileID: 1721139791505389481}
   m_Layer: 0
-  m_Name: Cylinder.003
+  m_Name: Weight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -916,7 +937,7 @@ GameObject:
   - component: {fileID: 7842960822954331474}
   - component: {fileID: 9125156499783308707}
   m_Layer: 0
-  m_Name: Cube.005
+  m_Name: Alavanca
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -929,7 +950,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8179160311797493999}
-  m_LocalRotation: {x: -0.38975704, y: -0, z: -0, w: 0.92091775}
+  m_LocalRotation: {x: 0.37460655, y: 0, z: 0, w: 0.9271839}
   m_LocalPosition: {x: 0.09205198, y: 3.163, z: -0.96000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -937,7 +958,7 @@ Transform:
   - {fileID: 3910852804314958780}
   m_Father: {fileID: 8227584493937635039}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -45.879, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 44, y: 0, z: 0}
 --- !u!33 &7842960822954331474
 MeshFilter:
   m_ObjectHideFlags: 0

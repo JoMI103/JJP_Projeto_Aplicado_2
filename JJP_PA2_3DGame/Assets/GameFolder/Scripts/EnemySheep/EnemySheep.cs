@@ -28,7 +28,7 @@ public class EnemySheep : MonoBehaviour
         speed = m_EnemySheepTypeSO.baseSpeed;
         AttackRange = m_EnemySheepTypeSO.AttackRange;
         AttackSpeed = m_EnemySheepTypeSO.AttackSpeed;
-        slow = 0; weaknessMult = 1f;
+        slow = 1; weaknessMult = 1f;
     }
 
     protected int baseHealth; protected int attackDmg; protected float speed, AttackRange, AttackSpeed;    //SheepBaseStats
