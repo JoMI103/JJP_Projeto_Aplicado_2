@@ -22,7 +22,7 @@ public class Tower : DefenseBuilding
         while (true)
         {
             GetSurroundSheeps();
-            if (sheeps.Count == 0) { yield return waitForNextScan; }
+            if (sheeps.Count == 0) { yield return waitForNextScan; Debug.Log("Waiting for next scan"); }
             else
             {
                 switch (currentAttackMode)
@@ -33,7 +33,7 @@ public class Tower : DefenseBuilding
                     case attackMode.Strongest: attackStrongest(); break;
                 }
 
-                shoot();
+                //shoot();
 
                 yield return nextAttack;
             }
@@ -43,7 +43,7 @@ public class Tower : DefenseBuilding
 
     protected override void GetSurroundSheeps()
     {
-        List<EnemySheep> removeSheeps = new List<EnemySheep>();
+
         sheeps.Clear();
 
         var outSurroundingObjects = Physics.OverlapSphere(centerPoint.position, outScanRadius, sheepLayer);
@@ -55,6 +55,9 @@ public class Tower : DefenseBuilding
 
         if (sheeps.Count == 0) { return; }
         Debug.Log("BOm dia");
+
+        List<EnemySheep> removeSheeps = new List<EnemySheep>();
+       
 
         var innerSurroundingObjects = Physics.OverlapSphere(centerPoint.position, innerScanRadius, sheepLayer);
         foreach (var surroundingObject in innerSurroundingObjects)
@@ -93,9 +96,6 @@ public class Tower : DefenseBuilding
     {
 
     }
-
-
-
+    
     protected virtual void shoot() { }
-
 }

@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class PumpkinTrebuchet : Tower
 {
@@ -14,15 +16,68 @@ public class PumpkinTrebuchet : Tower
     
     [SerializeField] private float explosionRadius;
 
+    [SerializeField] private Transform playerfordebug;
+
+    public void Start()
+    {
+        
+/*          
+        pivotPoint.parent.localRotation = ;
+            //Quaternion.Euler(0f,placedBuilding.buildingTypeSO.GetCenterRotationAngle(placedBuilding.dir), 0f);
+        Debug.Log(pivotPoint.rotation);
+  */
+    }
+
+
     public void Update()
     {
-        if (targetPos == null) return;
-        pivotPoint.transform.LookAt(new Vector3(targetPos.x,pivotPoint.position.y, targetPos.z));
+        //if (targetPos == null) return;
+
+        Vector3 toPosition = (new Vector3(playerfordebug.position.x, pivotPoint.position.y, playerfordebug.position.z) - pivotPoint.position).normalized;
+        // Quaternion rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+
+
+        //pivotPoint.LookAt(playerfordebug, pivotPoint.parent.up);
+
+        Debug.Log(toPosition)
+;
+        float angle = SignedAngleBetween( Vector3.forward,  toPosition, Vector3.up);
+        
+ 
+
+        pivotPoint.rotation = Quaternion.Euler(0, angle, 0);
+        pivotPoint.localRotation = Quaternion.Euler(0, pivotPoint.localRotation.eulerAngles.y, 0);
+
+       // pivotPoint.rotation = transform.parent.worldToLocalMatrix.rotation *  pivotPoint.rotation;
+
         if (debugPath) { DrawPath(); }
+    }
+
+
+    public static float CalculateAngle(Vector3 from, Vector3 to)
+    {
+        return Quaternion.FromToRotation(Vector3.forward, to - from).eulerAngles.z;
+    }
+
+    float SignedAngleBetween(Vector3 a, Vector3 b, Vector3 n)
+    {
+        // angle in [0,180]
+        float angle = Vector3.Angle(a, b);
+       
+        float sign = Mathf.Sign(Vector3.Dot(n, Vector3.Cross(a, b)));
+
+        // angle in [-179,180]
+        float signed_angle = angle * sign;
+
+        // angle in [0,360] (not used but included here for completeness)
+        //float angle360 =  (signed_angle + 180) % 360;
+
+        return signed_angle;
     }
 
     protected override void shoot()
     {
+
         targetPos = targetSheep.getFuturePoint(5, 3);
 
         LaunchData launchData = calculateLaunchData();
