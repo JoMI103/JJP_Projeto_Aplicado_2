@@ -16,7 +16,7 @@ public class SetTargetSheep : MonoBehaviour
     }
 
 
-    public void setTarget(Transform target) { currentTarget = target; navMeshAgent.destination = target.position; }
+    public void setTarget(Transform target) { currentTarget = target; navMeshAgent.SetDestination(target.position); }
     public Transform getTarget() { return currentTarget; }
 
   
