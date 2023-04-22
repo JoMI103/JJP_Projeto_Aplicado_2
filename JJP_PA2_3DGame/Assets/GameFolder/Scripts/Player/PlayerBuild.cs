@@ -48,6 +48,17 @@ public class PlayerBuild : MonoBehaviour
         OnObjectPlacedRemoved += bakeNavMesh;
     }
 
+    private void Update()
+    {
+        hitting = checkGrid();
+        playerLook.GetMouseWorldPosition(constructionDistance,out mouseWorldPos,canConstruct);
+        if (!hitting) return;
+        
+        mouseCurrentGridPos = currentGrid.transform.InverseTransformPoint(mouseWorldPos);  
+    }
+
+    #region navmesh
+
     private void bakeNavMesh(object sender, System.EventArgs e)
     {
         //NavMeshMain.Instance.build();
@@ -59,19 +70,7 @@ public class PlayerBuild : MonoBehaviour
         NavMeshMain.Instance.build();
     }
 
-
-    private void Update()
-    {
-        hitting = checkGrid();
-        playerLook.GetMouseWorldPosition(constructionDistance,out mouseWorldPos,canConstruct);
-        if (!hitting) return;
-        
-        mouseCurrentGridPos = currentGrid.transform.InverseTransformPoint(mouseWorldPos);
-        
-        
-    }
-
-
+    #endregion
 
     private bool checkGrid()
     {
@@ -79,7 +78,7 @@ public class PlayerBuild : MonoBehaviour
         Ray ray = playerLook.playerCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, constructionDistance, GridLayer))
         {
-            LocalGrid lg = raycastHit.collider.transform.parent.GetComponent<LocalGrid>();
+            LocalGrid lg = raycastHit.collider.transform.parent.parent.GetComponent<LocalGrid>();
             if (lg != null && lg != currentGrid) { currentGrid = lg; RefreshSelectedObjectType();  }
             return true;
         }
@@ -90,7 +89,6 @@ public class PlayerBuild : MonoBehaviour
         }
           
     }
-
 
     private void PlaceBuilding() {
 
@@ -115,7 +113,8 @@ public class PlayerBuild : MonoBehaviour
 
         foreach (Vector2Int position in gridPositionList)
         {
-            if (!currentGrid.grid.GetGridObject(position.x, position.y).canBuild())
+            GridObject gridObject = currentGrid.grid.GetGridObject(position.x, position.y);
+            if (gridObject == null || !gridObject.canBuild())
             { 
                 canBuild = false;  
             }
@@ -174,7 +173,6 @@ public class PlayerBuild : MonoBehaviour
        
     }
 
-
     public void GetMouseWorldSnappedPosition(out Vector3 pos)
     {
         if (buildingTypeSO == null) { pos = mouseCurrentGridPos; return; } //segue o rato
@@ -185,8 +183,6 @@ public class PlayerBuild : MonoBehaviour
         pos = buildObjectWorldPosition;
    }
    
-
-
     private void RotateBuilding()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -195,26 +191,17 @@ public class PlayerBuild : MonoBehaviour
         }
     }
 
-    public void setBuildingTypeSO(BuildingTypeSO so)
-    {
-        buildingTypeSO = so; RefreshSelectedObjectType();
-    }
+    #region SOManagement
 
-    public void DeselectObjectType()
-    {
-        buildingTypeSO = null; RefreshSelectedObjectType();
-    }
+    public void setBuildingTypeSO(BuildingTypeSO so) { buildingTypeSO = so; RefreshSelectedObjectType(); }
 
-    //REfresh the ghost object
-    private void RefreshSelectedObjectType()
-    {
-        OnSelectedChanged?.Invoke(this, EventArgs.Empty);
-    }
+    public void DeselectObjectType() { buildingTypeSO = null; RefreshSelectedObjectType(); }
 
-    public BuildingTypeSO GetPlacedObjectTypeSO()
-    {
-        return buildingTypeSO;
-    }
+    private void RefreshSelectedObjectType() { OnSelectedChanged?.Invoke(this, EventArgs.Empty); }   //REfresh the ghost object
+
+    public BuildingTypeSO GetPlacedObjectTypeSO() { return buildingTypeSO; }
+
+    #endregion
 
     public Quaternion GetPlacedObjectRotation()
     {
