@@ -3173,10 +3173,10 @@ MonoBehaviour:
   constructionDistance: 5
   canConstruct:
     serializedVersion: 2
-    m_Bits: 2935
+    m_Bits: 35703
   GridLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 34816
   mouseWorldPos: {x: 0, y: 0, z: 0}
   mouseCurrentGridPos: {x: 0, y: 0, z: 0}
   hitting: 0
