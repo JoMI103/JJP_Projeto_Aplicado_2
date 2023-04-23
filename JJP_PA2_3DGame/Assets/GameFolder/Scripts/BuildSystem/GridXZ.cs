@@ -55,8 +55,8 @@ public class GridXZ<TGridObject>
             }
         Debug.DrawLine(orientation * GetLocalPosition(width, 0) + originPosition, orientation * GetLocalPosition(width, height) + originPosition, Color.blue, 100f);
         Debug.DrawLine(orientation * GetLocalPosition(0, height) + originPosition, orientation * GetLocalPosition(width, height) + originPosition, Color.blue, 100f);
-            
-        if (false) //Debug
+            /*
+        if (true) //Debug
         {
             TextMesh[,] debugTextArray = new TextMesh[width, height];
 
@@ -81,6 +81,7 @@ public class GridXZ<TGridObject>
                 debugTextArray[eventArgs.x, eventArgs.z].text = gridArray[eventArgs.x, eventArgs.z]?.ToString();
             };
         }
+            */
     }
 
     public float GetCellSize() { return cellSize; }

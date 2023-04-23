@@ -1124,19 +1124,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 30
-  fireRate: 0.1
+  fireRate: 0.02
   spread: 0.02
   range: 60
   reloadTime: 2.3
   timeBetweenShots: 0.1
-  magazineSize: 30
+  magazineSize: 300
   bulletsPerTap: 1
   allowButtonHold: 1
   fpsCam: {fileID: 5030510905935597756}
   attackPoint: {fileID: 1731172547}
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 3584
   muzzleFlash: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
   bulletHoleGraphic: {fileID: 1000011190285628, guid: beb3acff7ab73944fb8f470f24d74ed3, type: 3}
   text: {fileID: 1708893230}
@@ -2872,7 +2872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425acd10d62d8434e9b9cdee4c8ae323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 12
   playerBuild: {fileID: 2607487714662702524}
 --- !u!1 &7098294755454799865
 GameObject:
@@ -2991,7 +2991,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7118192873375233105}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 36.11, y: 12.99, z: 34.5}
+  m_LocalPosition: {x: 29.8, y: 1.72, z: 1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

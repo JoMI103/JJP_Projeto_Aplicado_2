@@ -4,14 +4,29 @@ using UnityEngine.AI;
 
 public class EnemySheep : MonoBehaviour
 {
+    /*
+     * 
+     *  Idle: A ovelha fica parada 
+     *  
+     *  FollowPath: Segue um caminho (calculado pelo sistema de navmesh) até um determinado objetivo
+     *              Tem um sensor que verifica se tem uma parede no caminho
+     *              Adicionar: sensor de Player
+     *              
+     *  AtackConstruction: Ataca a construções detatadas pelo sensor de cima
+     *  
+     *  AtackPlayer: Ataca o jogador
+     *               Adicionar: Perseguir o jogador 
+     *               
+     */
+
+
     public enum state { Idle, FollowPath, AtackConstruction, AtackPlayer }
 
+    //sheep's current state so the script can stop it without using StopAllCoroutines
     private IEnumerator currentState;
   
-    public void changeCurrentState(state state)
-    {
-        switch (state)
-        {
+    public void changeCurrentState(state state) {
+        switch (state) {
             case state.Idle: if(currentState != null) StopCoroutine(currentState); currentState = Idle(); StartCoroutine(currentState); break;
             case state.FollowPath: if (currentState != null) StopCoroutine(currentState); currentState = FollowPath(); StartCoroutine(currentState); break;
             case state.AtackConstruction: if (currentState != null) StopCoroutine(currentState); currentState = AtackConstruction(); StartCoroutine(currentState); break;
@@ -20,6 +35,8 @@ public class EnemySheep : MonoBehaviour
         }
     }
 
+
+    //sets the sheep's stats with the scriptableObject
     private void setStats()
     {
         baseHealth = m_EnemySheepTypeSO.baseHealth;
@@ -28,13 +45,22 @@ public class EnemySheep : MonoBehaviour
         speed = m_EnemySheepTypeSO.baseSpeed;
         AttackRange = m_EnemySheepTypeSO.AttackRange;
         AttackSpeed = m_EnemySheepTypeSO.AttackSpeed;
-        slow = 1; weaknessMult = 1f;
+        slowModifier = 1; 
+        weaknessModifier = 1f;
     }
 
     protected int baseHealth; protected int attackDmg; protected float speed, AttackRange, AttackSpeed;    //SheepBaseStats
-    public float slow; protected float weaknessMult; //Bufs Defufs
+
+
+   
+    [HideInInspector] public float slowModifier; 
+    protected float weaknessModifier; //Bufs Defufs
 
     protected int healthPoints;
+
+    [Space(10)]
+    [Header("Enemy Sheep Atributes")]
+    [Space(10)]
 
     [SerializeField] EnemySheepTypeSO m_EnemySheepTypeSO;
 
@@ -43,7 +69,7 @@ public class EnemySheep : MonoBehaviour
 
     protected SetTargetSheep setTargetSheep;
     protected NavMeshAgent navMeshAgent;
-    protected Rigidbody rigidbody;
+    protected Rigidbody sheepRigidBody;
     [SerializeField] protected Animator animator;
 
     protected Transform playerPosition, ObjectivePosition;
@@ -59,7 +85,7 @@ public class EnemySheep : MonoBehaviour
         //animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         setTargetSheep = GetComponent<SetTargetSheep>();
-        rigidbody = GetComponent<Rigidbody>();
+        sheepRigidBody = GetComponent<Rigidbody>();
     }
 
     public void Start()
@@ -198,7 +224,7 @@ public class EnemySheep : MonoBehaviour
 
     public void receiveDmg(int dmg)
     {
-        healthPoints -= (int)(dmg * weaknessMult);
+        healthPoints -= (int)(dmg * weaknessModifier);
         healthBar.SetHealthBarPercentage((float)healthPoints / baseHealth);
     }
 
@@ -213,7 +239,7 @@ public class EnemySheep : MonoBehaviour
         if (navMeshAgent.path.corners.Length < precision) precision = navMeshAgent.path.corners.Length;
         Vector3[] corners = new Vector3[precision];
         navMeshAgent.path.GetCornersNonAlloc(corners);
-        float walkDistance = time * (speed * slow);
+        float walkDistance = time * (speed * slowModifier);
 
         for(int i = 1; i< precision; i++)
         {
@@ -238,11 +264,11 @@ public class EnemySheep : MonoBehaviour
     public virtual IEnumerator slowEffect(float effectTime, float slowPower)
     {
         slowEffectIsRunning = true; 
-        slow = slowPower;
+        slowModifier = slowPower;
         navMeshAgent.speed = speed * slowPower;
         yield return new WaitForSeconds(effectTime);
         navMeshAgent.speed = speed;
-        slow = 1;
+        slowModifier = 1;
         slowEffectIsRunning = false;
     }
 
@@ -254,8 +280,8 @@ public class EnemySheep : MonoBehaviour
     {
         StopCoroutine(currentState);
         navMeshAgent.enabled = false;
-        rigidbody.isKinematic= false;
-        rigidbody.AddForce(( direction + new Vector3(0,0.2f,0))  * force , ForceMode.Impulse);
+        sheepRigidBody.isKinematic= false;
+        sheepRigidBody.AddForce(( direction + new Vector3(0,0.2f,0))  * force , ForceMode.Impulse);
         yield return new WaitForSeconds(5);     
 
         deathWithNoEffect();

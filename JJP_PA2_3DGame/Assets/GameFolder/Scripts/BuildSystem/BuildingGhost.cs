@@ -37,7 +37,7 @@ public class BuildingGhost : MonoBehaviour
         visual?.gameObject.SetActive(true);
 
       
-        transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * 15f);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * speed);
         transform.localRotation = Quaternion.Lerp(transform.localRotation,
             playerBuild.GetPlacedObjectRotation(), Time.deltaTime * 15f);
         transform.localScale = new Vector3(1, 1, 1);

@@ -11,7 +11,7 @@ public class PlayerBuild : MonoBehaviour
 {
     public event EventHandler OnSelectedChanged;
     public event EventHandler OnObjectPlaced;
-    public event EventHandler OnObjectRemoved;
+   // public event EventHandler OnObjectRemoved;
     public event EventHandler OnObjectPlacedRemoved;
 
 

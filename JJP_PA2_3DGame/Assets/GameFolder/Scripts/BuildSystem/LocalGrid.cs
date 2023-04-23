@@ -15,7 +15,9 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
     public Vector3[,] nodesPositions;
 
     [SerializeField] public Transform gridPanel;
-   
+    [SerializeField] Transform parentTiles;
+
+
     private void Awake()
     {
         parentTiles.gameObject.SetActive(true);
@@ -86,7 +88,7 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
     }
 
 
-    [SerializeField] Transform tile, parentTiles;
+    [SerializeField] Transform tile;
 
     [ContextMenu("BuildTiles")]
 
@@ -118,6 +120,7 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
             for (int x = 0; x < GWidth; x++)
                 for (int z = 0; z < GHeight; z++)
                 {
+
 
                     if (canBuild[x, z]) Gizmos.DrawCube(nodesPositions[x, z], new Vector3(1.9f, 0.5f, 1.9f));
                 }

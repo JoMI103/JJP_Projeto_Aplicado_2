@@ -60,7 +60,7 @@ public class Tower : DefenseBuilding
         }
 
         if (sheeps.Count == 0) { return; }
-        Debug.Log("BOm dia");
+
 
         List<EnemySheep> removeSheeps = new List<EnemySheep>();
        

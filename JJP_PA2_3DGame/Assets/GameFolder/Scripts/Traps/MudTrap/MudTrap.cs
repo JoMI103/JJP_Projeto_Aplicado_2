@@ -25,7 +25,7 @@ public class MudTrap : Trap
             GetSurroundSheeps();
             foreach (EnemySheep es in sheeps)
             {
-                if (!es.slowEffectIsRunning || es.slow > slowEffect)  {
+                if (!es.slowEffectIsRunning || es.slowModifier > slowEffect)  {
                     if(es.currentSlowEffect != null)
                     StopCoroutine(es.currentSlowEffect); 
                     es.currentSlowEffect = es.slowEffect(effectTime,slowEffect);  

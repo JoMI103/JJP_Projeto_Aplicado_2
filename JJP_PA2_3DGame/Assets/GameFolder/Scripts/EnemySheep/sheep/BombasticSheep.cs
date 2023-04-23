@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BombasticSheep : EnemySheep
 {
+    [Space(10)]
+    [Header("Bombastic Sheep Atributes")]
+    [Space(10)]
+
     [SerializeField] private GameObject explosion;
-    void Update()
-    {
-        base.Update();
-    }
+ 
 
     protected override void MoveAnim()
     {
