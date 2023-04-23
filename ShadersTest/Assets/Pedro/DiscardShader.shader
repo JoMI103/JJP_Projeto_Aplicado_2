@@ -27,8 +27,8 @@ Shader "Custom/OiShader"
             o.Albedo = _mainColor.rgb;
             o.Albedo= o.Normal;
 
-           // o.Normal=abs(o.Normal);
-            if(o.Normal.y>0.9f){
+           o.Normal=abs(o.Normal);
+            if(o.Normal.y>0.5f){
             discard;
             }
         }
