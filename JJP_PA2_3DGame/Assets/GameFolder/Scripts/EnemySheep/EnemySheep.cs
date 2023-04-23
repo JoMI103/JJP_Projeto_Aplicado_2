@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 public class EnemySheep : MonoBehaviour
 {
+    #region States
+
     /*
      * 
      *  Idle: A ovelha fica parada 
@@ -19,7 +21,6 @@ public class EnemySheep : MonoBehaviour
      *               
      */
 
-
     public enum state { Idle, FollowPath, AtackConstruction, AtackPlayer }
 
     //sheep's current state so the script can stop it without using StopAllCoroutines
@@ -34,8 +35,9 @@ public class EnemySheep : MonoBehaviour
             default: if (currentState != null) StopCoroutine(currentState); currentState = Idle(); StartCoroutine(currentState); break;
         }
     }
-
-
+    #endregion
+    
+    #region Stats
     //sets the sheep's stats with the scriptableObject
     private void setStats()
     {
@@ -49,30 +51,26 @@ public class EnemySheep : MonoBehaviour
         weaknessModifier = 1f;
     }
 
-    protected int baseHealth; protected int attackDmg; protected float speed, AttackRange, AttackSpeed;    //SheepBaseStats
-
-
-   
-    [HideInInspector] public float slowModifier; 
+    protected int baseHealth; 
+    protected int attackDmg; 
+    protected float speed, AttackRange, AttackSpeed;    //SheepBaseStats
+    [HideInInspector] public float slowModifier; // 1 normal Velocity
     protected float weaknessModifier; //Bufs Defufs
-
     protected int healthPoints;
 
-    [Space(10)]
-    [Header("Enemy Sheep Atributes")]
-    [Space(10)]
+    #endregion
+
+    [Space(10)][Header("Enemy Sheep Atributes")][Space(10)]
 
     [SerializeField] EnemySheepTypeSO m_EnemySheepTypeSO;
-
-
+    [SerializeField] protected Animator animator;
     [SerializeField] private UIHealthBar healthBar;
 
     protected SetTargetSheep setTargetSheep;
     protected NavMeshAgent navMeshAgent;
     protected Rigidbody sheepRigidBody;
-    [SerializeField] protected Animator animator;
-
     protected Transform playerPosition, ObjectivePosition;
+
     public void setPlayerAndObjective(Transform player, Transform finalObjective) {
         playerPosition = player; 
         setTargetSheep.setTarget(finalObjective);
@@ -82,7 +80,6 @@ public class EnemySheep : MonoBehaviour
     public void Awake()
     {
         setStats();
-        //animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         setTargetSheep = GetComponent<SetTargetSheep>();
         sheepRigidBody = GetComponent<Rigidbody>();
@@ -96,24 +93,29 @@ public class EnemySheep : MonoBehaviour
     }
 
     public void Update() {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.I)) changeCurrentState(state.Idle);
         if (Input.GetKeyDown(KeyCode.O)) changeCurrentState(state.FollowPath);
-
+#endif
         if (healthPoints <= 0) OnDeath();
     }
 
+    #region Fix Orientation
+
     [SerializeField] protected Transform model;
-    [SerializeField] protected bool fixRotation;
-    [SerializeField] protected LayerMask l;
+    [SerializeField] protected bool fixOrientation;
+    [SerializeField] protected LayerMask floorToFixOrientation;
 
     //atualiza a normal do modelo com a normal do grid 
     private void LateUpdate()
     {
-        if(!fixRotation) { return; }
+        if(!fixOrientation) { return; }
         RaycastHit hit;
-        if (Physics.Raycast(transform.position + new Vector3(0,0.1f,0), Vector3.down, out hit, l))
+        if (Physics.Raycast(transform.position + new Vector3(0,0.1f,0), Vector3.down, out hit, floorToFixOrientation))
             model.rotation = Quaternion.Lerp(model.rotation, Quaternion.FromToRotation(model.up, hit.normal) * model.rotation, Time.deltaTime * 5);
     }
+
+    #endregion
 
     #region sheepStates
 
@@ -222,18 +224,8 @@ public class EnemySheep : MonoBehaviour
 
     #endregion
 
-    public void receiveDmg(int dmg)
-    {
-        healthPoints -= (int)(dmg * weaknessModifier);
-        healthBar.SetHealthBarPercentage((float)healthPoints / baseHealth);
-    }
-
-    protected virtual void OnDeath()
-    {
-        if (placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
-        Destroy(this.gameObject);
-    }
-
+    #region someCalculations
+    //gets the future point for slower projectiles
     public Vector3 getFuturePoint(int precision ,float time)
     {
         if (navMeshAgent.path.corners.Length < precision) precision = navMeshAgent.path.corners.Length;
@@ -253,10 +245,11 @@ public class EnemySheep : MonoBehaviour
         return corners[corners.Length - 1]; 
 
     }
+    #endregion
 
     #region Effects
 
-    public bool slowEffectIsRunning = false;
+    [HideInInspector] public bool slowEffectIsRunning = false;
     public IEnumerator currentSlowEffect;
 
     public void startCurrentSlowEffect() { StartCoroutine(currentSlowEffect); }
@@ -294,11 +287,21 @@ public class EnemySheep : MonoBehaviour
     [SerializeField] private LayerMask floor;
 
 
+    public void receiveDmg(int dmg)
+    {
+        healthPoints -= (int)(dmg * weaknessModifier);
+        healthBar.SetHealthBarPercentage((float)healthPoints / baseHealth);
+    }
+
+    protected virtual void OnDeath()
+    {
+        if (placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
+        Destroy(this.gameObject);
+    }
 
     protected void deathWithNoEffect()
     {
         if (placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
         Destroy(this.gameObject);
     }
-
 }
