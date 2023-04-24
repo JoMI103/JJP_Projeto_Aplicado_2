@@ -26,7 +26,7 @@ public class BuildingTypeSO : ScriptableObject
     public int width, height;
     public int health, damage;
     public float aps;
-    public int woodCost, rockCost, metalCost, eletronicsCost;
+    public int woodCost, metalCost, eletronicsCost;
     public bool Ground, Wall, Roof;
 
 

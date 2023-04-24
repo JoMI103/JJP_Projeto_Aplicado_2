@@ -15,5 +15,5 @@ MonoBehaviour:
   itemNameString: Pistol
   image: {fileID: 21300000, guid: 302e1089e67325c40aa0b8c9faf0c2e1, type: 3}
   handId: 2
-  bluePrint: 0
+  itemType: 2
   building: {fileID: 0}
