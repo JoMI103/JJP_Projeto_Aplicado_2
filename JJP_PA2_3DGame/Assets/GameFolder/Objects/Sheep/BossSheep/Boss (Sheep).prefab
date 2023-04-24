@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada5575505697a64d95c6ce6046c2757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 4574843565061453225}
   foreGroundImage: {fileID: 679106576162109511}
   backGroundImage: {fileID: 9157275275762497657}
   offset: {x: 0, y: 1, z: 0}
