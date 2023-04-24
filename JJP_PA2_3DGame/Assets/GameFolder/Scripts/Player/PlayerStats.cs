@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     private bool debugStatsChanges;
 
     private const int maxHP = 100;
-
+/*
     private int HPPoints { get { return HPPoints; } set { HPPoints = value; updateHpUI(); } }
     private int WoodQuantity { get { return WoodQuantity; } set { WoodQuantity = value; updateWoodUI(); } }
     private int MetalQuantity { get { return MetalQuantity; } set { MetalQuantity = value; updateMetalUI(); } }
@@ -60,5 +60,5 @@ public class PlayerStats : MonoBehaviour
     {
         totalEletronics.text = "Eletronics: " + EletronicsQuantity / 1000 + "K";
     }
-
+*/
 }
