@@ -49,7 +49,7 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
 
 #if UNITY_EDITOR
     [ContextMenu("SetUp")]
-    private void setUp()
+    public void setUp()
     {
         setUpGridPanel();
         if(Invert) { this.transform.localScale = new Vector3(1, -1, 1);
@@ -92,7 +92,7 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
 
     [ContextMenu("BuildTiles")]
 
-    private void buildTiles()
+    public void buildTiles()
     {
         int childs = parentTiles.childCount;
         for (int i = childs - 1; i >= 0; i--)

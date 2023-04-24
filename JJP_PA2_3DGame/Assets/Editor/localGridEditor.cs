@@ -10,6 +10,36 @@ public class localGridEditor : Editor
 {
     static Vector3 pos1, pos2;
     bool mode = false, edit = false;
+    bool confirm = false;
+
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        LocalGrid localGrid = (LocalGrid)target;
+        if(!confirm)
+        if (GUILayout.Button("SetUp"))
+        {
+            confirm = true;
+            localGrid.setUp();
+        }
+
+        if (confirm)
+        {
+            if (GUILayout.Button("No"))
+            {
+                confirm = false;
+            }
+            if (GUILayout.Button("Yes"))
+            {
+                confirm = false;
+                localGrid.setUp();
+            }
+        }
+        if (GUILayout.Button("BuildGridTiles"))
+        {
+            localGrid.buildTiles();
+        }
+    }
 
     public void OnSceneGUI()
     {
