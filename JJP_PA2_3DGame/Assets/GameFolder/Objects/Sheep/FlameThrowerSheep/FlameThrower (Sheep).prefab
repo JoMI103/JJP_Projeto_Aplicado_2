@@ -403,7 +403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1562665925916226169
 Transform:
   m_ObjectHideFlags: 0
@@ -6477,6 +6477,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   nothing: 0
+  flameParticles: {fileID: 3019743387538993577}
 --- !u!1 &7020242946462304361
 GameObject:
   m_ObjectHideFlags: 0

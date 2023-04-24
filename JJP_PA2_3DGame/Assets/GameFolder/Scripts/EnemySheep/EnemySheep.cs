@@ -217,7 +217,7 @@ public class EnemySheep : MonoBehaviour
         }
     }
 
-    private void whenTargetDestroy()
+    protected virtual void whenTargetDestroy()
     {
         changeCurrentState(state.FollowPath);
     }
