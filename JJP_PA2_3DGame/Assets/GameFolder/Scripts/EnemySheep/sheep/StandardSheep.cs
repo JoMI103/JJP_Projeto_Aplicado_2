@@ -16,7 +16,7 @@ public class StandardSheep : EnemySheep
 
     protected override void MoveAnim()
     {
-        //animator.Play("Walk");
+        animator.Play("Walk");
     }
 
     protected override void Attack()

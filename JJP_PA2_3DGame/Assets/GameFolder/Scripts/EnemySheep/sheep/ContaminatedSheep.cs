@@ -10,6 +10,10 @@ public class ContaminatedSheep : EnemySheep
 
     public bool nothing;
 
+    protected override void MoveAnim()
+    {
+        animator.Play("Walk");
+    }
     protected override void Attack()
     {
         

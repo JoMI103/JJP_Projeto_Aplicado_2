@@ -10,6 +10,11 @@ public class MitosisEnemy : EnemySheep
 
 
     [SerializeField] private EnemySheepTypeSO standardEnemySheepSO;
+
+    protected override void MoveAnim()
+    {
+        animator.Play("Walk");
+    }
     protected override void OnDeath()
     {
         Transform SheepTransform;
