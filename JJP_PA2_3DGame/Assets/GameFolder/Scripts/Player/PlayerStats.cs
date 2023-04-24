@@ -10,29 +10,47 @@ public class PlayerStats : MonoBehaviour
     private bool debugStatsChanges;
 
     private const int maxHP = 100;
-/*
-    private int HPPoints { get { return HPPoints; } set { HPPoints = value; updateHpUI(); } }
-    private int WoodQuantity { get { return WoodQuantity; } set { WoodQuantity = value; updateWoodUI(); } }
-    private int MetalQuantity { get { return MetalQuantity; } set { MetalQuantity = value; updateMetalUI(); } }
-    private int EletronicsQuantity { get { return EletronicsQuantity; } set { EletronicsQuantity = value; updateEletronicsUI(); } }
+
+    private int HPPoints;
+    public int hPPoints { get { return this.HPPoints; } set { this.HPPoints = value; updateHpUI(); } }
+    private int WoodQuantity;
+    public int woodQuantity{ get { return this.WoodQuantity; } set { this.WoodQuantity = value; updateWoodUI(); } }
+    private int MetalQuantity;
+    public int metalQuantity{ get { return this.MetalQuantity; } set { this.MetalQuantity = value; updateMetalUI(); } }
+    private int EletronicsQuantity;
+    public int eletronicsQuantity { get { return this.EletronicsQuantity; } set { this.EletronicsQuantity = value; updateEletronicsUI(); } }
 
 
     private void Start()
     {
-        WoodQuantity = 0;
-        MetalQuantity = 0;
-        EletronicsQuantity = 0;
-        HPPoints = maxHP;
+        woodQuantity = 200000;
+        metalQuantity = 200000;
+        eletronicsQuantity = 10000;
+        hPPoints = maxHP;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J)) WoodQuantity = WoodQuantity + 1000;
-        if (Input.GetKeyDown(KeyCode.K)) MetalQuantity = MetalQuantity + 1000;
-        if (Input.GetKeyDown(KeyCode.L)) EletronicsQuantity = EletronicsQuantity + 100;
+        if (Input.GetKeyDown(KeyCode.J)) woodQuantity = woodQuantity + 1000;
+        if (Input.GetKeyDown(KeyCode.K)) metalQuantity = metalQuantity + 1000;
+        if (Input.GetKeyDown(KeyCode.L)) eletronicsQuantity = eletronicsQuantity + 100;
 
     }
 
+
+    public bool checkResourcesQuantity(BuildingTypeSO building)
+    {
+        if (WoodQuantity < building.woodCost || metalQuantity < building.metalCost || eletronicsQuantity < building.eletronicsCost) return false;
+        return true;
+    }
+
+
+    public void useResources(BuildingTypeSO building)
+    {
+        woodQuantity -= building.woodCost;
+        metalQuantity -= building.metalCost;
+        eletronicsQuantity -= building.eletronicsCost;
+    }
 
     //UI
 
@@ -48,17 +66,18 @@ public class PlayerStats : MonoBehaviour
 
     private void updateWoodUI()
     {
-        totalWood.text = "Wood: " + WoodQuantity / 1000 + "K";
+        totalWood.text = "Wood: " + (float)WoodQuantity / 1000 + "K";
     }
 
     private void updateMetalUI()
     {
-        totalMetal.text = "Metal: " + MetalQuantity / 1000 + "K";
+        totalMetal.text = "Metal: " + (float)MetalQuantity / 1000 + "K";
     }
 
     private void updateEletronicsUI()
     {
-        totalEletronics.text = "Eletronics: " + EletronicsQuantity / 1000 + "K";
+        totalEletronics.text = "Eletronics: " + (float)EletronicsQuantity / 1000 + "K";
     }
-*/
+
+
 }

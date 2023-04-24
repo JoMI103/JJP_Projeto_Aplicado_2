@@ -17,6 +17,7 @@ public class PlayerBuild : MonoBehaviour
 
     private PlayerLook playerLook;
     private InputManager inputManager;
+    private PlayerStats playerStats;
     
     public BuildingTypeSO buildingTypeSO;
     private BuildingTypeSO.Dir dir = BuildingTypeSO.Dir.Down;
@@ -31,7 +32,7 @@ public class PlayerBuild : MonoBehaviour
     private void Awake()
     {
         playerLook = GetComponent<PlayerLook>();
-
+        playerStats = GetComponent<PlayerStats>();  
         buildingTypeSO = null;
 
     }
@@ -94,6 +95,8 @@ public class PlayerBuild : MonoBehaviour
 
         if (buildingTypeSO == null || currentGrid == null) return;
 
+        if (!playerStats.checkResourcesQuantity(buildingTypeSO)) { Debug.LogWarning("No Resources "); return; }
+
         switch (currentGrid.directionBuild)
         {
             case LocalGrid.normal.Ground: if (!buildingTypeSO.Ground) return; break;
@@ -121,6 +124,12 @@ public class PlayerBuild : MonoBehaviour
         }
   
         if (!canBuild) { Debug.LogWarning("Can't build in " + x + ", " + z); return; }
+
+
+       
+        playerStats.useResources(buildingTypeSO);
+        
+
 
         Vector2Int rotationOffset = buildingTypeSO.GetRotationOffSet(dir);
         
