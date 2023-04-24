@@ -20,3 +20,6 @@ MonoBehaviour:
   - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
     Quantity: 15
     dificultyMod: 0
+  - enemySheep: {fileID: 11400000, guid: 79f284f4a43e2de48ae689fb9dcc47aa, type: 2}
+    Quantity: 1
+    dificultyMod: 0
