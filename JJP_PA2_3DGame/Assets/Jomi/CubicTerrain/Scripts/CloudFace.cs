@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeshGenerator 
+public class CloudFace 
 {
     Mesh mesh;
     private int resolution;
 
     Vector3 axisA, axisB, localUp;
 
-    public MeshGenerator(Mesh mesh, int resolution,Vector3 localUp)
+    public CloudFace(Mesh mesh, int resolution,Vector3 localUp)
     {
         this.mesh = mesh;
         this.resolution = resolution;
@@ -32,6 +32,7 @@ public class MeshGenerator
                 int i = x + y * resolution;
                 Vector2 percent = new Vector2(x, y) / (resolution - 1);
                 Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
+                pointOnUnitCube = pointOnUnitCube.normalized;
                 vertices[i] = pointOnUnitCube;
 
                 if (x != resolution - 1 && y != resolution - 1)
@@ -48,7 +49,7 @@ public class MeshGenerator
             }
 
         }
-        Debug.Log("bom dia");
+
         mesh.Clear();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
