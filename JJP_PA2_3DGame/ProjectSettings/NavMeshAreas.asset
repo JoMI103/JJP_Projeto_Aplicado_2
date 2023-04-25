@@ -11,22 +11,6 @@ NavMeshProjectSettings:
     cost: 1
   - name: Jump
     cost: 2
-  - name: SpikeTrap
-    cost: 4
-  - name: Wall
-    cost: 16
-  - name: MudTrap
-    cost: 3
-  - name: GiantBoxingGloveTrap
-    cost: 4
-  - name: PumpkinTrebuchet
-    cost: 1
-  - name: SentryGun
-    cost: 3
-  - name: FlameTower
-    cost: 5
-  - name: IceCannon
-    cost: 5
   - name: 
     cost: 1
   - name: 
@@ -69,18 +53,30 @@ NavMeshProjectSettings:
     cost: 1
   - name: 
     cost: 1
-  m_LastAgentTypeID: -334000983
+  - name: 
+    cost: 1
+  - name: 
+    cost: 1
+  - name: 
+    cost: 1
+  - name: 
+    cost: 1
+  - name: 
+    cost: 1
+  - name: 
+    cost: 1
+  - name: 
+    cost: 1
+  - name: 
+    cost: 1
+  m_LastAgentTypeID: -887442657
   m_Settings:
   - serializedVersion: 2
     agentTypeID: 0
-<<<<<<< Updated upstream
-    agentRadius: 0.3
-=======
-    agentRadius: 0.7
->>>>>>> Stashed changes
-    agentHeight: 1
-    agentSlope: 30
-    agentClimb: 0.89
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.75
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
