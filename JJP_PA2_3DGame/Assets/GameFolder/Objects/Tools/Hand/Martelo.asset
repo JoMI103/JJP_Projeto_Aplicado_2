@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Martelo
   m_EditorClassIdentifier: 
   itemNameString: Martelo
-  image: {fileID: 21300000, guid: f8c9467a892580344bb697526dac0d13, type: 3}
+  image: {fileID: 21300000, guid: 51934974d5a2f1046a73e83cb37a6b40, type: 3}
   handId: 8
   itemType: 1
   building: {fileID: 0}

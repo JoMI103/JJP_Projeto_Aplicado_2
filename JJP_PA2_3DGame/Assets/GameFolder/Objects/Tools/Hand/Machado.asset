@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Machado
   m_EditorClassIdentifier: 
   itemNameString: Machado
-  image: {fileID: 21300000, guid: 5f7fa9a7940a64e79b5a42d9f661d42c, type: 3}
+  image: {fileID: 21300000, guid: 55121888ca00d2c439e1bc96f02f64de, type: 3}
   handId: 7
   itemType: 1
   building: {fileID: 0}

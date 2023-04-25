@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Picareta
   m_EditorClassIdentifier: 
   itemNameString: picareta
-  image: {fileID: 21300000, guid: a3ced8f7044b9de4787602a9e9b20ea7, type: 3}
+  image: {fileID: 21300000, guid: b05a919ed35a32f45ac3bce42c1e05da, type: 3}
   handId: 6
   itemType: 1
   building: {fileID: 0}
