@@ -30,10 +30,4 @@ public class MitosisEnemy : EnemySheep
         base.OnDeath();
 
     }
-
-    protected override void Attack()
-    {
-        animator.Play("Attack");
-        placedBuilding.takeDamge(attackDmg);
-    }
 }

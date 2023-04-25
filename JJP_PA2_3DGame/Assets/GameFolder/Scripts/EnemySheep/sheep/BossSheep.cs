@@ -16,9 +16,7 @@ public class BossSheep : EnemySheep
     }
     protected override void Attack()
     {
-        animator.Play("Attack");
+
         placedBuilding.takeDamge(attackDmg);
     }
-
-
 }
