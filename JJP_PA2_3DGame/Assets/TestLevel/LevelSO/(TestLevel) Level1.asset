@@ -16,4 +16,7 @@ MonoBehaviour:
   waves:
   - cooldown: 0
     dificultyMod: 0
+    waveSO: {fileID: 11400000, guid: 2f98743852307c74594202e6e96e426d, type: 2}
+  - cooldown: 0
+    dificultyMod: 0
     waveSO: {fileID: 11400000, guid: 222fef56fcae14b4d88886dd7ff49384, type: 2}

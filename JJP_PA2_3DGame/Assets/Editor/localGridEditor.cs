@@ -20,7 +20,6 @@ public class localGridEditor : Editor
         if (GUILayout.Button("SetUp"))
         {
             confirm = true;
-
         }
 
         if (confirm)

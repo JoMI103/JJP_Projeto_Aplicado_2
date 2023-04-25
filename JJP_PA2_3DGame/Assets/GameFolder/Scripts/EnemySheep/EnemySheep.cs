@@ -73,8 +73,8 @@ public class EnemySheep : MonoBehaviour
 
     public void setPlayerAndObjective(Transform player, Transform finalObjective) {
         playerPosition = player; 
-        setTargetSheep.setTarget(finalObjective);
         ObjectivePosition = finalObjective;
+        setTargetSheep.setStaticTarget(ObjectivePosition);
     }
 
     public void Awake()
@@ -133,7 +133,7 @@ public class EnemySheep : MonoBehaviour
     protected virtual IEnumerator FollowPath() {
 
         if(!navMeshAgent.enabled) navMeshAgent.enabled = true;
-        setTargetSheep.setTarget(ObjectivePosition); 
+        setTargetSheep.setStaticTarget(ObjectivePosition); 
         yield return null;
 
         while (true)
@@ -207,7 +207,7 @@ public class EnemySheep : MonoBehaviour
                     {
                         placedBuilding.onDestroyEvent += whenTargetDestroy;
                         //LastPath = navMeshAgent.path;
-                        setTargetSheep.setTarget(placedBuilding.transform);
+                        setTargetSheep.setStaticTarget(placedBuilding.transform);
                         changeCurrentState(state.AtackConstruction);
                     }
                     placedBuilding = destructible;

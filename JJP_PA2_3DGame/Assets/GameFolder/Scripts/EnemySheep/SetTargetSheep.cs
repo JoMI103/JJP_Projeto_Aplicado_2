@@ -3,20 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class SetTargetSheep : MonoBehaviour
 {
-    [SerializeField] private Transform currentTarget;
-
+    WaitForSeconds wait = new WaitForSeconds(0.1f);
+    private Transform currentTarget;
     private NavMeshAgent navMeshAgent;
 
-    private void Awake()
-    {
+    private void Awake() {
         navMeshAgent= GetComponent<NavMeshAgent>();
     }
 
+    private IEnumerator FollowTarget() {
+        while (enabled)
+        {
+            navMeshAgent.SetDestination(currentTarget.position);
+            yield return wait;
+        }
+        
+    }
 
-    public void setTarget(Transform target) { currentTarget = target; navMeshAgent.SetDestination(target.position); }
+
+    public void setStaticTarget(Transform target)
+    {
+        StopAllCoroutines(); currentTarget = target; navMeshAgent.SetDestination(currentTarget.position);
+    }
+
+    public void setMovingTarget(Transform target) { 
+        StopAllCoroutines(); 
+        currentTarget = target; 
+        StartCoroutine(FollowTarget()); 
+    }
+
     public Transform getTarget() { return currentTarget; }
 
   
