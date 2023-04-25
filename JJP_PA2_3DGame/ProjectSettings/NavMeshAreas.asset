@@ -73,7 +73,11 @@ NavMeshProjectSettings:
   m_Settings:
   - serializedVersion: 2
     agentTypeID: 0
+<<<<<<< Updated upstream
     agentRadius: 0.3
+=======
+    agentRadius: 0.7
+>>>>>>> Stashed changes
     agentHeight: 1
     agentSlope: 30
     agentClimb: 0.89
