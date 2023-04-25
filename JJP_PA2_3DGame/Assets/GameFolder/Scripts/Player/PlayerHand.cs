@@ -8,7 +8,7 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] PlayerBuild playerBuild;
     [SerializeField] SelectionInfo selectionInfo;
 
-    private ItemSO activeItem;
+    public ItemSO activeItem;
     public ItemSO changeItem;
 
     private void Update()

@@ -43,7 +43,7 @@ public class PlayerInteract : MonoBehaviour
                 //updates Interactable promptMessage
                 playerUI.updateInteractableText(interactableAux.promptMessage);
                 //If interact buttom is pressed calls BaseInteract 
-                if (inputManager.onFoot.Interact.triggered) interactableAux.BaseInteract();
+                if (inputManager.onFoot.Interact.triggered) interactableAux.BaseInteract(this.gameObject);
             }
         }
 

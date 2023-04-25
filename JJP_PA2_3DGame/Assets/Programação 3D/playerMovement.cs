@@ -82,7 +82,7 @@ public class playerMovement : MonoBehaviour
                 
                 if (Input.GetKey(KeyCode.C))
                 {
-                    interactableAux.BaseInteract();
+                    interactableAux.BaseInteract(this.gameObject);
                 }
 
             }
