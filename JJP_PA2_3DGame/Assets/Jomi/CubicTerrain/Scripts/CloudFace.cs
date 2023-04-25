@@ -22,6 +22,7 @@ public class CloudFace
     public void constructMesh()
     {
         Vector3[] vertices = new Vector3[resolution * resolution];
+
         int[] triangles = new int[(resolution - 1) * (resolution - 1) * 6];
         int triIndex = 0;
 
@@ -34,7 +35,7 @@ public class CloudFace
                 Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
                 pointOnUnitCube = pointOnUnitCube.normalized;
                 vertices[i] = pointOnUnitCube;
-
+   
                 if (x != resolution - 1 && y != resolution - 1)
                 {
                     triangles[triIndex] = i;
@@ -51,6 +52,7 @@ public class CloudFace
         }
 
         mesh.Clear();
+
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();

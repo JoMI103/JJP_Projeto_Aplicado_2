@@ -7,7 +7,7 @@ public class CloudsGenerator : MonoBehaviour
     [SerializeField] BoxCollider BoxCollider;
     [SerializeField] private int Clouds;
     [SerializeField] private Material material;
-
+    [SerializeField] private float scale;
 
     [ContextMenu("Generate")]
     private void generateClouds()
@@ -29,15 +29,15 @@ public class CloudsGenerator : MonoBehaviour
             switch (n)
             {
                 case 3: g.AddComponent<Cloud>().newCloud(material, 3,
-                    new Vector3(Random.Range(4f, 5f), Random.Range(4f, 5f), Random.Range(4f, 5f)),
+                    new Vector3(Random.Range(4f, 5f), Random.Range(4f, 5f), Random.Range(4f, 5f)) * scale,
                    Quaternion.identity);// Quaternion.Euler(new Vector3(Random.Range(0, 180), Random.Range(0, 180), Random.Range(0, 180))));
                     Debug.Log("3"); break;
                 case 4: g.AddComponent<Cloud>().newCloud(material,4,
-                   new Vector3(Random.Range(5f, 6f), Random.Range(5f, 6f), Random.Range(5f, 6f)),
+                   new Vector3(Random.Range(5f, 6f), Random.Range(5f, 6f), Random.Range(5f, 6f)) * scale,
                     Quaternion.identity);//Quaternion.Euler(new Vector3(Random.Range(0,180), Random.Range(0, 180), Random.Range(0, 180)))); 
                     Debug.Log("4"); break;
                 case 5: g.AddComponent<Cloud>().newCloud(material,5,
-                    new Vector3(Random.Range(6f, 7f), Random.Range(6f, 7f), Random.Range(6f, 7f)),
+                    new Vector3(Random.Range(6f, 7f), Random.Range(6f, 7f), Random.Range(6f, 7f)) * scale,
                     Quaternion.identity);//Quaternion.Euler(new Vector3(Random.Range(0, 180), Random.Range(0, 180), Random.Range(0, 180))));
                     Debug.Log("5"); break;
             }
