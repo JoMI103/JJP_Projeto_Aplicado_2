@@ -21,7 +21,7 @@ public class StandardSheep : EnemySheep
 
     protected override void Attack()
     {
-        //animator.Play("AttackBaseSheep");
+        animator.Play("Attack");
         placedBuilding.takeDamge(attackDmg);
     }
 }
