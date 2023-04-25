@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd35dac8d14a0449a467cdf80f17ce6, type: 3}
   m_Name: Lvl 1 Wave 4
   m_EditorClassIdentifier: 
-  waveNumber: 3
+  waveNumber: 4
   typeEnemies:
   - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
     Quantity: 10
@@ -31,4 +31,7 @@ MonoBehaviour:
     dificultyMod: 0
   - enemySheep: {fileID: 11400000, guid: a142eb96328161940bbde2c4ff7cd336, type: 2}
     Quantity: 10
+    dificultyMod: 0
+  - enemySheep: {fileID: 11400000, guid: 79f284f4a43e2de48ae689fb9dcc47aa, type: 2}
+    Quantity: 2
     dificultyMod: 0
