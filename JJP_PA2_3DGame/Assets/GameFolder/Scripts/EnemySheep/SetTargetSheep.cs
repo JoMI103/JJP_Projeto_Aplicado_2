@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 using UnityEngine.AI;
@@ -27,7 +28,14 @@ public class SetTargetSheep : MonoBehaviour
 
     public void setStaticTarget(Transform target)
     {
-        StopAllCoroutines(); currentTarget = target; navMeshAgent.SetDestination(currentTarget.position);
+        StopAllCoroutines(); currentTarget = target;
+
+        var path = new NavMeshPath();
+        if (navMeshAgent.enabled)
+            navMeshAgent.CalculatePath(currentTarget.position, path);
+
+        navMeshAgent.SetPath(path);
+
     }
 
     public void setMovingTarget(Transform target) { 

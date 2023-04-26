@@ -93,10 +93,11 @@ public class EnemySheep : MonoBehaviour
     }
 
     public void Update() {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.I)) changeCurrentState(state.Idle);
         if (Input.GetKeyDown(KeyCode.O)) changeCurrentState(state.FollowPath);
-#endif
+        if (Input.GetKeyDown(KeyCode.Alpha0)) deathWithNoEffect();
+        //#endif
         if (healthPoints <= 0) OnDeath();
     }
 
