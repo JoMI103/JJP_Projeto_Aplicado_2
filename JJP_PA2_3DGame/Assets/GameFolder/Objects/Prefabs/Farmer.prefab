@@ -6424,6 +6424,8 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 827090a6992a648b48faf95705b6c8ec, type: 2}
   - {fileID: 11400000, guid: 8cd39dba0ddbd2940b1b4086febf1f29, type: 2}
+  - {fileID: 11400000, guid: 0aed4b94893bbf5429d918023ad89f9f, type: 2}
+  - {fileID: 11400000, guid: c248a1ab8f2c1544e92136f15edfdb42, type: 2}
   inputManager: {fileID: 8020492676777367023}
   hand: {fileID: 5302875946761015652}
   toolImage: {fileID: 1414132706969029888}
