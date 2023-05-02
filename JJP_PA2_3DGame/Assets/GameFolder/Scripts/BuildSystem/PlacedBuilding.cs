@@ -72,7 +72,7 @@ public class PlacedBuilding : MonoBehaviour{
         onTakeDamageEvent?.Invoke(0, health);
         onDestroyEvent?.Invoke();
         gameObject.SetActive(false);
-        NavMeshMain.Instance.build();
+        NavMeshMain.Instance.updateMesh();
         Destroy(gameObject);
     }
 }

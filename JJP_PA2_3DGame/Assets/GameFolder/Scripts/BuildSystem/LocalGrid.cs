@@ -35,6 +35,8 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
             this.transform.localRotation,
             canBuild,
             (GridXZ<GridObject> g, int x, int z, bool c) => new GridObject(g, x, z, c));
+            
+            Destroy(gridPanel.gameObject);
     }
 
 
@@ -109,19 +111,17 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
     }
 
     [SerializeField] bool debug;
-
+[SerializeField]  float alpha = 0.7f, scale = 0.95f;
 
     private void OnDrawGizmos()
     {
         if (!Selection.Contains(gameObject) && debug) //Debug
         {
-            Gizmos.color = new Color(0, 1, 0, 0.5f);
+            Gizmos.color = new Color(0, 1 -  (transform.position.y % 3 / 3), 0, alpha);
             Gizmos.matrix = transform.localToWorldMatrix;
             for (int x = 0; x < GWidth; x++)
                 for (int z = 0; z < GHeight; z++)
                 {
-
-
                     if (canBuild[x, z]) Gizmos.DrawCube(nodesPositions[x, z], new Vector3(1.9f, 0.5f, 1.9f));
                 }
         }

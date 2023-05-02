@@ -68,7 +68,7 @@ public class PlayerBuild : MonoBehaviour
 
     private void buildNavMesh()
     {
-        NavMeshMain.Instance.build();
+        NavMeshMain.Instance.updateMesh();
     }
 
     #endregion

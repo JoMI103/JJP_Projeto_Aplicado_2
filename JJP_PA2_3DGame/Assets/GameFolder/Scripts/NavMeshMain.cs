@@ -15,12 +15,16 @@ public class NavMeshMain : MonoBehaviour
 
 
 
-    private NavMeshSurface surface;
+    [SerializeField] private NavMeshSurface surface;
 
-    [ContextMenu("Build")]
-    public void build()
+    [ContextMenu("updateMesh")]
+    public void updateMesh()
     {
         //surface.BuildNavMesh();
         surface.UpdateNavMesh(surface.navMeshData);
+    }
+    
+    public void Build(){
+        surface.BuildNavMesh();
     }
 }
