@@ -6,8 +6,9 @@ public class PlayerHand : MonoBehaviour
 {
     [SerializeField] ToolSelector toolSelector;
     [SerializeField] PlayerBuild playerBuild;
+    [SerializeField] SelectionInfo selectionInfo;
 
-    private ItemSO activeItem;
+    public ItemSO activeItem;
     public ItemSO changeItem;
 
     private void Update()
@@ -20,7 +21,7 @@ public class PlayerHand : MonoBehaviour
     {
         activeItem = changeItem;
 
-        if (activeItem.bluePrint)
+        if (activeItem.itemType == ItemSO.ItemType.bluePrint)
         {
             //Set bluePrint FUture
             playerBuild.setBuildingTypeSO(activeItem.building);
@@ -30,8 +31,8 @@ public class PlayerHand : MonoBehaviour
         {
             playerBuild.DeselectObjectType();
         }
-        
 
+        selectionInfo.generateItemInfo(activeItem);
         toolSelector.selectTool(activeItem.handId);
     }
 }

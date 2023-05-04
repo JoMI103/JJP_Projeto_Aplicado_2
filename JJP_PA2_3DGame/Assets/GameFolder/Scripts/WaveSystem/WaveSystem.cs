@@ -12,32 +12,27 @@ public class WaveSystem : MonoBehaviour
     private int currentWave;
     public int startWave;
     [SerializeField]private LevelWavesSO LevelWaves;
-    private List<Transform> currentWaveEnemies;
-    
+ 
+
+    [SerializeField] private Transform waveSheepsFolder;
 
     private void Start()
     {
         currentWaveData = new enemyWaveData(1);
         currentWave = startWave;
-
         if(nextWave()) StartCoroutine(SpawnNextWave());
     }
 
-    void Update()
-    {
-        
-    }
     IEnumerator SpawnNextWave()
     {
         yield return new WaitForSeconds(LevelWaves.waves[currentWave].cooldown);
 
-        currentWaveEnemies = new List<Transform>();
         do
         {
-            Debug.Log("Spawning");
+  
             SpawnPartWave();
             yield return new WaitForSeconds(2f);
-        } while (currentWaveData.getWaveQuantity() > 0 || checkSheepAlive());
+        } while (currentWaveData.getWaveQuantity() > 0 || waveSheepsFolder.childCount > 0);
 
 
         if (nextWave())
@@ -50,15 +45,14 @@ public class WaveSystem : MonoBehaviour
         foreach(Transform sp in spawnPoints)
         {
             if (currentWaveData.getWaveQuantity() == 0) break;
-
             int n = Random.Range(0, currentWaveData.typeEnemies.Count);
-
             WaveEnemy _waveEnemy = currentWaveData.typeEnemies[n];
 
+
             Transform sheep = Instantiate(_waveEnemy.enemySheep.prefab, sp);
+            sheep.SetParent(waveSheepsFolder);
             sheep.GetComponent<EnemySheep>().setPlayerAndObjective(playerTarget,waveTarget);
 
-            currentWaveEnemies.Add(sheep);
             _waveEnemy.Quantity--;
             if (_waveEnemy.Quantity == 0) { currentWaveData.typeEnemies.RemoveAt(n); } else
             { currentWaveData.typeEnemies[n] = _waveEnemy; }
@@ -74,7 +68,7 @@ public class WaveSystem : MonoBehaviour
             currentWaveData.typeEnemies = new List<WaveEnemy>();
             foreach(WaveEnemy w in LevelWaves.waves[currentWave].waveSO?.typeEnemies)
             {
-                currentWaveData.typeEnemies.Add(w);
+                if(w.Quantity > 0) currentWaveData.typeEnemies.Add(w);
             }
            
 
@@ -83,15 +77,6 @@ public class WaveSystem : MonoBehaviour
         return false;
     }
 
-    private bool checkSheepAlive()
-    {
-        foreach(Transform sp in spawnPoints)
-        {
-            if(sp.childCount > 0) { Debug.Log("All live"); return true; }
-        }
-        Debug.Log("All dead");
-        return false;
-    }
 
 }
 
@@ -103,7 +88,6 @@ public class enemyWaveData
     {
         int quant = 0;
         foreach (WaveEnemy enemy in typeEnemies) { quant += enemy.Quantity; }
-        Debug.Log(quant);
         return quant;
     }
 

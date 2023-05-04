@@ -14,7 +14,7 @@ public class SpikeTrap : Trap
     protected override void Start()
     {
         base.Start();
-        animator.speed = 1 / aps;
+        animator.speed =  aps;
     }
 
     public void attack()

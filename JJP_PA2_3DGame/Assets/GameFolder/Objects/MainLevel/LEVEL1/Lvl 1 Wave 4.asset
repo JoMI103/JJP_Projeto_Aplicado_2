@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd35dac8d14a0449a467cdf80f17ce6, type: 3}
+  m_Name: Lvl 1 Wave 4
+  m_EditorClassIdentifier: 
+  waveNumber: 4
+  typeEnemies:
+  - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
+    Quantity: 10
+    dificultyMod: 0
+  - enemySheep: {fileID: 11400000, guid: 267a06a236c9aa44e9fb3201280f01b3, type: 2}
+    Quantity: 10
+    dificultyMod: 0
+  - enemySheep: {fileID: 11400000, guid: 33b1b0a94dc2de143a4a7f2091b60d54, type: 2}
+    Quantity: 10
+    dificultyMod: 0
+  - enemySheep: {fileID: 11400000, guid: 0463817ae313ad0468d2caf6d5a0f6f0, type: 2}
+    Quantity: 16
+    dificultyMod: 0
+  - enemySheep: {fileID: 11400000, guid: af1f5be467f27e949ab11486d3fcf77a, type: 2}
+    Quantity: 10
+    dificultyMod: 0
+  - enemySheep: {fileID: 11400000, guid: a142eb96328161940bbde2c4ff7cd336, type: 2}
+    Quantity: 10
+    dificultyMod: 0
+  - enemySheep: {fileID: 11400000, guid: 79f284f4a43e2de48ae689fb9dcc47aa, type: 2}
+    Quantity: 2
+    dificultyMod: 0

@@ -27,7 +27,8 @@ public class GridXZ<TGridObject>
     
 
     //func -->   () => new TGridObject()
-    public GridXZ(int width, int height, float cellSize, Vector3 originPosition,Quaternion orientation, Func<GridXZ<TGridObject>, int, int, TGridObject> createGridFunction)
+    public GridXZ(int width, int height, float cellSize, Vector3 originPosition,Quaternion orientation, bool[,] canBuild,
+        Func<GridXZ<TGridObject>, int, int, bool, TGridObject> createGridFunction)
     {
         this.width = width;
         this.height = height;
@@ -41,7 +42,7 @@ public class GridXZ<TGridObject>
         for (int x = 0; x < gridArray.GetLength(0); x++)
             for (int z = 0; z < gridArray.GetLength(1); z++)
             {
-                gridArray[x, z] = createGridFunction(this, x, z); //creates de TGridObject
+                gridArray[x, z] = createGridFunction(this, x, z, canBuild[x,z]); //creates de TGridObject
             }
 
 
@@ -54,8 +55,8 @@ public class GridXZ<TGridObject>
             }
         Debug.DrawLine(orientation * GetLocalPosition(width, 0) + originPosition, orientation * GetLocalPosition(width, height) + originPosition, Color.blue, 100f);
         Debug.DrawLine(orientation * GetLocalPosition(0, height) + originPosition, orientation * GetLocalPosition(width, height) + originPosition, Color.blue, 100f);
-            
-        if (false) //Debug
+            /*
+        if (true) //Debug
         {
             TextMesh[,] debugTextArray = new TextMesh[width, height];
 
@@ -80,6 +81,7 @@ public class GridXZ<TGridObject>
                 debugTextArray[eventArgs.x, eventArgs.z].text = gridArray[eventArgs.x, eventArgs.z]?.ToString();
             };
         }
+            */
     }
 
     public float GetCellSize() { return cellSize; }

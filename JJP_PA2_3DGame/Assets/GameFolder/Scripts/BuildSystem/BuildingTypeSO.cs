@@ -26,16 +26,30 @@ public class BuildingTypeSO : ScriptableObject
     public int width, height;
     public int health, damage;
     public float aps;
-    public int woodCost, rockCost, metalCost, eletronicsCost;
+    public int woodCost, metalCost, eletronicsCost;
     public bool Ground, Wall, Roof;
 
 
-    public int GetRotationAngle(Dir dir) {
-        switch (dir) {
+    public int GetRotationAngle(Dir dir)
+    {
+        switch (dir)
+        {
             case Dir.Down: return 0;
             case Dir.Left: return 90;
             case Dir.Up: return 180;
             case Dir.Right: return 270;
+            default: return 0;
+        }
+    }
+
+    public int GetCenterRotationAngle(Dir dir)
+    {
+        switch (dir)
+        {
+            case Dir.Down: return 0;
+            case Dir.Left: return 270;
+            case Dir.Up: return 180;
+            case Dir.Right: return 90;
             default: return 0;
         }
     }

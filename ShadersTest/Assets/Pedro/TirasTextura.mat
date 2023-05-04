@@ -77,7 +77,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Transparency: 0.807
+    - _Transparency: 0.583
     - _UVSec: 0
     - _WorldPositionCutoffInferior: 49
     - _WorldPositionCutoffSuperior: 54

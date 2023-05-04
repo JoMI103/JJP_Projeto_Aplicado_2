@@ -31,7 +31,7 @@ public class PlacedBuilding : MonoBehaviour{
 
     public BuildingTypeSO buildingTypeSO;
     private Vector2Int origin;
-    private BuildingTypeSO.Dir dir;
+    public BuildingTypeSO.Dir dir;
 
     private int baseHealth;
     private int health;
@@ -72,7 +72,7 @@ public class PlacedBuilding : MonoBehaviour{
         onTakeDamageEvent?.Invoke(0, health);
         onDestroyEvent?.Invoke();
         gameObject.SetActive(false);
-        NavMeshMain.Instance.build();
+        NavMeshMain.Instance.updateMesh();
         Destroy(gameObject);
     }
 }

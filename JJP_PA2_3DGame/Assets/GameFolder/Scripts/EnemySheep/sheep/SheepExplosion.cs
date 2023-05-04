@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SheepExplosion : MonoBehaviour
 {
+    
+
     [SerializeField] Transform explosion;
     [SerializeField] private float explosionRadius;
    

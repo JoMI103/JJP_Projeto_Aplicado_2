@@ -4,14 +4,30 @@ using UnityEngine.AI;
 
 public class EnemySheep : MonoBehaviour
 {
+    #region States
+
+    /*
+     * 
+     *  Idle: A ovelha fica parada 
+     *  
+     *  FollowPath: Segue um caminho (calculado pelo sistema de navmesh) até um determinado objetivo
+     *              Tem um sensor que verifica se tem uma parede no caminho
+     *              Adicionar: sensor de Player
+     *              
+     *  AtackConstruction: Ataca a construções detatadas pelo sensor de cima
+     *  
+     *  AtackPlayer: Ataca o jogador
+     *               Adicionar: Perseguir o jogador 
+     *               
+     */
+
     public enum state { Idle, FollowPath, AtackConstruction, AtackPlayer }
 
+    //sheep's current state so the script can stop it without using StopAllCoroutines
     private IEnumerator currentState;
   
-    public void changeCurrentState(state state)
-    {
-        switch (state)
-        {
+    public void changeCurrentState(state state) {
+        switch (state) {
             case state.Idle: if(currentState != null) StopCoroutine(currentState); currentState = Idle(); StartCoroutine(currentState); break;
             case state.FollowPath: if (currentState != null) StopCoroutine(currentState); currentState = FollowPath(); StartCoroutine(currentState); break;
             case state.AtackConstruction: if (currentState != null) StopCoroutine(currentState); currentState = AtackConstruction(); StartCoroutine(currentState); break;
@@ -19,7 +35,10 @@ public class EnemySheep : MonoBehaviour
             default: if (currentState != null) StopCoroutine(currentState); currentState = Idle(); StartCoroutine(currentState); break;
         }
     }
-
+    #endregion
+    
+    #region Stats
+    //sets the sheep's stats with the scriptableObject
     private void setStats()
     {
         baseHealth = m_EnemySheepTypeSO.baseHealth;
@@ -28,38 +47,42 @@ public class EnemySheep : MonoBehaviour
         speed = m_EnemySheepTypeSO.baseSpeed;
         AttackRange = m_EnemySheepTypeSO.AttackRange;
         AttackSpeed = m_EnemySheepTypeSO.AttackSpeed;
-        slow = 0; weaknessMult = 1f;
+        slowModifier = 1; 
+        weaknessModifier = 1f;
     }
 
-    protected int baseHealth; protected int attackDmg; protected float speed, AttackRange, AttackSpeed;    //SheepBaseStats
-    public float slow; protected float weaknessMult; //Bufs Defufs
-
+    protected int baseHealth; 
+    protected int attackDmg; 
+    protected float speed, AttackRange, AttackSpeed;    //SheepBaseStats
+    [HideInInspector] public float slowModifier; // 1 normal Velocity
+    protected float weaknessModifier; //Bufs Defufs
     protected int healthPoints;
 
+    #endregion
+
+    [Space(10)][Header("Enemy Sheep Atributes")][Space(10)]
+
     [SerializeField] EnemySheepTypeSO m_EnemySheepTypeSO;
-
-
+    [SerializeField] protected Animator animator;
     [SerializeField] private UIHealthBar healthBar;
 
     protected SetTargetSheep setTargetSheep;
     protected NavMeshAgent navMeshAgent;
-    protected Rigidbody rigidbody;
-    [SerializeField] protected Animator animator;
-
+    protected Rigidbody sheepRigidBody;
     protected Transform playerPosition, ObjectivePosition;
+
     public void setPlayerAndObjective(Transform player, Transform finalObjective) {
         playerPosition = player; 
-        setTargetSheep.setTarget(finalObjective);
         ObjectivePosition = finalObjective;
+        setTargetSheep.setStaticTarget(ObjectivePosition);
     }
 
     public void Awake()
     {
         setStats();
-        //animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         setTargetSheep = GetComponent<SetTargetSheep>();
-        rigidbody = GetComponent<Rigidbody>();
+        sheepRigidBody = GetComponent<Rigidbody>();
     }
 
     public void Start()
@@ -70,24 +93,30 @@ public class EnemySheep : MonoBehaviour
     }
 
     public void Update() {
+//#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.I)) changeCurrentState(state.Idle);
         if (Input.GetKeyDown(KeyCode.O)) changeCurrentState(state.FollowPath);
-
+        if (Input.GetKeyDown(KeyCode.Alpha0)) deathWithNoEffect();
+        //#endif
         if (healthPoints <= 0) OnDeath();
     }
 
+    #region Fix Orientation
+
     [SerializeField] protected Transform model;
-    [SerializeField] protected bool fixRotation;
-    [SerializeField] protected LayerMask l;
+    [SerializeField] protected bool fixOrientation;
+    [SerializeField] protected LayerMask floorToFixOrientation;
 
     //atualiza a normal do modelo com a normal do grid 
     private void LateUpdate()
     {
-        if(!fixRotation) { return; }
+        if(!fixOrientation) { return; }
         RaycastHit hit;
-        if (Physics.Raycast(transform.position + new Vector3(0,0.1f,0), Vector3.down, out hit, l))
+        if (Physics.Raycast(transform.position + new Vector3(0,0.1f,0), Vector3.down, out hit, floorToFixOrientation))
             model.rotation = Quaternion.Lerp(model.rotation, Quaternion.FromToRotation(model.up, hit.normal) * model.rotation, Time.deltaTime * 5);
     }
+
+    #endregion
 
     #region sheepStates
 
@@ -105,7 +134,7 @@ public class EnemySheep : MonoBehaviour
     protected virtual IEnumerator FollowPath() {
 
         if(!navMeshAgent.enabled) navMeshAgent.enabled = true;
-        setTargetSheep.setTarget(ObjectivePosition); 
+        setTargetSheep.setStaticTarget(ObjectivePosition); 
         yield return null;
 
         while (true)
@@ -179,7 +208,7 @@ public class EnemySheep : MonoBehaviour
                     {
                         placedBuilding.onDestroyEvent += whenTargetDestroy;
                         //LastPath = navMeshAgent.path;
-                        setTargetSheep.setTarget(placedBuilding.transform);
+                        setTargetSheep.setStaticTarget(placedBuilding.transform);
                         changeCurrentState(state.AtackConstruction);
                     }
                     placedBuilding = destructible;
@@ -189,31 +218,21 @@ public class EnemySheep : MonoBehaviour
         }
     }
 
-    private void whenTargetDestroy()
+    protected virtual void whenTargetDestroy()
     {
         changeCurrentState(state.FollowPath);
     }
 
     #endregion
 
-    public void receiveDmg(int dmg)
-    {
-        healthPoints -= (int)(dmg * weaknessMult);
-        healthBar.SetHealthBarPercentage((float)healthPoints / baseHealth);
-    }
-
-    protected virtual void OnDeath()
-    {
-        if (placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
-        Destroy(this.gameObject);
-    }
-
+    #region someCalculations
+    //gets the future point for slower projectiles
     public Vector3 getFuturePoint(int precision ,float time)
     {
         if (navMeshAgent.path.corners.Length < precision) precision = navMeshAgent.path.corners.Length;
         Vector3[] corners = new Vector3[precision];
         navMeshAgent.path.GetCornersNonAlloc(corners);
-        float walkDistance = time * (speed * slow);
+        float walkDistance = time * (speed * slowModifier);
 
         for(int i = 1; i< precision; i++)
         {
@@ -227,10 +246,11 @@ public class EnemySheep : MonoBehaviour
         return corners[corners.Length - 1]; 
 
     }
+    #endregion
 
     #region Effects
 
-    public bool slowEffectIsRunning = false;
+    [HideInInspector] public bool slowEffectIsRunning = false;
     public IEnumerator currentSlowEffect;
 
     public void startCurrentSlowEffect() { StartCoroutine(currentSlowEffect); }
@@ -238,11 +258,11 @@ public class EnemySheep : MonoBehaviour
     public virtual IEnumerator slowEffect(float effectTime, float slowPower)
     {
         slowEffectIsRunning = true; 
-        slow = slowPower;
+        slowModifier = slowPower;
         navMeshAgent.speed = speed * slowPower;
         yield return new WaitForSeconds(effectTime);
         navMeshAgent.speed = speed;
-        slow = 1;
+        slowModifier = 1;
         slowEffectIsRunning = false;
     }
 
@@ -254,8 +274,8 @@ public class EnemySheep : MonoBehaviour
     {
         StopCoroutine(currentState);
         navMeshAgent.enabled = false;
-        rigidbody.isKinematic= false;
-        rigidbody.AddForce(( direction + new Vector3(0,0.2f,0))  * force , ForceMode.Impulse);
+        sheepRigidBody.isKinematic= false;
+        sheepRigidBody.AddForce(( direction + new Vector3(0,0.2f,0))  * force , ForceMode.Impulse);
         yield return new WaitForSeconds(5);     
 
         deathWithNoEffect();
@@ -268,11 +288,21 @@ public class EnemySheep : MonoBehaviour
     [SerializeField] private LayerMask floor;
 
 
+    public void receiveDmg(int dmg)
+    {
+        healthPoints -= (int)(dmg * weaknessModifier);
+        healthBar.SetHealthBarPercentage((float)healthPoints / baseHealth);
+    }
+
+    protected virtual void OnDeath()
+    {
+        if (placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
+        Destroy(this.gameObject);
+    }
 
     protected void deathWithNoEffect()
     {
         if (placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
         Destroy(this.gameObject);
     }
-
 }
