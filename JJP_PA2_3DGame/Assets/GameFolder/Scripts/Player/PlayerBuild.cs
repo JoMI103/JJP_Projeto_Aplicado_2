@@ -79,7 +79,7 @@ public class PlayerBuild : MonoBehaviour
         Ray ray = playerLook.playerCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, constructionDistance, GridLayer))
         {
-            LocalGrid lg = raycastHit.collider.transform.parent.parent.GetComponent<LocalGrid>();
+            LocalGrid lg = raycastHit.collider.transform.parent.parent.parent.GetComponent<LocalGrid>();
             if (lg != null && lg != currentGrid) { currentGrid = lg; RefreshSelectedObjectType();  }
             return true;
         }

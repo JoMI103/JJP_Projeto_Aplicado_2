@@ -37,6 +37,7 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
             (GridXZ<GridObject> g, int x, int z, bool c) => new GridObject(g, x, z, c));
             
             Destroy(gridPanel.gameObject);
+
     }
 
 

@@ -139,6 +139,7 @@ public class EnemySheep : MonoBehaviour
         MoveAnim();
         while (true) {
             if(navMeshAgent.enabled) checkPathObstacles();
+       
             yield return new WaitForSeconds(0.1f);
         }
 
@@ -169,6 +170,9 @@ public class EnemySheep : MonoBehaviour
 
     protected virtual void checkPathObstacles()
     {
+      //  navMeshAgent.SamplePathPosition(-1, AttackRange, out NavMeshHit navHit);
+        //        if (navHit.mask == 16) 
+        
         /*Vector3[] corners = new Vector3[2];
      
         int length = navMeshAgent.path.GetCornersNonAlloc(corners);
