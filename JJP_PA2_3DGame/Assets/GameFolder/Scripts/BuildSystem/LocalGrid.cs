@@ -115,7 +115,7 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
         for (int x = 0; x < GWidth; x++)
             for (int z = 0; z < GHeight; z++)
             {
-                if (canBuild[x,z]) Instantiate(tile, parentTiles.TransformPoint( nodesPositions[x, z]), tile.rotation, parentTiles);
+                if (canBuild[x,z]) Instantiate(tile, parentTiles.TransformPoint( nodesPositions[x, z]), transform.rotation, parentTiles);
             }
         
     }
