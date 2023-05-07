@@ -45,7 +45,7 @@ public class GridXZ<TGridObject>
                 gridArray[x, z] = createGridFunction(this, x, z, canBuild[x,z]); //creates de TGridObject
             }
 
-
+/*
         for(int x = 0; x < gridArray.GetLength(0); x++)
             for (int z = 0; z < gridArray.GetLength(1); z++)
             {
@@ -55,6 +55,8 @@ public class GridXZ<TGridObject>
             }
         Debug.DrawLine(orientation * GetLocalPosition(width, 0) + originPosition, orientation * GetLocalPosition(width, height) + originPosition, Color.blue, 100f);
         Debug.DrawLine(orientation * GetLocalPosition(0, height) + originPosition, orientation * GetLocalPosition(width, height) + originPosition, Color.blue, 100f);
+          
+          */
             /*
         if (true) //Debug
         {

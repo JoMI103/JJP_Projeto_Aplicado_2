@@ -10,11 +10,11 @@ public class EnemySheep : MonoBehaviour
      * 
      *  Idle: A ovelha fica parada 
      *  
-     *  FollowPath: Segue um caminho (calculado pelo sistema de navmesh) até um determinado objetivo
+     *  FollowPath: Segue um caminho (calculado pelo sistema de navmesh) atï¿½ um determinado objetivo
      *              Tem um sensor que verifica se tem uma parede no caminho
      *              Adicionar: sensor de Player
      *              
-     *  AtackConstruction: Ataca a construções detatadas pelo sensor de cima
+     *  AtackConstruction: Ataca a construï¿½ï¿½es detatadas pelo sensor de cima
      *  
      *  AtackPlayer: Ataca o jogador
      *               Adicionar: Perseguir o jogador 
@@ -41,19 +41,18 @@ public class EnemySheep : MonoBehaviour
     //sets the sheep's stats with the scriptableObject
     private void setStats()
     {
-        baseHealth = m_EnemySheepTypeSO.baseHealth;
+        baseHealth = SheepSO.baseHealth;
         healthPoints = baseHealth;
-        attackDmg = m_EnemySheepTypeSO.baseDmg;
-        speed = m_EnemySheepTypeSO.baseSpeed;
-        AttackRange = m_EnemySheepTypeSO.AttackRange;
-        AttackSpeed = m_EnemySheepTypeSO.AttackSpeed;
+        attackDmg = SheepSO.baseDmg;
+        speed = SheepSO.baseSpeed;
+        AttackSpeed = SheepSO.AttackSpeed;
         slowModifier = 1; 
         weaknessModifier = 1f;
     }
 
     protected int baseHealth; 
     protected int attackDmg; 
-    protected float speed, AttackRange, AttackSpeed;    //SheepBaseStats
+    protected float speed, AttackSpeed;    //SheepBaseStats
     [HideInInspector] public float slowModifier; // 1 normal Velocity
     protected float weaknessModifier; //Bufs Defufs
     protected int healthPoints;
@@ -61,8 +60,7 @@ public class EnemySheep : MonoBehaviour
     #endregion
 
     [Space(10)][Header("Enemy Sheep Atributes")][Space(10)]
-
-    [SerializeField] EnemySheepTypeSO m_EnemySheepTypeSO;
+    [SerializeField] EnemySheepTypeSO SheepSO;
     [SerializeField] protected Animator animator;
     [SerializeField] private UIHealthBar healthBar;
 
@@ -85,7 +83,7 @@ public class EnemySheep : MonoBehaviour
         sheepRigidBody = GetComponent<Rigidbody>();
     }
 
-    public void Start()
+    protected virtual void Start()
     {
         //addDificultyLevel();
         navMeshAgent.speed = speed;
@@ -93,7 +91,7 @@ public class EnemySheep : MonoBehaviour
     }
 
     public void Update() {
-//#if UNITY_EDITOR
+        //#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.I)) changeCurrentState(state.Idle);
         if (Input.GetKeyDown(KeyCode.O)) changeCurrentState(state.FollowPath);
         if (Input.GetKeyDown(KeyCode.Alpha0)) deathWithNoEffect();
@@ -103,6 +101,7 @@ public class EnemySheep : MonoBehaviour
 
     #region Fix Orientation
 
+    [Header("Sets the sheep normal to the floor normal")]
     [SerializeField] protected Transform model;
     [SerializeField] protected bool fixOrientation;
     [SerializeField] protected LayerMask floorToFixOrientation;
@@ -130,52 +129,32 @@ public class EnemySheep : MonoBehaviour
         }   
     }
 
-    //a ovelha segue o caminho até o objetivo
+    //a ovelha segue o caminho atï¿½ o objetivo
     protected virtual IEnumerator FollowPath() {
-
-        if(!navMeshAgent.enabled) navMeshAgent.enabled = true;
+        
+        if(!navMeshAgent.enabled) navMeshAgent.enabled = true;     
         setTargetSheep.setStaticTarget(ObjectivePosition); 
         yield return null;
 
-        while (true)
-        {
-            MoveAnim();
-
-            if(navMeshAgent.enabled)
-            {
-                navMeshAgent.SamplePathPosition(-1, AttackRange, out NavMeshHit navHit);
-                if (navHit.mask == 16) 
-                checkPathObstacles();
-            }
-
-            yield return new WaitForSeconds(0.2f);
+        MoveAnim();
+        while (true) {
+            if(navMeshAgent.enabled) checkPathObstacles();
+            yield return new WaitForSeconds(0.1f);
         }
 
     }
 
     protected virtual IEnumerator AtackConstruction() {
 
-        
-        WaitForSeconds wait = new WaitForSeconds(AttackSpeed);
+        WaitForSeconds wait = new WaitForSeconds(AttackSpeed); yield return wait;
 
-        yield return wait;
-
-        while (placedBuilding != null)
-        {
-            Attack(); 
+        while (targetedBuilding != null){
+            AttackAndAtackAnim(); 
             yield return wait;
         }
     }
-
-    protected virtual void MoveAnim()
-    {
-
-    }
-    protected virtual void Attack()
-    {
-        placedBuilding.takeDamge(attackDmg);
-    }
-
+    protected virtual void MoveAnim() { }
+    protected virtual void AttackAndAtackAnim() { targetedBuilding.takeDamge(attackDmg); }
     protected virtual IEnumerator AtackPlayer() {
         yield return null;
     }
@@ -184,12 +163,13 @@ public class EnemySheep : MonoBehaviour
 
     #region checkObstacles
 
-    protected PlacedBuilding placedBuilding;
-    public LayerMask destructibleLayer;
+    protected PlacedBuilding targetedBuilding;
+    [Header("Layers that the sheep can destroy")]
+    [SerializeField] protected LayerMask destructibleLayer;
 
     protected virtual void checkPathObstacles()
     {
-        Vector3[] corners = new Vector3[2];
+        /*Vector3[] corners = new Vector3[2];
      
         int length = navMeshAgent.path.GetCornersNonAlloc(corners);
 
@@ -204,18 +184,19 @@ public class EnemySheep : MonoBehaviour
                 {
                    
 
-                    if(placedBuilding == destructible)
+                    if(targetedBuilding == destructible)
                     {
-                        placedBuilding.onDestroyEvent += whenTargetDestroy;
+                        targetedBuilding.onDestroyEvent += whenTargetDestroy;
                         //LastPath = navMeshAgent.path;
-                        setTargetSheep.setStaticTarget(placedBuilding.transform);
+                        setTargetSheep.setStaticTarget(targetedBuilding.transform);
                         changeCurrentState(state.AtackConstruction);
                     }
-                    placedBuilding = destructible;
+                    targetedBuilding = destructible;
                 }
             }
 
         }
+        */
     }
 
     protected virtual void whenTargetDestroy()
@@ -268,7 +249,7 @@ public class EnemySheep : MonoBehaviour
 
     public void startknockBackEffect(Vector3 s, float d) { StartCoroutine(knockBackEffect(s, d)); }
 
-    [SerializeField] private LayerMask floorLayerMask;
+
 
     public virtual IEnumerator knockBackEffect(Vector3 direction, float force)
     {
@@ -281,12 +262,12 @@ public class EnemySheep : MonoBehaviour
         deathWithNoEffect();
        
     }
+    
+
 
     #endregion
 
-    public bool rig;
-    [SerializeField] private LayerMask floor;
-
+    #region DmgDeath
 
     public void receiveDmg(int dmg)
     {
@@ -296,13 +277,25 @@ public class EnemySheep : MonoBehaviour
 
     protected virtual void OnDeath()
     {
-        if (placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
+        if (targetedBuilding != null) targetedBuilding.onDestroyEvent -= whenTargetDestroy;
         Destroy(this.gameObject);
     }
 
     protected void deathWithNoEffect()
     {
-        if (placedBuilding != null) placedBuilding.onDestroyEvent -= whenTargetDestroy;
+        if (targetedBuilding != null) targetedBuilding.onDestroyEvent -= whenTargetDestroy;
         Destroy(this.gameObject);
     }
+
+    #endregion
+
+    #region gizmos
+#if UNITY_EDITOR
+
+    private void OnDrawGizmos() {
+        
+    }
+
+#endif
+    #endregion
 }

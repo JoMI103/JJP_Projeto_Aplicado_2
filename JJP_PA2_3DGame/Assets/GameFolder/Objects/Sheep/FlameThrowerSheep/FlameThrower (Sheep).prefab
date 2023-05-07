@@ -6379,7 +6379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45acc7aac0703eb40bd31ad2af5aa06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTarget: {fileID: 0}
 --- !u!195 &3872576486735348904
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6457,14 +6456,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowModifier: 0
-  m_EnemySheepTypeSO: {fileID: 11400000, guid: a142eb96328161940bbde2c4ff7cd336, type: 2}
+  SheepSO: {fileID: 11400000, guid: a142eb96328161940bbde2c4ff7cd336, type: 2}
   animator: {fileID: 8543921144160362281}
   healthBar: {fileID: 56002373806725357}
   model: {fileID: 8671722830978498201}
-  fixOrientation: 0
+  fixOrientation: 1
   floorToFixOrientation:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 34824
   destructibleLayer:
     serializedVersion: 2
     m_Bits: 8192

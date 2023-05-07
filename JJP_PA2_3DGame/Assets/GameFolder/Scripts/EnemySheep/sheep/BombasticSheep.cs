@@ -16,7 +16,7 @@ public class BombasticSheep : EnemySheep
         animator.Play("Walk");
     }
 
-    protected override void Attack()
+    protected override void AttackAndAtackAnim()
     {
         Instantiate(explosion, transform.position, transform.rotation).GetComponent<SheepExplosion>().Explode(attackDmg);
         deathWithNoEffect();

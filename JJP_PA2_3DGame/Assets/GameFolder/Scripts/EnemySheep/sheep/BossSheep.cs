@@ -14,10 +14,10 @@ public class BossSheep : EnemySheep
     {
         animator.Play("Walk");
     }
-    protected override void Attack()
+    protected override void AttackAndAtackAnim()
     {
         animator.Play("Attack");
-        placedBuilding.takeDamge(attackDmg);
+        targetedBuilding.takeDamge(attackDmg);
     }
 
 

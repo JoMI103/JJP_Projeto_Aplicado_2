@@ -501,7 +501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45acc7aac0703eb40bd31ad2af5aa06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTarget: {fileID: 0}
 --- !u!114 &2773735483997334368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,14 +527,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowModifier: 0
-  m_EnemySheepTypeSO: {fileID: 11400000, guid: 79f284f4a43e2de48ae689fb9dcc47aa, type: 2}
+  SheepSO: {fileID: 11400000, guid: 79f284f4a43e2de48ae689fb9dcc47aa, type: 2}
   animator: {fileID: 80688499150190380}
   healthBar: {fileID: 8256019453943131246}
   model: {fileID: 1941192636993799679}
   fixOrientation: 0
   floorToFixOrientation:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 34824
   destructibleLayer:
     serializedVersion: 2
     m_Bits: 8192

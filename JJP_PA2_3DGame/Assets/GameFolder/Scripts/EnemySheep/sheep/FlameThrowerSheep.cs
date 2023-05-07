@@ -21,9 +21,9 @@ public class FlameThrowerSheep : EnemySheep
         flameParticles.SetActive(false);
         changeCurrentState(state.FollowPath);
     }
-    protected override void Attack()
+    protected override void AttackAndAtackAnim()
     {
         flameParticles.SetActive(true);
-        placedBuilding.takeDamge(attackDmg);
+        targetedBuilding.takeDamge(attackDmg);
     }
 }

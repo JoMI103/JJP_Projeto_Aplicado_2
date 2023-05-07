@@ -5,7 +5,7 @@ using static EnemyWaveSO;
 
 public class SimpleWaveSpawnerDebug : MonoBehaviour
 {
-    [SerializeField] private Transform waveTarget, playerTarget;
+    [SerializeField] private Transform waveTarget, playerTarget, spawnerTransform;
     [SerializeField] private EnemySheepTypeSO enemySheepTypeSO;
     
     [SerializeField, Range(1,100)] int numberSheep;
@@ -33,6 +33,7 @@ public class SimpleWaveSpawnerDebug : MonoBehaviour
         {
             yield return new WaitForSeconds(coolDown);
             Transform sheep = Instantiate(enemySheepTypeSO.prefab, this.transform);
+            sheep.position = spawnerTransform.position;
             sheep.GetComponent<EnemySheep>().setPlayerAndObjective(playerTarget, waveTarget);
         }
     }

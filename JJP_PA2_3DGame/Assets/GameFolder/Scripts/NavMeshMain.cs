@@ -11,6 +11,7 @@ public class NavMeshMain : MonoBehaviour
         else Instance = this;
 
         surface = GetComponent<NavMeshSurface>();
+        updateMesh();
     }
 
 

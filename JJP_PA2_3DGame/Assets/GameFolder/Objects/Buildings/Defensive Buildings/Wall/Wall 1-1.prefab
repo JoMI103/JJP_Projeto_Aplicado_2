@@ -583,7 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8bcd55737a39c4fb0cd5d5abf3ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingTypeSO: {fileID: 0}
+  buildingTypeSO: {fileID: 11400000, guid: 3286e76007bcbd64b83e4faee4b80851, type: 2}
   dir: 0
   healthBar: {fileID: 3022913840942913704}
 --- !u!65 &1863579272290846805

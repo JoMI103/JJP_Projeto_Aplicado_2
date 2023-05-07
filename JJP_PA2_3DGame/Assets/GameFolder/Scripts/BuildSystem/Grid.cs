@@ -39,7 +39,7 @@ public class Grid<TGridObject>{
             }
 
 
-        if (true) //Debug
+        if (false) //Debug
         {
             TextMesh[,] debugTextArray = new TextMesh[width, height];
 

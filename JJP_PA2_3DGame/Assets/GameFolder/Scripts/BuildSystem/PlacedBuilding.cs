@@ -18,11 +18,14 @@ public class PlacedBuilding : MonoBehaviour{
         placedBuilding.origin= origin;
         placedBuilding.dir = dir;
 
-        placedBuilding.SetStats();
+        
 
         return placedBuilding;
     }
 
+    private void Start() {
+        SetStats();
+    }
     private void SetStats()
     {
         health = buildingTypeSO.health;

@@ -48,6 +48,16 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
 
     [SerializeField]bool Invert , startCanBuild;
 
+    [ContextMenu("TurOffDebug")]
+    public void off(){
+        debug = false;
+    }
+    
+    [ContextMenu("TurOnDebug")]
+    public void on(){
+        debug = true;
+    }
+
 
 #if UNITY_EDITOR
     [ContextMenu("SetUp")]
@@ -105,7 +115,7 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
         for (int x = 0; x < GWidth; x++)
             for (int z = 0; z < GHeight; z++)
             {
-                if (canBuild[x,z]) Instantiate(tile, parentTiles.TransformPoint( nodesPositions[x, z]), transform.rotation, parentTiles);
+                if (canBuild[x,z]) Instantiate(tile, parentTiles.TransformPoint( nodesPositions[x, z]), tile.rotation, parentTiles);
             }
         
     }

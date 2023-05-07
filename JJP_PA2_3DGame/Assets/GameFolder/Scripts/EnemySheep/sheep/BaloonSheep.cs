@@ -14,9 +14,9 @@ public class BaloonSheep : EnemySheep
     {
         animator.Play("Walk");
     }
-    protected override void Attack()
+    protected override void AttackAndAtackAnim()
     {
 
-        placedBuilding.takeDamge(attackDmg);
+        targetedBuilding.takeDamge(attackDmg);
     }
 }

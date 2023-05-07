@@ -10,7 +10,13 @@ public class StandardSheep : EnemySheep
 
     public bool nothing;
 
-
+    public Transform p,o;
+    protected override void Start()
+    {
+        if(p != null && o != null)
+        setPlayerAndObjective(p,o);
+        base.Start();
+    }
 
 
 
@@ -19,9 +25,9 @@ public class StandardSheep : EnemySheep
         animator.Play("Walk");
     }
 
-    protected override void Attack()
+    protected override void AttackAndAtackAnim()
     {
         animator.Play("Attack");
-        placedBuilding.takeDamge(attackDmg);
+        targetedBuilding.takeDamge(attackDmg);
     }
 }
