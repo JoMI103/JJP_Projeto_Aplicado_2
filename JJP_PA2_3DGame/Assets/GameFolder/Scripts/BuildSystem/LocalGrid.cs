@@ -57,6 +57,16 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
     public void on(){
         debug = true;
     }
+    
+    [ContextMenu("TurOffGridPanel")]
+    public void offpanel(){
+        gridPanel.gameObject.SetActive(false);
+    }
+    
+    [ContextMenu("TurOnGridPanel")]
+    public void onpanel(){
+        gridPanel.gameObject.SetActive(true);
+    }
 
 
 #if UNITY_EDITOR
