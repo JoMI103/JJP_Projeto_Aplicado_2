@@ -56,7 +56,7 @@ public class BaloonSheep : EnemySheep
             
             timeAtack += Time.deltaTime;
             if(distanceObjective < 1f){
-                if(timeAtack > AttackSpeed){
+                if(timeAtack > sheepAttackSpeed){
                     AttackAndAtackAnim();
                     timeAtack = 0;
                 }
@@ -75,7 +75,7 @@ public class BaloonSheep : EnemySheep
     {
         //Animator atack
        aeroBomba aeroBombaS =  Instantiate(aeroBombaPrefab,aeroBombaSpawn.position, Quaternion.identity).GetComponent<aeroBomba>();
-       aeroBombaS.SetExplosionStats(attackDmg,buildingMask);
+       aeroBombaS.SetExplosionStats(sheepAttackDmg,buildingMask);
        stopMoving = true;
        sheepRigidBody.velocity = Vector3.zero;
     }
@@ -123,7 +123,7 @@ public class BaloonSheep : EnemySheep
 
         if(distanceObjective > 0.1f){
             Vector3 vIdeal = currentTarget - p1;
-            vIdeal = vIdeal.normalized * speed;
+            vIdeal = vIdeal.normalized * sheepSpeed;
             Vector3 acceleration = (vIdeal - sheepRigidBody.velocity).normalized * aMax;
             sheepRigidBody.AddForce(acceleration, ForceMode.Force);
             if(sheepRigidBody.velocity == Vector3.zero) transform.forward = Vector3.forward; else
@@ -152,6 +152,11 @@ public class BaloonSheep : EnemySheep
         transform.position = new Vector3(pos.x,Mathf.Lerp(pos.y,yPos,Time.deltaTime ),pos.z);
     }
 
+
+    protected override void OnCollisionEnter(Collision other)
+    {
+
+    }
 
     public override Vector3 getFuturePoint(int precision ,float time){
         return transform.position + sheepRigidBody.velocity  * time * Random.Range(0.6f,1.1f);

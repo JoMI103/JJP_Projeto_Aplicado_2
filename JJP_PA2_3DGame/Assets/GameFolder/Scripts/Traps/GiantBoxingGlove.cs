@@ -31,6 +31,6 @@ public class GiantBoxingGlove : Trap
     {
         //au.Play("SpikeTrap");
         GetSurroundSheeps();
-        foreach (EnemySheep es in sheeps) { es?.startknockBackEffect(centerPoint.up, 100); }
+        foreach (EnemySheep es in sheeps) { es?.receiveDmg(damage); es?.startknockBackEffect(centerPoint.up*10 +  (es.transform.position- this.transform.position).normalized * 0.3f, 2f); }
     }
 }

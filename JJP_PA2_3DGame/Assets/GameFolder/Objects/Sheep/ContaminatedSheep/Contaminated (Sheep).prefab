@@ -1178,7 +1178,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3828401346107205623}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 9
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1266,6 +1266,9 @@ MonoBehaviour:
   ScanFrontSheepStartPoint: {fileID: 4104612763344245887}
   distanceScan: 1.2
   slowEffectIsRunning: 0
+  navmeshFloor:
+    serializedVersion: 2
+    m_Bits: 34824
   nothing: 0
 --- !u!1 &4147867716890178003
 GameObject:

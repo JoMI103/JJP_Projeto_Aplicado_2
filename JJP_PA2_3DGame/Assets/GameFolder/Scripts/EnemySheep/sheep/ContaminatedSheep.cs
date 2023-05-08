@@ -17,6 +17,6 @@ public class ContaminatedSheep : EnemySheep
     protected override void AttackAndAtackAnim()
     {
         
-        targetedBuilding.takeDamge(attackDmg);
+        targetedBuilding.takeDamge(sheepAttackDmg);
     }
 }

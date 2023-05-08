@@ -19,4 +19,5 @@ MonoBehaviour:
   baseSpeed: 2
   AttackRange: 1.5
   AttackSpeed: 2
+  weigth: 1.2
   prefab: {fileID: 240003894282695336, guid: e5a8757a99462b24990e7d591d0a106a, type: 3}

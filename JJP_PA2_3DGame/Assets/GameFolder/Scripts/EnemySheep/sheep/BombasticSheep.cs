@@ -18,13 +18,13 @@ public class BombasticSheep : EnemySheep
 
     protected override void AttackAndAtackAnim()
     {
-        Instantiate(explosion, transform.position, transform.rotation).GetComponent<SheepExplosion>().Explode(attackDmg);
+        Instantiate(explosion, transform.position, transform.rotation).GetComponent<SheepExplosion>().Explode(sheepAttackDmg);
         deathWithNoEffect();
     }
 
     protected override void OnDeath()
     {
-        Instantiate(explosion, transform.position, transform.rotation).GetComponent<SheepExplosion>().Explode(attackDmg);
+        Instantiate(explosion, transform.position, transform.rotation).GetComponent<SheepExplosion>().Explode(sheepAttackDmg);
         base.OnDeath();
     }
 }

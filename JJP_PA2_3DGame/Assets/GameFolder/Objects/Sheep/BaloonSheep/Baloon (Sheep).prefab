@@ -223,6 +223,9 @@ MonoBehaviour:
   ScanFrontSheepStartPoint: {fileID: 2799239135852893179}
   distanceScan: 1.5
   slowEffectIsRunning: 0
+  navmeshFloor:
+    serializedVersion: 2
+    m_Bits: 34824
   nothing: 0
   aeroBombaPrefab: {fileID: 3799121306775159738, guid: 04635391b219dd743ada17e960e52a0e, type: 3}
   aeroBombaSpawn: {fileID: 3434931038221596834}

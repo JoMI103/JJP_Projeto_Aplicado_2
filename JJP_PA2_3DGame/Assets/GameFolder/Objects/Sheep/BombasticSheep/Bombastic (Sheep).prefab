@@ -10955,6 +10955,9 @@ MonoBehaviour:
   ScanFrontSheepStartPoint: {fileID: 2929228832339820852}
   distanceScan: 1.2
   slowEffectIsRunning: 0
+  navmeshFloor:
+    serializedVersion: 2
+    m_Bits: 34824
   explosion: {fileID: 5936417309406293476, guid: 765402715b270e444b68f217f3e8aba6, type: 3}
 --- !u!114 &1678096587920531999
 MonoBehaviour:

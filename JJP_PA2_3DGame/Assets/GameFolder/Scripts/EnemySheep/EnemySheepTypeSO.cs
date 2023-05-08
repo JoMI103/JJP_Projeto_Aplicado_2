@@ -11,6 +11,7 @@ public class EnemySheepTypeSO : ScriptableObject
     public int baseDmg;
     public float baseSpeed;
     public float AttackRange, AttackSpeed;
+    public float weigth;
     
     public Transform prefab;
 }

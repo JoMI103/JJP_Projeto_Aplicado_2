@@ -186,7 +186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1562665925916226169
 Transform:
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ ParticleSystem:
   m_GameObject: {fileID: 3019743387538993577}
   serializedVersion: 8
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 8
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -454,7 +454,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20.5
+      scalar: 40
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5258,7 +5258,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6945499374625358907}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 9
   m_Acceleration: 8
   avoidancePriority: 50
@@ -5325,8 +5325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1c8115fffbccf439bf6464d292a145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followPathPValue: 0
-  AtackConstPValue: 0
+  followPathPValue: 50
+  AtackConstPValue: 10
   slowModifier: 0
   SheepSO: {fileID: 11400000, guid: a142eb96328161940bbde2c4ff7cd336, type: 2}
   animator: {fileID: 8543921144160362281}
@@ -5339,15 +5339,23 @@ MonoBehaviour:
   destructibleLayer:
     serializedVersion: 2
     m_Bits: 8192
-  AttackRange: 4
+  AttackRange: 5
   enemySheeps:
     serializedVersion: 2
     m_Bits: 512
   ScanFrontSheepStartPoint: {fileID: 3778429912143059231}
   distanceScan: 1.2
   slowEffectIsRunning: 0
-  nothing: 0
+  navmeshFloor:
+    serializedVersion: 2
+    m_Bits: 34824
+  nothing: 1
   flameParticles: {fileID: 3019743387538993577}
+  startFirePos: {fileID: 1562665925916226169}
+  fireRadius: 5
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 24576
 --- !u!1 &9121414988952787076
 GameObject:
   m_ObjectHideFlags: 0
