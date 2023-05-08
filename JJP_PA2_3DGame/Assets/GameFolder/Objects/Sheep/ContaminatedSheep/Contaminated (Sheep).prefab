@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &116841517688007950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4104612763344245887}
+  m_Layer: 9
+  m_Name: StartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4104612763344245887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116841517688007950}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.509, z: 0.386}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3509899845013368328}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1043254815927393359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1153,7 @@ Transform:
   - {fileID: 3390312012696579724}
   - {fileID: 2439662612816695435}
   - {fileID: 8315436996673749972}
+  - {fileID: 4104612763344245887}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1213,6 +1245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa427a1b5a91b240ab16eb83ecf39cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followPathPValue: 0
+  AtackConstPValue: 0
   slowModifier: 0
   SheepSO: {fileID: 11400000, guid: af1f5be467f27e949ab11486d3fcf77a, type: 2}
   animator: {fileID: 4561270017644918810}
@@ -1225,14 +1259,13 @@ MonoBehaviour:
   destructibleLayer:
     serializedVersion: 2
     m_Bits: 8192
+  AttackRange: 5
+  enemySheeps:
+    serializedVersion: 2
+    m_Bits: 512
+  ScanFrontSheepStartPoint: {fileID: 4104612763344245887}
+  distanceScan: 1.2
   slowEffectIsRunning: 0
-  floorLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  rig: 0
-  floor:
-    serializedVersion: 2
-    m_Bits: 0
   nothing: 0
 --- !u!1 &4147867716890178003
 GameObject:

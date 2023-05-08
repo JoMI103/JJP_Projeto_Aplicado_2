@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Baloon Sheep
   description: Fly
-  baseHealth: 100
-  baseDmg: 10
+  baseHealth: 500
+  baseDmg: 90
   baseSpeed: 2
   AttackRange: 2
-  AttackSpeed: 2
+  AttackSpeed: 4
   prefab: {fileID: 2674627736697064640, guid: 482953fd867b389449a711fb285864ab, type: 3}

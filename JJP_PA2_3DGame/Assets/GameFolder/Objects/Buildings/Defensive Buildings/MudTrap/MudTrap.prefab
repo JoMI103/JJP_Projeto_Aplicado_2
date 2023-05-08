@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 7960799799118049021}
   - component: {fileID: 5615367714049776034}
   - component: {fileID: 7960799799118049020}
+  - component: {fileID: 5678399633336167161}
   m_Layer: 14
   m_Name: MudTrap
   m_TagString: Untagged
@@ -157,7 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8bcd55737a39c4fb0cd5d5abf3ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingTypeSO: {fileID: 0}
+  buildingTypeSO: {fileID: 11400000, guid: 864b63e15ad5a5b45a61f009cfa7dd25, type: 2}
+  dir: 0
   healthBar: {fileID: 7018655630104498716}
 --- !u!114 &5615367714049776034
 MonoBehaviour:
@@ -196,6 +198,19 @@ MonoBehaviour:
   debugGizmos: 1
   slowEffect: 0.25
   effectTime: 1
+--- !u!135 &5678399633336167161
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4448688954014668965}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 1, y: 0, z: 1}
 --- !u!1 &4481219467952296597
 GameObject:
   m_ObjectHideFlags: 0

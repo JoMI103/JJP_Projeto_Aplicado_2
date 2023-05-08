@@ -18,5 +18,5 @@ MonoBehaviour:
   baseDmg: 5
   baseSpeed: 2
   AttackRange: 1.5
-  AttackSpeed: 0.2
+  AttackSpeed: 1
   prefab: {fileID: 6920888894953836684, guid: a0aba678447eba74ba37d087d27599cf, type: 3}

@@ -12,7 +12,7 @@ NavMeshProjectSettings:
   - name: Jump
     cost: 2
   - name: SpikeTrap
-    cost: 4
+    cost: 20
   - name: Wall
     cost: 16
   - name: MudTrap

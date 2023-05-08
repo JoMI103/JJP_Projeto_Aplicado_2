@@ -191,6 +191,37 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!1 &5329792102018283106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2004993926042143413}
+  m_Layer: 9
+  m_Name: StartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2004993926042143413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5329792102018283106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.616, z: 0.186}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6920888894953836684}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5866295122842204038
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +335,7 @@ Transform:
   - {fileID: 4863727970187392566}
   - {fileID: 9039204018017545700}
   - {fileID: 7526049964659206327}
+  - {fileID: 2004993926042143413}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -382,6 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d1064816064f8418802aae0268318e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followPathPValue: 50
+  AtackConstPValue: 20
   slowModifier: 0
   SheepSO: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
   animator: {fileID: 5700681680104096884}
@@ -394,14 +428,13 @@ MonoBehaviour:
   destructibleLayer:
     serializedVersion: 2
     m_Bits: 8192
+  AttackRange: 1
+  enemySheeps:
+    serializedVersion: 2
+    m_Bits: 512
+  ScanFrontSheepStartPoint: {fileID: 2004993926042143413}
+  distanceScan: 1.2
   slowEffectIsRunning: 0
-  floorLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  rig: 0
-  floor:
-    serializedVersion: 2
-    m_Bits: 0
   nothing: 0
   p: {fileID: 0}
   o: {fileID: 0}

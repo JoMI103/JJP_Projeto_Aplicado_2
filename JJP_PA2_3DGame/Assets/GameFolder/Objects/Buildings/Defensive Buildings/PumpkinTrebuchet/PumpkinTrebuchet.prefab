@@ -605,6 +605,7 @@ GameObject:
   - component: {fileID: 434092437950945971}
   - component: {fileID: 7290796505505383193}
   - component: {fileID: 2253668646822314953}
+  - component: {fileID: 1913181349513371571}
   m_Layer: 14
   m_Name: PumpkinTrebuchet
   m_TagString: Untagged
@@ -642,7 +643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8bcd55737a39c4fb0cd5d5abf3ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingTypeSO: {fileID: 0}
+  buildingTypeSO: {fileID: 11400000, guid: 276b7616f1052ca409f310444922dc04, type: 2}
   dir: 0
   healthBar: {fileID: 656122446100686418}
 --- !u!114 &7290796505505383193
@@ -697,6 +698,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!135 &1913181349513371571
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6179131034935684331}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 3, y: 0, z: 3}
 --- !u!1 &6218407469262956251
 GameObject:
   m_ObjectHideFlags: 0

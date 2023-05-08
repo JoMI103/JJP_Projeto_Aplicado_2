@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 2739139612133032295}
   - component: {fileID: 762496472309267926}
   - component: {fileID: 1141172389115417111}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,6 +626,7 @@ GameObject:
   - component: {fileID: 458954436670571225}
   - component: {fileID: 4621616371393971048}
   - component: {fileID: 826656145114076382}
+  - component: {fileID: 5704935591578546689}
   m_Layer: 14
   m_Name: GiantBoxingGlove
   m_TagString: Untagged
@@ -665,7 +666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8bcd55737a39c4fb0cd5d5abf3ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingTypeSO: {fileID: 0}
+  buildingTypeSO: {fileID: 11400000, guid: e0a579c399bb0e547baa3305d91d6cfe, type: 2}
   dir: 0
   healthBar: {fileID: 2878453643829698400}
 --- !u!114 &458954436670571225
@@ -724,6 +725,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: []
+--- !u!135 &5704935591578546689
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874905216755357145}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 2, y: 0, z: 2}
 --- !u!1 &8895049578735702343
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,8 @@ public class WaveSpawner : MonoBehaviour
         while (enemiesSpawned < numberOfEnemies)
         {
             Transform sheep = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-            sheep.GetComponent<SetTargetSheep>().setStaticTarget(target);
+            //sheep.GetComponent<SetTargetSheep>().setStaticTarget(target);
+            //sheep.GetComponent<EnemySheep>().setPlayerAndObjective(playerTarget, waveTarget);
             enemiesSpawned++;
             yield return new WaitForSeconds(spawnInterval);
         }

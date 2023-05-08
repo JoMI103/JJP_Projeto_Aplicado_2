@@ -26,13 +26,46 @@ public class EnemySheep : MonoBehaviour
     //sheep's current state so the script can stop it without using StopAllCoroutines
     private IEnumerator currentState;
   
+    [Header("NavmeshPiorityValues")]
+    [SerializeField] private int followPathPValue;
+    [SerializeField] private int AtackConstPValue;
+
+  
     public void changeCurrentState(state state) {
         switch (state) {
-            case state.Idle: if(currentState != null) StopCoroutine(currentState); currentState = Idle(); StartCoroutine(currentState); break;
-            case state.FollowPath: if (currentState != null) StopCoroutine(currentState); currentState = FollowPath(); StartCoroutine(currentState); break;
-            case state.AtackConstruction: if (currentState != null) StopCoroutine(currentState); currentState = AtackConstruction(); StartCoroutine(currentState); break;
-            case state.AtackPlayer: if (currentState != null) StopCoroutine(currentState); currentState = AtackPlayer(); StartCoroutine(currentState); break;
-            default: if (currentState != null) StopCoroutine(currentState); currentState = Idle(); StartCoroutine(currentState); break;
+            case state.Idle: 
+                if(currentState != null) StopCoroutine(currentState); 
+                currentState = Idle(); StartCoroutine(currentState); 
+                navMeshAgent.avoidancePriority = followPathPValue;
+              
+            break;
+           
+            case state.FollowPath: 
+                if (currentState != null) StopCoroutine(currentState); 
+                currentState = FollowPath(); StartCoroutine(currentState); 
+                navMeshAgent.avoidancePriority = followPathPValue;
+            
+            break;
+           
+            case state.AtackConstruction: 
+                if (currentState != null) StopCoroutine(currentState); 
+                currentState = AtackConstruction(); StartCoroutine(currentState); 
+                navMeshAgent.avoidancePriority = AtackConstPValue;
+            break;
+           
+            case state.AtackPlayer: 
+                if (currentState != null) StopCoroutine(currentState);
+                currentState = AtackPlayer(); StartCoroutine(currentState); 
+                navMeshAgent.avoidancePriority = followPathPValue;
+           
+            break;
+            
+            default: 
+                if (currentState != null) StopCoroutine(currentState); 
+                currentState = Idle(); StartCoroutine(currentState); 
+                navMeshAgent.avoidancePriority = followPathPValue;
+              
+            break;
         }
     }
     #endregion
@@ -72,7 +105,7 @@ public class EnemySheep : MonoBehaviour
     public void setPlayerAndObjective(Transform player, Transform finalObjective) {
         playerPosition = player; 
         ObjectivePosition = finalObjective;
-        setTargetSheep.setStaticTarget(ObjectivePosition);
+        if(navMeshAgent.enabled) setTargetSheep.setStaticTarget(ObjectivePosition);
     }
 
     public void Awake()
@@ -118,6 +151,9 @@ public class EnemySheep : MonoBehaviour
     #endregion
 
     #region sheepStates
+    
+
+
 
     //nao faz nada
     protected virtual IEnumerator Idle() {
@@ -133,24 +169,35 @@ public class EnemySheep : MonoBehaviour
     protected virtual IEnumerator FollowPath() {
         
         if(!navMeshAgent.enabled) navMeshAgent.enabled = true;     
+        navMeshAgent.speed = speed;
+        
         setTargetSheep.setStaticTarget(ObjectivePosition); 
         yield return null;
 
         MoveAnim();
         while (true) {
+            checkFrontSheepSpeed();
             if(navMeshAgent.enabled) checkPathObstacles();
-       
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
+         
         }
 
     }
 
     protected virtual IEnumerator AtackConstruction() {
 
+        if(!navMeshAgent.enabled) navMeshAgent.enabled = true;     
+        navMeshAgent.speed = 0;
+        navMeshAgent.velocity = Vector3.zero;
         WaitForSeconds wait = new WaitForSeconds(AttackSpeed); yield return wait;
 
         while (targetedBuilding != null){
             AttackAndAtackAnim(); 
+            if(checkNewPath()){
+                 targetedBuilding.onDestroyEvent -= whenTargetDestroy;      
+                whenTargetDestroy();
+            }
+    
             yield return wait;
         }
     }
@@ -161,46 +208,63 @@ public class EnemySheep : MonoBehaviour
     }
 
     #endregion
+    
+    
+    
+   
 
     #region checkObstacles
 
-    protected PlacedBuilding targetedBuilding;
     [Header("Layers that the sheep can destroy")]
     [SerializeField] protected LayerMask destructibleLayer;
-
+    protected PlacedBuilding targetedBuilding;
+    [SerializeField] private float AttackRange;
+    private Vector3 hitpos; //only debug
+    
     protected virtual void checkPathObstacles()
     {
-      //  navMeshAgent.SamplePathPosition(-1, AttackRange, out NavMeshHit navHit);
-        //        if (navHit.mask == 16) 
+        navMeshAgent.SamplePathPosition(-1, AttackRange, out NavMeshHit navHit);
+        hitpos = navHit.position;
         
-        /*Vector3[] corners = new Vector3[2];
-     
-        int length = navMeshAgent.path.GetCornersNonAlloc(corners);
-
-        if (navMeshAgent.hasPath) Debug.Log("simtem");
-
-        if (length > 1)
-        {  
-            if (Physics.Raycast(corners[0], (corners[1] - corners[0]).normalized, out RaycastHit hit,
-                AttackRange, destructibleLayer))
+        if (navHit.mask == 16) {
+             if (Physics.Raycast(navHit.position,Vector3.up, out RaycastHit hit, 1, destructibleLayer))
             {       
                 if (hit.collider.TryGetComponent<PlacedBuilding>(out PlacedBuilding destructible))
-                {
-                   
-
+                {   
                     if(targetedBuilding == destructible)
                     {
-                        targetedBuilding.onDestroyEvent += whenTargetDestroy;
-                        //LastPath = navMeshAgent.path;
-                        setTargetSheep.setStaticTarget(targetedBuilding.transform);
+                        targetedBuilding.onDestroyEvent += whenTargetDestroy;  
                         changeCurrentState(state.AtackConstruction);
                     }
                     targetedBuilding = destructible;
                 }
             }
-
+            
         }
-        */
+    }
+    
+    [SerializeField] private LayerMask enemySheeps;
+    [SerializeField] private Transform ScanFrontSheepStartPoint;
+    [SerializeField] private float distanceScan;
+    
+    protected void checkFrontSheepSpeed(){
+         Physics.Raycast(ScanFrontSheepStartPoint.position,transform.forward ,out RaycastHit hit ,distanceScan,enemySheeps);
+        if(hit.collider == null) {navMeshAgent.speed = speed; return;}         
+        navMeshAgent.speed = speed * (Vector3.Distance(this.transform.position, hit.collider.transform.position) / distanceScan);
+    }
+    
+    
+    private Vector3 navhit2;
+    
+    private bool checkNewPath(){
+    
+ 
+        navMeshAgent.SamplePathPosition(-1, AttackRange , out NavMeshHit navHit);
+        navhit2 = navHit.position;
+     
+        if(navHit.mask == 16) return false;
+   
+        return true;
     }
 
     protected virtual void whenTargetDestroy()
@@ -212,7 +276,7 @@ public class EnemySheep : MonoBehaviour
 
     #region someCalculations
     //gets the future point for slower projectiles
-    public Vector3 getFuturePoint(int precision ,float time)
+    public virtual Vector3 getFuturePoint(int precision ,float time)
     {
         if (navMeshAgent.path.corners.Length < precision) precision = navMeshAgent.path.corners.Length;
         Vector3[] corners = new Vector3[precision];
@@ -296,8 +360,17 @@ public class EnemySheep : MonoBehaviour
     #region gizmos
 #if UNITY_EDITOR
 
-    private void OnDrawGizmos() {
+    protected virtual void OnDrawGizmosSelected() {
+        Gizmos.DrawLine(hitpos,hitpos+Vector3.up);
+        Gizmos.color = Color.red;
+        if(navhit2 != Vector3.zero){
+            
+        Gizmos.DrawSphere(transform.position + transform.forward * AttackRange, 0.2f);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(navhit2 , 0.2f);
         
+        }
+        Gizmos.DrawLine(ScanFrontSheepStartPoint.position, ScanFrontSheepStartPoint.position + transform.forward * distanceScan);
     }
 
 #endif

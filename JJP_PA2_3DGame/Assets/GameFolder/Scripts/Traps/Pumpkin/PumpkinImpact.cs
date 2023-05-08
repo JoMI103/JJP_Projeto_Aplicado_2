@@ -11,8 +11,13 @@ public class PumpkinImpact : MonoBehaviour
         this.explosionDmg = explosionDmg;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    bool dont;
+
+    private void OnTriggerEnter(Collider other)
     {
+        if(dont) return;
+        dont = true;
+
         var surroundingObjects = Physics.OverlapSphere(transform.position,explosionRadius);
 
         foreach(var surroundingObject in surroundingObjects)
