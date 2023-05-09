@@ -9,7 +9,9 @@ public class PlayerMotor : MonoBehaviour
     private Vector3 playerVelocity;
     private bool isGrounded;
     
-    [SerializeField] private float speed = 5.0f;
+    
+    [SerializeField] private float maxSpeed;
+    private float speed = 5.0f;
     [SerializeField] private float gravity = -9.8f;
     [SerializeField] private float jumpHeight = 3f;
 
@@ -17,6 +19,7 @@ public class PlayerMotor : MonoBehaviour
     private bool sprinting;
 
     void Start() {
+        speed = maxSpeed;
         inputManager = GetComponent<InputManager>();
 
         //sets de actions 
@@ -65,7 +68,7 @@ public class PlayerMotor : MonoBehaviour
     public void Sprint()
     {
         sprinting = !sprinting;
-        if(sprinting)  speed = 8f; else speed= 5f;
+        if(sprinting)  speed = maxSpeed; else speed= maxSpeed * 0.7f;
     }
 }
 
