@@ -10,28 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bd35dac8d14a0449a467cdf80f17ce6, type: 3}
-  m_Name: Lvl 1 Wave 2
+  m_Name: Lvl 1 Wave 5
   m_EditorClassIdentifier: 
-  waveNumber: 2
+  waveNumber: 0
   wavePart:
   - cooldown: 0
     typeEnemies:
-    - enemySheep: {fileID: 11400000, guid: af1f5be467f27e949ab11486d3fcf77a, type: 2}
-      Quantity: 20
+    - enemySheep: {fileID: 11400000, guid: 79f284f4a43e2de48ae689fb9dcc47aa, type: 2}
+      Quantity: 1
       dificultyMod: 0
     - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
-      Quantity: 30
+      Quantity: 20
       dificultyMod: 0
-  - cooldown: 30
+  - cooldown: 20
     typeEnemies:
-    - enemySheep: {fileID: 11400000, guid: 267a06a236c9aa44e9fb3201280f01b3, type: 2}
-      Quantity: 15
+    - enemySheep: {fileID: 11400000, guid: 79f284f4a43e2de48ae689fb9dcc47aa, type: 2}
+      Quantity: 1
       dificultyMod: 0
-  - cooldown: 35
+    - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
+      Quantity: 20
+      dificultyMod: 0
+  - cooldown: 25
     typeEnemies:
-    - enemySheep: {fileID: 11400000, guid: af1f5be467f27e949ab11486d3fcf77a, type: 2}
-      Quantity: 30
+    - enemySheep: {fileID: 11400000, guid: 79f284f4a43e2de48ae689fb9dcc47aa, type: 2}
+      Quantity: 1
       dificultyMod: 0
-    - enemySheep: {fileID: 11400000, guid: a142eb96328161940bbde2c4ff7cd336, type: 2}
+    - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
       Quantity: 20
       dificultyMod: 0
