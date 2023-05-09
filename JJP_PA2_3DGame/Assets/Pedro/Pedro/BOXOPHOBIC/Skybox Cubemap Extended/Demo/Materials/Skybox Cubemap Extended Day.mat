@@ -90,10 +90,10 @@ Material:
     - _DstBlend: 0
     - _EnableFog: 1
     - _EnableRotation: 1
-    - _Exposure: 1
+    - _Exposure: 0.6
     - _Float0: 0
     - _FogFill: 0
-    - _FogHeight: 0.7
+    - _FogHeight: 0.261
     - _FogIntensity: 0
     - _FogMessage: 0
     - _FogPosition: 0
@@ -122,5 +122,5 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Tex_HDR: {r: 1, g: 1, b: 0, a: 0}
-    - _TintColor: {r: 0.49461418, g: 0.5, b: 0.2707547, a: 1}
+    - _TintColor: {r: 0.7972375, g: 0.8113208, b: 0.4240299, a: 1}
   m_BuildTextureStacks: []
