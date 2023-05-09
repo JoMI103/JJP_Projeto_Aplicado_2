@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a0f92f4621b2d445a709b80e1b5b8d1, type: 3}
-  m_Name: ShotGun
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
-  itemNameString: ShotGun
-  image: {fileID: 21300000, guid: 0f3b4aa3f16cbec4c9552b3b3d795e38, type: 3}
+  itemNameString: Shotgun
+  image: {fileID: 21300000, guid: 996944dae66ce044891ce41f6a2dc2d9, type: 3}
   handId: 4
   itemType: 2
   building: {fileID: 0}
