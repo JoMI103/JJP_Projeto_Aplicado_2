@@ -22,7 +22,7 @@ MonoBehaviour:
   aps: 2
   woodCost: 600
   metalCost: 600
-  eletronicsCost: 5
+  eletronicsCost: 10
   Ground: 1
   Wall: 1
   Roof: 0

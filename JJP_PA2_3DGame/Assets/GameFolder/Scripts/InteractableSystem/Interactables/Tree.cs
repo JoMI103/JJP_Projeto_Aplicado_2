@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tree : Interactable
 {
     [SerializeField] int hitTimes = 10; int hitNow;
-    
+    [SerializeField] int quantity;
     [SerializeField] private float respawnTime = 120.0f; 
 
 
@@ -29,7 +29,7 @@ public class Tree : Interactable
             if(hitNow >= hitTimes){
                 hitNow = 0;
                 PlayerStats p = PlayerGO.GetComponent<PlayerStats>();
-                p.woodQuantity = p.woodQuantity + 2000;
+                p.woodQuantity = p.woodQuantity + quantity;
                 treeCollider.enabled = false;
                 Transform childTransform = transform.GetChild(0); 
                 childTransform.gameObject.SetActive(false);

@@ -23,9 +23,9 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
-        woodQuantity = 200000;
-        metalQuantity = 200000;
-        eletronicsQuantity = 10000;
+        woodQuantity = 10000;
+        metalQuantity = 5000;
+        eletronicsQuantity = 100;
         hPPoints = maxHP;
     }
 

@@ -21,7 +21,7 @@ MonoBehaviour:
   damage: 1000
   aps: 0
   woodCost: 500
-  metalCost: 500
+  metalCost: 300
   eletronicsCost: 0
   Ground: 1
   Wall: 0
