@@ -23,7 +23,7 @@ public class Tree : Interactable
 
         if(!treeCollider.enabled) return;
 
-        if(ph.activeItem.handId == 7)
+        if(ph.activeItem.handId == 5)
         {
             hitNow++;
             if(hitNow >= hitTimes){
