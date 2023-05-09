@@ -17,7 +17,7 @@ public class GunSystem : MonoBehaviour
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
 
-    public GameObject muzzleFlash, bulletHoleGraphic;
+    //public GameObject muzzleFlash, bulletHoleGraphic;
     public TextMeshProUGUI text;
 
     private void Awake()
@@ -67,8 +67,8 @@ public class GunSystem : MonoBehaviour
                 damageAux.BaseHit(damage);
             
 
-            Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
-            Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+            //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
+            //Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
 
            
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hand
   m_EditorClassIdentifier: 
   itemNameString: Hand
-  image: {fileID: 21300000, guid: 0f061b4bd0275bc4eb60f2af31e7375a, type: 3}
+  image: {fileID: 21300000, guid: dfc13d783e7fb414ca486c34d365cbbf, type: 3}
   handId: 0
   itemType: 1
   building: {fileID: 0}
