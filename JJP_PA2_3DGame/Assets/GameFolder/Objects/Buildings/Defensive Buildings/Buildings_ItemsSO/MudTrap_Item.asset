@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MudTrap_Item
   m_EditorClassIdentifier: 
   itemNameString: MudTrap
-  image: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
+  image: {fileID: 21300000, guid: 4e515408e2c011c46ad44f213b72959c, type: 3}
   handId: 1
-  bluePrint: 1
+  itemType: 0
   building: {fileID: 11400000, guid: 864b63e15ad5a5b45a61f009cfa7dd25, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wall_Item
   m_EditorClassIdentifier: 
   itemNameString: wall
-  image: {fileID: 21300000, guid: c519e7846d39e2247967fac3a53dbbc8, type: 3}
+  image: {fileID: 21300000, guid: 729a90044d70a694b97c2e7e5b9e650e, type: 3}
   handId: 1
-  bluePrint: 1
+  itemType: 0
   building: {fileID: 11400000, guid: 3286e76007bcbd64b83e4faee4b80851, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PumpkinTrebuchet_Item
   m_EditorClassIdentifier: 
   itemNameString: PumpkinTrebuchet
-  image: {fileID: 21300000, guid: a04ecc9d5e12d5d449077414eb86635e, type: 3}
+  image: {fileID: 21300000, guid: a8d957686b9f0bc418af24adc0b49abf, type: 3}
   handId: 1
-  bluePrint: 1
+  itemType: 0
   building: {fileID: 11400000, guid: 276b7616f1052ca409f310444922dc04, type: 2}
