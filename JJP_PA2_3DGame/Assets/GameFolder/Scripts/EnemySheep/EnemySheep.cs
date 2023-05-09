@@ -272,6 +272,7 @@ public class EnemySheep : MonoBehaviour
     //gets the future point for slower projectiles
     public virtual Vector3 getFuturePoint(int precision ,float time)
     {
+
         if (navMeshAgent.path.corners.Length < precision) precision = navMeshAgent.path.corners.Length;
         Vector3[] corners = new Vector3[precision];
         navMeshAgent.path.GetCornersNonAlloc(corners);
@@ -286,8 +287,9 @@ public class EnemySheep : MonoBehaviour
             }
         }
 
-        return corners[corners.Length - 1]; 
-
+        if(corners.Length >0)
+            return corners[corners.Length - 1]; 
+        return transform.position;
     }
     #endregion
 

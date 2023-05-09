@@ -663,7 +663,7 @@ MonoBehaviour:
   outScanRadius: 35
   sheepLayer:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 512
   sheeps: []
   currentAttackMode: 1
   pumpkimPrefab: {fileID: 3799121306775159738, guid: e88630561044adf41aaef32310b26c82, type: 3}

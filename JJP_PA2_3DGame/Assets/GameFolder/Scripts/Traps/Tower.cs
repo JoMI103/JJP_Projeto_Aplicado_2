@@ -25,7 +25,7 @@ public class Tower : DefenseBuilding
         {
             GetSurroundSheeps();
 
-            if (sheeps.Count == 0) { yield return waitForNextScan; Debug.Log("Waiting for next scan"); }
+            if (sheeps.Count == 0) { yield return waitForNextScan; }//Debug.Log("Waiting for next scan"); 
             else
             {
                 switch (currentAttackMode)

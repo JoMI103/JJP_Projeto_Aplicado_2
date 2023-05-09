@@ -64,7 +64,6 @@ public class WaveSystem : MonoBehaviour
                 }while(currentWaveData.getWaveQuantity() > 0 );
                 }
             }
-            Debug.Log(123);
 
             
             yield return new WaitForSeconds(1);

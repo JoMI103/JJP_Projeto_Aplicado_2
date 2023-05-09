@@ -92,7 +92,7 @@ public class PlayerBuild : MonoBehaviour
     }
     
     [SerializeField] private LayerMask terrainElementsMask;
-    [SerializeField] private string tag;
+    [SerializeField] private string tagName;
       
     private List<Vector3> pos = new List<Vector3>();
 
@@ -145,7 +145,7 @@ public class PlayerBuild : MonoBehaviour
             
             foreach(var surroundingObject in surroundingObjects)
             {
-                if(surroundingObject.tag == tag) surroundingObject.gameObject.SetActive(false);
+                if(surroundingObject.tag == tagName) surroundingObject.gameObject.SetActive(false);
             }
         
         }

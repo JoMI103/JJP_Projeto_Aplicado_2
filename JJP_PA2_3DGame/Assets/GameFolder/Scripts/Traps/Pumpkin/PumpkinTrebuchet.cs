@@ -70,7 +70,6 @@ public class PumpkinTrebuchet : Tower
     protected override void shootAnimation()
     {
         if (targetSheep == null) return;
-
         targetPos = targetSheep.getFuturePoint(5, calculateTime(targetSheep.transform.position) + 0.4f);
         animator.Play(attackAnimationName);
     }
