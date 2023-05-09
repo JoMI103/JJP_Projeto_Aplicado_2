@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Contaminated Sheep
   description: 
-  baseHealth: 100
+  baseHealth: 400
   baseDmg: 15
-  baseSpeed: 2
+  baseSpeed: 4.5
   AttackRange: 5
   AttackSpeed: 1.5
   weigth: 1.2

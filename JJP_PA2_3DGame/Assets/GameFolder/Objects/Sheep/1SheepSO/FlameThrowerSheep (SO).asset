@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: FlameThrowerSheep
   description: 
-  baseHealth: 100
+  baseHealth: 400
   baseDmg: 10
-  baseSpeed: 2
+  baseSpeed: 4
   AttackRange: 2
   AttackSpeed: 2
   weigth: 1.2

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: MitosisSheep
   description: Divides into to standard Sheeps
-  baseHealth: 200
+  baseHealth: 800
   baseDmg: 100
-  baseSpeed: 2
+  baseSpeed: 3.5
   AttackRange: 1.5
   AttackSpeed: 1
   weigth: 1.2

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Fly
   baseHealth: 500
   baseDmg: 90
-  baseSpeed: 2
+  baseSpeed: 3
   AttackRange: 2
   AttackSpeed: 4
   weigth: 1
