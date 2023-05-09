@@ -10,7 +10,7 @@ public class WaveSystem : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints;
     private enemyWaveData currentWaveData;
     
-    private int currentWave, currentPartWave;
+   [HideInInspector] public int currentWave, currentPartWave;
     
     
     public int startWave;
@@ -26,13 +26,25 @@ public class WaveSystem : MonoBehaviour
         if(nextWave()) StartCoroutine(SpawnNextWave());
     }
 
+    [SerializeField] private waveUI waveui;
+    
+    [HideInInspector] public int nSheeps;
+
+
+    private void Update() {
+        nSheeps =  waveSheepsFolder.childCount;
+    }
+
     IEnumerator SpawnNextWave()
     {
+        int currentWaveCooldown = LevelWaves.waves[currentWave].cooldown;
+        waveui.StartCount(currentWaveCooldown);
         yield return new WaitForSeconds(LevelWaves.waves[currentWave].cooldown);
         
         waveEnd = false;
         currentPartWave = -1;
         StartCoroutine(Wave());
+       
         do {
             yield return new WaitForSeconds(1f);
         } while (!waveEnd);
@@ -43,7 +55,7 @@ public class WaveSystem : MonoBehaviour
     }
     
     
-    bool waveEnd ,spawnWaveEnded;
+    [HideInInspector]public bool waveEnd = true ,spawnWaveEnded;
   
     
     IEnumerator Wave()

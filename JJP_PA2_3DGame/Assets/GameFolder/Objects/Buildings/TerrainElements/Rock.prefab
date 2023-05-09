@@ -178,5 +178,5 @@ MonoBehaviour:
   useEvents: 0
   promptMessage: Mine
   hitTimes: 4
-  respawnTime: 180
+  respawnTime: 1
   quantity: 500

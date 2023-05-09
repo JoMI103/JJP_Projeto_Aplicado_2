@@ -7,7 +7,7 @@ public class Tower : DefenseBuilding
     [Space(10)] [Header("TowerAtributes")] [Space(10)]
 
     [SerializeField] protected attackMode currentAttackMode;
-    public enum attackMode { closest, First, Last, Strongest }
+    public enum attackMode { closest, First, Last, Strongest, random }
 
     protected EnemySheep targetSheep;
     protected Vector3 targetPos;
@@ -34,6 +34,7 @@ public class Tower : DefenseBuilding
                     case attackMode.First: attackFirst(); break;
                     case attackMode.Last: attackLast(); break;
                     case attackMode.Strongest: attackStrongest(); break;
+                    case attackMode.random: attackRandom(); break;
                 }
 
                 if(targetSheep != null)
@@ -101,6 +102,13 @@ public class Tower : DefenseBuilding
     protected virtual void attackStrongest()
     {
 
+    }
+    
+     protected virtual void attackRandom()
+    {
+        if(sheeps.Count >0){
+            targetSheep = sheeps[Random.Range(0,sheeps.Count)]; targetPos = targetSheep.transform.position;
+        }
     }
     
 

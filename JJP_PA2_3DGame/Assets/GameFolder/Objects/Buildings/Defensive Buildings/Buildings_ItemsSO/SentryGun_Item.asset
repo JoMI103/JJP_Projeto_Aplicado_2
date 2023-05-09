@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0f92f4621b2d445a709b80e1b5b8d1, type: 3}
+  m_Name: SentryGun_Item
+  m_EditorClassIdentifier: 
+  itemNameString: SentryGun
+  image: {fileID: 0}
+  handId: 1
+  itemType: 0
+  building: {fileID: 11400000, guid: 42e31d48c5d19b6438b2207bbde66e57, type: 2}
