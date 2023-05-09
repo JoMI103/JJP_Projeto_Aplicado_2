@@ -59,8 +59,9 @@ public class SentryGun : Tower
                 float timeFocus = aps * 6;
                 while(targetSheep != null && timeFocus > 0){
                      shootAnimation();
-                     timeFocus -= Time.deltaTime;
-                     yield return aps;
+                     timeFocus -= aps;
+                     Debug.Log("time" +  timeFocus);
+                     yield return new WaitForSeconds( aps);
                 }
                 
             }
