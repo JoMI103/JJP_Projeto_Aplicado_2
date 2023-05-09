@@ -8,7 +8,17 @@ using UnityEngine;
 public class EnemyWaveSO : ScriptableObject
 {
     public int waveNumber;
-    public List<WaveEnemy> typeEnemies;
+    public List<WavePart> wavePart;
+
+    [Serializable]
+    public struct WavePart
+    {
+        public int cooldown;
+        public List<WaveEnemy> typeEnemies;
+        
+
+    }
+
 
     [Serializable]
     public struct WaveEnemy

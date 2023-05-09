@@ -9,7 +9,10 @@ public class WaveSystem : MonoBehaviour
     [SerializeField] private Transform waveTarget,playerTarget;
     [SerializeField] private List<Transform> spawnPoints;
     private enemyWaveData currentWaveData;
-    private int currentWave;
+    
+    private int currentWave, currentPartWave;
+    
+    
     public int startWave;
     [SerializeField]private LevelWavesSO LevelWaves;
  
@@ -26,18 +29,51 @@ public class WaveSystem : MonoBehaviour
     IEnumerator SpawnNextWave()
     {
         yield return new WaitForSeconds(LevelWaves.waves[currentWave].cooldown);
-
+        
+        waveEnd = false;
+        currentPartWave = -1;
+        StartCoroutine(Wave());
+        do {
+            yield return new WaitForSeconds(1f);
+        } while (!waveEnd);
+        
+        Debug.LogError("fdspa");
+        spawnWaveEnded = false;
+        if (nextWave()) StartCoroutine(SpawnNextWave());
+    }
+    
+    
+    bool waveEnd ,spawnWaveEnded;
+  
+    
+    IEnumerator Wave()
+    {
+       
         do
         {
-  
-            SpawnPartWave();
-            yield return new WaitForSeconds(2f);
-        } while (currentWaveData.getWaveQuantity() > 0 || waveSheepsFolder.childCount > 0);
+            if(!spawnWaveEnded){
+                spawnWaveEnded = getPartWaveEnemies();
+                if(!spawnWaveEnded){
+                    
+                yield return new WaitForSeconds(currentWaveData.partWaveCooldown);
+                
+                do{
+                SpawnPartWave();
+                yield return new WaitForSeconds(1.5f);
+            
+                }while(currentWaveData.getWaveQuantity() > 0 );
+                }
+            }
+            Debug.Log(123);
 
-
-        if (nextWave())
-            StartCoroutine(SpawnNextWave());
+            
+            yield return new WaitForSeconds(1);
+            
+        } while (!spawnWaveEnded || waveSheepsFolder.childCount > 0);
+        waveEnd = true;
     }
+    
+    
 
 
     private void SpawnPartWave()
@@ -65,24 +101,45 @@ public class WaveSystem : MonoBehaviour
         currentWave++;
         if(currentWave < LevelWaves.waves.Count)
         {
-            currentWaveData.typeEnemies = new List<WaveEnemy>();
-            foreach(WaveEnemy w in LevelWaves.waves[currentWave].waveSO?.typeEnemies)
-            {
-                if(w.Quantity > 0) currentWaveData.typeEnemies.Add(w);
-            }
-           
-
             return true;
         }
         return false;
     }
-
+    
+    private bool getPartWaveEnemies(){
+        currentPartWave++;
+      
+        
+        if(currentPartWave >= LevelWaves.waves[currentWave].waveSO.wavePart.Count) return true;
+        
+        if(currentPartWave < -1){currentPartWave = 0; Debug.LogWarning("Alguma coisa de errado nao esta certa");}
+        
+        currentWaveData.typeEnemies = new List<WaveEnemy>();
+        currentWaveData.partWaveCooldown = LevelWaves.waves[currentWave].waveSO.wavePart[currentPartWave].cooldown;
+        
+        foreach(WaveEnemy w in LevelWaves.waves[currentWave].waveSO.wavePart[currentPartWave].typeEnemies)
+        {
+                if(w.Quantity > 0) currentWaveData.typeEnemies.Add(w);
+        }
+            
+        return false;
+    }
+    
+ /*
+  currentWaveData.typeEnemies = new List<WaveEnemy>();
+            foreach(WaveEnemy w in LevelWaves.waves[currentWave].waveSO?.typeEnemies)
+            {
+                if(w.Quantity > 0) currentWaveData.typeEnemies.Add(w);
+            }
+ */
 
 }
 
 public class enemyWaveData
 {
     public List<WaveEnemy> typeEnemies;
+
+    public int partWaveCooldown;
 
     public int getWaveQuantity()
     {
