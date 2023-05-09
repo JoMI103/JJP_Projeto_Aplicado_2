@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Tree : Interactable
 {
-    float hp = 100;
+    [SerializeField] int hitTimes = 10; int hitNow;
+    
+    [SerializeField] private float respawnTime = 120.0f; 
 
-    private float respawnTime = 5.0f; 
-    private Vector3 initialPosition;
 
     private Collider treeCollider;
 
     private void Start()
     {
-        initialPosition = transform.position;
+
         treeCollider = GetComponent<Collider>();
     }
 
@@ -21,15 +21,15 @@ public class Tree : Interactable
     {
         PlayerHand ph = PlayerGO.GetComponent<PlayerHand>();
 
+        if(!treeCollider.enabled) return;
+
         if(ph.activeItem.handId == 7)
         {
-            PlayerStats p = PlayerGO.GetComponent<PlayerStats>();
-            p.woodQuantity = p.woodQuantity + 200;
-            
-            hp -= 20;
-
-            if (hp <= 0)
-            {
+            hitNow++;
+            if(hitNow >= hitTimes){
+                hitNow = 0;
+                PlayerStats p = PlayerGO.GetComponent<PlayerStats>();
+                p.woodQuantity = p.woodQuantity + 2000;
                 treeCollider.enabled = false;
                 Transform childTransform = transform.GetChild(0); 
                 childTransform.gameObject.SetActive(false);
@@ -39,14 +39,11 @@ public class Tree : Interactable
     }
 
     private void Respawn()
-    {
-        hp = 100;
-        transform.position = initialPosition; 
+    { 
         gameObject.SetActive(true);
         Transform childTransform = transform.GetChild(0);
         childTransform.gameObject.SetActive(true);
         treeCollider.enabled = true;
-        Instantiate(Resources.Load<GameObject>("pCylinder1"), transform);
         
     }
 }

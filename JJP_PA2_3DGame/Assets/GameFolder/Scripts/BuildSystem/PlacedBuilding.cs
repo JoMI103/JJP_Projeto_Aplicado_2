@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlacedBuilding : MonoBehaviour{
 
     public static PlacedBuilding Create(Transform grid,Vector3 worldPosition, Vector2Int origin, BuildingTypeSO.Dir dir, BuildingTypeSO buildingTypeSO) {
+        
         Transform placedBuildingTransform = 
             Instantiate(buildingTypeSO.prefab,
             worldPosition,

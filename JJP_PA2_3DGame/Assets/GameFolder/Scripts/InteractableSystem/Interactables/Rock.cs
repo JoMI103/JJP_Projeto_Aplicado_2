@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Rock : Interactable
 {    
-    float hp = 100;
-
-    private float respawnTime = 5.0f;
-    private Vector3 initialPosition;
-
+     [SerializeField] int hitTimes = 2; int hitNow;
+    
+    [SerializeField] private float respawnTime = 120.0f; 
+    
+    [SerializeField] private int quantity;
+    
     private Collider rockCollider;
 
     private void Start()
     {
-        initialPosition = transform.position;
         rockCollider = GetComponent<Collider>();
     }
 
@@ -21,17 +21,17 @@ public class Rock : Interactable
     {
         PlayerHand ph = PlayerGO.GetComponent<PlayerHand>();
 
-        if (ph.activeItem.handId == 6)
+        if(!rockCollider.enabled) return;
+       if(ph.activeItem.handId == 6)
         {
-            PlayerStats p = PlayerGO.GetComponent<PlayerStats>();
-            p.metalQuantity = p.metalQuantity + 250;
-            
-            hp -= 25; 
-
-            if (hp <= 0)
-            {
+            hitNow++;
+            if(hitNow >= hitTimes){
+                hitNow = 0;
+                PlayerStats p = PlayerGO.GetComponent<PlayerStats>();
+                 p.metalQuantity = p.metalQuantity + quantity;
                 rockCollider.enabled = false;
-                gameObject.SetActive(false);
+                Transform childTransform = transform.GetChild(0); 
+                childTransform.gameObject.SetActive(false);
                 Invoke(nameof(Respawn), respawnTime);
             }
         }
@@ -39,9 +39,8 @@ public class Rock : Interactable
 
     private void Respawn()
     {
-        hp = 100;
-        transform.position = initialPosition;
-        gameObject.SetActive(true);
+        Transform childTransform = transform.GetChild(0);
+        childTransform.gameObject.SetActive(true);
         rockCollider.enabled = true;
     }
 }

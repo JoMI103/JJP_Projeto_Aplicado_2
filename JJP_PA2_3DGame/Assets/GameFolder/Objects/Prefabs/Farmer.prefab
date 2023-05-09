@@ -5035,6 +5035,10 @@ MonoBehaviour:
   mouseCurrentGridPos: {x: 0, y: 0, z: 0}
   hitting: 0
   currentGrid: {fileID: 0}
+  terrainElementsMask:
+    serializedVersion: 2
+    m_Bits: 65
+  tag: TerrainElement
 --- !u!114 &1080911682170443340
 MonoBehaviour:
   m_ObjectHideFlags: 0

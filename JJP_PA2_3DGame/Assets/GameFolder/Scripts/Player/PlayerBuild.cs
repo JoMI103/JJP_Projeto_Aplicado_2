@@ -90,32 +90,38 @@ public class PlayerBuild : MonoBehaviour
         }
           
     }
+    
+    [SerializeField] private LayerMask terrainElementsMask;
+    [SerializeField] private string tag;
+      
+    private List<Vector3> pos = new List<Vector3>();
 
     private void PlaceBuilding() {
 
-        if (buildingTypeSO == null || currentGrid == null) return;
-
-        if (!playerStats.checkResourcesQuantity(buildingTypeSO)) { Debug.LogWarning("No Resources "); return; }
-
-        switch (currentGrid.directionBuild)
+        if (buildingTypeSO == null || currentGrid == null) return; //tem construcao e grid 
+        
+        if (!playerStats.checkResourcesQuantity(buildingTypeSO)) { Debug.LogWarning("No Resources "); return; } // tem recursos
+        
+        //esta na grid certa
+        switch (currentGrid.directionBuild) 
         {
             case LocalGrid.normal.Ground: if (!buildingTypeSO.Ground) return; break;
             case LocalGrid.normal.Wall: if (!buildingTypeSO.Wall) return; break;
             case LocalGrid.normal.Roof: if (!buildingTypeSO.Roof) return; break;  
-
         }
 
         
-        currentGrid.grid.GetXZ(mouseCurrentGridPos, out int x, out int z);
+        currentGrid.grid.GetXZ(mouseCurrentGridPos, out int x, out int z); //gets grid x and y
         Vector2Int placedObjectOrigin = new Vector2Int(x, z);
         placedObjectOrigin = currentGrid.grid.ValidateGridPosition(placedObjectOrigin);
 
-
+        //checks if has space on the grid
         List<Vector2Int> gridPositionList = buildingTypeSO.GetGridPosition(new Vector2Int(x, z), dir);
         bool canBuild = true;
 
         foreach (Vector2Int position in gridPositionList)
         {
+         
             GridObject gridObject = currentGrid.grid.GetGridObject(position.x, position.y);
             if (gridObject == null || !gridObject.canBuild())
             { 
@@ -125,24 +131,46 @@ public class PlayerBuild : MonoBehaviour
   
         if (!canBuild) { Debug.LogWarning("Can't build in " + x + ", " + z); return; }
 
-
-       
-        playerStats.useResources(buildingTypeSO);
+      
+        
+        pos = new List<Vector3>();
+        //cleanTerrainElements
+        foreach (Vector2Int position in gridPositionList)
+        {
+            
+            Vector3 v = currentGrid.transform.TransformPoint( currentGrid.grid.GetLocalPosition(position.x + 0.5f, position.y+0.5f)) ;
+            pos.Add(v);
+            var surroundingObjects =Physics.OverlapBox(v ,
+            new Vector3(1,5,1),currentGrid.transform.rotation,terrainElementsMask);
+            
+            foreach(var surroundingObject in surroundingObjects)
+            {
+                if(surroundingObject.tag == tag) surroundingObject.gameObject.SetActive(false);
+            }
+        
+        }
+        
+      
+        playerStats.useResources(buildingTypeSO);  //use resources
         
 
 
-        Vector2Int rotationOffset = buildingTypeSO.GetRotationOffSet(dir);
+        Vector2Int rotationOffset = buildingTypeSO.GetRotationOffSet(dir); //get build rotation
         
 
         Vector3 buildingWorldPosition = currentGrid.grid.GetLocalPosition(placedObjectOrigin.x + rotationOffset.x, 
-            placedObjectOrigin.y + rotationOffset.y);
+            placedObjectOrigin.y + rotationOffset.y); //gets build world position
 
-        PlacedBuilding placedBuilding =  PlacedBuilding.Create(currentGrid.transform,buildingWorldPosition, placedObjectOrigin, dir, buildingTypeSO);
+        PlacedBuilding placedBuilding =  PlacedBuilding.Create(currentGrid.transform,buildingWorldPosition, placedObjectOrigin, dir, buildingTypeSO); //creates/instatiates the building
 
-        foreach (Vector2Int gridPosition in gridPositionList)
+        foreach (Vector2Int gridPosition in gridPositionList) //adds the building to the gris tiles
         {
             currentGrid.grid.GetGridObject(gridPosition.x, gridPosition.y).SetPlacedBuilding(placedBuilding);
         }
+        
+        
+
+        
 
         OnObjectPlaced?.Invoke(this, EventArgs.Empty);
         OnObjectPlacedRemoved?.Invoke(this, EventArgs.Empty);
@@ -227,4 +255,16 @@ public class PlayerBuild : MonoBehaviour
         else
             return new Vector3(1, 1, 1);
     }
+
+    private void OnDrawGizmos() {
+        
+       Gizmos.color = Color.green;
+        foreach (Vector3 p in pos)
+        {
+            Gizmos.DrawSphere(p,0.5f);
+           // Gizmos.DrawWireCube(p,new Vector3(2,10,2));
+        }
+        
+    }
+
 }

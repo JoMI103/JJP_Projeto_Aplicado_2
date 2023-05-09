@@ -97,6 +97,10 @@ public class GridXZ<TGridObject>
     {
         return new Vector3(x, 0, z) * cellSize ;
     }
+    public Vector3 GetLocalPosition(float x, float z)
+    {
+        return new Vector3(x, 0, z) * cellSize ;
+    }
 
     public void GetXZ(Vector3 LocalPosition, out int x, out int z)
     {

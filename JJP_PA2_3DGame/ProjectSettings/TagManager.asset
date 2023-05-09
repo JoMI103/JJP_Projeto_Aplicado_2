@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - ItemManager
   - Tree
+  - TerrainElement
   layers:
   - Default
   - TransparentFX
