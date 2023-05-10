@@ -366,6 +366,8 @@ public class EnemySheep : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public void death() { this.deathWithNoEffect(); }
+
     #endregion
 
     #region gizmos

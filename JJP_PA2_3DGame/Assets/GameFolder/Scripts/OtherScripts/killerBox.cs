@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class killerBox : MonoBehaviour
 {
+    [SerializeField] private int hp = 20;
+
+    [SerializeField] GameObject g;
+    [SerializeField] private TextMeshProUGUI hpCount;
+
     [SerializeField] private int currentDmg;
     [SerializeField] private BoxCollider boxCollider;
     [SerializeField] private LayerMask giveDmg;
     // Start is called before the first frame update
     void Start()
     {
-        
+        hpCount.text = " HP:" + hp.ToString();
     }
 
     // Update is called once per frame
@@ -19,12 +26,23 @@ public class killerBox : MonoBehaviour
         RaycastHit[] raycastHit = Physics.BoxCastAll(boxCollider.center + transform.position - new Vector3(0,transform.localScale.y/2,0),transform.localScale / 2, Vector3.up, Quaternion.identity, 0, giveDmg);
 
         foreach (RaycastHit hit in raycastHit)
-        { 
-            Hittable damageAux = hit.collider.GetComponent<Hittable>();
-            if (damageAux != null)
+        {
+            EnemySheep sheep = hit.collider.GetComponent<EnemySheep>();
+            if (sheep != null)
             {
-              
-                damageAux.BaseHit(currentDmg);
+
+                if (hp > 1)
+                {
+
+                    sheep.death();
+                    hp--;
+                    hpCount.text = " HP:" + hp.ToString();
+                }
+                else
+                {
+                    g.SetActive(true);
+
+                }
             }
         }
         
@@ -39,4 +57,12 @@ public class killerBox : MonoBehaviour
 
         Gizmos.DrawCube(boxCollider.center + transform.position, transform.localScale);
     }
+
+    public void restart()
+    {
+
+        SceneManager.LoadScene("Game", LoadSceneMode.Single);
+
+    }
+
 }
