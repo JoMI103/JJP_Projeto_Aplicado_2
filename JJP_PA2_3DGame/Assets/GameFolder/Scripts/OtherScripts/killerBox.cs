@@ -25,7 +25,7 @@ public class killerBox : MonoBehaviour
     {
         RaycastHit[] raycastHit = Physics.BoxCastAll(boxCollider.center + transform.position - new Vector3(0,transform.localScale.y/2,0),transform.localScale / 2, Vector3.up, Quaternion.identity, 0, giveDmg);
 
-        if(hp< 1) if (Input.GetKeyDown(KeyCode.B)) { restart(); }
+        if (Input.GetKeyDown(KeyCode.B)) { restart(); }
 
         foreach (RaycastHit hit in raycastHit)
         {
@@ -63,7 +63,7 @@ public class killerBox : MonoBehaviour
 
     public void restart()
     {
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        SceneManager.LoadScene( "Menu");
         
 
     }
