@@ -34,6 +34,7 @@ public class MitosisEnemy : EnemySheep
     protected override void AttackAndAtackAnim()
     {
         animator.Play("Attack");
+        base.addResources();
         targetedBuilding.takeDamge(sheepAttackDmg);
     }
 }

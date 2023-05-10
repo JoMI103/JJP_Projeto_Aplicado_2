@@ -25,6 +25,8 @@ public class killerBox : MonoBehaviour
     {
         RaycastHit[] raycastHit = Physics.BoxCastAll(boxCollider.center + transform.position - new Vector3(0,transform.localScale.y/2,0),transform.localScale / 2, Vector3.up, Quaternion.identity, 0, giveDmg);
 
+        if(hp< 1) if (Input.GetKeyDown(KeyCode.B)) { restart(); }
+
         foreach (RaycastHit hit in raycastHit)
         {
             EnemySheep sheep = hit.collider.GetComponent<EnemySheep>();
@@ -40,6 +42,7 @@ public class killerBox : MonoBehaviour
                 }
                 else
                 {
+                    
                     g.SetActive(true);
 
                 }
@@ -60,8 +63,8 @@ public class killerBox : MonoBehaviour
 
     public void restart()
     {
-
-        SceneManager.LoadScene("Game", LoadSceneMode.Single);
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        
 
     }
 

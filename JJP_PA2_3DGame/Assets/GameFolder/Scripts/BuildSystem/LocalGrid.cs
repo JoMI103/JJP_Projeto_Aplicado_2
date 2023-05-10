@@ -49,15 +49,6 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
 
     [SerializeField]bool Invert , startCanBuild;
 
-    [ContextMenu("TurOffDebug")]
-    public void off(){
-        debug = false;
-    }
-    
-    [ContextMenu("TurOnDebug")]
-    public void on(){
-        debug = true;
-    }
     
     [ContextMenu("TurOffGridPanel")]
     public void offpanel(){
@@ -71,6 +62,20 @@ public class LocalGrid : MonoBehaviour, ISerializationCallbackReceiver
 
 
 #if UNITY_EDITOR
+
+    [ContextMenu("TurOffDebug")]
+    public void off()
+    {
+        debug = false;
+    }
+
+    [ContextMenu("TurOnDebug")]
+    public void on()
+    {
+        debug = true;
+    }
+
+
     [ContextMenu("SetUp")]
     public void setUp()
     {

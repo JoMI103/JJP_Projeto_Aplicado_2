@@ -17,10 +17,10 @@ MonoBehaviour:
   - cooldown: 0
     typeEnemies:
     - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
-      Quantity: 50
+      Quantity: 20
       dificultyMod: 0
     - enemySheep: {fileID: 11400000, guid: 267a06a236c9aa44e9fb3201280f01b3, type: 2}
-      Quantity: 20
+      Quantity: 10
       dificultyMod: 0
   - cooldown: 30
     typeEnemies:
@@ -28,5 +28,5 @@ MonoBehaviour:
       Quantity: 10
       dificultyMod: 0
     - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
-      Quantity: 25
+      Quantity: 15
       dificultyMod: 0

@@ -357,16 +357,27 @@ public class EnemySheep : MonoBehaviour
     protected virtual void OnDeath()
     {
         if (targetedBuilding != null) targetedBuilding.onDestroyEvent -= whenTargetDestroy;
+        addResources();
         Destroy(this.gameObject);
     }
 
     protected void deathWithNoEffect()
     {
         if (targetedBuilding != null) targetedBuilding.onDestroyEvent -= whenTargetDestroy;
+        addResources();
         Destroy(this.gameObject);
+
     }
 
     public void death() { this.deathWithNoEffect(); }
+
+    protected void addResources()
+    {
+        playerPosition.GetComponent<PlayerStats>().eletronicsQuantity += 2;
+        playerPosition.GetComponent<PlayerStats>().metalQuantity += 20;
+
+    }
+
 
     #endregion
 
