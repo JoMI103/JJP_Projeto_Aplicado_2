@@ -4,171 +4,161 @@ using UnityEngine;
 
 public class BaloonSheep : EnemySheep
 {
-    [Space(10)]
-    [Header("Baloon Sheep Atributes")]
-    [Space(10)]
-
-    public bool nothing;
-
+    [Space(10)] [Header("Baloon Sheep Atributes")] [Space(10)]
     
+    [SerializeField] Transform aeroBombaPrefab;   [SerializeField] Transform aeroBombaSpawn;
+    private Vector3 currentTargetPos;  private bool stopMoving; private float distanceToObjective;
 
-    protected override void MoveAnim()
-    {
-        animator.Play("Walk");
-    }
+#region SheepStates
+    
+    protected override void MoveAnim() {  stopMoving = false; animator.Play("Walk"); }
 
-    private Vector3 currentTarget;
+    private const float checkUpdateYposTime = 0.5f;
 
     protected override IEnumerator FollowPath()
     {
-        if(navMeshAgent.enabled) navMeshAgent.enabled = false;     
-        currentTarget = ObjectivePosition.position;
-            
+        if(navMeshAgent.enabled) navMeshAgent.enabled = false; 
+        currentTargetPos = ObjectivePosition.position;   
+        yPercent = 1;
+        MoveAnim();
+        
         yield return null;
 
-        MoveAnim();
         float time = 0;
         while (true) {
-            
             if(time > 10){
-                if( scanBuildings()){
+                if(scanBuildings()){ //if it finds a construction, it assigns the event and changes the state
                     targetedBuilding.onDestroyEvent += whenTargetDestroy;  
                     changeCurrentState(state.AtackConstruction);
                 }
                 time = 0;
             }
-            
-            time += 0.5f;
-           fixYPos();
-            yield return new WaitForSeconds(0.5f);
+            //checks the distance to the ground to get the target Y Pos
+            time += checkUpdateYposTime; fixYPos();
+            yield return new WaitForSeconds(checkUpdateYposTime);
         }
     }
     
+    
+    [SerializeField] private LayerMask buildingMask; [SerializeField] private float scanRadius;
+    
+    private bool scanBuildings(){
+        
+        if( Random.Range(0,3) != 1) return false; //3 = 50% of searching for a building, 4 = 33.3% and so on
+        
+        //gets the objects in a sphere area and adds them to a list when they have a placebuilding component
+        var surroundingObjects = Physics.OverlapSphere(transform.position +transform.forward * (scanRadius),scanRadius,buildingMask);
+        List<PlacedBuilding> buildings = new List<PlacedBuilding>();
+
+        foreach(var surroundingObject in surroundingObjects) {           
+            PlacedBuilding building = surroundingObject.GetComponent<PlacedBuilding>();
+            if (building != null) { buildings.Add(building); }
+        }
+        
+        //if list has element gets a random element
+        if(buildings.Count != 0){
+            targetedBuilding = buildings[Random.Range(0,buildings.Count)]; return true;
+        } return false; 
+    }
+    
     protected override IEnumerator AtackConstruction(){
+         yPercent = 0.75f;
+        
         if(navMeshAgent.enabled) navMeshAgent.enabled = false;     
-        currentTarget = targetedBuilding.GetComponent<SphereCollider>().center + targetedBuilding.transform.position;
-        yield return null;
+        currentTargetPos = targetedBuilding.GetComponent<SphereCollider>().center + targetedBuilding.transform.position;
         
         MoveAnim();
+        yield return null;
         
+        //when timeStack is greater than attack Speed a bomb is dropped to affect all constructions around
         float timeAtack = 0;
         while(true){
-            
             timeAtack += Time.deltaTime;
-            if(distanceObjective < 1f){
+            if(distanceToObjective < 1f){
                 if(timeAtack > sheepAttackSpeed){
                     AttackAndAtackAnim();
                     timeAtack = 0;
                 }
-            }else{
-                MoveAnim();
-                stopMoving = false;
             }
+            else MoveAnim();
+            
             yield return null;
         }
     }
-    
-    [SerializeField] Transform aeroBombaPrefab;
-    [SerializeField] Transform aeroBombaSpawn;
-    
-    protected override void AttackAndAtackAnim()
-    {
+
+    protected override void AttackAndAtackAnim() {
         //Animator atack
-       aeroBomba aeroBombaS =  Instantiate(aeroBombaPrefab,aeroBombaSpawn.position, Quaternion.identity).GetComponent<aeroBomba>();
-       aeroBombaS.SetExplosionStats(sheepAttackDmg,buildingMask);
-       stopMoving = true;
-       sheepRigidBody.velocity = Vector3.zero;
+        stopMoving = true;
+        sheepRigidBody.velocity = Vector3.zero;
+        Instantiate(aeroBombaPrefab,aeroBombaSpawn.position, Quaternion.identity).GetComponent<aeroBomba>().SetExplosionStats(sheepAttackDmg,buildingMask);
     }
     
-    protected override void whenTargetDestroy()
-    {
-        changeCurrentState(state.FollowPath);
-    }
+    protected override void whenTargetDestroy() { changeCurrentState(state.FollowPath); }
     
-    [SerializeField] private LayerMask buildingMask;
-    [SerializeField] private float scanRadius;
+#endregion
     
-    private bool scanBuildings(){
-        if( Random.Range(0,3) != 1) return false;
-        var surroundingObjects = Physics.OverlapSphere(transform.position +transform.forward * (scanRadius),scanRadius,buildingMask);
+    
+#region SheepMovement
 
-        List<PlacedBuilding> buildings = new List<PlacedBuilding>();
-
-        foreach(var surroundingObject in surroundingObjects)
-        {
-           
-            PlacedBuilding building = surroundingObject.GetComponent<PlacedBuilding>();
-            if (building != null) {buildings.Add(building); }
-        }
-        
-        if(buildings.Count != 0){
-            targetedBuilding = buildings[Random.Range(0,buildings.Count)];
-            return true;
-        }
-        
-        return false;
-    }
-    
-    [SerializeField] private float aMax;
-    private float distanceObjective;
-    private bool stopMoving;
+    [SerializeField] private float aMax; 
     
     private void FixedUpdate() {
-        Vector3 p1 = transform.position;
-        p1.y = currentTarget.y; 
-        
-        distanceObjective = Vector3.Distance(p1,currentTarget);
+        //current position with the targetPosition.y and gets the distance
+        Vector3 _currentPos = transform.position; 
+        _currentPos.y = currentTargetPos.y;      
+        distanceToObjective = Vector3.Distance(_currentPos,currentTargetPos);
         
         if(stopMoving) return;
 
-        if(distanceObjective > 0.1f){
-            Vector3 vIdeal = currentTarget - p1;
+        if(distanceToObjective > 0.5f) {
+            Vector3 vIdeal = currentTargetPos - _currentPos;
             vIdeal = vIdeal.normalized * sheepSpeed;
             Vector3 acceleration = (vIdeal - sheepRigidBody.velocity).normalized * aMax;
+            
             sheepRigidBody.AddForce(acceleration, ForceMode.Force);
+            
             if(sheepRigidBody.velocity == Vector3.zero) transform.forward = Vector3.forward; else
-            transform.forward = sheepRigidBody.velocity.normalized;
+            transform.forward = Vector3.Lerp(transform.forward,sheepRigidBody.velocity.normalized,Time.deltaTime);
         }
     }
 
-    
     [SerializeField] private LayerMask ground;
-    [SerializeField] private float yOffSet;
+    [SerializeField] private float yOffSet;  private float yPos, yPercent = 1;
     
-    private float yPos;
     
     private void fixYPos(){
         Physics.Raycast(transform.position + new Vector3(0,100,0) + sheepRigidBody.velocity.normalized * 5,Vector3.down,out RaycastHit hit,200, ground);
         
-        if(hit.collider != null){
-            
-             yPos = hit.point.y+ yOffSet;
+        if(hit.collider != null) { 
+             yPos = hit.point.y+ yOffSet * yPercent;
         }
     }
     
      private void LateUpdate() {
-
-        Vector3 pos = transform.position;
-        transform.position = new Vector3(pos.x,Mathf.Lerp(pos.y,yPos,Time.deltaTime ),pos.z);
+        Vector3 _currentPos = transform.position;
+        transform.position = new Vector3(_currentPos.x, Mathf.Lerp(_currentPos.y,yPos,Time.deltaTime ), _currentPos.z);
     }
+    
+#endregion
 
 
-    protected override void OnCollisionEnter(Collision other)
-    {
+    #region OtherMethods
+        public override Vector3 getFuturePoint(int precision ,float time){
+            return transform.position + sheepRigidBody.velocity  * time * Random.Range(0.7f,1f);
+        }
+        
+    #endregion
 
+    #region Gizmos
+   
+    #if UNITY_EDITOR
+ 
+    protected override void OnDrawGizmosSelected() {
+        base.OnDrawGizmosSelected();
+        Gizmos.DrawWireSphere(transform.position +transform.forward * (scanRadius),scanRadius);
     }
-
-    public override Vector3 getFuturePoint(int precision ,float time){
-        return transform.position + sheepRigidBody.velocity  * time * Random.Range(0.6f,1.1f);
-    }
-
-#if UNITY_EDITOR
-
-protected override void OnDrawGizmosSelected() {
-    base.OnDrawGizmosSelected();
-    Gizmos.DrawWireSphere(transform.position +transform.forward * (scanRadius),scanRadius);
-}
-
-#endif
-
+ 
+    #endif
+ 
+    #endregion
 }

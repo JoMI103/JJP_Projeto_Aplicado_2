@@ -93,8 +93,6 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1536
-  muzzleFlash: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
-  bulletHoleGraphic: {fileID: 1000011190285628, guid: beb3acff7ab73944fb8f470f24d74ed3, type: 3}
   text: {fileID: 1708893230}
 --- !u!1 &487795928
 GameObject:
@@ -1137,8 +1135,6 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 3584
-  muzzleFlash: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
-  bulletHoleGraphic: {fileID: 1000011190285628, guid: beb3acff7ab73944fb8f470f24d74ed3, type: 3}
   text: {fileID: 1708893230}
 --- !u!1 &2035715514
 GameObject:
@@ -1847,8 +1843,6 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1536
-  muzzleFlash: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
-  bulletHoleGraphic: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
   text: {fileID: 1708893230}
 --- !u!1 &1285818866042387853
 GameObject:
@@ -4943,7 +4937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61bd48d1c95668478524ba2a9c67734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  maxSpeed: 10
   gravity: -9.8
   jumpHeight: 1
 --- !u!114 &8020492676777367016
@@ -5038,7 +5032,7 @@ MonoBehaviour:
   terrainElementsMask:
     serializedVersion: 2
     m_Bits: 65
-  tag: TerrainElement
+  tagName: 
 --- !u!114 &1080911682170443340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5584,8 +5578,6 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1536
-  muzzleFlash: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
-  bulletHoleGraphic: {fileID: 1000011190285628, guid: beb3acff7ab73944fb8f470f24d74ed3, type: 3}
   text: {fileID: 1708893230}
 --- !u!1 &7562134851354461617
 GameObject:

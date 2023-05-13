@@ -121,7 +121,7 @@ public class EnemySheep : MonoBehaviour
         changeCurrentState(state.FollowPath);
     }
 
-    public void Update() {
+    protected virtual void Update() {
         //#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.I)) changeCurrentState(state.Idle);
         if (Input.GetKeyDown(KeyCode.O)) changeCurrentState(state.FollowPath);
