@@ -10,11 +10,9 @@ public class StandardSheep : EnemySheep
 
     public bool nothing;
 
-    public Transform p,o;
     protected override void Start()
     {
-        if(p != null && o != null)
-        setPlayerAndObjective(p,o);
+  
         base.Start();
     }
 

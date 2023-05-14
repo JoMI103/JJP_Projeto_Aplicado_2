@@ -153,10 +153,6 @@ public class BaloonSheep : EnemySheep
    
     #if UNITY_EDITOR
  
-    protected override void OnDrawGizmosSelected() {
-        base.OnDrawGizmosSelected();
-        Gizmos.DrawWireSphere(transform.position +transform.forward * (scanRadius),scanRadius);
-    }
  
     #endif
  

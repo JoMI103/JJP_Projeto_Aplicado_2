@@ -91,32 +91,28 @@ public class EnemySheep : MonoBehaviour
     #endregion
 
     [Space(10)][Header("Enemy Sheep Atributes")][Space(10)]
-    [SerializeField] EnemySheepTypeSO SheepSO;
-    [SerializeField] protected Animator animator;
-    [SerializeField] private UIHealthBar healthBar;
-
-    protected SetTargetSheep setTargetSheep;
-    protected NavMeshAgent navMeshAgent;
-    protected Rigidbody sheepRigidBody;
+    
+    [SerializeField] EnemySheepTypeSO SheepSO;   [SerializeField] protected Animator animator; [SerializeField] private UIHealthBar healthBar;
+    protected SetTargetSheep setTargetSheep;  protected NavMeshAgent navMeshAgent;  protected Rigidbody sheepRigidBody;
     protected Transform playerPosition, ObjectivePosition;
+    
+    protected Vector3 currentTargetPos;
 
-    public void setPlayerAndObjective(Transform player, Transform finalObjective) {
-        playerPosition = player; 
-        ObjectivePosition = finalObjective;
-        if(navMeshAgent.enabled) setTargetSheep.setStaticTarget(ObjectivePosition);
-    }
-
-    public void Awake()
-    {
+    public void Awake() {
         setStats();
         navMeshAgent = GetComponent<NavMeshAgent>();
         setTargetSheep = GetComponent<SetTargetSheep>();
         sheepRigidBody = GetComponent<Rigidbody>();
+        navMeshAgent.stoppingDistance = SheepSO.AttackRange;
+    }
+    
+    public void setPlayerAndObjective(Transform player, Transform finalObjective) {
+        playerPosition = player; 
+        ObjectivePosition = finalObjective;
+       // if(navMeshAgent.enabled) setTargetSheep.setStaticTarget(ObjectivePosition.position);
     }
 
-    protected virtual void Start()
-    {
-        //addDificultyLevel();
+    protected virtual void Start() {
         navMeshAgent.speed = sheepSpeed;
         changeCurrentState(state.FollowPath);
     }
@@ -124,13 +120,13 @@ public class EnemySheep : MonoBehaviour
     protected virtual void Update() {
         //#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.I)) changeCurrentState(state.Idle);
-        if (Input.GetKeyDown(KeyCode.O)) changeCurrentState(state.FollowPath);
+        if (Input.GetKeyDown(KeyCode.O)){  currentTargetPos = ObjectivePosition.position; changeCurrentState(state.FollowPath);  }
         if (Input.GetKeyDown(KeyCode.Alpha0)) deathWithNoEffect();
         //#endif
         if (sheepHealthPoints <= 0) OnDeath();
     }
 
-    #region Fix Orientation
+#region Fix Orientation
 
     [Header("Sets the sheep normal to the floor normal")]
     [SerializeField] protected Transform model;
@@ -146,129 +142,156 @@ public class EnemySheep : MonoBehaviour
             model.rotation = Quaternion.Lerp(model.rotation, Quaternion.FromToRotation(model.up, hit.normal) * model.rotation, Time.deltaTime * 5);
     }
 
-    #endregion
+#endregion
 
-    #region sheepStates
-    
-
-
-
-    //nao faz nada
+#region Idle
     protected virtual IEnumerator Idle() {
         navMeshAgent.enabled= false;
-
-        while (true)
-        {
+  
+        while (true) {
             yield return new WaitForSeconds(1f);
         }   
     }
-
-    //a ovelha segue o caminho at� o objetivo
+  
+#endregion
+    
+#region FollowPath
     protected virtual IEnumerator FollowPath() {
         
         if(!navMeshAgent.enabled) navMeshAgent.enabled = true;     
         navMeshAgent.speed = sheepSpeed;
         
-        setTargetSheep.setStaticTarget(ObjectivePosition); 
+        yield return null;
+        
+        setTargetSheep.setStaticTarget(ObjectivePosition.position); 
+        
+        if(navMeshAgent.pathStatus == NavMeshPathStatus.PathPartial){
+                GetNewPath(false);
+                
+                Debug.Log("bom dia caraleo" +  currentTargetPos);
+        }
+    
+    
+         navMeshAgent.velocity = Vector3.zero;
         yield return null;
 
         MoveAnim();
         while (true) {
-            checkFrontSheepSpeed();
-            if(navMeshAgent.enabled) checkPathObstacles();
-            yield return new WaitForSeconds(0.05f);
+       
+            //checkFrontSheepSpeed();
+            //if(navMeshAgent.enabled) checkPathObstacles();
+            
+            if(targetedBuilding != null){
+                if(navMeshAgent.remainingDistance  < navMeshAgent.stoppingDistance){
+                   changeCurrentState(state.AtackConstruction);  
+                }        
+            }
+            
+            if(navMeshAgent.pathStatus == NavMeshPathStatus.PathPartial){
+                GetNewPath(false);
+                setTargetSheep.setStaticTarget(currentTargetPos); 
+            }else
+            if(targetedBuilding == null){
+                GetNewPath(false);
+                setTargetSheep.setStaticTarget(currentTargetPos); 
+            }
+
+            
+
+            yield return new WaitForSeconds(0.3f);
          
         }
 
     }
+#endregion
 
+#region AttackConstruction
     protected virtual IEnumerator AtackConstruction() {
 
         if(!navMeshAgent.enabled) navMeshAgent.enabled = true;     
-        navMeshAgent.speed = 0;
-        navMeshAgent.velocity = Vector3.zero;
-        WaitForSeconds wait = new WaitForSeconds(sheepAttackSpeed); yield return wait;
+        navMeshAgent.speed = 0; navMeshAgent.velocity = Vector3.zero;
+        WaitForSeconds wait = new WaitForSeconds(sheepAttackSpeed); 
 
-        while (targetedBuilding != null){
-            AttackAndAtackAnim(); 
-            /*if(checkNewPath()){
-                 targetedBuilding.onDestroyEvent -= whenTargetDestroy;      
-                whenTargetDestroy();
+        while (true){
+           
+            if(targetedBuilding != null){
+                AttackAndAtackAnim(); 
+                 GetNewPath(true);
             }
-    */
             yield return wait;
         }
     }
-    protected virtual void MoveAnim() { }
-    protected virtual void AttackAndAtackAnim() { targetedBuilding.takeDamge(sheepAttackDmg); }
+    
+#endregion
+    
+#region AtackPlayer
     protected virtual IEnumerator AtackPlayer() {
         yield return null;
     }
-
-    #endregion
-
-    #region checkObstacles
-
-    [Header("Layers that the sheep can destroy")]
-    [SerializeField] protected LayerMask destructibleLayer;
-    protected PlacedBuilding targetedBuilding;
-    [SerializeField] private float AttackRange;
-    private Vector3 hitpos; //only debug
+#endregion
     
-    protected virtual void checkPathObstacles()
-    {
-        navMeshAgent.SamplePathPosition(-1, AttackRange, out NavMeshHit navHit);
-        hitpos = navHit.position;
-        
-        if (navHit.mask == 16) {
-             if (Physics.Raycast(navHit.position,Vector3.up, out RaycastHit hit, 1, destructibleLayer))
-            {       
-                if (hit.collider.TryGetComponent<PlacedBuilding>(out PlacedBuilding destructible))
-                {   
-                    if(targetedBuilding == destructible)
-                    {
-                        targetedBuilding.onDestroyEvent += whenTargetDestroy;  
-                        changeCurrentState(state.AtackConstruction);
-                    }
-                    targetedBuilding = destructible;
-                }
-            }
-            
-        }
-    }
-    
-    [SerializeField] private LayerMask enemySheeps;
-    [SerializeField] private Transform ScanFrontSheepStartPoint;
-    [SerializeField] private float distanceScan;
-    
-    protected void checkFrontSheepSpeed(){
-         Physics.Raycast(ScanFrontSheepStartPoint.position,transform.forward ,out RaycastHit hit ,distanceScan,enemySheeps);
-        if(hit.collider == null) {navMeshAgent.speed = sheepSpeed; return;}         
-        navMeshAgent.speed = sheepSpeed * (Vector3.Distance(this.transform.position, hit.collider.transform.position) / distanceScan);
-    }
-    
-    
-    private Vector3 navhit2;
-    
-    private bool checkNewPath(){
-    
- 
-        navMeshAgent.SamplePathPosition(-1, AttackRange , out NavMeshHit navHit);
-        navhit2 = navHit.position;
-     
-        if(navHit.mask == 16) return false;
+    protected virtual void MoveAnim() { }
+    protected virtual void AttackAndAtackAnim() { targetedBuilding.takeDamge(sheepAttackDmg); }
    
-        return true;
-    }
-
     protected virtual void whenTargetDestroy()
     {
-        changeCurrentState(state.FollowPath);
+
+        if(currentState.ToString() != FollowPath().ToString()) {changeCurrentState(state.FollowPath); Debug.LogError("trocou"); }
+        targetedBuilding = null;
     }
 
-    #endregion
+#region checkPathForObstacles
+        
+    [Header("Layers that the sheep can destroy")]
+    [SerializeField] protected LayerMask buildingTypeFocus;
+    protected PlacedBuilding targetedBuilding;
+ 
+        
+    private void GetNewPath(bool atacking){
+        NavMeshPath pathAllAreas = new NavMeshPath();  int n = NavMesh.AllAreas;
+        
+        currentTargetPos = ObjectivePosition.position;
+        NavMesh.CalculatePath(transform.position, ObjectivePosition.position ,n, pathAllAreas);
+        
+        for (int i = 0; i < pathAllAreas.corners.Length - 1; i++)
+             if(Physics.Linecast(pathAllAreas.corners[i], pathAllAreas.corners[i + 1],out RaycastHit hit ,buildingTypeFocus)){
+                if (hit.collider.TryGetComponent<PlacedBuilding>(out PlacedBuilding currentTargetBuilding)) {  
+                    currentTargetPos =  hit.point;
+                    
+                    if(targetedBuilding == null){
+                        targetedBuilding = currentTargetBuilding;
+                        targetedBuilding.onDestroyEvent += whenTargetDestroy;  
+                      
+                    }else
+                    if(atacking && targetedBuilding != currentTargetBuilding){                    
+                        targetedBuilding.onDestroyEvent -= whenTargetDestroy;
+                        targetedBuilding = currentTargetBuilding;
+                        targetedBuilding.onDestroyEvent += whenTargetDestroy;  
+                        changeCurrentState(state.FollowPath);
+                    }
+                }            
+                return;        
+             }
+    }
+        
+     
+        
+#endregion
 
-    #region someCalculations
+#region checkFrontSheepToReduceVelocity
+        [SerializeField] Transform ScanFrontSheepStartPoint; [SerializeField] float distanceScan;
+        [SerializeField] LayerMask enemySheeps;
+        
+        protected void checkFrontSheepSpeed(){
+             Physics.Raycast(ScanFrontSheepStartPoint.position,transform.forward ,out RaycastHit hit ,distanceScan,enemySheeps);
+            if(hit.collider == null) {navMeshAgent.speed = sheepSpeed; return;}         
+            navMeshAgent.speed = sheepSpeed * (Vector3.Distance(this.transform.position, hit.collider.transform.position) / distanceScan);
+        }
+    
+    
+#endregion
+    
+#region FuturePoint
     //gets the future point for slower projectiles
     public virtual Vector3 getFuturePoint(int precision ,float time)
     {
@@ -291,9 +314,10 @@ public class EnemySheep : MonoBehaviour
             return corners[corners.Length - 1]; 
         return transform.position;
     }
-    #endregion
+    
+#endregion
 
-    #region Effects
+#region Effects
 
     [HideInInspector] public bool slowEffectIsRunning = false;
     public IEnumerator currentSlowEffect;
@@ -339,14 +363,14 @@ public class EnemySheep : MonoBehaviour
             navMeshAgent.enabled = true;
              sheepRigidBody.isKinematic= true;
              knockBacking = false;
-            changeCurrentState(state.FollowPath);
+            currentTargetPos =  ObjectivePosition.position; changeCurrentState(state.FollowPath);
         }
     }
     
 
-    #endregion
+#endregion
 
-    #region DmgDeath
+#region DmgDeath
 
     public void receiveDmg(int dmg)
     {
@@ -381,22 +405,11 @@ public class EnemySheep : MonoBehaviour
 
     #endregion
 
-    #region gizmos
+#region gizmos
 #if UNITY_EDITOR
 
-    protected virtual void OnDrawGizmosSelected() {
-        Gizmos.DrawLine(hitpos,hitpos+Vector3.up);
-        Gizmos.color = Color.red;
-        if(navhit2 != Vector3.zero){
-            
-        Gizmos.DrawSphere(transform.position + transform.forward * AttackRange, 0.2f);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(navhit2 , 0.2f);
-        
-        }
-        Gizmos.DrawLine(ScanFrontSheepStartPoint.position, ScanFrontSheepStartPoint.position + transform.forward * distanceScan);
-    }
+ 
 
 #endif
-    #endregion
+#endregion
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Divides into to standard Sheeps
   baseHealth: 800
   baseDmg: 100
-  baseSpeed: 3.5
+  baseSpeed: 3
   AttackRange: 1.5
   AttackSpeed: 1
   weigth: 1.2
