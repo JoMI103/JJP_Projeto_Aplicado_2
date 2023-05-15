@@ -7,7 +7,7 @@ public class BaloonSheep : EnemySheep
     [Space(10)] [Header("Baloon Sheep Atributes")] [Space(10)]
     
     [SerializeField] Transform aeroBombaPrefab;   [SerializeField] Transform aeroBombaSpawn;
-    private Vector3 currentTargetPos;  private bool stopMoving; private float distanceToObjective;
+    private bool stopMoving; private float distanceToObjective;
 
 #region SheepStates
     
@@ -15,21 +15,27 @@ public class BaloonSheep : EnemySheep
 
     private const float checkUpdateYposTime = 0.5f;
 
+
+
+
     protected override IEnumerator FollowPath()
     {
-        if(navMeshAgent.enabled) navMeshAgent.enabled = false; 
-        currentTargetPos = ObjectivePosition.position;   
-        yPercent = 1;
-        MoveAnim();
         
+        if(!navMeshAgent.enabled) navMeshAgent.enabled = false;     
+        MoveAnim();   currentTargetPos = ObjectivePosition.position;   
+        yPercent = 1;
         yield return null;
 
         float time = 0;
         while (true) {
+            
             if(time > 10){
                 if(scanBuildings()){ //if it finds a construction, it assigns the event and changes the state
                     targetedBuilding.onDestroyEvent += whenTargetDestroy;  
-                    //changeCurrentState(state.AtackConstruction);
+                    currentState = state.AtackConstruction;
+                    yield return StartCoroutine(AtackConstruction()); 
+                     MoveAnim(); 
+                    currentTargetPos = ObjectivePosition.position;   
                 }
                 time = 0;
             }
@@ -72,8 +78,10 @@ public class BaloonSheep : EnemySheep
         
         //when timeStack is greater than attack Speed a bomb is dropped to affect all constructions around
         float timeAtack = 0;
-        while(true){
-            timeAtack += Time.deltaTime;
+        while(currentState  == state.AtackConstruction){
+            Debug.LogError("bALOONERROR");
+            yield return new WaitForSeconds(0.2f);
+            timeAtack += 0.2f;
             if(distanceToObjective < 1f){
                 if(timeAtack > sheepAttackSpeed){
                     AttackAndAtackAnim();
@@ -93,7 +101,9 @@ public class BaloonSheep : EnemySheep
         Instantiate(aeroBombaPrefab,aeroBombaSpawn.position, Quaternion.identity).GetComponent<aeroBomba>().SetExplosionStats(sheepAttackDmg,buildingMask);
     }
     
-    //protected override void whenTargetDestroy() { changeCurrentState(state.FollowPath); }
+    
+    
+    protected override void whenTargetDestroy() { currentState = state.FollowPath; }
     
 #endregion
     
@@ -149,12 +159,4 @@ public class BaloonSheep : EnemySheep
         
     #endregion
 
-    #region Gizmos
-   
-    #if UNITY_EDITOR
- 
- 
-    #endif
- 
-    #endregion
 }

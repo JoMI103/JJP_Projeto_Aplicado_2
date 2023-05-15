@@ -8,7 +8,7 @@ public class ShowGoldenPath : MonoBehaviour
     private float elapsed = 0.0f;
 
 
-    
+
     private void OnDrawGizmos() {
         
         path = new NavMeshPath();

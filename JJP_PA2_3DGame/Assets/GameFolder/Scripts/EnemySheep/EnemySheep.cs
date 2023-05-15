@@ -6,8 +6,8 @@ public class EnemySheep : MonoBehaviour
 {
     #region States
 
-    public enum state { Idle, FollowPath, AtackConstruction, AtackPlayer }
-    private state currentState;
+    public enum state { Idle, FollowPath, AtackConstruction, AtackPlayer}
+    protected state currentState;
   
    // [Header("NavmeshPiorityValues")]
    // [SerializeField] private int followPathPValue; [SerializeField] private int AtackConstPValue;
@@ -121,21 +121,13 @@ public class EnemySheep : MonoBehaviour
                     yield return StartCoroutine(AtackConstruction());  
                     navMeshAgent.speed = sheepSpeed;
                     } break;
+             
                 default: break;
             }
               
             yield return new WaitForSeconds(0.3f);
-
-            if (targetedBuilding == null)
-            {
-                checkFrontPath(SheepSO.AttackRange);
-            }
-
-            
-            if(targetedBuilding != null){
-                currentState = state.AtackConstruction;
-                       
-            }
+            checkFrontSheepSpeed();
+            if(targetedBuilding != null) currentState = state.AtackConstruction; else  checkFrontPath(SheepSO.AttackRange);
         }
     }
     
@@ -268,17 +260,18 @@ public class EnemySheep : MonoBehaviour
         slowEffectIsRunning = false;
     }
 
-    public void startknockBackEffect(Vector3 s, float d) { StartCoroutine(knockBackEffect(s, d)); }
+    public void startknockBackEffect(Vector3 s, float d) {StopAllCoroutines(); StartCoroutine(knockBackEffect(s, d)); }
  
 
 
     bool knockBacking;
     public virtual IEnumerator knockBackEffect(Vector3 direction, float force)
     {
-       // StopCoroutine(currentState);
+        
+        
         navMeshAgent.enabled = false;
         sheepRigidBody.isKinematic= false;  
-        sheepRigidBody.AddForce(( direction + new Vector3(0,0.2f,0))  * force * (1 / sheepWeigth) , ForceMode.Impulse);
+        sheepRigidBody.AddForce( ( direction + new Vector3(0,0.2f,0))  * force * (1 / sheepWeigth) , ForceMode.Impulse); 
         yield return new WaitForSeconds(1);
         knockBacking =true;
         yield return new WaitForSeconds(20); //morre em 20 segundos se nao encotrar a navmesh   
@@ -289,14 +282,20 @@ public class EnemySheep : MonoBehaviour
     
     [SerializeField] private LayerMask navmeshFloor;
     protected virtual void OnCollisionEnter(Collision other) {
-        Debug.Log("fewfwe");
+ 
         if(!knockBacking) return;
         if((navmeshFloor.value & (1 << other.gameObject.layer)) > 0){
             StopAllCoroutines();
+            
+            sheepRigidBody.velocity = Vector3.zero;
+            sheepRigidBody.isKinematic= true;
             navMeshAgent.enabled = true;
-             sheepRigidBody.isKinematic= true;
-             knockBacking = false;
-           // currentTargetPos =  ObjectivePosition.position; changeCurrentState(state.FollowPath);
+            navMeshAgent.velocity = Vector3.zero;
+            knockBacking = false;
+            
+            currentState = state.FollowPath;
+            StartCoroutine(FollowPath());
+        
         }
     }
     
@@ -346,21 +345,4 @@ public class EnemySheep : MonoBehaviour
 #endif
 #endregion
 }
-public static class ExtensionMethods
-{
-    public static float GetPathRemainingDistance(this NavMeshAgent navMeshAgent)
-    {
-        if (navMeshAgent.pathPending ||
-            navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid ||
-            navMeshAgent.path.corners.Length == 0)
-            return -1f;
 
-        float distance = 0.0f;
-        for (int i = 0; i < navMeshAgent.path.corners.Length - 1; ++i)
-        {
-            distance += Vector3.Distance(navMeshAgent.path.corners[i], navMeshAgent.path.corners[i + 1]);
-        }
-
-        return distance;
-    }
-}
