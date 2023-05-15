@@ -58,16 +58,11 @@ public class EnemySheep : MonoBehaviour
     }
 
     protected virtual void Start() {
-        //currentState = state.FollowPath;
-       //StartCoroutine(FollowPath());
-       Invoke("test",0.3f);
+        currentState = state.FollowPath;
+        StartCoroutine(FollowPath());
     }
 
     protected virtual void Update() {
-        
-       
-        
-        
         //#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.I)) currentState = state.Idle;
         if (Input.GetKeyDown(KeyCode.O))  currentState = state.FollowPath;
@@ -76,12 +71,7 @@ public class EnemySheep : MonoBehaviour
         if (sheepHealthPoints <= 0) OnDeath();
     }
     
-    private void test(){
-         currentTargetPos = ObjectivePosition.position;
-
-         setTargetSheep.setStaticTarget(currentTargetPos); 
-
-    }
+    
 
 #region Fix Orientation
 
@@ -119,7 +109,7 @@ public class EnemySheep : MonoBehaviour
         yield return null;
         
         currentTargetPos = ObjectivePosition.position;
-        GetNewPath(false); setTargetSheep.setStaticTarget(currentTargetPos); 
+        setTargetSheep.setStaticTarget(currentTargetPos); 
         //navMeshAgent.velocity = Vector3.zero;
         
         while (true) {
@@ -130,24 +120,21 @@ public class EnemySheep : MonoBehaviour
                 case state.AtackConstruction: {
                     yield return StartCoroutine(AtackConstruction());  
                     navMeshAgent.speed = sheepSpeed;
-                    currentTargetPos = ObjectivePosition.position;
                     } break;
                 default: break;
             }
-  
-            GetNewPath(false);
-            setTargetSheep.setStaticTarget(currentTargetPos); 
-            
+              
             yield return new WaitForSeconds(0.3f);
-       
-  
+
+            if (targetedBuilding == null)
+            {
+                checkFrontPath(SheepSO.AttackRange);
+            }
+
             
             if(targetedBuilding != null){
-      
-                if(navMeshAgent.GetPathRemainingDistance()  < navMeshAgent.stoppingDistance){
-                    
-                    currentState = state.AtackConstruction;
-                }        
+                currentState = state.AtackConstruction;
+                       
             }
         }
     }
@@ -194,43 +181,31 @@ public class EnemySheep : MonoBehaviour
         targetedBuilding = null;
     }
 
+
 #region checkPathForObstacles
         
     [Header("Layers that the sheep can destroy")]
     [SerializeField] protected LayerMask buildingTypeFocus;
     protected PlacedBuilding targetedBuilding;
- 
-        
-    private void GetNewPath(bool atacking){
 
-        
-        NavMeshPath pathAllAreas = new NavMeshPath();  int n = NavMesh.AllAreas;
-        
-        currentTargetPos = ObjectivePosition.position;
-        NavMesh.CalculatePath(transform.position, currentTargetPos ,n, pathAllAreas);
-    
-        
-        
-        for (int i = 0; i < pathAllAreas.corners.Length - 1; i++)
-             if(Physics.Linecast(pathAllAreas.corners[i], pathAllAreas.corners[i + 1],out RaycastHit hit ,buildingTypeFocus)){
-                if (hit.collider.TryGetComponent<PlacedBuilding>(out PlacedBuilding currentTargetBuilding)) {  
-                    currentTargetPos =  hit.point;
-                      
-                    
-                    if(targetedBuilding == null){
+
+    private void checkFrontPath(float distance) {
+
+        if (navMeshAgent.path.corners.Length >= 2) {
+
+            Vector3 p1 = navMeshAgent.path.corners[0], p2 = navMeshAgent.path.corners[1];
+
+            if (Physics.Linecast(p1,(p2-p1).normalized * distance + p1,out RaycastHit hit, buildingTypeFocus)) {
+                if (hit.collider.TryGetComponent<PlacedBuilding>(out PlacedBuilding currentTargetBuilding)) {
+                    if (targetedBuilding == null) {
                         targetedBuilding = currentTargetBuilding;
-                        targetedBuilding.onDestroyEvent += whenTargetDestroy;  
-                      
-                    }else
-                    if(atacking && targetedBuilding != currentTargetBuilding){                    
-                        targetedBuilding.onDestroyEvent -= whenTargetDestroy;
-                        targetedBuilding = currentTargetBuilding;
-                        targetedBuilding.onDestroyEvent += whenTargetDestroy;  
-                        //changeCurrentState(state.FollowPath);
+                        targetedBuilding.onDestroyEvent += whenTargetDestroy;
+
                     }
-                }            
-                return;        
-             }
+                }
+                return;
+            }
+        }
     }
         
      
