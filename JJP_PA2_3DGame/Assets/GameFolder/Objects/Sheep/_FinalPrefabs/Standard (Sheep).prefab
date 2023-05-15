@@ -351,8 +351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d1064816064f8418802aae0268318e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followPathPValue: 50
-  AtackConstPValue: 20
   slowModifier: 0
   SheepSO: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
   animator: {fileID: 5700681680104096884}
@@ -365,19 +363,16 @@ MonoBehaviour:
   buildingTypeFocus:
     serializedVersion: 2
     m_Bits: 24576
-  AttackRange: 1
+  ScanFrontSheepStartPoint: {fileID: 2004993926042143413}
+  distanceScan: 1.2
   enemySheeps:
     serializedVersion: 2
     m_Bits: 512
-  ScanFrontSheepStartPoint: {fileID: 2004993926042143413}
-  distanceScan: 1.2
   slowEffectIsRunning: 0
   navmeshFloor:
     serializedVersion: 2
     m_Bits: 34824
   nothing: 0
-  p: {fileID: 0}
-  o: {fileID: 0}
 --- !u!114 &6920888894953836683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,13 +396,13 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.2
   m_Speed: 3.5
-  m_Acceleration: 6
+  m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 4
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
-  m_AutoRepath: 0
+  m_AutoRepath: 1
   m_Height: 1
   m_BaseOffset: -0.05
   m_WalkableMask: 16367

@@ -6,69 +6,14 @@ public class EnemySheep : MonoBehaviour
 {
     #region States
 
-    /*
-     * 
-     *  Idle: A ovelha fica parada 
-     *  
-     *  FollowPath: Segue um caminho (calculado pelo sistema de navmesh) at� um determinado objetivo
-     *              Tem um sensor que verifica se tem uma parede no caminho
-     *              Adicionar: sensor de Player
-     *              
-     *  AtackConstruction: Ataca a constru��es detatadas pelo sensor de cima
-     *  
-     *  AtackPlayer: Ataca o jogador
-     *               Adicionar: Perseguir o jogador 
-     *               
-     */
-
     public enum state { Idle, FollowPath, AtackConstruction, AtackPlayer }
-
-    //sheep's current state so the script can stop it without using StopAllCoroutines
-    private IEnumerator currentState;
+    private state currentState;
   
-    [Header("NavmeshPiorityValues")]
-    [SerializeField] private int followPathPValue;
-    [SerializeField] private int AtackConstPValue;
+   // [Header("NavmeshPiorityValues")]
+   // [SerializeField] private int followPathPValue; [SerializeField] private int AtackConstPValue;
 
-  
-    public void changeCurrentState(state state) {
-        switch (state) {
-            case state.Idle: 
-                if(currentState != null) StopCoroutine(currentState); 
-                currentState = Idle(); StartCoroutine(currentState); 
-                navMeshAgent.avoidancePriority = followPathPValue;
-              
-            break;
-           
-            case state.FollowPath: 
-                if (currentState != null) StopCoroutine(currentState); 
-                currentState = FollowPath(); StartCoroutine(currentState); 
-                navMeshAgent.avoidancePriority = followPathPValue;
-            
-            break;
-           
-            case state.AtackConstruction: 
-                if (currentState != null) StopCoroutine(currentState); 
-                currentState = AtackConstruction(); StartCoroutine(currentState); 
-                navMeshAgent.avoidancePriority = AtackConstPValue;
-            break;
-           
-            case state.AtackPlayer: 
-                if (currentState != null) StopCoroutine(currentState);
-                currentState = AtackPlayer(); StartCoroutine(currentState); 
-                navMeshAgent.avoidancePriority = followPathPValue;
-           
-            break;
-            
-            default: 
-                if (currentState != null) StopCoroutine(currentState); 
-                currentState = Idle(); StartCoroutine(currentState); 
-                navMeshAgent.avoidancePriority = followPathPValue;
-              
-            break;
-        }
-    }
     #endregion
+    
     
     #region Stats
     //sets the sheep's stats with the scriptableObject
@@ -90,7 +35,7 @@ public class EnemySheep : MonoBehaviour
 
     #endregion
 
-    [Space(10)][Header("Enemy Sheep Atributes")][Space(10)]
+    [Space(10)] [Header("Enemy Sheep Atributes")] [Space(10)]
     
     [SerializeField] EnemySheepTypeSO SheepSO;   [SerializeField] protected Animator animator; [SerializeField] private UIHealthBar healthBar;
     protected SetTargetSheep setTargetSheep;  protected NavMeshAgent navMeshAgent;  protected Rigidbody sheepRigidBody;
@@ -104,26 +49,38 @@ public class EnemySheep : MonoBehaviour
         setTargetSheep = GetComponent<SetTargetSheep>();
         sheepRigidBody = GetComponent<Rigidbody>();
         navMeshAgent.stoppingDistance = SheepSO.AttackRange;
+        navMeshAgent.speed = sheepSpeed;
     }
     
     public void setPlayerAndObjective(Transform player, Transform finalObjective) {
         playerPosition = player; 
         ObjectivePosition = finalObjective;
-       // if(navMeshAgent.enabled) setTargetSheep.setStaticTarget(ObjectivePosition.position);
     }
 
     protected virtual void Start() {
-        navMeshAgent.speed = sheepSpeed;
-        changeCurrentState(state.FollowPath);
+        //currentState = state.FollowPath;
+       //StartCoroutine(FollowPath());
+       Invoke("test",0.3f);
     }
 
     protected virtual void Update() {
+        
+       
+        
+        
         //#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.I)) changeCurrentState(state.Idle);
-        if (Input.GetKeyDown(KeyCode.O)){  currentTargetPos = ObjectivePosition.position; changeCurrentState(state.FollowPath);  }
-        if (Input.GetKeyDown(KeyCode.Alpha0)) deathWithNoEffect();
+        if (Input.GetKeyDown(KeyCode.I)) currentState = state.Idle;
+        if (Input.GetKeyDown(KeyCode.O))  currentState = state.FollowPath;
+       // if (Input.GetKeyDown(KeyCode.Alpha0)) deathWithNoEffect();
         //#endif
         if (sheepHealthPoints <= 0) OnDeath();
+    }
+    
+    private void test(){
+         currentTargetPos = ObjectivePosition.position;
+
+         setTargetSheep.setStaticTarget(currentTargetPos); 
+
     }
 
 #region Fix Orientation
@@ -147,63 +104,58 @@ public class EnemySheep : MonoBehaviour
 #region Idle
     protected virtual IEnumerator Idle() {
         navMeshAgent.enabled= false;
-  
-        while (true) {
+        while (currentState == state.Idle) {
             yield return new WaitForSeconds(1f);
         }   
     }
-  
+    
 #endregion
     
 #region FollowPath
     protected virtual IEnumerator FollowPath() {
         
         if(!navMeshAgent.enabled) navMeshAgent.enabled = true;     
-        navMeshAgent.speed = sheepSpeed;
-        
+        MoveAnim(); navMeshAgent.speed = sheepSpeed;
         yield return null;
         
-        setTargetSheep.setStaticTarget(ObjectivePosition.position); 
+        currentTargetPos = ObjectivePosition.position;
+        GetNewPath(false); setTargetSheep.setStaticTarget(currentTargetPos); 
+        //navMeshAgent.velocity = Vector3.zero;
         
-        if(navMeshAgent.pathStatus == NavMeshPathStatus.PathPartial){
-                GetNewPath(false);
-                
-                Debug.Log("bom dia caraleo" +  currentTargetPos);
-        }
-    
-    
-         navMeshAgent.velocity = Vector3.zero;
-        yield return null;
-
-        MoveAnim();
         while (true) {
+            
+            switch (currentState)
+            {
+                case state.Idle: yield return StartCoroutine(Idle()); break;
+                case state.AtackConstruction: {
+                    yield return StartCoroutine(AtackConstruction());  
+                    navMeshAgent.speed = sheepSpeed;
+                    currentTargetPos = ObjectivePosition.position;
+                    } break;
+                default: break;
+            }
+  
+            GetNewPath(false);
+            setTargetSheep.setStaticTarget(currentTargetPos); 
+            
+            yield return new WaitForSeconds(0.3f);
        
-            //checkFrontSheepSpeed();
-            //if(navMeshAgent.enabled) checkPathObstacles();
+  
             
             if(targetedBuilding != null){
-                if(navMeshAgent.remainingDistance  < navMeshAgent.stoppingDistance){
-                   changeCurrentState(state.AtackConstruction);  
+      
+                if(navMeshAgent.GetPathRemainingDistance()  < navMeshAgent.stoppingDistance){
+                    
+                    currentState = state.AtackConstruction;
                 }        
             }
-            
-            if(navMeshAgent.pathStatus == NavMeshPathStatus.PathPartial){
-                GetNewPath(false);
-                setTargetSheep.setStaticTarget(currentTargetPos); 
-            }else
-            if(targetedBuilding == null){
-                GetNewPath(false);
-                setTargetSheep.setStaticTarget(currentTargetPos); 
-            }
-
-            
-
-            yield return new WaitForSeconds(0.3f);
-         
         }
-
     }
+    
+    
 #endregion
+
+
 
 #region AttackConstruction
     protected virtual IEnumerator AtackConstruction() {
@@ -212,14 +164,18 @@ public class EnemySheep : MonoBehaviour
         navMeshAgent.speed = 0; navMeshAgent.velocity = Vector3.zero;
         WaitForSeconds wait = new WaitForSeconds(sheepAttackSpeed); 
 
-        while (true){
-           
+        while (currentState == state.AtackConstruction){
+            yield return wait;
+        
             if(targetedBuilding != null){
                 AttackAndAtackAnim(); 
-                 GetNewPath(true);
+              
+            }else{
+                currentState = state.FollowPath;
             }
-            yield return wait;
+            
         }
+        yield return null;
     }
     
 #endregion
@@ -235,8 +191,6 @@ public class EnemySheep : MonoBehaviour
    
     protected virtual void whenTargetDestroy()
     {
-
-        if(currentState.ToString() != FollowPath().ToString()) {changeCurrentState(state.FollowPath); Debug.LogError("trocou"); }
         targetedBuilding = null;
     }
 
@@ -248,15 +202,20 @@ public class EnemySheep : MonoBehaviour
  
         
     private void GetNewPath(bool atacking){
+
+        
         NavMeshPath pathAllAreas = new NavMeshPath();  int n = NavMesh.AllAreas;
         
         currentTargetPos = ObjectivePosition.position;
-        NavMesh.CalculatePath(transform.position, ObjectivePosition.position ,n, pathAllAreas);
+        NavMesh.CalculatePath(transform.position, currentTargetPos ,n, pathAllAreas);
+    
+        
         
         for (int i = 0; i < pathAllAreas.corners.Length - 1; i++)
              if(Physics.Linecast(pathAllAreas.corners[i], pathAllAreas.corners[i + 1],out RaycastHit hit ,buildingTypeFocus)){
                 if (hit.collider.TryGetComponent<PlacedBuilding>(out PlacedBuilding currentTargetBuilding)) {  
                     currentTargetPos =  hit.point;
+                      
                     
                     if(targetedBuilding == null){
                         targetedBuilding = currentTargetBuilding;
@@ -267,7 +226,7 @@ public class EnemySheep : MonoBehaviour
                         targetedBuilding.onDestroyEvent -= whenTargetDestroy;
                         targetedBuilding = currentTargetBuilding;
                         targetedBuilding.onDestroyEvent += whenTargetDestroy;  
-                        changeCurrentState(state.FollowPath);
+                        //changeCurrentState(state.FollowPath);
                     }
                 }            
                 return;        
@@ -342,7 +301,7 @@ public class EnemySheep : MonoBehaviour
     bool knockBacking;
     public virtual IEnumerator knockBackEffect(Vector3 direction, float force)
     {
-        StopCoroutine(currentState);
+       // StopCoroutine(currentState);
         navMeshAgent.enabled = false;
         sheepRigidBody.isKinematic= false;  
         sheepRigidBody.AddForce(( direction + new Vector3(0,0.2f,0))  * force * (1 / sheepWeigth) , ForceMode.Impulse);
@@ -363,7 +322,7 @@ public class EnemySheep : MonoBehaviour
             navMeshAgent.enabled = true;
              sheepRigidBody.isKinematic= true;
              knockBacking = false;
-            currentTargetPos =  ObjectivePosition.position; changeCurrentState(state.FollowPath);
+           // currentTargetPos =  ObjectivePosition.position; changeCurrentState(state.FollowPath);
         }
     }
     
@@ -412,4 +371,22 @@ public class EnemySheep : MonoBehaviour
 
 #endif
 #endregion
+}
+public static class ExtensionMethods
+{
+    public static float GetPathRemainingDistance(this NavMeshAgent navMeshAgent)
+    {
+        if (navMeshAgent.pathPending ||
+            navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid ||
+            navMeshAgent.path.corners.Length == 0)
+            return -1f;
+
+        float distance = 0.0f;
+        for (int i = 0; i < navMeshAgent.path.corners.Length - 1; ++i)
+        {
+            distance += Vector3.Distance(navMeshAgent.path.corners[i], navMeshAgent.path.corners[i + 1]);
+        }
+
+        return distance;
+    }
 }

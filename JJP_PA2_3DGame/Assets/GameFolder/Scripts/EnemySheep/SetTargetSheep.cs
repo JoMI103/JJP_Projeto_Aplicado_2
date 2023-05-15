@@ -19,7 +19,7 @@ public class SetTargetSheep : MonoBehaviour
     }
     
     private void Start() {
-        StartCoroutine(calcPath());
+        //StartCoroutine(calcPath());
     }
 
     private IEnumerator calcPath(){

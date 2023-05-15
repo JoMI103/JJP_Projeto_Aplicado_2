@@ -19,7 +19,7 @@ public class FlameThrowerSheep : EnemySheep
     protected override void whenTargetDestroy()
     {
         flameParticles.SetActive(false);
-        changeCurrentState(state.FollowPath);
+        //changeCurrentState(state.FollowPath);
     }
     protected override void AttackAndAtackAnim()
     {

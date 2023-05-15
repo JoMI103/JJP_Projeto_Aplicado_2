@@ -29,7 +29,7 @@ public class BaloonSheep : EnemySheep
             if(time > 10){
                 if(scanBuildings()){ //if it finds a construction, it assigns the event and changes the state
                     targetedBuilding.onDestroyEvent += whenTargetDestroy;  
-                    changeCurrentState(state.AtackConstruction);
+                    //changeCurrentState(state.AtackConstruction);
                 }
                 time = 0;
             }
@@ -93,7 +93,7 @@ public class BaloonSheep : EnemySheep
         Instantiate(aeroBombaPrefab,aeroBombaSpawn.position, Quaternion.identity).GetComponent<aeroBomba>().SetExplosionStats(sheepAttackDmg,buildingMask);
     }
     
-    protected override void whenTargetDestroy() { changeCurrentState(state.FollowPath); }
+    //protected override void whenTargetDestroy() { changeCurrentState(state.FollowPath); }
     
 #endregion
     

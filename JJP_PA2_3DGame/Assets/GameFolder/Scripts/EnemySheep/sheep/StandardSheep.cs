@@ -10,11 +10,6 @@ public class StandardSheep : EnemySheep
 
     public bool nothing;
 
-    protected override void Start()
-    {
-  
-        base.Start();
-    }
 
 
 
@@ -26,6 +21,7 @@ public class StandardSheep : EnemySheep
     protected override void AttackAndAtackAnim()
     {
         animator.Play("Attack");
+         Debug.LogError( "Atacking" + targetedBuilding.name);
         targetedBuilding.takeDamge(sheepAttackDmg);
     }
 }

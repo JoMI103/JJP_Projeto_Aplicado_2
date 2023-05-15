@@ -15,7 +15,7 @@ MonoBehaviour:
   nameString: Standard Sheep
   description: Run
   baseHealth: 300
-  baseDmg: 5
+  baseDmg: 30
   baseSpeed: 4
   AttackRange: 1.5
   AttackSpeed: 1
