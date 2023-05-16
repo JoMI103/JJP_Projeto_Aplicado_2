@@ -2216,20 +2216,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6568687cd2d12d142b8d57d370577d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
-  fireRate: 1
+  damage: 60
+  fireRate: 0
   spread: 0
-  range: 100
-  reloadTime: 1
+  range: 35
+  reloadTime: 1.1
   timeBetweenShots: 0
   magazineSize: 1
   bulletsPerTap: 1
-  allowButtonHold: 0
+  bulletsPerShot: 1
+  allowButtonHold: 1
   fpsCam: {fileID: 4624340459358644975}
-  attackPoint: {fileID: 814536675226637187}
+  attackPoint: {fileID: 5490910143930487412}
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 35336
+  muzzleFlash: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
+  muzzleFlash2: {fileID: 1000010254994808, guid: ac5543e56b8c98b48b6a0c53d18013a8, type: 3}
+  bulletHoleGraphic: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
   text: {fileID: 406471211730469983}
 --- !u!1 &2768994921044906423
 GameObject:
@@ -2618,20 +2622,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6568687cd2d12d142b8d57d370577d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 150
-  fireRate: 2
-  spread: 1
-  range: 200
-  reloadTime: 3
-  timeBetweenShots: 1
+  damage: 200
+  fireRate: 0.4
+  spread: 0.01
+  range: 100
+  reloadTime: 4
+  timeBetweenShots: 0
   magazineSize: 1
   bulletsPerTap: 1
+  bulletsPerShot: 1
   allowButtonHold: 0
   fpsCam: {fileID: 4624340459358644975}
-  attackPoint: {fileID: 4659631815311469510}
+  attackPoint: {fileID: 5490910143930487412}
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 35336
+  muzzleFlash: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
+  muzzleFlash2: {fileID: 1000010254994808, guid: ac5543e56b8c98b48b6a0c53d18013a8, type: 3}
+  bulletHoleGraphic: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
   text: {fileID: 406471211730469983}
 --- !u!1 &3242504547549932089
 GameObject:
@@ -4906,20 +4914,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6568687cd2d12d142b8d57d370577d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 300
-  fireRate: 1.5
-  spread: 4
+  damage: 15
+  fireRate: 0.4
+  spread: 0.1
   range: 20
-  reloadTime: 2
-  timeBetweenShots: 0.8
+  reloadTime: 0.7
+  timeBetweenShots: 0.4
   magazineSize: 4
-  bulletsPerTap: 1
+  bulletsPerTap: 0
+  bulletsPerShot: 25
   allowButtonHold: 0
   fpsCam: {fileID: 4624340459358644975}
   attackPoint: {fileID: 5490910143930487412}
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 35336
+  muzzleFlash: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
+  muzzleFlash2: {fileID: 1000010254994808, guid: ac5543e56b8c98b48b6a0c53d18013a8, type: 3}
+  bulletHoleGraphic: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
   text: {fileID: 406471211730469983}
 --- !u!1 &5900100137773056019
 GameObject:
@@ -6309,7 +6321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7434286942259482114}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 42.67, y: 31.54, z: 171.1}
+  m_LocalPosition: {x: 37.4, y: 2, z: 20}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:

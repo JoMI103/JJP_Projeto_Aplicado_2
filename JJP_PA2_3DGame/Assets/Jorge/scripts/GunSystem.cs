@@ -6,7 +6,7 @@ public class GunSystem : MonoBehaviour
 {
     public int damage;
     public float fireRate, spread, range, reloadTime, timeBetweenShots;
-    public int magazineSize, bulletsPerTap;
+    public int magazineSize, bulletsPerTap, bulletsPerShot;
     public bool allowButtonHold;
     int bulletsLeft, bulletsShot;
 
@@ -17,7 +17,7 @@ public class GunSystem : MonoBehaviour
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
 
-    //public GameObject muzzleFlash, bulletHoleGraphic;
+    public GameObject muzzleFlash,muzzleFlash2, bulletHoleGraphic;
     public TextMeshProUGUI text;
 
     private void Awake()
@@ -36,8 +36,9 @@ public class GunSystem : MonoBehaviour
         if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
-        if (Input.GetKeyDown(KeyCode.Mouse0) && bulletsLeft == 0 && !reloading) Reload();
+        if((bulletsLeft <= 0 || Input.GetKeyDown(KeyCode.R)) && bulletsLeft < magazineSize && !reloading ) Reload();
+      
+  
 
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
         {
@@ -48,8 +49,10 @@ public class GunSystem : MonoBehaviour
     private void Shoot()
     {
         readyToShoot = false;
-
-        float x = Random.Range(-spread, spread);
+        
+        for (int i = 0; i < bulletsPerShot; i++)
+        {
+            float x = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
         float z = Random.Range(-spread, spread);
 
@@ -66,14 +69,18 @@ public class GunSystem : MonoBehaviour
             if (damageAux != null)
                 damageAux.BaseHit(damage);
             
-
-            //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
-            //Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+        Debug.LogError(rayHit.normal);
+         Instantiate(muzzleFlash, rayHit.point, Quaternion.identity).transform.up = rayHit.normal;
+  
+            Instantiate(muzzleFlash2, attackPoint.position, Quaternion.identity);
 
            
 
         }
 
+        }
+        
+        
         bulletsLeft--;
         bulletsShot--;
 
