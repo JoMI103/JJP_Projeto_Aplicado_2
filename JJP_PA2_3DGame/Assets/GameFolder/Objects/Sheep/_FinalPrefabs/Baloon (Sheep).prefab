@@ -770,8 +770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076cc799f93f19344ad0473d5590374c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followPathPValue: 0
-  AtackConstPValue: 0
   slowModifier: 0
   SheepSO: {fileID: 11400000, guid: 0463817ae313ad0468d2caf6d5a0f6f0, type: 2}
   animator: {fileID: 1511002282696657472}
@@ -781,15 +779,14 @@ MonoBehaviour:
   floorToFixOrientation:
     serializedVersion: 2
     m_Bits: 0
-  destructibleLayer:
+  buildingTypeFocus:
     serializedVersion: 2
-    m_Bits: 8192
-  AttackRange: 10
+    m_Bits: 24576
+  ScanFrontSheepStartPoint: {fileID: 2799239135852893179}
+  distanceScan: 1.5
   enemySheeps:
     serializedVersion: 2
     m_Bits: 512
-  ScanFrontSheepStartPoint: {fileID: 2799239135852893179}
-  distanceScan: 1.5
   slowEffectIsRunning: 0
   navmeshFloor:
     serializedVersion: 2

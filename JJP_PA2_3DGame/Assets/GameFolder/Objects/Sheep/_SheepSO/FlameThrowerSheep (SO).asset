@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 
   baseHealth: 400
   baseDmg: 10
-  baseSpeed: 3.5
+  baseSpeed: 3
   AttackRange: 2
   AttackSpeed: 2
   weigth: 1.2

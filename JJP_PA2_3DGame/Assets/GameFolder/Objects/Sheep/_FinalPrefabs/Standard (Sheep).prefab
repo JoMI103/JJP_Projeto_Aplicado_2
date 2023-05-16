@@ -362,7 +362,7 @@ MonoBehaviour:
     m_Bits: 34824
   buildingTypeFocus:
     serializedVersion: 2
-    m_Bits: 24576
+    m_Bits: 8192
   ScanFrontSheepStartPoint: {fileID: 2004993926042143413}
   distanceScan: 1.2
   enemySheeps:

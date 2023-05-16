@@ -18,11 +18,19 @@ public class NavMeshMain : MonoBehaviour
 
     [SerializeField] private NavMeshSurface surface;
 
+    bool updateMeshBool = false;
+
     [ContextMenu("updateMesh")]
     public void updateMesh()
     {
+        updateMeshBool = true;
         //surface.BuildNavMesh();
-        surface.UpdateNavMesh(surface.navMeshData);
+       
+    }
+    
+  
+    private void LateUpdate() {
+         if(updateMeshBool){ surface.UpdateNavMesh(surface.navMeshData); updateMeshBool = false;}
     }
     
     public void Build(){

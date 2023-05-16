@@ -16,8 +16,8 @@ MonoBehaviour:
   description: 
   baseHealth: 400
   baseDmg: 15
-  baseSpeed: 4
-  AttackRange: 5
+  baseSpeed: 3
+  AttackRange: 20
   AttackSpeed: 1.5
   weigth: 1.2
   prefab: {fileID: 3509899845013368328, guid: 9081645c2ad2e8e418222ec48ad44be3, type: 3}

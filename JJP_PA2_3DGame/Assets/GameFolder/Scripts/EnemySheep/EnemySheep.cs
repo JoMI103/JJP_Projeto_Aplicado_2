@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 public class EnemySheep : MonoBehaviour
 {
+    protected const float FollowPathCD = 0.2f;
+    
     #region States
 
     public enum state { Idle, FollowPath, AtackConstruction, AtackPlayer}
@@ -37,7 +39,7 @@ public class EnemySheep : MonoBehaviour
 
     [Space(10)] [Header("Enemy Sheep Atributes")] [Space(10)]
     
-    [SerializeField] EnemySheepTypeSO SheepSO;   [SerializeField] protected Animator animator; [SerializeField] private UIHealthBar healthBar;
+    [SerializeField]protected EnemySheepTypeSO SheepSO;   [SerializeField] protected Animator animator; [SerializeField] private UIHealthBar healthBar;
     protected SetTargetSheep setTargetSheep;  protected NavMeshAgent navMeshAgent;  protected Rigidbody sheepRigidBody;
     protected Transform playerPosition, ObjectivePosition;
     
@@ -114,20 +116,18 @@ public class EnemySheep : MonoBehaviour
         
         while (true) {
             
-            switch (currentState)
-            {
-                case state.Idle: yield return StartCoroutine(Idle()); break;
-                case state.AtackConstruction: {
-                    yield return StartCoroutine(AtackConstruction());  
-                    navMeshAgent.speed = sheepSpeed;
-                    } break;
-             
-                default: break;
-            }
-              
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(FollowPathCD);
+            
             checkFrontSheepSpeed();
-            if(targetedBuilding != null) currentState = state.AtackConstruction; else  checkFrontPath(SheepSO.AttackRange);
+            
+            if(targetedBuilding == null) checkFrontPath(SheepSO.AttackRange);
+            
+            if(targetedBuilding != null){
+                currentState = state.AtackConstruction; 
+                yield return StartCoroutine(AtackConstruction());  
+                navMeshAgent.speed = sheepSpeed;
+            } 
+
         }
     }
     
@@ -158,11 +158,7 @@ public class EnemySheep : MonoBehaviour
     
 #endregion
     
-#region AtackPlayer
-    protected virtual IEnumerator AtackPlayer() {
-        yield return null;
-    }
-#endregion
+
     
     protected virtual void MoveAnim() { }
     protected virtual void AttackAndAtackAnim() { targetedBuilding.takeDamge(sheepAttackDmg); }
@@ -180,13 +176,30 @@ public class EnemySheep : MonoBehaviour
     protected PlacedBuilding targetedBuilding;
 
 
-    private void checkFrontPath(float distance) {
+    protected void checkFrontPath(float distance) {
+         NavMeshPath path = navMeshAgent.path;
 
-        if (navMeshAgent.path.corners.Length >= 2) {
+        for(int i = 0; i < navMeshAgent.path.corners.Length-1; i++){
+            Vector3 p1 = path.corners[i], p2 = path.corners[i+1];
+            p1 = (p2-p1).normalized * 0.1f + p1;
+            
+            if(distance > Vector3.Distance(p1, p2)){
+                distance -= Vector3.Distance(p1, p2);
+                if (Physics.Linecast(p1,p2,out RaycastHit hit, buildingTypeFocus)) {
+                    if (hit.collider.TryGetComponent<PlacedBuilding>(out PlacedBuilding currentTargetBuilding)) {
+                        if (targetedBuilding == null) {
+                            targetedBuilding = currentTargetBuilding;
+                            targetedBuilding.onDestroyEvent += whenTargetDestroy;
 
-            Vector3 p1 = navMeshAgent.path.corners[0], p2 = navMeshAgent.path.corners[1];
-
-            if (Physics.Linecast(p1,(p2-p1).normalized * distance + p1,out RaycastHit hit, buildingTypeFocus)) {
+                        }
+                    }
+                        return;
+                }
+            }else{
+                p2 = (p2-p1).normalized * distance + p1;
+                if (Physics.Linecast(p1,p2,out RaycastHit hit, buildingTypeFocus)) {
+               
+                    
                 if (hit.collider.TryGetComponent<PlacedBuilding>(out PlacedBuilding currentTargetBuilding)) {
                     if (targetedBuilding == null) {
                         targetedBuilding = currentTargetBuilding;
@@ -194,17 +207,37 @@ public class EnemySheep : MonoBehaviour
 
                     }
                 }
+            }
                 return;
+                
+            
             }
         }
+        /*
+
+        if (navMeshAgent.path.corners.Length >= 2) {
+
+            Vector3 p1 = navMeshAgent.path.corners[0], p2 = navMeshAgent.path.corners[1];
+
+              if (Physics.Linecast(p1,p2,out RaycastHit hit, buildingTypeFocus)) {
+                    if (hit.collider.TryGetComponent<PlacedBuilding>(out PlacedBuilding currentTargetBuilding)) {
+                        if (targetedBuilding == null) {
+                            targetedBuilding = currentTargetBuilding;
+                            targetedBuilding.onDestroyEvent += whenTargetDestroy;
+
+                        }
+                    }
+            return;
+            }
+        }
+        */
     }
-        
      
         
 #endregion
 
 #region checkFrontSheepToReduceVelocity
-        [SerializeField] Transform ScanFrontSheepStartPoint; [SerializeField] float distanceScan;
+        [SerializeField] protected Transform ScanFrontSheepStartPoint; [SerializeField] float distanceScan;
         [SerializeField] LayerMask enemySheeps;
         
         protected void checkFrontSheepSpeed(){

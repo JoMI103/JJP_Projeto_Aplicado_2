@@ -9,7 +9,7 @@ public class PlayerStats : MonoBehaviour
 {
     private bool debugStatsChanges;
 
-    private const int maxHP = 100;
+    
 
     private int HPPoints;
     public int hPPoints { get { return this.HPPoints; } set { this.HPPoints = value; updateHpUI(); } }
@@ -29,12 +29,29 @@ public class PlayerStats : MonoBehaviour
         hPPoints = maxHP;
     }
 
+
+    private const int maxHP = 5000;
+    private const float starHealing = 5;
+    float regTimer;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.J)) woodQuantity = woodQuantity + 1000;
         if (Input.GetKeyDown(KeyCode.K)) metalQuantity = metalQuantity + 1000;
-        if (Input.GetKeyDown(KeyCode.L)) eletronicsQuantity = eletronicsQuantity + 100;
+        if (Input.GetKeyDown(KeyCode.I)) eletronicsQuantity = eletronicsQuantity + 100;
+         if (Input.GetKeyDown(KeyCode.M)) giveDmg(10);
+         
+        if(hPPoints < maxHP){
+            if(regTimer > starHealing){
+                hPPoints += 50;
+                regTimer-=0.5f;
+            }
+            regTimer += Time.deltaTime;
+        }
 
+        if(hPPoints < 1){
+            Debug.LogError("DEAD");
+        }
     }
 
 
@@ -56,8 +73,14 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI hp;
 
+    public void giveDmg(int dmg){
+        regTimer = 0;
+        hPPoints-=dmg;
+    }
+
     private void updateHpUI()
     {
+        
         hp.text = "HP: " + HPPoints;
     }
 
