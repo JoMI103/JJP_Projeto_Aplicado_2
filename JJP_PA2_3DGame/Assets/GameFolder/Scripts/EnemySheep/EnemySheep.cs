@@ -124,6 +124,7 @@ public class EnemySheep : MonoBehaviour
             if(targetedBuilding != null){
                 currentState = state.AtackConstruction; 
                 yield return StartCoroutine(AtackConstruction());  
+                MoveAnim();
                 navMeshAgent.speed = sheepSpeed;
             } 
 

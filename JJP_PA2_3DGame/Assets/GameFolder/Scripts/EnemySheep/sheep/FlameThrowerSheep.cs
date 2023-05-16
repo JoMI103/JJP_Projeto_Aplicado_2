@@ -126,6 +126,7 @@ public class FlameThrowerSheep : EnemySheep
             yield return FollowPathCD;
         }
         yield return null;
+         flameParticles.Stop(false);
         
     }
 
