@@ -7,17 +7,20 @@ public class ShowGoldenPath : MonoBehaviour
     private NavMeshPath path;
     private float elapsed = 0.0f;
 
+    [SerializeField] catmullRomSpline catmullRomSpline;
 
-    private void OnDrawGizmos() {
-        
-        path = new NavMeshPath();
+    [ContextMenu("CalcPath")]
+    public void calcPath(){
+         path = new NavMeshPath();
             NavMeshQueryFilter navMeshQueryFilter = new NavMeshQueryFilter();
             navMeshQueryFilter.areaMask = NavMesh.AllAreas;
             NavMesh.SamplePosition(target.position,out NavMeshHit hit, 5,-1);
             NavMesh.CalculatePath(transform.position, hit.position, navMeshQueryFilter ,path);
-
-        for (int i = 0; i < path.corners.Length - 1; i++)
-            Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
+            
+            catmullRomSpline.setCorners(path.corners);
     }
+
+
+   
 
 }
