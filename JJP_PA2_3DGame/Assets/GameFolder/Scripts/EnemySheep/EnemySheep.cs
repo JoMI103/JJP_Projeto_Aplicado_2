@@ -61,6 +61,7 @@ public class EnemySheep : MonoBehaviour
 
     protected virtual void Start() {
         currentState = state.FollowPath;
+        if(!knockBacking)
         StartCoroutine(FollowPath());
     }
 
@@ -73,8 +74,6 @@ public class EnemySheep : MonoBehaviour
         if (sheepHealthPoints <= 0) OnDeath();
     }
     
-    
-
 #region Fix Orientation
 
     [Header("Sets the sheep normal to the floor normal")]
@@ -133,8 +132,6 @@ public class EnemySheep : MonoBehaviour
     
 #endregion
 
-
-
 #region AttackConstruction
     protected virtual IEnumerator AtackConstruction() {
 
@@ -157,9 +154,7 @@ public class EnemySheep : MonoBehaviour
     }
     
 #endregion
-    
 
-    
     protected virtual void MoveAnim() { }
     protected virtual void AttackAndAtackAnim() { targetedBuilding.takeDamge(sheepAttackDmg); }
    
@@ -292,12 +287,20 @@ public class EnemySheep : MonoBehaviour
         slowModifier = 1;
         slowEffectIsRunning = false;
     }
+    
+    
+   
 
-    public void startknockBackEffect(Vector3 s, float d) {StopAllCoroutines(); StartCoroutine(knockBackEffect(s, d)); }
+    public void startknockBackEffect(Vector3 s, float d, bool onStart = false) {
+        if(onStart) knockBacking=true;
+        
+         StopAllCoroutines(); StartCoroutine(knockBackEffect(s,d));
+      
+    
+    }
  
 
-
-    bool knockBacking;
+    protected bool knockBacking = false;
     public virtual IEnumerator knockBackEffect(Vector3 direction, float force)
     {
         

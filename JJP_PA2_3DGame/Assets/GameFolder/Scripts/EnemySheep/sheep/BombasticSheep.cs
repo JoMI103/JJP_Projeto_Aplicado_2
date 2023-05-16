@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BombasticSheep : EnemySheep
 {
@@ -10,7 +11,16 @@ public class BombasticSheep : EnemySheep
 
     [SerializeField] private GameObject explosion;
  
-
+    
+    override protected void Start() {
+     
+       NavMeshQueryFilter navMeshQueryFilter = new NavMeshQueryFilter();
+            navMeshQueryFilter.areaMask = NavMesh.AllAreas;
+            navMeshAgent.SetAreaCost(NavMesh.GetAreaFromName("Wall"),2);
+        Debug.Log("ok");
+        base.Start();
+    }
+    
     protected override void MoveAnim()
     {
         animator.Play("Walk");

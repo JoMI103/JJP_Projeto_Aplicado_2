@@ -8,18 +8,15 @@ public class ShowGoldenPath : MonoBehaviour
     private float elapsed = 0.0f;
 
 
-
     private void OnDrawGizmos() {
         
         path = new NavMeshPath();
-        
-
-
-            int n = NavMesh.AllAreas; n -= NavMesh.GetAreaFromName("Wall");
-
-            NavMesh.CalculatePath(transform.position, target.position,n, path);
+            NavMeshQueryFilter navMeshQueryFilter = new NavMeshQueryFilter();
+            navMeshQueryFilter.areaMask = NavMesh.AllAreas;
+            NavMesh.CalculatePath(transform.position, target.position, navMeshQueryFilter ,path);
 
         for (int i = 0; i < path.corners.Length - 1; i++)
             Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
     }
+
 }

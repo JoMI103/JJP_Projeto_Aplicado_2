@@ -25,6 +25,7 @@ public class SetTargetSheep : MonoBehaviour
         
         if(sheepMeshAgent.enabled){
             path = new NavMeshPath();
+        
             sheepMeshAgent.CalculatePath(tPos,path);
             sheepMeshAgent.SetPath(path);
         }

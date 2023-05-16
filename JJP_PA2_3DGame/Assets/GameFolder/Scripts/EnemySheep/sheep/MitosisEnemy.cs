@@ -18,15 +18,19 @@ public class MitosisEnemy : EnemySheep
     protected override void OnDeath()
     {
         Transform SheepTransform;
- 
-        SheepTransform = Instantiate(standardEnemySheepSO.prefab, transform.position + transform.right * 0.2f, transform.rotation);
+        EnemySheep es;
+        SheepTransform = Instantiate(standardEnemySheepSO.prefab, transform.position + transform.right * 0.2f+ transform.up, transform.rotation);
         SheepTransform.parent = transform.parent;
-        SheepTransform.GetComponent<EnemySheep>().setPlayerAndObjective(playerPosition, ObjectivePosition);
-        // SheepTransform.GetComponent<EnemySheep>().startknockBackEffect(-transform.right+transform.up,1f);
-        SheepTransform = Instantiate(standardEnemySheepSO.prefab, transform.position - transform.right * 0.2f, transform.rotation);
+        es =  SheepTransform.GetComponent<EnemySheep>();
+        es.setPlayerAndObjective(playerPosition, ObjectivePosition);
+        es.startknockBackEffect(-transform.right+transform.up,5f,true);
+        
+        
+        SheepTransform = Instantiate(standardEnemySheepSO.prefab, transform.position - transform.right * 0.2f+ transform.up, transform.rotation);
         SheepTransform.parent = transform.parent;
-        SheepTransform.GetComponent<EnemySheep>().setPlayerAndObjective(playerPosition, ObjectivePosition);
-       // SheepTransform.GetComponent<EnemySheep>().startknockBackEffect(transform.right+transform.up,1f);
+         es =  SheepTransform.GetComponent<EnemySheep>();
+        es.setPlayerAndObjective(playerPosition, ObjectivePosition);
+        es.startknockBackEffect(transform.right+transform.up,5f,true);
         base.OnDeath();
 
     }

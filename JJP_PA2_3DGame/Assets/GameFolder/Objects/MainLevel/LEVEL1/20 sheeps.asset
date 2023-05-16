@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bd35dac8d14a0449a467cdf80f17ce6, type: 3}
-  m_Name: 100Baloon
+  m_Name: 20 sheeps
   m_EditorClassIdentifier: 
   waveNumber: 0
   wavePart:
   - cooldown: 0
     typeEnemies:
-    - enemySheep: {fileID: 11400000, guid: 0463817ae313ad0468d2caf6d5a0f6f0, type: 2}
-      Quantity: 100
+    - enemySheep: {fileID: 11400000, guid: 33b1b0a94dc2de143a4a7f2091b60d54, type: 2}
+      Quantity: 20
       dificultyMod: 0
