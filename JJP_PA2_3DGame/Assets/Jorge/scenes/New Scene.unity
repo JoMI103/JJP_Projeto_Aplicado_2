@@ -547,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 814536675226637187, guid: 095ef7c9baf41db4c848f8a7bf9499e3, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 932178446274296982, guid: 095ef7c9baf41db4c848f8a7bf9499e3, type: 3}
       propertyPath: m_Name
@@ -843,6 +843,10 @@ MonoBehaviour:
   muzzleFlash2: {fileID: 0}
   bulletHoleGraphic: {fileID: 0}
   text: {fileID: 1411408102}
+  animator: {fileID: 0}
+  shootAnimationName: 
+  ReloadAnimationName: 
+  audioManager: {fileID: 0}
 --- !u!1001 &959088316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -966,6 +970,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41c7a150001c36e4e9279f0263dee0a1, type: 3}
+--- !u!1001 &1280617812
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3764757027563281388, guid: 63a2789fed661de449692084e0f39350, type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764757027563281388, guid: 63a2789fed661de449692084e0f39350, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 127.52844
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764757027563281388, guid: 63a2789fed661de449692084e0f39350, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3199
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764757027563281388, guid: 63a2789fed661de449692084e0f39350, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 60.887
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764757027563281388, guid: 63a2789fed661de449692084e0f39350, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764757027563281388, guid: 63a2789fed661de449692084e0f39350, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764757027563281388, guid: 63a2789fed661de449692084e0f39350, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764757027563281388, guid: 63a2789fed661de449692084e0f39350, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764757027563281388, guid: 63a2789fed661de449692084e0f39350, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764757027563281388, guid: 63a2789fed661de449692084e0f39350, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764757027563281388, guid: 63a2789fed661de449692084e0f39350, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572501887028347222, guid: 63a2789fed661de449692084e0f39350, type: 3}
+      propertyPath: m_Name
+      value: flintlock
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63a2789fed661de449692084e0f39350, type: 3}
 --- !u!1001 &1307161814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1092,6 +1153,10 @@ MonoBehaviour:
   muzzleFlash2: {fileID: 0}
   bulletHoleGraphic: {fileID: 0}
   text: {fileID: 1411408102}
+  animator: {fileID: 0}
+  shootAnimationName: 
+  ReloadAnimationName: 
+  audioManager: {fileID: 0}
 --- !u!114 &1411408102 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 406471211730469983, guid: 095ef7c9baf41db4c848f8a7bf9499e3, type: 3}
@@ -1186,66 +1251,92 @@ MonoBehaviour:
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
   - name: Background
     clip: {fileID: 8300000, guid: 3addc3a95d6df13429e6f420a462a486, type: 3}
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
   - name: PlayerJump
     clip: {fileID: 8300000, guid: 20e71b722ae27fd49bcded72d47cd6da, type: 3}
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
   - name: PlayerMove
     clip: {fileID: 8300000, guid: 02b44fcbbcbb5ff40a4e3703a98b5b0b, type: 3}
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
   - name: SpikeTrap
     clip: {fileID: 8300000, guid: b06c23326c0163844a71d6fbb4062a5f, type: 3}
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
   - name: InventoryOpen
     clip: {fileID: 8300000, guid: 6bb5136de2231f6468651c09f2a15a1a, type: 3}
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
   - name: TabSwitch
     clip: {fileID: 8300000, guid: 81f8a0fb159a90940a1e8d506945469b, type: 3}
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
   - name: PistolShooting
     clip: {fileID: 8300000, guid: 2232577d8f1e9cd43a15d101d1daf388, type: 3}
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
   - name: PistolReload
     clip: {fileID: 8300000, guid: 08e9392a0dbce70468eee4ccdb597b8f, type: 3}
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
   - name: RifleReload
     clip: {fileID: 8300000, guid: 1fa8b4770aa85d4428b602e4fdd379e8, type: 3}
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
   - name: RifleShooting
     clip: {fileID: 8300000, guid: 2b2e042e2fc39ab4bb61365013780776, type: 3}
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
   - name: ShotgunShooting
     clip: {fileID: 8300000, guid: f233bff8ee037bd428d2079f79973bcb, type: 3}
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
   - name: Explosion
     clip: {fileID: 8300000, guid: 3b876d0db41a30e40ab75c2bcd38c1b7, type: 3}
     volume: 0
     pitch: 0
     source: {fileID: 0}
+    Spacial: 0
+    playOnAwake: 0
 --- !u!4 &1586335034
 Transform:
   m_ObjectHideFlags: 0
@@ -1550,6 +1641,10 @@ MonoBehaviour:
   muzzleFlash2: {fileID: 0}
   bulletHoleGraphic: {fileID: 0}
   text: {fileID: 1411408102}
+  animator: {fileID: 0}
+  shootAnimationName: 
+  ReloadAnimationName: 
+  audioManager: {fileID: 0}
 --- !u!1 &1827274837
 GameObject:
   m_ObjectHideFlags: 0
