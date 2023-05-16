@@ -2161,6 +2161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3319164009417566505}
+  - component: {fileID: 4622195711749862509}
   m_Layer: 0
   m_Name: slingshot
   m_TagString: Untagged
@@ -2203,6 +2204,33 @@ Transform:
   m_Father: {fileID: 2205168604405456830}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &4622195711749862509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2691985686867227539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6568687cd2d12d142b8d57d370577d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 100
+  fireRate: 1
+  spread: 0
+  range: 100
+  reloadTime: 1
+  timeBetweenShots: 0
+  magazineSize: 1
+  bulletsPerTap: 1
+  allowButtonHold: 0
+  fpsCam: {fileID: 4624340459358644975}
+  attackPoint: {fileID: 814536675226637187}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 512
+  text: {fileID: 406471211730469983}
 --- !u!1 &2768994921044906423
 GameObject:
   m_ObjectHideFlags: 0
@@ -2548,6 +2576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2814108109108873056}
+  - component: {fileID: 6390438571233946673}
   m_Layer: 0
   m_Name: flintlock
   m_TagString: Untagged
@@ -2577,6 +2606,33 @@ Transform:
   m_Father: {fileID: 2205168604405456830}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6390438571233946673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3190352588877553114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6568687cd2d12d142b8d57d370577d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 150
+  fireRate: 2
+  spread: 1
+  range: 200
+  reloadTime: 3
+  timeBetweenShots: 1
+  magazineSize: 1
+  bulletsPerTap: 1
+  allowButtonHold: 0
+  fpsCam: {fileID: 4624340459358644975}
+  attackPoint: {fileID: 4659631815311469510}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 512
+  text: {fileID: 406471211730469983}
 --- !u!1 &3242504547549932089
 GameObject:
   m_ObjectHideFlags: 0
@@ -4806,6 +4862,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6523197642956536492}
+  - component: {fileID: 3396104853678569099}
   m_Layer: 0
   m_Name: shotgun
   m_TagString: Untagged
@@ -4837,6 +4894,33 @@ Transform:
   m_Father: {fileID: 2205168604405456830}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3396104853678569099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894329131069775894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6568687cd2d12d142b8d57d370577d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 300
+  fireRate: 1.5
+  spread: 4
+  range: 20
+  reloadTime: 2
+  timeBetweenShots: 0.8
+  magazineSize: 4
+  bulletsPerTap: 1
+  allowButtonHold: 0
+  fpsCam: {fileID: 4624340459358644975}
+  attackPoint: {fileID: 5490910143930487412}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 512
+  text: {fileID: 406471211730469983}
 --- !u!1 &5900100137773056019
 GameObject:
   m_ObjectHideFlags: 0
