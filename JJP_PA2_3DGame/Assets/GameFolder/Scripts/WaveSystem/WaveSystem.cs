@@ -33,13 +33,26 @@ public class WaveSystem : MonoBehaviour
 
     private void Update() {
         nSheeps =  waveSheepsFolder.childCount;
+  
+        if(Input.GetKeyDown(KeyCode.T)) skip = true;
     }
+
+    bool skip =false;
+    public float waveTime;
 
     IEnumerator SpawnNextWave()
     {
         int currentWaveCooldown = LevelWaves.waves[currentWave].cooldown;
-        waveui.StartCount(currentWaveCooldown);
-        yield return new WaitForSeconds(LevelWaves.waves[currentWave].cooldown);
+    
+        
+        skip = false;
+         waveTime = LevelWaves.waves[currentWave].cooldown;
+        while(waveTime >= 0){
+            waveTime -= 1;
+            yield  return new WaitForSeconds(1);
+            if(skip){ waveTime = 0; skip = false;}
+        }
+   
         
         waveEnd = false;
         currentPartWave = -1;

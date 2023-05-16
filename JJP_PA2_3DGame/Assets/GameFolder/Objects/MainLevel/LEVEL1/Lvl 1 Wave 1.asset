@@ -16,7 +16,7 @@ MonoBehaviour:
   wavePart:
   - cooldown: 0
     typeEnemies:
-    - enemySheep: {fileID: 11400000, guid: 33b1b0a94dc2de143a4a7f2091b60d54, type: 2}
+    - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
       Quantity: 20
       dificultyMod: 0
     - enemySheep: {fileID: 11400000, guid: 267a06a236c9aa44e9fb3201280f01b3, type: 2}

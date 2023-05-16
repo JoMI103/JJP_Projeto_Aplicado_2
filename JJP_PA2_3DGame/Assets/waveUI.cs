@@ -21,9 +21,6 @@ public class waveUI : MonoBehaviour
     }
     
     
-    public void StartCount(int timecurrent){
-        waveTime = timecurrent;
-    }
     
     float waveTime = 0;
     
@@ -33,11 +30,11 @@ public class waveUI : MonoBehaviour
         
         while(true){
             
-            if(waveTime < 0){
+            if(waveSystem.waveTime <= 0){
                  timeQuantityText.text =  "Next Wave(" +waveSystem.nSheeps.ToString() + ")";
             }else{
-                waveTime-= Time.deltaTime;
-                timeQuantityText.text = ((int)waveTime).ToString();
+        
+                timeQuantityText.text = ((int)waveSystem.waveTime).ToString();
             }
             
             yield return null;

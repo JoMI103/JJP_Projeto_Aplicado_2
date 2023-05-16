@@ -14,33 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Level 1
   waves:
-  - cooldown: 10
+  - cooldown: 60
     dificultyMod: 0
     waveSO: {fileID: 11400000, guid: 1f3dcc5df3e3d764fb91e0cf09989b89, type: 2}
-  - cooldown: 60
+  - cooldown: 30
     dificultyMod: 0
     waveSO: {fileID: 11400000, guid: dad16a5b7dc2b074dac6beb05b6caafd, type: 2}
-  - cooldown: 60
+  - cooldown: 30
     dificultyMod: 0
     waveSO: {fileID: 11400000, guid: 4c0ec83a0ac27064c800fed54bc2bb5b, type: 2}
-  - cooldown: 60
+  - cooldown: 30
     dificultyMod: 0
     waveSO: {fileID: 11400000, guid: e90a4604264f7f64a829803ca37aa6c9, type: 2}
-  - cooldown: 60
+  - cooldown: 30
     dificultyMod: 0
     waveSO: {fileID: 11400000, guid: d70c0ea3a6d144a4cb0cf37891de9a54, type: 2}
-  - cooldown: 60
+  - cooldown: 30
     dificultyMod: 0
     waveSO: {fileID: 11400000, guid: d69c7f1ed28b34b468c89407766463d9, type: 2}
-  - cooldown: 60
+  - cooldown: 30
     dificultyMod: 0
     waveSO: {fileID: 11400000, guid: 1fe78154ac4a57249ac6d7aa699b32f0, type: 2}
-  - cooldown: 60
+  - cooldown: 30
     dificultyMod: 0
     waveSO: {fileID: 11400000, guid: dd6f02592a105b84196376eb9a139327, type: 2}
-  - cooldown: 60
+  - cooldown: 30
     dificultyMod: 0
     waveSO: {fileID: 11400000, guid: 79945591aa00ed6498100ebea870a515, type: 2}
-  - cooldown: 60
+  - cooldown: 30
     dificultyMod: 0
     waveSO: {fileID: 11400000, guid: 726a92d20a828754f8743e275b5d3c49, type: 2}
