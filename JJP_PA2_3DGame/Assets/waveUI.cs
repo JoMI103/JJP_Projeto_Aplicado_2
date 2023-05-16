@@ -34,7 +34,7 @@ public class waveUI : MonoBehaviour
         while(true){
             
             if(waveTime < 0){
-                 timeQuantityText.text =  "Sheep(" +waveSystem.nSheeps.ToString() + ")";
+                 timeQuantityText.text =  "Next Wave(" +waveSystem.nSheeps.ToString() + ")";
             }else{
                 waveTime-= Time.deltaTime;
                 timeQuantityText.text = ((int)waveTime).ToString();

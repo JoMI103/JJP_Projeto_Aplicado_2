@@ -81,7 +81,7 @@ public class PlayerStats : MonoBehaviour
     private void updateHpUI()
     {
         
-        hp.text = "HP: " + HPPoints;
+        hp.text = "" + HPPoints;
     }
 
 
@@ -89,17 +89,17 @@ public class PlayerStats : MonoBehaviour
 
     private void updateWoodUI()
     {
-        totalWood.text = "Wood: " + (float)WoodQuantity / 1000 + "K";
+        totalWood.text = "" + (float)WoodQuantity / 1000 + "K";
     }
 
     private void updateMetalUI()
     {
-        totalMetal.text = "Metal: " + (float)MetalQuantity / 1000 + "K";
+        totalMetal.text = "" + (float)MetalQuantity / 1000 + "K";
     }
 
     private void updateEletronicsUI()
     {
-        totalEletronics.text = "Eletronics: " + (float)EletronicsQuantity / 1000 + "K";
+        totalEletronics.text = "" + (float)EletronicsQuantity / 1000 + "K";
     }
 
 
