@@ -12,10 +12,11 @@ public class AudioManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-            s.source.spatialBlend = 1;
+            
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
-     
+            if(s.Spacial) s.source.spatialBlend = 1; else s.source.spatialBlend = 0;
+            s.source.playOnAwake = s.playOnAwake;
         }
     }
 

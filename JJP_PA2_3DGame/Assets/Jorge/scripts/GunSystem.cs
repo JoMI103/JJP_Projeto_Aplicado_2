@@ -20,6 +20,9 @@ public class GunSystem : MonoBehaviour
     public GameObject muzzleFlash,muzzleFlash2, bulletHoleGraphic;
     public TextMeshProUGUI text;
 
+    public Animator animator; public string shootAnimationName, ReloadAnimationName;
+    public AudioManager audioManager;
+    
     private void Awake()
     {
         bulletsLeft = magazineSize;
@@ -40,9 +43,10 @@ public class GunSystem : MonoBehaviour
       
   
 
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
-        {
+        if (readyToShoot && shooting && !reloading && bulletsLeft > 0) {
             bulletsShot = bulletsPerTap;
+            animator.Play(shootAnimationName);  
+            audioManager.Play(shootAnimationName);
             Shoot();
         }
     }
@@ -70,7 +74,9 @@ public class GunSystem : MonoBehaviour
                 damageAux.BaseHit(damage);
             
         Debug.LogError(rayHit.normal);
-         Instantiate(muzzleFlash, rayHit.point, Quaternion.identity).transform.up = rayHit.normal;
+        Transform t =  Instantiate(muzzleFlash, rayHit.point, Quaternion.identity).transform;
+        t.transform.up = rayHit.normal;
+         if (damageAux != null) t.parent = damageAux.transform;
   
             Instantiate(muzzleFlash2, attackPoint.position, Quaternion.identity);
 
@@ -96,6 +102,9 @@ public class GunSystem : MonoBehaviour
     }
     private void Reload()
     {
+       // animator.Play(ReloadAnimationName);  
+       // audioManager.Play(ReloadAnimationName);
+        
         reloading = true;
         Invoke("ReloadFinished", reloadTime);
     }

@@ -17,6 +17,9 @@ public class Sound
 
     [HideInInspector]
     public AudioSource source;
+    
+    public bool Spacial;
+    public bool playOnAwake;
 
 }
 
