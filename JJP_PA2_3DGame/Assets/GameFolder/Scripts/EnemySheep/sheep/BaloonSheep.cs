@@ -79,7 +79,6 @@ public class BaloonSheep : EnemySheep
         //when timeStack is greater than attack Speed a bomb is dropped to affect all constructions around
         float timeAtack = 0;
         while(currentState  == state.AtackConstruction){
-            Debug.LogError("bALOONERROR");
             yield return new WaitForSeconds(0.2f);
             timeAtack += 0.2f;
             if(distanceToObjective < 1f){

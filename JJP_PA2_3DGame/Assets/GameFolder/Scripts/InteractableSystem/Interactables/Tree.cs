@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Tree : Interactable
 {
+    [SerializeField] int maxHp = 5000; private int hpPoints;
+    private const float starHealing = 60;
+    float regTimer;     bool amazoniaMode = false;
+    [SerializeField] Transform burn;
+    
+    
+    
     [SerializeField] int hitTimes = 10; int hitNow;
     [SerializeField] int quantity;
     [SerializeField] private float respawnTime = 120.0f; 
@@ -13,9 +20,33 @@ public class Tree : Interactable
 
     private void Start()
     {
-
+        hpPoints = maxHp;
         treeCollider = GetComponent<Collider>();
     }
+    
+    private void Update() {
+         if(hpPoints < maxHp){
+            if(regTimer > starHealing){
+                hpPoints += 50;
+                regTimer-=0.5f;
+                amazoniaMode = false;
+            }
+            regTimer += Time.deltaTime;
+        }
+        
+        if(amazoniaMode){
+            burn.gameObject.SetActive(true);
+        }else{
+            burn.gameObject.SetActive(false);
+        }
+        
+        
+        if(hpPoints < 1){
+            Destroy(this.gameObject);
+        }
+    }
+        
+
 
     protected override void Interact()
     {
@@ -46,4 +77,17 @@ public class Tree : Interactable
         treeCollider.enabled = true;
         
     }
+    
+    
+    public void giveDmg(int dmg, bool fire){
+        regTimer = 0;
+        if(fire){
+            amazoniaMode = true;
+        }
+        
+        hpPoints -=dmg;
+        
+    }
+    
+    
 }

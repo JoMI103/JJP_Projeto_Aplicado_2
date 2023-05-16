@@ -275,7 +275,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -770,7 +770,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1353
+    maxNumParticles: 200
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -5292,7 +5292,7 @@ MonoBehaviour:
     m_Bits: 34824
   buildingTypeFocus:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 73728
   ScanFrontSheepStartPoint: {fileID: 3778429912143059231}
   distanceScan: 1.2
   enemySheeps:
@@ -5303,12 +5303,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 34824
   nothing: 1
-  flameParticles: {fileID: 3019743387538993577}
+  flameParticles: {fileID: 508763936622366341}
   startFirePos: {fileID: 1562665925916226169}
   fireRadius: 5
   targetMask:
     serializedVersion: 2
-    m_Bits: 24576
+    m_Bits: 221184
+  treeMask:
+    serializedVersion: 2
+    m_Bits: 131072
+  scanRadius: 10
 --- !u!114 &6499425496785931238
 MonoBehaviour:
   m_ObjectHideFlags: 0

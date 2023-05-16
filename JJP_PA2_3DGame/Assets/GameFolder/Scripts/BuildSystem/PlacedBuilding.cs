@@ -37,6 +37,8 @@ public class PlacedBuilding : MonoBehaviour{
     private Vector2Int origin;
     public BuildingTypeSO.Dir dir;
 
+    public Transform CenterPosition;
+
     private int baseHealth;
     private int health;
 

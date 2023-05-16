@@ -50,7 +50,7 @@ public class EnemySheep : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         setTargetSheep = GetComponent<SetTargetSheep>();
         sheepRigidBody = GetComponent<Rigidbody>();
-        navMeshAgent.stoppingDistance = SheepSO.AttackRange;
+        navMeshAgent.stoppingDistance = 0.5f;
         navMeshAgent.speed = sheepSpeed;
     }
     
@@ -372,6 +372,9 @@ public class EnemySheep : MonoBehaviour
 
 
     #endregion
+
+
+
 
 #region gizmos
 #if UNITY_EDITOR

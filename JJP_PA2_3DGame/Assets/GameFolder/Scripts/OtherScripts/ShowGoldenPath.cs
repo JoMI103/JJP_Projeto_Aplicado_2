@@ -13,7 +13,8 @@ public class ShowGoldenPath : MonoBehaviour
         path = new NavMeshPath();
             NavMeshQueryFilter navMeshQueryFilter = new NavMeshQueryFilter();
             navMeshQueryFilter.areaMask = NavMesh.AllAreas;
-            NavMesh.CalculatePath(transform.position, target.position, navMeshQueryFilter ,path);
+            NavMesh.SamplePosition(target.position,out NavMeshHit hit, 5,-1);
+            NavMesh.CalculatePath(transform.position, hit.position, navMeshQueryFilter ,path);
 
         for (int i = 0; i < path.corners.Length - 1; i++)
             Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);

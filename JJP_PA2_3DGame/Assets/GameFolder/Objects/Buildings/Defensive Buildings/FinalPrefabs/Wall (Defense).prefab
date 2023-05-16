@@ -362,6 +362,37 @@ Transform:
   m_Father: {fileID: 8442033837618270750}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6611078008181542607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3107567635821428803}
+  m_Layer: 0
+  m_Name: CenterPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3107567635821428803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6611078008181542607}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8442033837618270750}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6631304256776363395
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +600,7 @@ Transform:
   - {fileID: 6949791202967621425}
   - {fileID: 2883076439580755631}
   - {fileID: 341350412713574192}
+  - {fileID: 3107567635821428803}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -586,6 +618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingTypeSO: {fileID: 11400000, guid: 3286e76007bcbd64b83e4faee4b80851, type: 2}
   dir: 0
+  CenterPosition: {fileID: 3107567635821428803}
   healthBar: {fileID: 3022913840942913704}
 --- !u!65 &1863579272290846805
 BoxCollider:

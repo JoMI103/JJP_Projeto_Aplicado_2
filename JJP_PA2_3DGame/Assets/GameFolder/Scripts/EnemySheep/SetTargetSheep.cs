@@ -30,6 +30,20 @@ public class SetTargetSheep : MonoBehaviour
             sheepMeshAgent.SetPath(path);
         }
     }
+    
+    public void setStaticTarget(Vector3 target, Vector3 pos)
+    {
+        tPos = target;
+        
+        NavMesh.SamplePosition(tPos + (pos - tPos).normalized ,out NavMeshHit hit, 7,-1);
+        
+        if(sheepMeshAgent.enabled){
+            path = new NavMeshPath();
+        
+            sheepMeshAgent.CalculatePath(hit.position,path);
+            sheepMeshAgent.SetPath(path);
+        }
+    }
 
     private void OnDrawGizmos() {
         if(sheepMeshAgent == null) return;

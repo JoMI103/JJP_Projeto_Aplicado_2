@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5045416304041523839
 Transform:
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916960876033218885}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.0021077807, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.28126103, y: 0.21127336, z: 0.24920422}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -127,12 +127,12 @@ GameObject:
   - component: {fileID: 4542056089323433152}
   - component: {fileID: 3429077761725354873}
   - component: {fileID: 6375439014718366247}
-  m_Layer: 6
+  m_Layer: 17
   m_Name: pCylinder1
   m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &454674391345029548
 Transform:
@@ -142,7 +142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4180072414611730342}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.016, z: 0}
+  m_LocalPosition: {x: -0, y: 0.01259, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -247,7 +247,7 @@ GameObject:
   m_TagString: TerrainElement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &3285393370456449867
 Transform:
@@ -280,6 +280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useEvents: 0
   promptMessage: Chop
+  maxHp: 1500
+  burn: {fileID: 107988935669574160}
   hitTimes: 3
   quantity: 2000
   respawnTime: 300
@@ -338,12 +340,12 @@ GameObject:
   - component: {fileID: 107988935669574160}
   - component: {fileID: 5465064951997043084}
   - component: {fileID: 6424114136221443880}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BURN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
+  m_StaticEditorFlags: 0
   m_IsActive: 0
 --- !u!4 &107988935669574160
 Transform:
