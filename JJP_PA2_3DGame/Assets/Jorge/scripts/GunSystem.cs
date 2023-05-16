@@ -57,35 +57,34 @@ public class GunSystem : MonoBehaviour
         for (int i = 0; i < bulletsPerShot; i++)
         {
             float x = Random.Range(-spread, spread);
-        float y = Random.Range(-spread, spread);
-        float z = Random.Range(-spread, spread);
+            float y = Random.Range(-spread, spread);
+            float z = Random.Range(-spread, spread);
 
-        Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, z);
+            Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, z);
 
-        if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
-        {
-            //Debug.Log(rayHit.collider.name);
+            if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
+            {
+                //Debug.Log(rayHit.collider.name);
 
 
 
-            //Gets the gameobject with an Damage Script with raycast hitinfo
-            Hittable damageAux = rayHit.collider.GetComponent<Hittable>();
-            if (damageAux != null)
-                damageAux.BaseHit(damage);
+                //Gets the gameobject with an Damage Script with raycast hitinfo
+                Hittable damageAux = rayHit.collider.GetComponent<Hittable>();
+                if (damageAux != null)
+                    damageAux.BaseHit(damage);
+   
+                Transform t =  Instantiate(muzzleFlash, rayHit.point, Quaternion.identity).transform;
+                t.transform.up = rayHit.normal;
+                if (damageAux != null) t.parent = damageAux.transform;
+    
+
             
-        Debug.LogError(rayHit.normal);
-        Transform t =  Instantiate(muzzleFlash, rayHit.point, Quaternion.identity).transform;
-        t.transform.up = rayHit.normal;
-         if (damageAux != null) t.parent = damageAux.transform;
-  
-            Instantiate(muzzleFlash2, attackPoint.position, Quaternion.identity);
 
-           
-
-        }
+            }
 
         }
         
+        Instantiate(muzzleFlash2, attackPoint.position, Quaternion.identity);
         
         bulletsLeft--;
         bulletsShot--;
@@ -102,8 +101,8 @@ public class GunSystem : MonoBehaviour
     }
     private void Reload()
     {
-       // animator.Play(ReloadAnimationName);  
-       // audioManager.Play(ReloadAnimationName);
+        animator.Play(ReloadAnimationName);  
+      // audioManager.Play(ReloadAnimationName);
         
         reloading = true;
         Invoke("ReloadFinished", reloadTime);

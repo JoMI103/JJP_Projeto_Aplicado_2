@@ -5042,7 +5042,7 @@ MonoBehaviour:
   text: {fileID: 406471211730469983}
   animator: {fileID: 2013728711636454637}
   shootAnimationName: ShotgunShot
-  ReloadAnimationName: 
+  ReloadAnimationName: shotgunReload
   audioManager: {fileID: 5334693587970421483}
 --- !u!95 &2013728711636454637
 Animator:
