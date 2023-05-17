@@ -19,8 +19,7 @@ Mouse,Mouse1 - UI (SelectionWheel,Menu,PauseMenu)
 
 TODO
 
-Mouse1 - Construct, (Shoot), (ToolAction)
-R - (Reloud), RotateBuilding
+Mouse1 - Construct, Shoot, (ToolAction)
 T - Skip Wave
 
 Mouse,Mouse1 - UI (SelectionWheel,(Menu),(PauseMenu))
