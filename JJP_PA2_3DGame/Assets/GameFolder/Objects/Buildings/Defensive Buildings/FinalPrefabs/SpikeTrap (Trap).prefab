@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingTypeSO: {fileID: 11400000, guid: c6d06fceafcfe764cb3f95fcd5a97559, type: 2}
   dir: 0
+  CenterPosition: {fileID: 0}
   healthBar: {fileID: 3464430519089730929}
 --- !u!114 &7403337306828378864
 MonoBehaviour:
@@ -307,6 +308,8 @@ MonoBehaviour:
     volume: 0.016
     pitch: 1
     source: {fileID: 0}
+    Spacial: 1
+    playOnAwake: 0
 --- !u!135 &4296030194467262723
 SphereCollider:
   m_ObjectHideFlags: 0

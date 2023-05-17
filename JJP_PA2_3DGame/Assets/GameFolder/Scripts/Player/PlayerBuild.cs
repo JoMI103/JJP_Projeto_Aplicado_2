@@ -40,9 +40,9 @@ public class PlayerBuild : MonoBehaviour
     private void Start()
     {
         inputManager = GetComponent<InputManager>();
-        inputManager.onFoot.Place.performed += ctx => PlaceBuilding();
+        inputManager.onFoot.PlaceShootAttack.performed += ctx => PlaceBuilding();
         inputManager.onFoot.Destroy.performed += ctx => DestroyBuilding();
-        inputManager.onFoot.Rotate.performed += ctx => RotateBuilding();
+        inputManager.onFoot.RotateReload.performed += ctx => RotateBuilding();
 
         currentGrid = null;
 

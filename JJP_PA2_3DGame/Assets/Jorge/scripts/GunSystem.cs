@@ -4,55 +4,75 @@ using TMPro;
 
 public class GunSystem : MonoBehaviour
 {
+    [Header("GunStats")]
     public int damage;
     public float fireRate, spread, range, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap, bulletsPerShot;
     public bool allowButtonHold;
-    int bulletsLeft, bulletsShot;
-
-    bool shooting, readyToShoot, reloading;
-
-    public Camera fpsCam;
-    public Transform attackPoint;
-    public RaycastHit rayHit;
-    public LayerMask whatIsEnemy;
-
-    public GameObject muzzleFlash,muzzleFlash2, bulletHoleGraphic;
-    public TextMeshProUGUI text;
-
-    public Animator animator; public string shootAnimationName, ReloadAnimationName;
-    public AudioManager audioManager;
     
-    private void Awake()
-    {
+  
+    [Header("Shot Start Position")]
+    public Camera fpsCam; public Transform attackPoint;
+    
+    [Header("Hitable Objects")]
+    public LayerMask whatIsEnemy;
+    
+    [Header("Effects/Audio/Animations")]
+    
+    public GameObject muzzleFlash; public GameObject muzzleFlash2;
+    public TextMeshProUGUI AmmoDisplay;
+
+    public Animator animator; 
+    public AudioManager audioManager;
+    public string shootAnimationName, ReloadAnimationName;
+    
+    [Header("InputManager")]
+    [SerializeField] private InputManager inputManager;
+    
+    
+    int bulletsLeft, bulletsShot; bool shooting, readyToShoot, reloading;
+    private RaycastHit rayHit;
+    
+    private void Awake() {
         bulletsLeft = magazineSize;
         readyToShoot = true;
+        
     }
-    private void Update()
-    {
-        ShootInput();
-
-        text.SetText(bulletsLeft + " / " + magazineSize);
+    
+    private void Start() {
+        inputManager.onFoot.PlaceShootAttack.performed += ctx => tryShoot();
+        inputManager.onFoot.RotateReload.performed += ctx => tryReload();
     }
-    private void ShootInput()
-    {
-        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
-        else shooting = Input.GetKeyDown(KeyCode.Mouse0);
-
-        if((bulletsLeft <= 0 || Input.GetKeyDown(KeyCode.R)) && bulletsLeft < magazineSize && !reloading ) Reload();
-      
-  
-
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0) {
-            bulletsShot = bulletsPerTap;
-            animator.Play(shootAnimationName);  
-            audioManager.Play(shootAnimationName);
+    
+    private void Update() {
+        if(bulletsLeft <= 0 && bulletsLeft < magazineSize && !reloading ) Reload();
+    }
+    
+    private void tryShoot(){
+        if(!this.gameObject.activeInHierarchy) return;
+        
+        if (readyToShoot && !reloading && bulletsLeft > 0) {
             Shoot();
         }
     }
+    private void tryReload(){
+         if(!this.gameObject.activeInHierarchy) return;
+        if(bulletsLeft < magazineSize && bulletsLeft < magazineSize && !reloading ) Reload();
+    }
+    
+    private void UpdateUI() {
+        AmmoDisplay.SetText(bulletsLeft + " / " + magazineSize);
+    }
+
+    
     private void Shoot()
     {
+       
         readyToShoot = false;
+        
+        bulletsShot = bulletsPerTap;
+        animator.Play(shootAnimationName);  
+        audioManager.Play(shootAnimationName);
         
         for (int i = 0; i < bulletsPerShot; i++)
         {
@@ -88,28 +108,36 @@ public class GunSystem : MonoBehaviour
         
         bulletsLeft--;
         bulletsShot--;
-
+        
+        UpdateUI();
+        
         Invoke("ResetShot", fireRate);
-
+        
         if (bulletsShot > 0 && bulletsLeft > 0)
             Invoke("Shoot", timeBetweenShots);
-
+        
     }
-    private void ResetShot()
-    {
-        readyToShoot = true;
-    }
+  
+   
     private void Reload()
     {
         animator.Play(ReloadAnimationName);  
       // audioManager.Play(ReloadAnimationName);
-        
         reloading = true;
         Invoke("ReloadFinished", reloadTime);
     }
+    
+    //Invoked Methods
+    private void ResetShot()
+    {
+        readyToShoot = true;
+    }
+  
+    
     private void ReloadFinished()
     {
         bulletsLeft = magazineSize;
         reloading = false;
+        UpdateUI();
     }
 }
