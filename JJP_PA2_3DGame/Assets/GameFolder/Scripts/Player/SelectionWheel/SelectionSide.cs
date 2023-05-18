@@ -64,9 +64,6 @@ public class SelectionSide : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         toolImage.sprite = items[currentItemId].image;
     }
 
-
-
-
     public bool isOver = false;
 
     public void OnPointerEnter(PointerEventData eventData)

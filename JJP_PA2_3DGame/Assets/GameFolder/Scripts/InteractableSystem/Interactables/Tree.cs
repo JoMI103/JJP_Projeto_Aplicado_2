@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tree : Interactable
 {
-    [SerializeField] int maxHp = 5000; private int hpPoints;
+    [SerializeField] int maxHp = 1000; private int hpPoints;
     private const float starHealing = 60;
     float regTimer;     bool amazoniaMode = false;
     [SerializeField] Transform burn;
@@ -54,7 +54,7 @@ public class Tree : Interactable
 
         if(!treeCollider.enabled) return;
 
-        if(ph.activeItem.handId == 5)
+        if(ph.activeItem.handId == 5 && !ph.toolsystem.isInAction)
         {
             hitNow++;
             if(hitNow >= hitTimes){

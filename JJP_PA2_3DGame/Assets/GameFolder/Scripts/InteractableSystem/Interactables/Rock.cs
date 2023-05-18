@@ -22,7 +22,7 @@ public class Rock : Interactable
         PlayerHand ph = PlayerGO.GetComponent<PlayerHand>();
 
         if(!rockCollider.enabled) return;
-       if(ph.activeItem.handId == 6)
+       if(ph.activeItem.handId == 6 && !ph.toolsystem.isInAction)
         {
             hitNow++;
             if(hitNow >= hitTimes){

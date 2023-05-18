@@ -40,9 +40,7 @@ public class PlayerBuild : MonoBehaviour
     private void Start()
     {
         inputManager = GetComponent<InputManager>();
-        inputManager.onFoot.PlaceShootAttack.performed += ctx => PlaceBuilding();
-        inputManager.onFoot.Destroy.performed += ctx => DestroyBuilding();
-        inputManager.onFoot.RotateReload.performed += ctx => RotateBuilding();
+
 
         currentGrid = null;
 
@@ -96,7 +94,7 @@ public class PlayerBuild : MonoBehaviour
       
     private List<Vector3> pos = new List<Vector3>();
 
-    private void PlaceBuilding() {
+    public void PlaceBuilding() {
 
         if (buildingTypeSO == null || currentGrid == null) return; //tem construcao e grid 
         
@@ -177,7 +175,7 @@ public class PlayerBuild : MonoBehaviour
         //DeselectObjectType();
     }
 
-    private void DestroyBuilding()
+    public void DestroyBuilding()
     {
         if(!hitting) return;
 
@@ -220,7 +218,7 @@ public class PlayerBuild : MonoBehaviour
         pos = buildObjectWorldPosition;
    }
    
-    private void RotateBuilding()
+    public void RotateBuilding()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {

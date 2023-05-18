@@ -39,23 +39,20 @@ public class GunSystem : MonoBehaviour
         
     }
     
-    private void Start() {
-        inputManager.onFoot.PlaceShootAttack.performed += ctx => tryShoot();
-        inputManager.onFoot.RotateReload.performed += ctx => tryReload();
-    }
+ 
     
     private void Update() {
         if(bulletsLeft <= 0 && bulletsLeft < magazineSize && !reloading ) Reload();
     }
     
-    private void tryShoot(){
+    public void tryShoot(){
         if(!this.gameObject.activeInHierarchy) return;
         
         if (readyToShoot && !reloading && bulletsLeft > 0) {
             Shoot();
         }
     }
-    private void tryReload(){
+    public void tryReload(){
          if(!this.gameObject.activeInHierarchy) return;
         if(bulletsLeft < magazineSize && bulletsLeft < magazineSize && !reloading ) Reload();
     }
