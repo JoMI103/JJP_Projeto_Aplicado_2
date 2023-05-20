@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     public PlayerInput.OnFootActions onFoot;
     public PlayerInput.SelectionWheelActions selectionWheel;
     public PlayerInput.ChangeActionMapsActions changeActionMaps;
+    public PlayerInput.MenuActions Menu;
 
     private void Awake()
     {
@@ -16,25 +17,24 @@ public class InputManager : MonoBehaviour
         onFoot = playerInput.OnFoot;
         selectionWheel = playerInput.SelectionWheel;
         changeActionMaps = playerInput.ChangeActionMaps;
+        Menu = playerInput.Menu;
         DefaultActionMaps();
     }
-
     private void DefaultActionMaps()
     {
         disableActionMaps();
         onFoot.Enable();
         changeActionMaps.Enable();
     }
-
     private void OnDisable()
     {
         disableActionMaps();
         changeActionMaps.Disable();
     }
-   
     public void disableActionMaps()
     {
         onFoot.Disable();
         selectionWheel.Disable();
+        Menu.Disable();
     }
 }
