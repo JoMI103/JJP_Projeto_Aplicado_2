@@ -8155,6 +8155,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ebd841966c0b8a1499eaab90bd646add, type: 2}
   - {fileID: 11400000, guid: 6796ba1b654c57842bf4fb4a0f21e043, type: 2}
   - {fileID: 11400000, guid: c39889ec80b6eab408c867e728f27599, type: 2}
+  - {fileID: 11400000, guid: b4128b405def89b4b939c2c24f034118, type: 2}
+  - {fileID: 11400000, guid: fa40e17ad40a00242a6094ac0702589e, type: 2}
   inputManager: {fileID: 7686942774207393724}
   hand: {fileID: 5509199434684803895}
   toolImage: {fileID: 6996527229546828927}
