@@ -272,7 +272,8 @@ public class EnemySheep : MonoBehaviour
 #endregion
 
 #region Effects
-
+    
+    #region slow
     [HideInInspector] public bool slowEffectIsRunning = false;
     public IEnumerator currentSlowEffect;
 
@@ -288,19 +289,39 @@ public class EnemySheep : MonoBehaviour
         slowModifier = 1;
         slowEffectIsRunning = false;
     }
+    #endregion
+    
+    #region Stun
+    
+    public bool wasStunned, isFrozen; private void falseStunned(){wasStunned = false; } private void falseFrozen(){isFrozen = false; }
     
     
-   
+    public IEnumerator currentStunEffect;
+    public void startCurrentStunEffect() { StartCoroutine(currentStunEffect); }
+    
+    public virtual IEnumerator stunEffect(float effectTime,float nextEffectTime){
+        wasStunned = true;
+        isFrozen = true;
+        Invoke(nameof(falseStunned), effectTime + nextEffectTime);
+        Invoke(nameof(falseFrozen), effectTime);
+        yield return null;
+        while(isFrozen){
+            navMeshAgent.speed = 0;
+            yield return null;
+        }
+        Debug.LogError("vai po caralho Jorge");
+        navMeshAgent.speed = sheepSpeed * slowModifier;
+    }
+    
+    
+    #endregion
+    
+    #region knockBack RagDoll
 
     public void startknockBackEffect(Vector3 s, float d, bool onStart = false) {
         if(onStart) knockBacking=true;
-        
-         StopAllCoroutines(); StartCoroutine(knockBackEffect(s,d));
-      
-    
+        StopAllCoroutines(); StartCoroutine(knockBackEffect(s,d));
     }
- 
-
     protected bool knockBacking = false;
     public virtual IEnumerator knockBackEffect(Vector3 direction, float force)
     {
@@ -335,7 +356,7 @@ public class EnemySheep : MonoBehaviour
         
         }
     }
-    
+    #endregion
 
 #endregion
 
