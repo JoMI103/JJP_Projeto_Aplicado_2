@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4891203992144470240}
   - component: {fileID: 3018370285639409712}
   - component: {fileID: 3453074873589044528}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: ForeGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingTypeSO: {fileID: 11400000, guid: c6d06fceafcfe764cb3f95fcd5a97559, type: 2}
   dir: 0
-  CenterPosition: {fileID: 0}
+  CenterPosition: {fileID: 6113105867645214259}
   healthBar: {fileID: 3464430519089730929}
 --- !u!114 &7403337306828378864
 MonoBehaviour:
@@ -268,6 +268,7 @@ MonoBehaviour:
   sheeps: []
   centerTrapCollider: {fileID: 6113105867645214259}
   boxCollSize: {x: 1.2, y: 1.3, z: 1.2}
+  boxOffSet: {x: 0, y: 0.65, z: 0}
   debugGizmos: 1
   ok: 0
 --- !u!95 &1527623561399925201
@@ -333,7 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7999021583066490373}
   - component: {fileID: 3464430519089730929}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,8 +390,8 @@ GameObject:
   - component: {fileID: 1066550208666146323}
   - component: {fileID: 6342528632843632225}
   - component: {fileID: 2154901861277055218}
-  m_Layer: 9
-  m_Name: Canvas
+  m_Layer: 0
+  m_Name: WorldSpaceCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -472,7 +473,7 @@ GameObject:
   - component: {fileID: 7112906126404610389}
   - component: {fileID: 1451639296243923485}
   - component: {fileID: 6956600478649930562}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6113105867645214259}
   m_Layer: 0
-  m_Name: CenterPoint
+  m_Name: CenterPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -654,7 +655,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7860407659161199934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.65, z: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

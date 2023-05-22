@@ -288,7 +288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2834981570313740588}
   m_Layer: 0
-  m_Name: Center
+  m_Name: CenterPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 762496472309267926}
   - component: {fileID: 1141172389115417111}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: WorldSpaceCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -668,6 +668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingTypeSO: {fileID: 11400000, guid: e0a579c399bb0e547baa3305d91d6cfe, type: 2}
   dir: 0
+  CenterPosition: {fileID: 2834981570313740588}
   healthBar: {fileID: 2878453643829698400}
 --- !u!114 &458954436670571225
 MonoBehaviour:
@@ -690,6 +691,7 @@ MonoBehaviour:
   sheeps: []
   centerTrapCollider: {fileID: 3061242605749339099}
   boxCollSize: {x: 3, y: 8, z: 3}
+  boxOffSet: {x: 0, y: 0, z: 0}
   debugGizmos: 0
   ok: 0
 --- !u!95 &4621616371393971048

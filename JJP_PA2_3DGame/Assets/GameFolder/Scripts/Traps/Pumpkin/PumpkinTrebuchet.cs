@@ -2,12 +2,9 @@ using System;
 using System.Drawing;
 using UnityEngine;
 
-
-
 public class PumpkinTrebuchet : Tower
 {
     const string attackAnimationName = "ShootPumpkin";
-
 
     [Space(10)] [Header("PumpkinTrebuchetAtributes")] [Space(10)]
     [SerializeField] private Transform pumpkimPrefab;
@@ -29,8 +26,6 @@ public class PumpkinTrebuchet : Tower
         }
 
     }
-
-
     public void Update()
     {
         if (targetSheep == null) return;
@@ -57,7 +52,6 @@ public class PumpkinTrebuchet : Tower
 
         return signed_angle;
     }
-
     protected override void shoot()
     {
         LaunchData launchData = calculateLaunchData();
@@ -66,14 +60,12 @@ public class PumpkinTrebuchet : Tower
         pumpkimProjectile.GetComponent<Rigidbody>().velocity = launchData.initialVelocity;
         pumpkimProjectile.GetComponent<PumpkinImpact>().SetExplosionStats(placedBuilding.buildingTypeSO.damage);
     }
-
     protected override void shootAnimation()
     {
         if (targetSheep == null) return;
         targetPos = targetSheep.getFuturePoint(5, calculateTime(targetSheep.transform.position) + 0.4f);
         animator.Play(attackAnimationName);
     }
-
 
     #region launchPathData
 

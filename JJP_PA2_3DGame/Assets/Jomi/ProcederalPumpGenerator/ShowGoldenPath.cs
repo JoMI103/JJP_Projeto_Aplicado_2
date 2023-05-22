@@ -20,7 +20,9 @@ public class ShowGoldenPath : MonoBehaviour
             catmullRomSpline.setCorners(path.corners);
     }
 
-
+    private void OnDrawGizmos() {
+        
+    }
    
 
 }

@@ -8,6 +8,12 @@ public class SentryGun : Tower
     
     [SerializeField] private Transform shotPoint, pivotPoint;
     
+    float currentAngle; [SerializeField] float rotateVelocity;
+    
+    protected override void Start() { 
+        base.Start();
+        currentAngle = SignedAngleBetween( Vector3.forward,  transform.position + Vector3.forward, Vector3.up);
+    }
     
     public void Update()
     {
@@ -16,7 +22,8 @@ public class SentryGun : Tower
 
         Vector3 toPosition = (new Vector3(targetPos.x, pivotPoint.position.y, targetPos.z) - pivotPoint.position).normalized;
         float angle = SignedAngleBetween( Vector3.forward,  toPosition, Vector3.up);
-        pivotPoint.rotation = Quaternion.Euler(0, angle, 0);
+        currentAngle = Mathf.Lerp(currentAngle, angle, Time.deltaTime * rotateVelocity);
+        pivotPoint.rotation = Quaternion.Euler(0, currentAngle, 0);
         pivotPoint.localRotation = Quaternion.Euler(0, pivotPoint.localRotation.eulerAngles.y, 0);
 
     }
@@ -35,6 +42,8 @@ public class SentryGun : Tower
 
         return signed_angle;
     }
+    
+    [SerializeField] int shotsPerTarget;
     
     protected override  IEnumerator Scan(){
         WaitForSeconds waitForNextScan = new WaitForSeconds(1f);
@@ -56,11 +65,10 @@ public class SentryGun : Tower
                     case attackMode.random: attackRandom(); break;
                 }
                 
-                float timeFocus = aps * 6;
+                float timeFocus = aps * shotsPerTarget;
                 while(targetSheep != null && timeFocus > 0){
                      shootAnimation();
                      timeFocus -= aps;
-                     Debug.Log("time" +  timeFocus);
                      yield return new WaitForSeconds( aps);
                 }
                 
@@ -68,17 +76,13 @@ public class SentryGun : Tower
 
         }
     }
-    
-    
     protected override void shootAnimation()
     {
         targetSheep.receiveDmg(damage);
-        //targetPos = targetSheep.getFuturePoint(5, calculateTime(targetSheep.transform.position) + 0.4f);
-       // animator.Play(attackAnimationName);
+        //animator.Play(attackAnimationName);
     }
     
-    
-        #region gizmos
+    #region gizmos
 
     public bool debugScanArea;
 

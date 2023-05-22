@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8763819071458405196}
   - component: {fileID: 5386425943510406627}
   - component: {fileID: 1199011767560093125}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: ForeGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,8 +87,8 @@ GameObject:
   - component: {fileID: 642380061180966997}
   - component: {fileID: 2629467993962398948}
   - component: {fileID: 2395655001867119397}
-  m_Layer: 9
-  m_Name: Canvas
+  m_Layer: 0
+  m_Name: WorldSpaceCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,8 +352,7 @@ GameObject:
   - component: {fileID: 4480480636106391041}
   - component: {fileID: 4480480636106391042}
   - component: {fileID: 4480480636106391043}
-  - component: {fileID: 3007389795403080971}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,6 +372,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5173965073289556430}
+  - {fileID: 7945491547396276947}
   m_Father: {fileID: 4655052660519170507}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -439,22 +439,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6, y: 0.1, z: 6}
   m_Center: {x: 0, y: 0.0455, z: 0}
---- !u!114 &3007389795403080971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4480480636106391045}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Size: {x: 7, y: 4, z: 7}
-  m_Center: {x: 0, y: 0.61517715, z: 0}
-  m_Area: 7
-  m_AffectedAgents: ffffffff
 --- !u!1 &4541308310485963511
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6310795318104792380}
   - component: {fileID: 656122446100686418}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,6 +494,85 @@ MonoBehaviour:
   foreGroundImage: {fileID: 1199011767560093125}
   backGroundImage: {fileID: 8992388349309667555}
   offset: {x: 0, y: 1, z: 0}
+--- !u!1 &4754117127308752193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7945491547396276947}
+  - component: {fileID: 3541494228723776996}
+  m_Layer: 3
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7945491547396276947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754117127308752193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4480480636106391044}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3541494228723776996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754117127308752193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 4, y: 3, z: 4}
+  m_Center: {x: 0, y: 1, z: 0}
+  m_Area: 14
+  m_AffectedAgents: ffffffff
+--- !u!1 &4960357354868140950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1796604285655472431}
+  m_Layer: 0
+  m_Name: CenterPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1796604285655472431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4960357354868140950}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6179131034935684324}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5187702166609342635
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +669,7 @@ GameObject:
   - component: {fileID: 7290796505505383193}
   - component: {fileID: 2253668646822314953}
   - component: {fileID: 1913181349513371571}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: PumpkinTrebuchet (Tower)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,6 +691,7 @@ Transform:
   - {fileID: 4655052660519170507}
   - {fileID: 642380061180966997}
   - {fileID: 2617778411284185546}
+  - {fileID: 1796604285655472431}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -645,6 +709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingTypeSO: {fileID: 11400000, guid: 276b7616f1052ca409f310444922dc04, type: 2}
   dir: 0
+  CenterPosition: {fileID: 1796604285655472431}
   healthBar: {fileID: 656122446100686418}
 --- !u!114 &7290796505505383193
 MonoBehaviour:
@@ -1034,7 +1099,7 @@ GameObject:
   - component: {fileID: 5439995142624660678}
   - component: {fileID: 9082138835094625978}
   - component: {fileID: 8992388349309667555}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}

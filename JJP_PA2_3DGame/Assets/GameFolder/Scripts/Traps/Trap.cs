@@ -10,13 +10,13 @@ public class Trap : DefenseBuilding
     [Space(10)]
 
     [SerializeField] private Transform centerTrapCollider;
-    [SerializeField] private Vector3 boxCollSize;
+    [SerializeField] private Vector3 boxCollSize, boxOffSet;
 
     protected override void GetSurroundSheeps()
     {
         sheeps.Clear();
 
-        var outSurroundingObjects = Physics.OverlapBox(centerTrapCollider.position, boxCollSize / 2, transform.rotation, sheepLayer);
+        var outSurroundingObjects = Physics.OverlapBox(boxOffSet + centerTrapCollider.position, boxCollSize / 2, transform.rotation, sheepLayer);
 
         foreach (var surroundingObject in outSurroundingObjects)
         {
@@ -35,7 +35,7 @@ public class Trap : DefenseBuilding
         if (!debugGizmos) { return; }
         Gizmos.color = Color.red;
         Gizmos.matrix = centerTrapCollider.localToWorldMatrix;
-        Gizmos.DrawWireCube(Vector3.zero, boxCollSize);
+        Gizmos.DrawWireCube(boxOffSet +Vector3.zero, boxCollSize);
     }
 
     #endregion

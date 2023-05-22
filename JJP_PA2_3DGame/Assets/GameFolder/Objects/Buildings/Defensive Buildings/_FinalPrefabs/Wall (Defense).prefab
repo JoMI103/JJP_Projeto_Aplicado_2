@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 330223790692579870}
   - component: {fileID: 132746736905164255}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: WorldSpaceCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
