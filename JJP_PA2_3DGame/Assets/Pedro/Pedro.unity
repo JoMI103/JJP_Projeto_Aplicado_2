@@ -4959,23 +4959,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowModifier: 0
-  m_EnemySheepTypeSO: {fileID: 11400000, guid: 267a06a236c9aa44e9fb3201280f01b3, type: 2}
-  healthBar: {fileID: 2107853594}
+  SheepSO: {fileID: 0}
   animator: {fileID: 0}
+  healthBar: {fileID: 2107853594}
   model: {fileID: 0}
-  fixRotation: 0
-  l:
+  fixOrientation: 0
+  floorToFixOrientation:
     serializedVersion: 2
     m_Bits: 0
-  destructibleLayer:
+  buildingTypeFocus:
+    serializedVersion: 2
+    m_Bits: 0
+  ScanFrontSheepStartPoint: {fileID: 0}
+  distanceScan: 0
+  enemySheeps:
     serializedVersion: 2
     m_Bits: 0
   slowEffectIsRunning: 0
-  floorLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  rig: 0
-  floor:
+  wasStunned: 0
+  isFrozen: 0
+  navmeshFloor:
     serializedVersion: 2
     m_Bits: 0
   standardEnemySheepSO: {fileID: 0}
