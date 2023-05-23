@@ -52,11 +52,9 @@ public class IceSpike : Tower
 
             if (sheeps.Count == 0) { yield return waitForNextScan; }
             else
-            {
-             
-                    shootAnimation();
-                    yield return waitAps;
-         
+            {         
+                shootAnimation();
+                yield return waitAps;
             }
             
         }

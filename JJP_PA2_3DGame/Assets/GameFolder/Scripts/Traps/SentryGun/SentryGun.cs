@@ -71,9 +71,7 @@ public class SentryGun : Tower
                      timeFocus -= aps;
                      yield return new WaitForSeconds( aps);
                 }
-                
             }
-
         }
     }
     protected override void shootAnimation()

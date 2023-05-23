@@ -144,8 +144,8 @@ public class FlameThrowerSheep : EnemySheep
           
             if(tree != null){
              
-                //float dotproduct = Vector3.Dot(transform.forward,( building.CenterPosition.position-transform.position).normalized);
-                //if(dotproduct < 0.8f)  // area do cone
+                float dotproduct = Vector3.Dot(transform.forward,( building.CenterPosition.position-transform.position).normalized);
+                if(dotproduct < 0.8f)  // area do cone
                 tree.giveDmg(sheepAttackDmg, true);
             }
         }     

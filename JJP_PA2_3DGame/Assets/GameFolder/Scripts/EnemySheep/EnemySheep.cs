@@ -69,7 +69,7 @@ public class EnemySheep : MonoBehaviour
         //#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.I)) currentState = state.Idle;
         if (Input.GetKeyDown(KeyCode.O))  currentState = state.FollowPath;
-       // if (Input.GetKeyDown(KeyCode.Alpha0)) deathWithNoEffect();
+        if (Input.GetKeyDown(KeyCode.Alpha0)) deathWithNoEffect();
         //#endif
         if (sheepHealthPoints <= 0) OnDeath();
     }

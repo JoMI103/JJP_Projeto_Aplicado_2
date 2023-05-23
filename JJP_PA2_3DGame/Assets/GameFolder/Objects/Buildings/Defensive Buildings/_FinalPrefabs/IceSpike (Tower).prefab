@@ -1608,6 +1608,7 @@ MonoBehaviour:
   sheeps: []
   currentAttackMode: 4
   meshRenderer: {fileID: 4799030630669690642}
+  stunDuration: 2
   debugScanArea: 1
 --- !u!1 &1319648730747250577
 GameObject:
