@@ -31,7 +31,8 @@ public class PlayerHand : MonoBehaviour
     private void tryPlaceShootAttack(){
         switch (activeItem.itemType) {
             case ItemSO.ItemType.HandTool:
-                //CurrentToolAction
+            if(toolsystem != null &&!toolsystem.isInAction)
+                toolsystem.toolAction();
             break;
             case ItemSO.ItemType.Gun:
                 currentGunSystem.tryShoot();
@@ -87,7 +88,10 @@ public class PlayerHand : MonoBehaviour
         
         if(item.handId >= 0 && item.handId < tools.Length){
             switch (item.itemType) {
-                case ItemSO.ItemType.HandTool: break;
+                case ItemSO.ItemType.HandTool: 
+                 toolsystem = tools[item.handId].GetComponent<toolSystem>();
+                 break;
+                   
                 case ItemSO.ItemType.Gun:
                     currentGunSystem = tools[item.handId].GetComponent<GunSystem>();
                     break;
