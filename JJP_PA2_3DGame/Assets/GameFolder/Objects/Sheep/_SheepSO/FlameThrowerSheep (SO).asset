@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: FlameThrowerSheep (SO)
   m_EditorClassIdentifier: 
   nameString: FlameThrowerSheep
-  description: 
-  baseHealth: 400
-  baseDmg: 10
+  description: Sets fire to trees
+  baseHealth: 1650
+  baseDmg: 30
   baseSpeed: 3
   AttackRange: 5
   AttackSpeed: 2

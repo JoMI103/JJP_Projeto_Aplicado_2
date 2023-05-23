@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Boss Sheep
   description: Its a boss wow
-  baseHealth: 5000
-  baseDmg: 200
+  baseHealth: 10000
+  baseDmg: 120
   baseSpeed: 2
   AttackRange: 2
   AttackSpeed: 2

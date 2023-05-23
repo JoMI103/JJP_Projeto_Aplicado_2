@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ContaminatedSheep (SO)
   m_EditorClassIdentifier: 
   nameString: Contaminated Sheep
-  description: 
-  baseHealth: 400
-  baseDmg: 15
+  description: Throws contaminated grass
+  baseHealth: 2000
+  baseDmg: 30
   baseSpeed: 3
   AttackRange: 20
   AttackSpeed: 1.5

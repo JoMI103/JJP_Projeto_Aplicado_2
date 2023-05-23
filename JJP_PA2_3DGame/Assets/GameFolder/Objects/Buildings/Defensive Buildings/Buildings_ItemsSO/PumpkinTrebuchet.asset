@@ -18,7 +18,7 @@ MonoBehaviour:
   width: 3
   height: 3
   health: 500
-  damage: 50
+  damage: 80
   aps: 1.2
   woodCost: 500
   metalCost: 200

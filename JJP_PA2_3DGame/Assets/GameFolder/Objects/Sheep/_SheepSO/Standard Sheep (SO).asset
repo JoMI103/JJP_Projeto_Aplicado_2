@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Standard Sheep
   description: Run
-  baseHealth: 300
-  baseDmg: 30
+  baseHealth: 1200
+  baseDmg: 20
   baseSpeed: 3
   AttackRange: 1.5
   AttackSpeed: 1
