@@ -77,9 +77,13 @@ public class Balista : Tower
         }
     }
     
+    [SerializeField] Animator an;
+    
     protected override void shootAnimation()
     {
         shoot();
+        an.Play("shoot");
+        
         //animator.Play(attackAnimationName);
     }
     
