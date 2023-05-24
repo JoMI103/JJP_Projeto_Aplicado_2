@@ -2001,6 +2001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 56451979199274738}
+  - component: {fileID: 946898915525717972}
   m_Layer: 0
   m_Name: hay1
   m_TagString: Untagged
@@ -2052,6 +2053,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &946898915525717972
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536296022687570482}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.116046, y: 0.20354891, z: 4.270836}
+  m_Center: {x: -0.0017676353, y: -0.39822555, z: 0.034398556}
 --- !u!1 &5722919998248869405
 GameObject:
   m_ObjectHideFlags: 0
