@@ -20,6 +20,9 @@ public class PlayerStats : MonoBehaviour
     private int EletronicsQuantity;
     public int eletronicsQuantity { get { return this.EletronicsQuantity; } set { this.EletronicsQuantity = value; updateEletronicsUI(); } }
 
+     private Vector3 startPosition;
+
+    private CharacterController characterController;
 
     private void Start()
     {
@@ -27,12 +30,18 @@ public class PlayerStats : MonoBehaviour
         metalQuantity = 5000;
         eletronicsQuantity = 100;
         hPPoints = maxHP;
+         startPosition = transform.position;
+         characterController = GetComponent<CharacterController>();
     }
 
 
     private const int maxHP = 5000;
     private const float starHealing = 5;
     float regTimer;
+
+   
+    
+   
 
     private void Update()
     {
@@ -44,13 +53,22 @@ public class PlayerStats : MonoBehaviour
         if(hPPoints < maxHP){
             if(regTimer > starHealing){
                 hPPoints += 50;
+                if(hPPoints > maxHP) hPPoints = maxHP;
                 regTimer-=0.5f;
             }
             regTimer += Time.deltaTime;
         }
 
         if(hPPoints < 1){
+            characterController.enabled = false;
             Debug.LogError("DEAD");
+            transform.position = startPosition;
+            hPPoints = maxHP;
+        }else   characterController.enabled = true ;
+        
+        if(Input.GetKeyDown(KeyCode.B)) {
+             characterController.enabled = false;
+              transform.position = startPosition;
         }
     }
 

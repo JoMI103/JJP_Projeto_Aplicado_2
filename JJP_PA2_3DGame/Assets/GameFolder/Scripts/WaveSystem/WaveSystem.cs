@@ -34,7 +34,7 @@ public class WaveSystem : MonoBehaviour
     private void Update() {
         nSheeps =  waveSheepsFolder.childCount;
   
-        if(Input.GetKeyDown(KeyCode.T)) skip = true;
+        if(Input.GetKeyDown(KeyCode.T) && waveTime > 4) skip = true;
     }
 
     bool skip =false;
@@ -50,7 +50,7 @@ public class WaveSystem : MonoBehaviour
         while(waveTime >= 0){
             waveTime -= 1;
             yield  return new WaitForSeconds(1);
-            if(skip){ waveTime = 0; skip = false;}
+            if(skip){ waveTime = 4; skip = false;}
         }
    
         

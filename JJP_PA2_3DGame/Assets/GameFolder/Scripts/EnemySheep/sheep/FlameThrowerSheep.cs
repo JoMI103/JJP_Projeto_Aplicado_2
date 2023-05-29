@@ -112,7 +112,6 @@ public class FlameThrowerSheep : EnemySheep
         
         currentTargetPos = targetTree.transform.position;
         setTargetSheep.setStaticTarget(currentTargetPos, transform.position); 
-         Debug.LogError(currentTargetPos +"1");
         
         while (!(targetTree == null)) {
             
@@ -144,8 +143,8 @@ public class FlameThrowerSheep : EnemySheep
           
             if(tree != null){
              
-                float dotproduct = Vector3.Dot(transform.forward,( building.CenterPosition.position-transform.position).normalized);
-                if(dotproduct < 0.8f)  // area do cone
+                float dotproduct = Vector3.Dot(transform.forward,( tree.transform.position-transform.position).normalized);
+                if(dotproduct > 0.8f)  // area do cone
                 tree.giveDmg(sheepAttackDmg, true);
             }
         }     
@@ -160,7 +159,7 @@ public class FlameThrowerSheep : EnemySheep
         
         yield return wait;
         while (!(targetTree == null)){
-            Debug.LogError(targetTree);
+
             fire();
             yield return wait;
         }
