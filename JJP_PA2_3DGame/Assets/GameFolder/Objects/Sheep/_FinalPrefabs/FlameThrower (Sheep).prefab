@@ -5299,6 +5299,7 @@ Transform:
   - {fileID: 8813164642829471040}
   - {fileID: 3778429912143059231}
   - {fileID: 3464744930136099455}
+  - {fileID: 7164689287726731459}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5314,6 +5315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1c8115fffbccf439bf6464d292a145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  corePoint: {fileID: 7164689287726731459}
   slowModifier: 0
   SheepSO: {fileID: 11400000, guid: a142eb96328161940bbde2c4ff7cd336, type: 2}
   animator: {fileID: 234993494063668521}
@@ -5332,6 +5334,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   slowEffectIsRunning: 0
+  wasStunned: 0
+  isFrozen: 0
   navmeshFloor:
     serializedVersion: 2
     m_Bits: 34824
@@ -5422,6 +5426,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useEvents: 0
+--- !u!1 &8731909461914000110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7164689287726731459}
+  m_Layer: 0
+  m_Name: corePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7164689287726731459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8731909461914000110}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.595, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7347555775052418500}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9121414988952787076
 GameObject:
   m_ObjectHideFlags: 0

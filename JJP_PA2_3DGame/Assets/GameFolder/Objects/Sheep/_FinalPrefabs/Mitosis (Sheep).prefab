@@ -137,6 +137,37 @@ MonoBehaviour:
   useEvents: 0
   promptMessage: 
   UIHealth: {fileID: 4859671606531568838}
+--- !u!1 &2241038626462202660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8813091243549216188}
+  m_Layer: 0
+  m_Name: corePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8813091243549216188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241038626462202660}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.189, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7857089262087053490}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2731246589592224970
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +516,7 @@ Transform:
   - {fileID: 8264273052590710838}
   - {fileID: 6628315629166128069}
   - {fileID: 6236418187039154673}
+  - {fileID: 8813091243549216188}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -500,6 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5264b9128257c4dae955de017473be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  corePoint: {fileID: 0}
   slowModifier: 0
   SheepSO: {fileID: 11400000, guid: 267a06a236c9aa44e9fb3201280f01b3, type: 2}
   animator: {fileID: 7606965298034406689}
@@ -518,6 +551,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   slowEffectIsRunning: 0
+  wasStunned: 0
+  isFrozen: 0
   navmeshFloor:
     serializedVersion: 2
     m_Bits: 34824

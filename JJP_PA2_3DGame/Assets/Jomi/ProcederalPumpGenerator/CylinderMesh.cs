@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEditor;
 
 public class CylinderMesh: MonoBehaviour
 {
@@ -46,12 +47,12 @@ public class CylinderMesh: MonoBehaviour
             for (int v = 0; v < resolution; v++)
             {
                 int vertId = y * resolution + v;
-                Vector3 pointOnUnitCube = new Vector3 (xyPos[v].x, height, xyPos[v].y);
+                Vector3 pointOnUnitCube = new Vector3 (xyPos[v].x, height, xyPos[v].y) * Radius;
 
                 vertices[vertId] = pointOnUnitCube;
                 
-                uv[vertId] = new Vector2(0,height);
-                
+                uv[vertId] = new Vector2((float)v/(resolution-1),height);
+                Debug.LogError((float)v/(resolution-1));
                 if(y+1 != layers){
                     
                     if(v+1 == resolution){
@@ -146,7 +147,10 @@ public class CylinderMesh: MonoBehaviour
          mesh.RecalculateBounds();
     }
     
-    public void recalc(){
-        
+    [ContextMenu("SaveAsset")]
+    private void saveAsset()
+    {
+        AssetDatabase.CreateAsset(mesh, "Assets/savedMesh.asset");
+        AssetDatabase.SaveAssets();
     }
 }

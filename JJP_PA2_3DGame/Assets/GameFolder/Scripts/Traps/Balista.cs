@@ -8,6 +8,8 @@ public class Balista : Tower
     
     [SerializeField] private Transform shotPoint, pivotPoint;
     
+    [SerializeField] private Transform bullet;
+    
     float currentAngle; [SerializeField] float rotateVelocity;
     
     protected override void Start() { 
@@ -81,6 +83,10 @@ public class Balista : Tower
     
     protected override void shootAnimation()
     {
+        BulletTrail bulletTrail = Instantiate(bullet).GetComponent<BulletTrail>();;
+        bulletTrail.setUp(shotPoint.position,targetSheep.corePoint.position,2f);
+        bulletTrail.transform.position = shotPoint.position;
+        
         shoot();
         an.Play("shoot");
         

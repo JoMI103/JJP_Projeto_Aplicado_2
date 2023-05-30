@@ -31,6 +31,8 @@ public class EnemySheep : MonoBehaviour
         sheepWeaknessModifier = 1f;
     }
 
+    public Transform corePoint;
+
     protected int sheepBaseHealth,sheepAttackDmg,sheepHealthPoints; 
     protected float sheepSpeed, sheepAttackSpeed,sheepWeaknessModifier, sheepWeigth;    //SheepBaseStats
     [HideInInspector] public float slowModifier; // 1 normal Velocity

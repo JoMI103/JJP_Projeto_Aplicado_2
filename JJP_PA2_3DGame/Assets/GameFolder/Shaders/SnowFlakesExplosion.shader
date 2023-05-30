@@ -12,9 +12,7 @@ Shader "Unlit/SnowFlakesExplosion"
         Tags { 
             "RenderType"="Transparent" 
             "Queue"="Transparent" 
-            
             }
-
         Pass {
 
             Cull Off

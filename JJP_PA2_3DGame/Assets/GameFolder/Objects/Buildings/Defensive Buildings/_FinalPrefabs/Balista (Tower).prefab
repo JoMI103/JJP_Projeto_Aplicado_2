@@ -1870,6 +1870,7 @@ MonoBehaviour:
   currentAttackMode: 4
   shotPoint: {fileID: 2046657139197689687}
   pivotPoint: {fileID: 4299361051342428214}
+  bullet: {fileID: 673151276220390565, guid: e02ca743efc3817408a99b1f12e9920f, type: 3}
   rotateVelocity: 10
   shotsPerTarget: 20
   an: {fileID: 4211818236910622618}
