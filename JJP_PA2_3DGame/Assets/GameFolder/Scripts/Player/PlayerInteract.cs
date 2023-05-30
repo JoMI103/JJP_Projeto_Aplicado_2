@@ -35,16 +35,25 @@ public class PlayerInteract : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo, distance, interactableMask))
         {
+  
 
             //Gets the gameobject with an Interactable Script with raycast hitinfo
-            Interactable interactableAux = hitInfo.collider.GetComponent<Interactable>();
-            if (interactableAux != null)
-            {
-                //updates Interactable promptMessage
-                playerUI.updateInteractableText(interactableAux.promptMessage);
-                //If interact buttom is pressed calls BaseInteract 
-                if (inputManager.onFoot.Interact.triggered) interactableAux.BaseInteract(this.gameObject);
+            Interactable i = hitInfo.collider.GetComponent<Interactable>();
+            if(i!= null){
+                playerUI.updateInteractableText(i.promptMessage);
+                if (inputManager.onFoot.Interact.triggered) i.BaseInteract(this.gameObject);   
+            }else{
+                ToolInteractable t = hitInfo.collider.GetComponent<ToolInteractable>();
+                if(t != null){
+                     playerUI.updateInteractableText(t.promptMessage);
+                     if (inputManager.onFoot.PlaceShootAttack.triggered){ 
+                        t.BaseToolInteract(this.gameObject);   
+                        Debug.LogError("eokfowkppofwe");}
+                    
+                }
             }
+            
+
         }
 
         if (Physics.Raycast(ray, out hitInfo, distance * 10, interactableMask))

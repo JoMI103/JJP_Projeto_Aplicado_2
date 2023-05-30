@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tree : Interactable
+public class Tree : ToolInteractable
 {
     [SerializeField] int maxHp = 1000; private int hpPoints;
     private const float starHealing = 60;
@@ -48,14 +48,15 @@ public class Tree : Interactable
         
 
 
-    protected override void Interact()
+    protected override void ToolInteract()
     {
         PlayerHand ph = PlayerGO.GetComponent<PlayerHand>();
 
         if(!treeCollider.enabled) return;
 
-        if(ph.activeItem.handId == 5 && !ph.toolsystem.isInAction)
+        if(ph.activeItem.handId == 5 && ph.toolsystem.canInteract)
         {
+            ph.toolsystem.canInteract = false;
             hitNow++;
             if(hitNow >= hitTimes){
                 hitNow = 0;

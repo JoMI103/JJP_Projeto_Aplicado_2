@@ -18,23 +18,35 @@ public class InputManager : MonoBehaviour
         selectionWheel = playerInput.SelectionWheel;
         changeActionMaps = playerInput.ChangeActionMaps;
         Menu = playerInput.Menu;
+        getKeys();
         DefaultActionMaps();
     }
+    
     private void DefaultActionMaps()
     {
         disableActionMaps();
         onFoot.Enable();
         changeActionMaps.Enable();
     }
+    
     private void OnDisable()
     {
         disableActionMaps();
         changeActionMaps.Disable();
     }
+    
     public void disableActionMaps()
     {
         onFoot.Disable();
         selectionWheel.Disable();
         Menu.Disable();
     }
+    
+    private void getKeys(){
+        
+       //onFoot.Jump.ApplyBindingOverride(0, "<Keyboard>/enter");
+        
+        PlayerPrefs.GetString("","");
+    }
+    
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rock : Interactable
+public class Rock : ToolInteractable
 {    
      [SerializeField] int hitTimes = 2; int hitNow;
     
@@ -17,13 +17,14 @@ public class Rock : Interactable
         rockCollider = GetComponent<Collider>();
     }
 
-    protected override void Interact()
+    protected override void ToolInteract()
     {
         PlayerHand ph = PlayerGO.GetComponent<PlayerHand>();
 
         if(!rockCollider.enabled) return;
-       if(ph.activeItem.handId == 6 && !ph.toolsystem.isInAction)
+       if(ph.activeItem.handId == 6 && ph.toolsystem.canInteract)
         {
+            ph.toolsystem.canInteract = false;
             hitNow++;
             if(hitNow >= hitTimes){
                 hitNow = 0;

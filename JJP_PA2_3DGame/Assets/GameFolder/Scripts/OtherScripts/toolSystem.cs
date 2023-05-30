@@ -7,7 +7,7 @@ public class toolSystem : MonoBehaviour
     Animator animator;
     AudioManager audioManager;
     
-    public bool isInAction;
+    public bool isInAction; public bool canInteract;
     
     
     
@@ -23,6 +23,7 @@ public class toolSystem : MonoBehaviour
     public void toolAction(){
         animator.Play("action");
         audioManager.Play("action");
+        canInteract = true;
         isInAction = true; Invoke("endAction", coolDown);
     }
     

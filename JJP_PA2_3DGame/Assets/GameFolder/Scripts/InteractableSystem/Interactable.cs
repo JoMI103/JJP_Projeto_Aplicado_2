@@ -18,6 +18,14 @@ public abstract class  Interactable : MonoBehaviour
             GetComponent<InteractionEvent>().OnInteract.Invoke();
         Interact();
     }
+    
+    public void BaseToolInteract(GameObject player)
+    {
+        PlayerGO = player;
+        if (useEvents)
+            GetComponent<InteractionEvent>().OnInteract.Invoke();
+        Interact();
+    }
 
     protected virtual void Interact()
     {
