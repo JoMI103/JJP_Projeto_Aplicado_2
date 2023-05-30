@@ -1874,6 +1874,7 @@ MonoBehaviour:
   rotateVelocity: 10
   shotsPerTarget: 20
   an: {fileID: 4211818236910622618}
+  bulletTrailSize: 0.3
   debugScanArea: 1
 --- !u!1 &4461885075831488399
 GameObject:

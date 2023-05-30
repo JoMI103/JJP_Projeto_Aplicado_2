@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5264b9128257c4dae955de017473be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corePoint: {fileID: 0}
+  corePoint: {fileID: 8813091243549216188}
   slowModifier: 0
   SheepSO: {fileID: 11400000, guid: 267a06a236c9aa44e9fb3201280f01b3, type: 2}
   animator: {fileID: 7606965298034406689}

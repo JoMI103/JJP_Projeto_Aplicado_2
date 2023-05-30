@@ -761,6 +761,8 @@ GameObject:
   - component: {fileID: 5008015975246049374}
   - component: {fileID: 4490749503490900706}
   - component: {fileID: 5339613906474754526}
+  - component: {fileID: 4593850252139041801}
+  - component: {fileID: 8898960914132088350}
   m_Layer: 9
   m_Name: Baloon (Sheep)
   m_TagString: Untagged
@@ -915,6 +917,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useEvents: 0
+--- !u!114 &4593850252139041801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2344882462332339519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5bbd51786a0ef4184a891d5e8798a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Meeeee
+    clip: {fileID: 8300000, guid: 47e901208611b534488c0b07d4ec5b99, type: 3}
+    volume: 0.8
+    pitch: 1
+    source: {fileID: 0}
+    Spacial: 1
+    playOnAwake: 0
+--- !u!114 &8898960914132088350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2344882462332339519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14a34237496ae042ba4cd154f9b76b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2402696310240062279
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,11 +11,12 @@ public class BulletTrail : MonoBehaviour
     
     [ContextMenu("SetUP")]
     public void setUp(Vector3 pos1, Vector3 pos2, float radius){
+        meshFilter = GetComponent<MeshFilter>(); meshRenderer = GetComponent<MeshRenderer>();
         this.pos1 = pos1; this.pos2 = pos2; this.radius = radius;
         updateMesh();
         
-        
-        Invoke("destroy", 1f);
+        StartCoroutine(bulletTrail());
+
     }
     
     private void updateMesh(){
@@ -24,7 +25,7 @@ public class BulletTrail : MonoBehaviour
         transform.localScale = new Vector3(radius,Vector3.Distance(pos1,pos2) * 5, radius);
         
         /*
-        meshFilter = GetComponent<MeshFilter>(); meshRenderer = GetComponent<MeshRenderer>();
+        
         
         Vector2[] uv =  meshFilter.mesh.uv;
         int[] triangles = meshFilter.mesh.triangles;
@@ -76,9 +77,18 @@ public class BulletTrail : MonoBehaviour
         */
     }
     
-    private void destroy(){
+    private IEnumerator bulletTrail(){
+        float timer = 0;
+        while (timer < 0.2){
+            meshRenderer.material.SetFloat("_Value",timer * 5);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        
         Destroy(this.gameObject);
     }
+    
+
    
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;

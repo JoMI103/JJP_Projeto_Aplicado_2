@@ -80,17 +80,19 @@ public class Balista : Tower
     }
     
     [SerializeField] Animator an;
+    [SerializeField] float bulletTrailSize;
     
     protected override void shootAnimation()
     {
-        BulletTrail bulletTrail = Instantiate(bullet).GetComponent<BulletTrail>();;
-        bulletTrail.setUp(shotPoint.position,targetSheep.corePoint.position,2f);
-        bulletTrail.transform.position = shotPoint.position;
+        
         
         shoot();
         an.Play("shoot");
-        
-        //animator.Play(attackAnimationName);
+
+        if(bulletTrailSize == 0 ) return;
+        BulletTrail bulletTrail = Instantiate(bullet).GetComponent<BulletTrail>();;
+        bulletTrail.setUp(shotPoint.position,targetSheep.corePoint.position,bulletTrailSize);
+        bulletTrail.transform.position = shotPoint.position;
     }
     
     protected override void shoot(){
