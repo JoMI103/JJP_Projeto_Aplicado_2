@@ -11,7 +11,7 @@ Shader "Unlit/BulletTrail"
     SubShader
     {
         Tags { "RenderType"="Transparent" "Queue"="Transparent" }
-        Cull back    
+        Cull off    
         GrabPass
         {
             "_GrabTexture"

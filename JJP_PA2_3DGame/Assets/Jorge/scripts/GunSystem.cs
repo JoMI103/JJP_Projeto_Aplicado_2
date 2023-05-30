@@ -4,6 +4,12 @@ using TMPro;
 
 public class GunSystem : MonoBehaviour
 {
+    [SerializeField] private Transform bullet;
+    [SerializeField] float bulletTrailSize;
+    [SerializeField] private Transform shotPoint;
+    
+    
+    
     [Header("GunStats")]
     public int damage;
     public float fireRate, spread, range, reloadTime, timeBetweenShots;
@@ -94,7 +100,17 @@ public class GunSystem : MonoBehaviour
                 t.transform.up = rayHit.normal;
                 if (damageAux != null) t.parent = damageAux.transform;
     
-
+                if(rayHit.point != null){
+                
+                    BulletTrail bulletTrail = Instantiate(bullet).GetComponent<BulletTrail>();;
+                    bulletTrail.setUp(shotPoint.position,shotPoint.position + direction * range,bulletTrailSize);
+                    bulletTrail.transform.position = shotPoint.position;
+                }else{
+                 
+                    BulletTrail bulletTrail = Instantiate(bullet).GetComponent<BulletTrail>();;
+                    bulletTrail.setUp(shotPoint.position,rayHit.point,bulletTrailSize);
+                    bulletTrail.transform.position = shotPoint.position;
+                }
             
 
             }

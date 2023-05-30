@@ -2891,6 +2891,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6568687cd2d12d142b8d57d370577d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  bulletTrailSize: 0
+  shotPoint: {fileID: 0}
   damage: 60
   fireRate: 0
   spread: 0
@@ -3346,6 +3349,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6568687cd2d12d142b8d57d370577d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  bulletTrailSize: 0
+  shotPoint: {fileID: 0}
   damage: 200
   fireRate: 0.4
   spread: 0.01
@@ -5801,6 +5807,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6568687cd2d12d142b8d57d370577d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 673151276220390565, guid: e02ca743efc3817408a99b1f12e9920f, type: 3}
+  bulletTrailSize: 0.05
+  shotPoint: {fileID: 5490910143930487412}
   damage: 15
   fireRate: 0.4
   spread: 0.1
