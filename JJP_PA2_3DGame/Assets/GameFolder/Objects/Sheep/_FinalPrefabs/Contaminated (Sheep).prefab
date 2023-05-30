@@ -228,6 +228,8 @@ GameObject:
   - component: {fileID: 6474373422651380156}
   - component: {fileID: 3168806186591084586}
   - component: {fileID: 7058185298389491146}
+  - component: {fileID: -588659257006067852}
+  - component: {fileID: 3906530813177488523}
   m_Layer: 9
   m_Name: Contaminated (Sheep)
   m_TagString: Untagged
@@ -371,6 +373,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useEvents: 0
+--- !u!114 &-588659257006067852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828401346107205623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5bbd51786a0ef4184a891d5e8798a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Meeeee1
+    clip: {fileID: 8300000, guid: 47e901208611b534488c0b07d4ec5b99, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    Spacial: 1
+    playOnAwake: 0
+  - name: Meeeee2
+    clip: {fileID: 8300000, guid: 0bf30d0ab563c834fb0bd72fc53fbd90, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    Spacial: 1
+    playOnAwake: 0
+  - name: Meeeee3
+    clip: {fileID: 8300000, guid: afeeddc4a92d8f74cb9816209d01e7ae, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    Spacial: 1
+    playOnAwake: 0
+  - name: Meeeee4
+    clip: {fileID: 8300000, guid: 00c9287031b287b448dad37c14e25023, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    Spacial: 1
+    playOnAwake: 0
+  - name: Meeeee5
+    clip: {fileID: 8300000, guid: 7fca7ba75f7f70647a4f1de1e69a96b5, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    Spacial: 1
+    playOnAwake: 0
+--- !u!114 &3906530813177488523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828401346107205623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14a34237496ae042ba4cd154f9b76b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6061022583481769781
 GameObject:
   m_ObjectHideFlags: 0
