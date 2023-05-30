@@ -10,14 +10,14 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject  MainMenuPanel;
     [SerializeField] private GameObject OptionsPanel;
     [SerializeField] private Slider volumeSlider;
-    [SerializeField] private Slider sensitivitySlider;
+    [SerializeField] private Slider qualityDropdown;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private float sensitivity;
+    
 
     private void Awake()
     {
         volumeSlider.onValueChanged.AddListener(SetVolume);
-        sensitivitySlider.onValueChanged.AddListener(SetSensitivity);
+      
     }
 
     private void SetVolume(float value)
@@ -25,9 +25,9 @@ public class MenuManager : MonoBehaviour
         audioSource.volume = value;
     }
 
-    private void SetSensitivity(float value)
+    public void SetQuality (int qualityIndex)
     {
-        sensitivity = value;
+        QualitySettings.SetQualityLevel(qualityIndex);
     }
     public void Play()
     {
