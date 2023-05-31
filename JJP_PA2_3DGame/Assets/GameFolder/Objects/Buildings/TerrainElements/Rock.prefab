@@ -111,7 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1e0912663df9a48bfe380698cd8eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useEvents: 0
   promptMessage: Mine
   hitTimes: 2
   respawnTime: 5
@@ -175,8 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1e0912663df9a48bfe380698cd8eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useEvents: 0
   promptMessage: Mine
-  hitTimes: 4
-  respawnTime: 1
-  quantity: 500
+  hitTimes: 5
+  respawnTime: 180
+  quantity: 1000

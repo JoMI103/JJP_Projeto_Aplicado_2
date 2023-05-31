@@ -20,9 +20,9 @@ MonoBehaviour:
   health: 500
   damage: 80
   aps: 1.2
-  woodCost: 500
-  metalCost: 200
-  eletronicsCost: 100
+  woodCost: 750
+  metalCost: 400
+  eletronicsCost: 35
   Ground: 1
   Wall: 1
   Roof: 1

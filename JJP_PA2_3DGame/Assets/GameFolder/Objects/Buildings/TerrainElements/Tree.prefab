@@ -278,11 +278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cdfe52301b9055448494cfde0625532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useEvents: 0
   promptMessage: Chop
-  maxHp: 1500
+  maxHp: 500
   burn: {fileID: 107988935669574160}
-  hitTimes: 3
+  hitTimes: 5
   quantity: 2000
   respawnTime: 300
 --- !u!205 &489792284309720694

@@ -46,9 +46,9 @@ public class PlayerInteract : MonoBehaviour
                 ToolInteractable t = hitInfo.collider.GetComponent<ToolInteractable>();
                 if(t != null){
                      playerUI.updateInteractableText(t.promptMessage);
-                     if (inputManager.onFoot.PlaceShootAttack.triggered){ 
+                     if (inputManager.onFoot.PlaceShootAttack.inProgress){ 
                         t.BaseToolInteract(this.gameObject);   
-                        Debug.LogError("eokfowkppofwe");}
+                    }
                     
                 }
             }

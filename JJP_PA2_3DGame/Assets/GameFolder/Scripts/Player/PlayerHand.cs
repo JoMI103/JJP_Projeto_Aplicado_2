@@ -19,14 +19,19 @@ public class PlayerHand : MonoBehaviour
         selectTool(startItem);
         inputManager = GetComponent<InputManager>();
 
-        inputManager.onFoot.PlaceShootAttack.performed += ctx => tryPlaceShootAttack();
+   
         inputManager.onFoot.RotateReload.performed += ctx => tryRotateReload();
         inputManager.onFoot.Destroy.performed += ctx => tryDestroy();
     }
 
     private void Update() {
         if (activeItem != changeItem) updateTool();
+         if ( inputManager.onFoot.PlaceShootAttack.inProgress){ tryPlaceShootAttack();}
     }
+    
+    bool buildCooldDown = true, shootCoolDown = true;
+    private void shootTrue(){shootCoolDown = true;}
+    private void buildTrue(){buildCooldDown = true;}
 
     private void tryPlaceShootAttack(){
         switch (activeItem.itemType) {
@@ -35,10 +40,19 @@ public class PlayerHand : MonoBehaviour
                 toolsystem.toolAction();
             break;
             case ItemSO.ItemType.Gun:
+            if(shootCoolDown){
                 currentGunSystem.tryShoot();
+                shootCoolDown = false;
+                Invoke("shootTrue",0.5f);
+            }
                 break;
             case ItemSO.ItemType.bluePrint: 
+                if(buildCooldDown){
+            
                 playerBuild.PlaceBuilding();
+                buildCooldDown = false;
+                Invoke("buildTrue",0.2f);
+            }
             break;
         }
     }

@@ -16,17 +16,24 @@ MonoBehaviour:
   wavePart:
   - cooldown: 0
     typeEnemies:
-    - enemySheep: {fileID: 11400000, guid: a142eb96328161940bbde2c4ff7cd336, type: 2}
-      Quantity: 5
-      dificultyMod: 0
     - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
-      Quantity: 5
+      Quantity: 30
+      dificultyMod: 0
+  - cooldown: 15
+    typeEnemies:
+    - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
+      Quantity: 20
+      dificultyMod: 0
+    - enemySheep: {fileID: 11400000, guid: 267a06a236c9aa44e9fb3201280f01b3, type: 2}
+      Quantity: 10
+      dificultyMod: 0
+  - cooldown: 20
+    typeEnemies:
+    - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
+      Quantity: 50
       dificultyMod: 0
   - cooldown: 30
     typeEnemies:
     - enemySheep: {fileID: 11400000, guid: 267a06a236c9aa44e9fb3201280f01b3, type: 2}
-      Quantity: 10
-      dificultyMod: 0
-    - enemySheep: {fileID: 11400000, guid: 63e587ea1aaaf2140b40998158ecc98c, type: 2}
-      Quantity: 15
+      Quantity: 30
       dificultyMod: 0

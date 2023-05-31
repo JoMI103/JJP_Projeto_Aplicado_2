@@ -146,11 +146,13 @@ public class CylinderMesh: MonoBehaviour
          mesh.RecalculateNormals();
          mesh.RecalculateBounds();
     }
-    
+    #if UNITY_EDITOR
     [ContextMenu("SaveAsset")]
     private void saveAsset()
     {
         AssetDatabase.CreateAsset(mesh, "Assets/savedMesh.asset");
         AssetDatabase.SaveAssets();
     }
+    
+    #endif
 }

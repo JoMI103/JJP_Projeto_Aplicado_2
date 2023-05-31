@@ -60,9 +60,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Mine
-  hitTimes: 2
+  hitTimes: 3
   respawnTime: 90
-  quantity: 200
+  quantity: 300
 --- !u!1 &360806732077942251
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,9 +238,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Mine
-  hitTimes: 2
+  hitTimes: 3
   respawnTime: 90
-  quantity: 200
+  quantity: 300
 --- !u!1 &1032935790745319964
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,9 +301,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Mine
-  hitTimes: 2
+  hitTimes: 3
   respawnTime: 90
-  quantity: 200
+  quantity: 300
 --- !u!1 &1231008512889386224
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,9 +594,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Mine
-  hitTimes: 2
+  hitTimes: 3
   respawnTime: 90
-  quantity: 200
+  quantity: 300
 --- !u!1 &2678652857205773022
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,9 +772,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Mine
-  hitTimes: 2
+  hitTimes: 3
   respawnTime: 90
-  quantity: 200
+  quantity: 300
 --- !u!1 &4246962288055345775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,6 +1186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Mine
-  hitTimes: 2
+  hitTimes: 3
   respawnTime: 90
-  quantity: 200
+  quantity: 300

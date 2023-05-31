@@ -24,7 +24,8 @@ public class toolSystem : MonoBehaviour
         animator.Play("action");
         audioManager.Play("action");
         canInteract = true;
-        isInAction = true; Invoke("endAction", coolDown);
+        isInAction = true; 
+       
     }
     
     

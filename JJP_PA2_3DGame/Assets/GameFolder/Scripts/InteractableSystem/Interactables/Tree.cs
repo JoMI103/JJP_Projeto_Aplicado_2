@@ -46,17 +46,19 @@ public class Tree : ToolInteractable
         }
     }
         
-
+    private PlayerHand playerHand;
 
     protected override void ToolInteract()
     {
-        PlayerHand ph = PlayerGO.GetComponent<PlayerHand>();
+        if(playerHand == null){
+            playerHand = PlayerGO.GetComponent<PlayerHand>();
+        }
 
         if(!treeCollider.enabled) return;
 
-        if(ph.activeItem.handId == 5 && ph.toolsystem.canInteract)
+        if(playerHand.activeItem.handId == 5 && playerHand.toolsystem.canInteract)
         {
-            ph.toolsystem.canInteract = false;
+            playerHand.toolsystem.canInteract = false;
             hitNow++;
             if(hitNow >= hitTimes){
                 hitNow = 0;

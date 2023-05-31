@@ -26,9 +26,9 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
-        woodQuantity = 10000;
-        metalQuantity = 5000;
-        eletronicsQuantity = 100;
+        woodQuantity =23000; //10000
+        metalQuantity = 18000; //10000
+        eletronicsQuantity = 500; //500
         hPPoints = maxHP;
          startPosition = transform.position;
          characterController = GetComponent<CharacterController>();
@@ -117,7 +117,7 @@ public class PlayerStats : MonoBehaviour
 
     private void updateEletronicsUI()
     {
-        totalEletronics.text = "" + (float)EletronicsQuantity / 1000 + "K";
+        totalEletronics.text = "" + (float)EletronicsQuantity;
     }
 
 

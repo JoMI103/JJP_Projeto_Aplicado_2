@@ -701,11 +701,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Chop
-  maxHp: 1500
+  maxHp: 300
   burn: {fileID: 107988935669574160}
   hitTimes: 3
-  quantity: 2000
-  respawnTime: 300
+  quantity: 600
+  respawnTime: 120
 --- !u!205 &489792284309720694
 LODGroup:
   m_ObjectHideFlags: 0
@@ -747,9 +747,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.007076489
-  m_Height: 0.014152979
+  m_Height: 0.02048222
   m_Direction: 1
-  m_Center: {x: 0.0006761398, y: 0.0131398095, z: 0}
+  m_Center: {x: 0.0006761398, y: 0.009975234, z: 0}
 --- !u!1 &8625830153480757807
 GameObject:
   m_ObjectHideFlags: 0
