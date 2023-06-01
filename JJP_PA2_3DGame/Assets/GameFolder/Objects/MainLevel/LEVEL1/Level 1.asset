@@ -17,14 +17,14 @@ MonoBehaviour:
   - cooldown: 120
     dificultyMod: 1
     waveSO: {fileID: 11400000, guid: 1f3dcc5df3e3d764fb91e0cf09989b89, type: 2}
-  - cooldown: 60
+  - cooldown: 30
     dificultyMod: 1
     waveSO: {fileID: 11400000, guid: dad16a5b7dc2b074dac6beb05b6caafd, type: 2}
   - cooldown: 30
-    dificultyMod: 0
+    dificultyMod: 1
     waveSO: {fileID: 11400000, guid: 4c0ec83a0ac27064c800fed54bc2bb5b, type: 2}
   - cooldown: 30
-    dificultyMod: 0
+    dificultyMod: 1.5
     waveSO: {fileID: 11400000, guid: e90a4604264f7f64a829803ca37aa6c9, type: 2}
   - cooldown: 30
     dificultyMod: 0
