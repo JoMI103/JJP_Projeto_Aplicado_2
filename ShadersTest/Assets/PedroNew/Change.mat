@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: zTeste
-  m_Shader: {fileID: 4800000, guid: 0d296615783574f4795ee459a934fc78, type: 3}
+  m_Name: Change
+  m_Shader: {fileID: 4800000, guid: e58c24ab89df64046bb20c1166df97aa, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -48,6 +48,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: 4264523b2e76d714bb7b1d53080e04c8, type: 3}
+        m_Scale: {x: 4.52, y: -7.41}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -72,9 +76,11 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Strength: 3.7
     - _UVSec: 0
     - _ZWrite: 1
-    - _slider: 0.79
+    - _slider: 0.046
+    - _sliderINTE: 100
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

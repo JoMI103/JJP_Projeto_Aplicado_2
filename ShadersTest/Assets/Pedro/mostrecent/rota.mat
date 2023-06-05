@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: zTeste
-  m_Shader: {fileID: 4800000, guid: 0d296615783574f4795ee459a934fc78, type: 3}
+  m_Name: rota
+  m_Shader: {fileID: 4800000, guid: 0c045a1d62075704c8e58b328a91db2f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -74,7 +74,10 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _slider: 0.79
+    - _slide: 3.84
+    - _slidePitch: 207
+    - _slideRoll: 150
+    - _slideyaw: 290
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
