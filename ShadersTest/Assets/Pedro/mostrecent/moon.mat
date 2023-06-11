@@ -76,9 +76,9 @@ Material:
     - _ZWrite: 1
     - _slide: 0.392
     - _slide2: 0.27
-    - _slideXcenter: 0.56100136
+    - _slideXcenter: 0.50648415
     - _slideXcenter2: 0.315
-    - _slideYcenter: 0.35291436
+    - _slideYcenter: 0.35700935
     - _slideYcenter2: 0.369
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

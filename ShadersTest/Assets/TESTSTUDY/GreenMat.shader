@@ -1,4 +1,4 @@
-Shader "Hidden/naosei"
+Shader "Custom/GreenMat"
 {
     Properties
     {
@@ -44,7 +44,10 @@ Shader "Hidden/naosei"
                 fixed4 col = tex2D(_MainTex, i.uv);
                 // just invert the colors
                 //col.rgb = 1 - col.rgb; //KEEP THIS LINE TO INVERT COLOR
-                col.rgb = 1 - col.r - col.b; //KEEP THIS LINE TO PUT BLACK AND WHITE
+                //col.rgb = 1 - col.r; //KEEP THIS LINE TO PUT BLACK AND WHITE  ((  - col.b FOR EXTRA DARK
+                //col.rgb *= fixed4(0,1,0,0); //KEEP THIS FOR A NIGHT VISION EFFECT. multiply by color.
+               
+              
                 return col;
             }
             ENDCG

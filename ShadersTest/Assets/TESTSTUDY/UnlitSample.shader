@@ -1,11 +1,14 @@
-Shader "Hidden/naosei"
+Shader "Unlit/UnlitSample"
 {
-    Properties
+   Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
     }
     SubShader
     {
+        //    Tags { "RenderType"="Opaque" }
+        //LOD 100
+
         // No culling or depth
         Cull Off ZWrite Off ZTest Always
 
@@ -41,10 +44,7 @@ Shader "Hidden/naosei"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
-                // just invert the colors
-                //col.rgb = 1 - col.rgb; //KEEP THIS LINE TO INVERT COLOR
-                col.rgb = 1 - col.r - col.b; //KEEP THIS LINE TO PUT BLACK AND WHITE
+                fixed4 col = tex2D(_MainTex, i.uv);                      
                 return col;
             }
             ENDCG

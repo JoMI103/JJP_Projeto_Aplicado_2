@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: rotmat
-  m_Shader: {fileID: 4800000, guid: aebbc49c4d8a52647868a49316b1fefa, type: 3}
+  m_Name: ExpandSides
+  m_Shader: {fileID: 4800000, guid: 20fb92e7138cc024f98544a518ab172e, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -40,11 +40,11 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
+    - _ExpText:
         m_Texture: {fileID: 2800000, guid: cdc87a423672b4143969c78c578e611c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex_Back:
+    - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -78,11 +78,8 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _slide: 360
-    - _slidePitch: 176
-    - _slideRoll: 360
-    - _slideyaw: 360
+    - _slide: 0.42
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

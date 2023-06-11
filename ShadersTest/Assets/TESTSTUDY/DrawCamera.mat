@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: rotmat
-  m_Shader: {fileID: 4800000, guid: aebbc49c4d8a52647868a49316b1fefa, type: 3}
+  m_Name: DrawCamera
+  m_Shader: {fileID: 4800000, guid: 05c02bcd2d9f48a40bb7b76f3fd28e7f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -40,11 +40,11 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
+    - _ExpText:
         m_Texture: {fileID: 2800000, guid: cdc87a423672b4143969c78c578e611c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex_Back:
+    - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -66,23 +66,27 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EspessuraGrid: 0.01
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _GridSize: 0.85
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Rotatingslide: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _slide: 360
-    - _slidePitch: 176
-    - _slideRoll: 360
-    - _slideyaw: 360
+    - _slide: 0.38
+    - _slideXcenter: 0.5702541
+    - _slideYcenter: 0.55110216
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.1411712, g: 0.27466685, b: 0.9716981, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GridColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RectangeColor: {r: 0, g: 0.09995508, b: 1, a: 1}
   m_BuildTextureStacks: []

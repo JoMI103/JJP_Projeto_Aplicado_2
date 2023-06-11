@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mat1a
-  m_Shader: {fileID: 4800000, guid: e7513508ee2e33c469f4cac329c3f5e0, type: 3}
+  m_Shader: {fileID: 4800000, guid: aebbc49c4d8a52647868a49316b1fefa, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -42,6 +42,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: cdc87a423672b4143969c78c578e611c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex2:
+        m_Texture: {fileID: 2800000, guid: 46fc8291a403d8b4eb0c0124ba576e11, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex_Back:
@@ -78,6 +82,12 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
+    - _slide: 8
+    - _slidePitch: 115
+    - _slideRoll: 313
+    - _slider: -0.19
+    - _slider2: 0.25
+    - _slideyaw: 182
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
