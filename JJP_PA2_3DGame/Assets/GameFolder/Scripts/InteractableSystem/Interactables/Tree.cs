@@ -28,6 +28,7 @@ public class Tree : ToolInteractable
          if(hpPoints < maxHp){
             if(regTimer > starHealing){
                 hpPoints += 50;
+                updateTreeShader();
                 regTimer-=0.5f;
                 amazoniaMode = false;
             }
@@ -42,10 +43,32 @@ public class Tree : ToolInteractable
         
         
         if(hpPoints < 1){
+            
+            
             Destroy(this.gameObject);
         }
     }
+    
+    [SerializeField] MeshRenderer m1,m2;
+    private void updateTreeShader(){
+        Debug.Log((float)hpPoints / (float)maxHp);
+        m1.sharedMaterial.SetFloat("_Value",1- (float) hpPoints / (float)maxHp);   
+        m2.sharedMaterial.SetFloat("_Value",1-(float) hpPoints / (float)maxHp);   
+    }
+    
+    /*
+    
+    
         
+    private IEnumerator destroyAnimation(){
+        float time = 5;
+        
+        while(time > 0){
+            time -= Time.deltaTime * animationVelocity;
+            yield return null;
+        }
+    }
+        */
     private PlayerHand playerHand;
 
     protected override void ToolInteract()
@@ -87,7 +110,7 @@ public class Tree : ToolInteractable
         if(fire){
             amazoniaMode = true;
         }
-        
+         updateTreeShader();
         hpPoints -=dmg;
         
     }

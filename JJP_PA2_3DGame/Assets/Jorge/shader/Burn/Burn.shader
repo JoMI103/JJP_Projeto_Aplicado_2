@@ -7,6 +7,7 @@ Shader "Custom/Burn"  {
         _BurnFrequency("Burn Frequency", Range(0, 10)) = 1.0
         _BurnAmplitude("Burn Amplitude", Range(0, 1)) = 0.5
         _TimeMultiplier("Time Multiplier", Range(0, 1)) = 0.1
+        _Value("Value", Range(0, 1)) = 0.1
 
     }
 
@@ -24,6 +25,7 @@ Shader "Custom/Burn"  {
             float _BurnFrequency;
             float _BurnAmplitude;
             float _TimeMultiplier;
+            float _Value;
 
             struct Input {
                 float2 uv_MainTex;
@@ -34,11 +36,12 @@ Shader "Custom/Burn"  {
 
                 fixed4 mainColor = tex2D(_MainTex, IN.uv_MainTex);
                 fixed4 burnColor = tex2D(_BurnTex, IN.uv_MainTex);
-                float burnAmount = step(_BurnThreshold, burnColor.r);
-                float adjustedTime = _Time.y * _TimeMultiplier;
-                float burnIntensity = sin(_BurnFrequency * adjustedTime) * _BurnAmplitude;
-                burnAmount *= burnIntensity;
-                fixed3 finalColor = lerp(mainColor.rgb, burnColor.rgb, burnAmount);
+                //float burnAmount = step(_BurnThreshold, burnColor.r);
+                //float adjustedTime = _Time.y * _TimeMultiplier;
+                //float burnIntensity = sin(_BurnFrequency * adjustedTime) * _BurnAmplitude;
+                //burnAmount *= burnIntensity;
+                
+                fixed3 finalColor = lerp(mainColor.rgb, burnColor.rgb, _Value);
                 o.Albedo = finalColor;
             
             }
