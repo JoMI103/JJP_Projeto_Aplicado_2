@@ -4883,6 +4883,7 @@ GameObject:
   - component: {fileID: 4624340459358644974}
   - component: {fileID: 2086182053}
   - component: {fileID: 2086182054}
+  - component: {fileID: 5306469972371533832}
   m_Layer: 18
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5034,6 +5035,19 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &5306469972371533832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624340459358644969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467070a9697c2614fad3f78f06ac583b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 2fb886c821c64d749867c39e4c17f39b, type: 2}
 --- !u!1 &4712393331619795269
 GameObject:
   m_ObjectHideFlags: 0
@@ -5770,7 +5784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6523197642956536492
 Transform:
   m_ObjectHideFlags: 0
@@ -7354,9 +7368,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7434286942259482114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.064, y: 31.09, z: 172.21}
+  m_LocalPosition: {x: 38.6, y: 2.1, z: 12.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4624340459358644972}
   m_Father: {fileID: 2550703830445513038}
@@ -7575,6 +7589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: {fileID: 4981783151884749318}
+  blit: {fileID: 5306469972371533832}
   totalWood: {fileID: 1039762957703086536}
   totalMetal: {fileID: 5282766166254820580}
   totalEletronics: {fileID: 3434871283916927430}

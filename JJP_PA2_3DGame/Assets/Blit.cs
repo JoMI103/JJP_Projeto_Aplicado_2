@@ -10,4 +10,8 @@ public class Blit : MonoBehaviour
     {
         Graphics.Blit(src, dest, mat);
     }
+    
+    public void setHP(float coiso){
+        mat.SetFloat("_DamageActive",coiso );
+    }
 }

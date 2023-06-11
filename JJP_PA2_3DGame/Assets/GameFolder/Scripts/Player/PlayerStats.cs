@@ -96,9 +96,11 @@ public class PlayerStats : MonoBehaviour
         hPPoints-=dmg;
     }
 
+
+    [SerializeField] Blit blit;
     private void updateHpUI()
     {
-        
+        blit.setHP(0.5f-((float)hPPoints / (float)maxHP) /2);
         hp.text = "" + HPPoints;
     }
 

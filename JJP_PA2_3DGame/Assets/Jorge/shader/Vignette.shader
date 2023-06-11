@@ -57,7 +57,7 @@ Shader "Custom/Vignette"
                         }
                         else
                         {
-                            col.rgb += _VignetteColor.rgb * strength;
+                            return col;
                         }
 
                         return col;
