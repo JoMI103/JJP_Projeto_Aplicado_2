@@ -21,7 +21,7 @@ public class GiantBoxingGlove : Trap
         while (true)
         {
             animator.Play("OnePunchMan");
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.1F);
         }
     }
 

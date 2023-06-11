@@ -19,7 +19,7 @@ MonoBehaviour:
   height: 2
   health: 800
   damage: 100
-  aps: 10
+  aps: 1
   woodCost: 1200
   metalCost: 800
   eletronicsCost: 60

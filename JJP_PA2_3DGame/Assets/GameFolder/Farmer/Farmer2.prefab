@@ -623,7 +623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3890150976817775752
 Transform:
   m_ObjectHideFlags: 0
@@ -2815,7 +2815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dfc13d783e7fb414ca486c34d365cbbf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55121888ca00d2c439e1bc96f02f64de, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4059,7 +4059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dfc13d783e7fb414ca486c34d365cbbf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 729a90044d70a694b97c2e7e5b9e650e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6417,7 +6417,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ae24753fddc7f2548bbaf1788aafff42, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 18a81e961d6a48f47868443ff0044781, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7228,7 +7228,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 11400000, guid: 827090a6992a648b48faf95705b6c8ec, type: 2}
+  - {fileID: 11400000, guid: 14da4f5981ad29a4badb2e3157a91c1b, type: 2}
+  - {fileID: 11400000, guid: ebd841966c0b8a1499eaab90bd646add, type: 2}
+  - {fileID: 11400000, guid: d471fd9698f478d4db93b4d259d7eac6, type: 2}
+  - {fileID: 11400000, guid: 043cb2dad6cff1b4dbb22678a44d9873, type: 2}
   inputManager: {fileID: 7686942774207393724}
   hand: {fileID: 5509199434684803895}
   toolImage: {fileID: 265188303657181302}
@@ -7451,7 +7454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61bd48d1c95668478524ba2a9c67734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 14
+  maxSpeed: 8
   gravity: -9.8
   jumpHeight: 2
 --- !u!114 &7686942774207393723
@@ -8172,10 +8175,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 11400000, guid: 827090a6992a648b48faf95705b6c8ec, type: 2}
   - {fileID: 11400000, guid: 0aed4b94893bbf5429d918023ad89f9f, type: 2}
   - {fileID: 11400000, guid: 8cd39dba0ddbd2940b1b4086febf1f29, type: 2}
   - {fileID: 11400000, guid: c248a1ab8f2c1544e92136f15edfdb42, type: 2}
+  - {fileID: 11400000, guid: 827090a6992a648b48faf95705b6c8ec, type: 2}
   inputManager: {fileID: 7686942774207393724}
   hand: {fileID: 5509199434684803895}
   toolImage: {fileID: 1604125986287941459}
@@ -8284,12 +8287,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 11400000, guid: d471fd9698f478d4db93b4d259d7eac6, type: 2}
-  - {fileID: 11400000, guid: 14da4f5981ad29a4badb2e3157a91c1b, type: 2}
-  - {fileID: 11400000, guid: 786eab9e1733fd74ba82618f612ca3f2, type: 2}
-  - {fileID: 11400000, guid: 043cb2dad6cff1b4dbb22678a44d9873, type: 2}
-  - {fileID: 11400000, guid: ebd841966c0b8a1499eaab90bd646add, type: 2}
   - {fileID: 11400000, guid: 6796ba1b654c57842bf4fb4a0f21e043, type: 2}
+  - {fileID: 11400000, guid: 786eab9e1733fd74ba82618f612ca3f2, type: 2}
   - {fileID: 11400000, guid: c39889ec80b6eab408c867e728f27599, type: 2}
   - {fileID: 11400000, guid: b4128b405def89b4b939c2c24f034118, type: 2}
   - {fileID: 11400000, guid: fa40e17ad40a00242a6094ac0702589e, type: 2}
@@ -8936,7 +8935,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

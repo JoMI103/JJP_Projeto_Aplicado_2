@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlameTurret_Item
   m_EditorClassIdentifier: 
   itemNameString: Flame Turret
-  image: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
+  image: {fileID: 21300000, guid: bef08311c7f24c04ca98f989bdf15da4, type: 3}
   handId: 1
   itemType: 0
   building: {fileID: 11400000, guid: 85e1e930d9555aa439776f1eba089644, type: 2}

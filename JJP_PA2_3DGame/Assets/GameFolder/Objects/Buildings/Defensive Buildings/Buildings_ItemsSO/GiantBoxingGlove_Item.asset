@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GiantBoxingGlove_Item
   m_EditorClassIdentifier: 
   itemNameString: GiantBoxingGlove
-  image: {fileID: 21300000, guid: f2fdbd888460ff7488dd183599c0ff2d, type: 3}
+  image: {fileID: 21300000, guid: fc13d87515a66c14ca45dd62325eacdc, type: 3}
   handId: 1
   itemType: 0
   building: {fileID: 11400000, guid: e0a579c399bb0e547baa3305d91d6cfe, type: 2}
