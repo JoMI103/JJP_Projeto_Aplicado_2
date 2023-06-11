@@ -712,6 +712,9 @@ MonoBehaviour:
   animationModel: {fileID: 6278507223405537024}
   building: {fileID: 7290796505505383193}
   meshRenderer: {fileID: 5485737831414367957}
+  scaleTexture: 0.16
+  radius: 3
+  scale: 1
   buildingTypeSO: {fileID: 11400000, guid: 276b7616f1052ca409f310444922dc04, type: 2}
   dir: 0
   CenterPosition: {fileID: 1796604285655472431}

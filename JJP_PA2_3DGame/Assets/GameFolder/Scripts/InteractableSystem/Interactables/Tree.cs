@@ -52,8 +52,8 @@ public class Tree : ToolInteractable
     [SerializeField] MeshRenderer m1,m2;
     private void updateTreeShader(){
         Debug.Log((float)hpPoints / (float)maxHp);
-        m1.sharedMaterial.SetFloat("_Value",1- (float) hpPoints / (float)maxHp);   
-        m2.sharedMaterial.SetFloat("_Value",1-(float) hpPoints / (float)maxHp);   
+        m1.material.SetFloat("_Value",1- (float) hpPoints / (float)maxHp);   
+        m2.material.SetFloat("_Value",1-(float) hpPoints / (float)maxHp);   
     }
     
     /*

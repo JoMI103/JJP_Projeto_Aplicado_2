@@ -10,8 +10,8 @@ Shader "Unlit/ConstructionShader" {
         _ColorB ("Color B", Color) = (0,0,0,1)
         _Bloom ("Bloom", Range(1,3)) = 1
         
-        _tScale1 ("Triplanar Scale 1", Range(0,1)) = 0
-
+        _tScale1 ("Triplanar Scale 1", Range(0,100)) = 0
+        _Scale("ScaleOftheObject", float) = 0
     }
     SubShader
     {
@@ -48,7 +48,7 @@ Shader "Unlit/ConstructionShader" {
             sampler2D _NoiseTex;
             float4 _NoiseTex_ST;
             float4 _ColorA, _ColorB;
-            float _tScale1;
+            float _tScale1, _Scale;
 
 
             Interpolators vert (MeshData v) {
@@ -57,7 +57,7 @@ Shader "Unlit/ConstructionShader" {
                 o.vertexWorld = mul(unity_ObjectToWorld, v.vertex);
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 
-                o.localVertex = v.vertex;
+                o.localVertex = v.vertex * _Scale;
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);

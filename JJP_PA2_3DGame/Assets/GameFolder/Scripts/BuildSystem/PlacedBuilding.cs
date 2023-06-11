@@ -30,6 +30,9 @@ public class PlacedBuilding : MonoBehaviour {
 
     private void Start() {
         SetStats();
+        meshRenderer.material.SetFloat("_tScale1", scaleTexture);
+        meshRenderer.material.SetFloat("_cRadius", radius);
+        meshRenderer.material.SetFloat("_Scale", scale);
         StartCoroutine("constroi");
     }
     private void SetStats()
@@ -38,12 +41,12 @@ public class PlacedBuilding : MonoBehaviour {
         baseHealth = health;
     }
 
-   
+   [SerializeField] private float scaleTexture, radius, scale;
 
     public IEnumerator constroi(){
         float time = 0;
         while(time < 5f){
-            meshRenderer.sharedMaterial.SetFloat("_Generate",time / 5);
+            meshRenderer.material.SetFloat("_Generate",time / 5);
             time += Time.deltaTime;
             yield return null;
         }
