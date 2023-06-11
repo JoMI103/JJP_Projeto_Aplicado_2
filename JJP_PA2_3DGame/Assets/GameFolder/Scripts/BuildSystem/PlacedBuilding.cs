@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlacedBuilding : MonoBehaviour{
+public class PlacedBuilding : MonoBehaviour {
 
     public static PlacedBuilding Create(Transform grid,Vector3 worldPosition, Vector2Int origin, BuildingTypeSO.Dir dir, BuildingTypeSO buildingTypeSO) {
         
@@ -24,14 +24,35 @@ public class PlacedBuilding : MonoBehaviour{
         return placedBuilding;
     }
 
+    [SerializeField] GameObject Principal, animationModel;
+    [SerializeField] DefenseBuilding building;
+    [SerializeField] MeshRenderer meshRenderer;
+
     private void Start() {
         SetStats();
+        StartCoroutine("constroi");
     }
     private void SetStats()
     {
         health = buildingTypeSO.health;
         baseHealth = health;
     }
+
+   
+
+    public IEnumerator constroi(){
+        float time = 0;
+        while(time < 5f){
+            meshRenderer.sharedMaterial.SetFloat("_Generate",time / 5);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        
+        Principal.SetActive(true);
+        animationModel.SetActive(false);
+        building.enabled = true;
+    }
+
 
     public BuildingTypeSO buildingTypeSO;
     private Vector2Int origin;

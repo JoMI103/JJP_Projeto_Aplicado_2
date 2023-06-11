@@ -409,6 +409,7 @@ MonoBehaviour:
   navmeshFloor:
     serializedVersion: 2
     m_Bits: 34824
+  sheepExplode: {fileID: 8239316663089897704, guid: 5cf690231627db64e951760db6d812e5, type: 3}
   nothing: 0
 --- !u!114 &6920888894953836683
 MonoBehaviour:

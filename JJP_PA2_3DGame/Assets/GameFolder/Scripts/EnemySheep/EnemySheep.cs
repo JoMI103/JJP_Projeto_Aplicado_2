@@ -374,13 +374,19 @@ public class EnemySheep : MonoBehaviour
     {
         if (targetedBuilding != null) targetedBuilding.onDestroyEvent -= whenTargetDestroy;
         addResources();
+        Instantiate(sheepExplode,transform.position,transform.rotation);
         Destroy(this.gameObject);
     }
+    
+    [SerializeField] GameObject sheepExplode;
 
     protected void deathWithNoEffect()
     {
         if (targetedBuilding != null) targetedBuilding.onDestroyEvent -= whenTargetDestroy;
         addResources();
+        
+        Instantiate(sheepExplode,transform.position,transform.rotation);
+        
         Destroy(this.gameObject);
 
     }
