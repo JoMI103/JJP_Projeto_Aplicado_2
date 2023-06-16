@@ -74,7 +74,12 @@ Shader "Unlit/BulletTrail"
     
                 fixed4 col = tex2Dproj(_GrabTexture, i.grabPassUV);
                 
-                if(i.uv.y > 0 && i.uv.y < 1){ return col * (1-i.uv.y); } else{return 0;}
+                if(i.uv.y > 0 && i.uv.y < 1){ 
+                    
+                    return col * (1-i.uv.y); 
+                
+                } 
+                else { return 0; }
             }
             ENDCG
         }
